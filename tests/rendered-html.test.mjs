@@ -55,6 +55,9 @@ const publicRoutes = [
   "/blog/palworld-card-game-keyword-glossary",
   "/blog/palworld-tcg-rarity-guide",
   "/blog/dawn-of-palpagos-pull-rates",
+  "/blog/palworld-card-game-2026-roadmap",
+  "/blog/palworld-card-game-errata-tracker",
+  "/blog/palworld-card-game-color-guide",
 ];
 
 test("every published page renders successfully", async () => {
@@ -168,6 +171,7 @@ test("natural-language questions return the correct direct answer first", async 
     ["what are the booster pull odds", "What are the Dawn of Palpagos pull rates?"],
     ["when is the release tournament", "When are the Grand Release Tournaments?"],
     ["what set releases next", "What Palworld Card Game products come after launch?"],
+    ["is there a td01 misprint", "Is there any confirmed Palworld Card Game errata?"],
   ];
 
   const mismatches = [];

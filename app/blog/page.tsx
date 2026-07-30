@@ -24,7 +24,7 @@ export default function GuidesPage() {
       <div className="guide-grid shell section">
         {guides.map((guide, index) => (
           <Link href={`/blog/${guide.slug}`} className={`guide-card guide-${index + 1}`} key={guide.slug}>
-            <span className="guide-number">0{index + 1}</span>
+            <span className="guide-number">{String(index + 1).padStart(2, "0")}</span>
             <div><span className="mini-label">{guide.category} · {guide.readTime}</span><h3>{guide.title}</h3><p>{guide.description}</p><small className="guide-source-label">{guide.sourceStatus} · Updated {guide.updated}</small></div>
             <span className="guide-arrow">↗</span>
           </Link>

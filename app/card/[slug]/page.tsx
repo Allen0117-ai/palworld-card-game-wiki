@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const card = featuredCards.find((item) => item.slug === slug);
   if (!card) return {};
   return {
-    title: `${card.name} · Palworld TCG – ${card.rarity} ${card.color} Card Stats & Price`,
+    title: `${card.name} · Palworld TCG – ${card.rarity} ${card.color} Card Stats & Strategy`,
     description: `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from Dawn of Palpagos.`,
   };
 }

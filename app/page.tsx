@@ -103,21 +103,21 @@ export default function Home() {
           <p>This area tracks useful official changes so returning players can see what is newly verified.</p>
         </div>
         <div className="latest-update-grid">
-          <Link href="/rules">
-            <span>Rules · New</span>
-            <strong>Comprehensive Rules now checked</strong>
-            <p>First-turn attacks, setup, battle timing and loss conditions are linked to the full official rulebook.</p>
+          <Link href="/blog/palworld-card-game-2026-roadmap">
+            <span>Products · Confirmed</span>
+            <strong>Legends Awaken arrives October 30</strong>
+            <p>See every confirmed 2026 product and organized-play date in one launch roadmap.</p>
           </Link>
-          <Link href="/rules">
-            <span>Q&amp;A · {officialRuleCount} entries</span>
-            <strong>Every launch ruling is searchable</strong>
-            <p>Search official card interactions by normal question, card name or card number.</p>
+          <Link href="/blog/palworld-card-game-errata-tracker">
+            <span>Corrections · Tracked</span>
+            <strong>TD01 printing notice explained</strong>
+            <p>See the confirmed omitted Strike text notice and learn where to check current card text.</p>
           </Link>
-          <a href="https://en.palworld-official-cardgame.com/events/grand-release-tournament" target="_blank" rel="noreferrer">
+          <Link href="/blog/palworld-card-game-2026-roadmap">
             <span>Events · Aug 1–31</span>
             <strong>Grand Release Tournament window</strong>
-            <p>Official tournament stores may hold one launch event during August. Check participating stores before travelling.</p>
-          </a>
+            <p>Format, participation prizes, registration and the official source are summarized clearly.</p>
+          </Link>
         </div>
       </section>
 

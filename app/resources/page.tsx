@@ -14,6 +14,7 @@ const resourceGroups = [
       { label: "Quick Manual", description: "The official one-page setup, turn, battle and deck-building reference.", href: "https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf", source: "Official · Primary source" },
       { label: "Official Rule & Q&A", description: "Search current rulings, card interactions, errata and tournament documents.", href: "https://en.palworld-official-cardgame.com/rule", source: "Official · Primary source" },
       { label: "Official card list", description: "Source card numbers, images, stats and printed text.", href: "https://en.palworld-official-cardgame.com/cardlist", source: "Official · Primary source" },
+      { label: "Official news feed", description: "New product, campaign, retailer and event announcements in date order.", href: "https://en.palworld-official-cardgame.com/news", source: "Official · Latest updates" },
     ],
   },
   {
@@ -35,6 +36,8 @@ const resourceGroups = [
       { label: "PalworldTCG.gg card browser", description: "A third-party way to scan BP01 reveals and card information.", href: "https://palworldtcg.gg/set/bp01", source: "Third-party database · Verify data" },
       { label: "Palpagos.gg", description: "Community-built deck and card tools for exploring player-created ideas.", href: "https://palpagos.gg/", source: "Community tool · User-created decks" },
       { label: "Bushiroad DeckLog", description: "The publisher's deck creation service for saving and sharing lists.", href: "https://decklog-en.bushiroad.com/", source: "Official tool · Deck lists vary" },
+      { label: "PalworldCard.com", description: "Independent rules, product and video index with official materials gathered in one place.", href: "https://palworldcard.com/pages/game-rules.html", source: "Independent guide · Verify rules" },
+      { label: "PalSphere beginner guide", description: "A second plain-English explanation of setup, colors, Souls and the turn flow.", href: "https://palsphere.com/how-to-play-the-palworld-card-game-a-beginners-guide/", source: "Independent guide · Verify rules" },
     ],
   },
   {

@@ -137,7 +137,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>One Dawn of Palpagos BP01 booster pack.</li>
         <li>One parallel-rarity card replacing a card in the Main Deck.</li>
       </ul>
-      <div className="comparison-table">
+      <div className="comparison-table" role="region" aria-label="Trial Deck comparison table" tabIndex={0}>
         <div className="comparison-head"><span>Question</span><strong>Red / Blue TD01</strong><strong>Green / Purple TD02</strong></div>
         <div><span>Main feel</span><p>Damage, Structures, card flow</p><p>Ingredients, Taunt, Stealth, removal</p></div>
         <div><span>Resource engine</span><p>Stone Pit creates Materials and draws</p><p>Berry Plantation creates Ingredients and draws</p></div>
@@ -282,6 +282,94 @@ const guideContent: Record<string, React.ReactNode> = {
       <div className="callout"><strong>Status — July 30:</strong> verification in progress. We will not invent “one per box” claims to fill an information gap.</div>
     </>
   ),
+
+  "palworld-card-game-2026-roadmap": (
+    <>
+      <div className="quick-answer"><strong>Next confirmed dates</strong><p>The game launches worldwide on July 30, Grand Release Tournaments run during August, Sleeve &amp; Card Set Vol. 1 arrives October 2, and the second booster set—Legends Awaken—releases October 30, 2026.</p></div>
+      <h2>July 30: Dawn of Palpagos launch</h2>
+      <p>The first release wave contains the 100-card BP01 base set plus parallel treatments and two ready-to-play Trial Decks: Red/Blue TD01 and Green/Purple TD02. Each Trial Deck supplies a complete 50-card Main Deck, 10-card Soul Deck and the basic play accessories needed for a first match.</p>
+      <h2>August 1-31: Grand Release Tournament</h2>
+      <p>Official tournament stores may hold one Grand Release Tournament during August. The announced format is Standard, up to five Swiss rounds, best-of-one and 30 minutes per round. Registration is handled through Bushi Navi, so players should check the actual store listing before travelling.</p>
+      <ul>
+        <li><strong>Participation:</strong> one PR Card Pack containing one of nine card types, an Entry Soul Card Set and a Bushi Navi flair.</li>
+        <li><strong>Champion:</strong> a Lily Everhart and Lyleen playmat plus a champion flair.</li>
+        <li><strong>Important:</strong> prize availability and local entry details come from the organizer; a marketplace listing is not an event registration.</li>
+      </ul>
+      <h2>Autumn: the first competitive season</h2>
+      <p>Official announcements place shop tournaments from August, the first Challengers Cup season from September through November, and regional Masters League competition across the 2026-27 season. Dates and locations can change, so the official event calendar remains the final source.</p>
+      <h2>October 2: Sleeve &amp; Card Set Vol. 1</h2>
+      <p>The announced set contains five exclusive card types—one copy of each—and 75 sleeves. Full card details were not yet published in the June announcement, so any effect text or rarity claims circulating before an official reveal should be treated as unverified.</p>
+      <h2>October 30: Legends Awaken BP02</h2>
+      <p>The second booster is confirmed as <strong>Legends Awaken</strong>. Bushiroad lists 100 normal card types across RR, R, U and C, plus parallel versions. The complete card list, exact parallel count and new mechanics were not confirmed in the announcement we checked.</p>
+      <h2>What to bookmark</h2>
+      <ul>
+        <li>Use the official news page for product announcements.</li>
+        <li>Use the official event calendar and Bushi Navi for a real registration.</li>
+        <li>Use our card database only for cards already published in the official list.</li>
+      </ul>
+      <div className="callout"><strong>Tracker rule:</strong> confirmed dates are shown as facts. Teasers, retailer placeholders and community speculation stay labeled until an official source supports them.</div>
+    </>
+  ),
+
+  "palworld-card-game-errata-tracker": (
+    <>
+      <div className="quick-answer"><strong>Confirmed launch correction</strong><p>The official Red/Blue Trial Deck page reports a printed card with omitted “Strike” text. Bushiroad says the card remains legal at every level of play and functions as though the correct Strike text is present.</p></div>
+      <h2>Current confirmed product errata</h2>
+      <div className="verification-strip">
+        <strong>TD01 · Confirmed</strong>
+        <span>One printed card omits its Strike text. The official product notice—not the misprint—controls how the card works.</span>
+      </div>
+      <p>The accessible text on the official product page does not name the affected card, so this tracker does not guess from a photograph. Players should use the official notice and current card database when identifying the printed copy.</p>
+      <h2>Errata and Q&amp;A are different</h2>
+      <ul>
+        <li><strong>Errata</strong> corrects a printing or published-text error.</li>
+        <li><strong>Official Q&amp;A</strong> explains how valid card text interacts with the rules or another card.</li>
+        <li><strong>Community rulings</strong> can help locate a question, but they do not replace an official answer.</li>
+      </ul>
+      <h2>What to check before a tournament</h2>
+      <ol>
+        <li>Search the exact card number in the official card list.</li>
+        <li>Check the product page for a visible errata notice.</li>
+        <li>Search the official Q&amp;A by card number and keyword.</li>
+        <li>If the answer is still unclear, ask the event judge before the round begins.</li>
+      </ol>
+      <h2>How this tracker will update</h2>
+      <p>Each entry needs a direct official link, the affected product or card number, the corrected behavior and the date we checked it. Reports without a primary source remain outside the confirmed list.</p>
+      <div className="callout"><strong>Last checked July 30, 2026:</strong> one product-page correction is confirmed here. Search our Rules &amp; Q&amp;A center for card interactions that are rulings rather than misprints.</div>
+      <Link className="button primary" href="/rules">Search official rulings</Link>
+    </>
+  ),
+
+  "palworld-card-game-color-guide": (
+    <>
+      <div className="quick-answer"><strong>Choose by play style</strong><p>Red applies direct pressure, Blue controls tempo and cards, Green builds Ingredient-powered boards, and Purple disrupts combat through Stealth, removal, night and graveyard effects. A legal deck may use up to two of these colors plus Colorless cards.</p></div>
+      <h2>Red: damage and Material pressure</h2>
+      <p>Red launch cards reward proactive turns. Its Structures create Materials, its effects deal direct damage to Pals, and its larger threats can turn a developed Base into immediate pressure. Choose Red if you want the clearest path from setup to attacking.</p>
+      <h2>Blue: draw, rest and defensive timing</h2>
+      <p>Blue helps a deck see more cards, change which opposing cards are standing or rested, and protect important turns with Quick or Interrupt effects. Choose Blue if you enjoy keeping options open and winning through better timing rather than only raw Power.</p>
+      <h2>Green: Ingredients, Taunt and durable boards</h2>
+      <p>Green creates and consumes Ingredients for Power boosts, life gain and value. Taunt Pals can protect another target by restricting legal attacks. Choose Green if you like building an engine and making one strong, carefully prepared turn.</p>
+      <h2>Purple: Stealth, removal and graveyard value</h2>
+      <p>Purple makes blocking difficult with Stealth, removes or weakens opposing Pals, and uses night or Graveyard interactions for extra value. Choose Purple if you enjoy sequencing effects and forcing awkward defensive choices.</p>
+      <h2>The two safest launch pairings</h2>
+      <div className="comparison-table" role="region" aria-label="Launch color pairing comparison table" tabIndex={0}>
+        <div className="comparison-head"><span>Pair</span><strong>What it teaches</strong><strong>Best for</strong></div>
+        <div><span>Red / Blue</span><p>Materials, damage, draw and Quick timing</p><p>A direct first deck with flexible defense</p></div>
+        <div><span>Green / Purple</span><p>Ingredients, Taunt, Stealth and removal</p><p>Players who enjoy setup and sequencing</p></div>
+      </div>
+      <h2>How to upgrade without breaking the deck</h2>
+      <ol>
+        <li>Play the unchanged Trial Deck several times and identify cards that sit unused in hand.</li>
+        <li>Choose one existing engine—Materials or Ingredients—instead of adding every exciting pull.</li>
+        <li>Add BP01 cards in small groups, usually two to four copies depending on how often the effect is needed.</li>
+        <li>Keep enough low-cost plays, card flow and interaction after every change.</li>
+        <li>Change only a few slots, then record whether the new card was useful when drawn.</li>
+      </ol>
+      <h2>Why there is no honest launch-day tier list yet</h2>
+      <p>Card text can suggest strong synergies, but a real tier list needs repeated tournament results, known lists and matchup data. This guide describes verified mechanics and an editorial starting point; it does not present first-day opinions as a settled meta.</p>
+      <Link className="button primary" href="/tools/deck-builder">Test a two-color list</Link>
+    </>
+  ),
 };
 
 const officialSources: Record<string, Array<{ label: string; href: string }>> = {
@@ -319,6 +407,23 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
   "dawn-of-palpagos-pull-rates": [
     { label: "Official BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
+  ],
+  "palworld-card-game-2026-roadmap": [
+    { label: "Official news and latest updates", href: "https://en.palworld-official-cardgame.com/news" },
+    { label: "Official Legends Awaken announcement", href: "https://en.palworld-official-cardgame.com/news/post-preoders-bp02-ss01" },
+    { label: "Official Grand Release Tournament", href: "https://en.palworld-official-cardgame.com/events/grand-release-tournament" },
+    { label: "Official 2026 event roadmap", href: "https://en.palworld-official-cardgame.com/news/post-becs-26" },
+  ],
+  "palworld-card-game-errata-tracker": [
+    { label: "Official Red / Blue Trial Deck errata notice", href: "https://en.palworld-official-cardgame.com/products/td01" },
+    { label: "Official Rule & Q&A", href: "https://en.palworld-official-cardgame.com/rule" },
+    { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
+  ],
+  "palworld-card-game-color-guide": [
+    { label: "Official launch card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
+    { label: "Official Red / Blue Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td01" },
+    { label: "Official Green / Purple Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td02" },
+    { label: "Official Spring 2026 play-style overview", href: "https://en.palworld-official-cardgame.com/news/post-becs-26" },
   ],
 };
 

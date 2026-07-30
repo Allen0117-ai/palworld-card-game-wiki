@@ -791,6 +791,9 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 .guide-6 { background: linear-gradient(145deg, #315c68, #263d41); }
 .guide-7 { background: linear-gradient(145deg, #8d5a46, #543f34); }
 .guide-8 { background: var(--paper); color: var(--ink); }
+.guide-9 { background: linear-gradient(145deg, #4f6044, #303b2d); }
+.guide-10 { background: linear-gradient(145deg, #5b4e70, #363143); }
+.guide-11 { background: linear-gradient(145deg, #315c68, #263d41); }
 .guide-number { color: var(--gold); font: 700 42px/1 var(--font-display); opacity: .82; }
 .guide-card h3 { max-width: 410px; margin: 12px 0 14px; color: inherit; font-size: 31px; line-height: 1.03; letter-spacing: -.025em; }
 .guide-card p { max-width: 420px; margin: 0; color: rgba(255, 255, 255, .72); font-size: 13px; line-height: 1.65; }

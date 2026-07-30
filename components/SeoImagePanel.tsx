@@ -91,6 +91,24 @@ const guideVisuals: Record<string, GuideVisual> = {
       },
     ],
   },
+  "palworld-card-game-2026-roadmap": {
+    label: "2026 release roadmap",
+    title: "Launch, organized play and the next set",
+    caption: "Dawn of Palpagos launch cards representing the first chapter of the Palworld Card Game 2026 product and event calendar.",
+    cardNumbers: ["EBP01-001", "EBP01-025", "EBP01-050", "EBP01-074"],
+  },
+  "palworld-card-game-errata-tracker": {
+    label: "Official corrections",
+    title: "Check the current text before a match",
+    caption: "Representative Trial Deck cards. Printing corrections and card-specific rulings are checked against official product notices and Q&A.",
+    cardNumbers: ["ETD01-001", "ETD01-008", "ETD02-001", "ETD02-018"],
+  },
+  "palworld-card-game-color-guide": {
+    label: "Four-color field guide",
+    title: "Pressure, control, growth or disruption",
+    caption: "Representative Red, Blue, Green and Purple BP01 cards used to explain each color's launch-day mechanics.",
+    cardNumbers: ["EBP01-002", "EBP01-027", "EBP01-050", "EBP01-077"],
+  },
 };
 
 function cardAssets(cardNumbers: string[], topic: string): PanelAsset[] {
