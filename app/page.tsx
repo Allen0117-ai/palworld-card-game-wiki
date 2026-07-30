@@ -34,6 +34,7 @@ export default function Home() {
           height={821}
           sizes="100vw"
           preload
+          fetchPriority="high"
           aria-hidden="true"
         />
         <div className="hero-map-overlay" />
