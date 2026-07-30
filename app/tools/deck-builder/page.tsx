@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { DeckBuilder } from "@/components/DeckBuilder";
 import { JsonLd } from "@/components/JsonLd";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Palworld TCG Deck Builder – All 148 Launch Cards", description: "Build a Palworld TCG deck with all BP01 and Trial Deck cards. Check the 50-card, four-copy and two-color rules, then save a draft on your device." };
+export const metadata: Metadata = createPageMetadata({
+  title: "Palworld TCG Deck Builder – All 148 Launch Cards",
+  description: "Build a Palworld TCG deck with all BP01 and Trial Deck cards. Check the 50-card, four-copy and two-color rules, then save a draft on your device.",
+  path: "/tools/deck-builder",
+});
 
 export default function DeckBuilderPage() {
   return (

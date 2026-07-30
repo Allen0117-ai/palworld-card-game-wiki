@@ -3,11 +3,13 @@ import { JsonLd } from "@/components/JsonLd";
 import { RuleExplorer } from "@/components/RuleExplorer";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
 import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Palworld Card Game Rules & FAQ – Search Official Rulings",
   description: "Ask Palworld Card Game rules questions in plain English and search essential answers plus all 97 launch-day official Q&A rulings.",
-};
+  path: "/rules",
+});
 
 export default async function RulesPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;

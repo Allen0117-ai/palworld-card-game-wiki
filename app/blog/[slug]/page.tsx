@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { GuideToc } from "@/components/GuideToc";
 import { getGuidePrimaryImage, GuideSeoImagePanel } from "@/components/SeoImagePanel";
 import type { Metadata } from "next";
+import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return guides.map((guide) => ({ slug: guide.slug }));
@@ -15,16 +16,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const guide = guides.find((item) => item.slug === slug);
   if (!guide) return {};
   const primaryImage = getGuidePrimaryImage(slug);
-  return {
+  return createPageMetadata({
     title: guide.title,
     description: guide.description,
-    openGraph: primaryImage ? {
-      type: "article",
-      title: guide.title,
-      description: guide.description,
-      images: [primaryImage],
-    } : undefined,
-  };
+    path: `/blog/${guide.slug}`,
+    type: "article",
+    image: primaryImage,
+  });
 }
 
 const guideQuickAnswers: Record<string, { label: string; answer: React.ReactNode }> = {
@@ -473,7 +471,14 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
   return (
     <article className="article-shell">
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, image: primaryImage?.url, datePublished: "2026-07-30", dateModified: "2026-07-30", author: { "@type": "Organization", name: "Palworld Card Game Wiki" }, mainEntityOfPage: `https://palworldcardgame.wiki/blog/${guide.slug}` }} />
+      <JsonLd data={[
+        { "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, image: primaryImage?.url, datePublished: "2026-07-30", dateModified: "2026-07-30", author: { "@type": "Organization", name: "Palworld Card Game Wiki" }, mainEntityOfPage: `https://palworldcardgame.wiki/blog/${guide.slug}` },
+        createBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Guides", path: "/blog" },
+          { name: guide.title, path: `/blog/${guide.slug}` },
+        ]),
+      ]} />
       <p className="eyebrow"><span>{guide.category}</span> · {guide.readTime}</p>
       <h1>{guide.title}</h1>
       <p className="article-lede">{guide.description}</p>

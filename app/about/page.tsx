@@ -1,4 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "About",
+  description: "Learn how Palworld Card Game Wiki verifies official rules, card data, product information and clearly labels independent strategy guidance.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

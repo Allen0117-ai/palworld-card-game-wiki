@@ -71,6 +71,37 @@ test("every published page renders successfully", async () => {
   }
 });
 
+test("every published page has a self-referencing canonical and matching social metadata", async () => {
+  for (const route of publicRoutes) {
+    const response = await render(route);
+    const html = await response.text();
+    const expectedCanonical = `https://palworldcardgame.wiki${route}`;
+    const title = html.match(/<title>(.*?)<\/title>/s)?.[1];
+    const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
+    const canonical = html.match(/<link rel="canonical" href="([^"]*)"/)?.[1];
+    const openGraphTitle = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1];
+    const openGraphDescription = html.match(/<meta property="og:description" content="([^"]*)"/)?.[1];
+
+    assert.equal(canonical, expectedCanonical, `${route} has the wrong canonical URL`);
+    assert.equal(openGraphTitle, title, `${route} Open Graph title does not match its title`);
+    assert.equal(openGraphDescription, description, `${route} Open Graph description does not match its description`);
+  }
+});
+
+test("homepage heading and detail-page breadcrumbs describe the page clearly", async () => {
+  const homeHtml = await (await render("/")).text();
+  assert.match(homeHtml, /<h1><span class="hero-title-keyword">Palworld Card Game Wiki<\/span>/);
+
+  for (const route of [
+    "/card/chillet-dragon-whisperer-ebp01-025",
+    "/deck/red-blue-launch-pressure",
+    "/blog/how-to-play-palworld-card-game",
+  ]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /"@type":"BreadcrumbList"/, `${route} is missing BreadcrumbList data`);
+  }
+});
+
 test("every internal link points to a published page", async () => {
   const knownRoutes = new Set(publicRoutes);
 

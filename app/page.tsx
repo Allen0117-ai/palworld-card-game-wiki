@@ -6,6 +6,17 @@ import { JsonLd } from "@/components/JsonLd";
 import { HeroSearch } from "@/components/HeroSearch";
 import { SpecialCardGallery } from "@/components/SpecialCardGallery";
 import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
+import { createPageMetadata } from "@/lib/seo";
+
+const homeTitle = "Palworld Card Game Guide – Rules, Cards, Decks & Builder";
+const homeDescription = "Get clear Palworld Card Game rules, all 148 launch main-deck cards, Trial Deck guides, product answers and a free deck builder.";
+
+export const metadata = createPageMetadata({
+  title: homeTitle,
+  description: homeDescription,
+  path: "/",
+  absoluteTitle: true,
+});
 
 export default function Home() {
   return (
@@ -36,7 +47,10 @@ export default function Home() {
         <div className="hero-inner shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Launch-day field guide</span> · Rules · Cards · Decks</p>
-            <h1>Find your answer.<br /><em>Build your Pal team.</em></h1>
+            <h1>
+              <span className="hero-title-keyword">Palworld Card Game Wiki</span>
+              Find your answer.<br /><em>Build your Pal team.</em>
+            </h1>
             <p className="hero-lede">
               Ask rules in normal language, browse all 148 launch main-deck
               cards, compare Trial Decks, and build a legal deck.

@@ -4,6 +4,7 @@ import { CardTile } from "@/components/CardTile";
 import { cards, decks } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
+import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() { return decks.map((deck) => ({ slug: deck.slug })); }
 
@@ -11,7 +12,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const deck = decks.find((item) => item.slug === slug);
   if (!deck) return {};
-  return { title: `${deck.name} · Palworld TCG Strategy & Card Pool`, description: deck.description };
+  return createPageMetadata({
+    title: `${deck.name} · Palworld TCG Strategy & Card Pool`,
+    description: deck.description,
+    path: `/deck/${deck.slug}`,
+    type: "article",
+  });
 }
 
 const deckPlans: Record<string, React.ReactNode> = {
@@ -63,7 +69,14 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
   const pool = deck.cardPool.map((cardSlug) => cards.find((card) => card.slug === cardSlug)).filter(Boolean);
   return (
     <>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: `${deck.name} Palworld TCG Deck Guide`, description: deck.description, author: { "@type": "Organization", name: "Palworld Card Game Wiki" } }} />
+      <JsonLd data={[
+        { "@context": "https://schema.org", "@type": "Article", headline: `${deck.name} Palworld TCG Deck Guide`, description: deck.description, author: { "@type": "Organization", name: "Palworld Card Game Wiki" } },
+        createBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Decks", path: "/decks" },
+          { name: deck.name, path: `/deck/${deck.slug}` },
+        ]),
+      ]} />
       <header className="page-hero shell">
         <div className="color-pips">{deck.colors.map((color) => <span className={`pip ${color}`} key={color} />)}</div>
         <p className="eyebrow"><span>{deck.status}</span> · Updated {deck.updated}</p>

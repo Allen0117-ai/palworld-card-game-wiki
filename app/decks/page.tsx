@@ -3,8 +3,13 @@ import { decks } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { DeckExplorer } from "@/components/DeckExplorer";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Palworld TCG Trial Deck Guides & Launch Deck Lab", description: "Compare both official Palworld Card Game Trial Decks, inspect their unique card pools and build a legal launch-day deck without unverified meta claims." };
+export const metadata: Metadata = createPageMetadata({
+  title: "Palworld TCG Trial Deck Guides & Launch Deck Lab",
+  description: "Compare both official Palworld Card Game Trial Decks, inspect their unique card pools and build a legal launch-day deck without unverified meta claims.",
+  path: "/decks",
+});
 
 export default function DecksPage() {
   return (

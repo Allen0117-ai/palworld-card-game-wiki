@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { CardMagnifier } from "@/components/CardMagnifier";
 import { CardDetailsTable } from "@/components/CardDetailsTable";
 import type { Metadata } from "next";
+import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() { return cards.map((card) => ({ slug: card.slug })); }
 
@@ -13,12 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const card = cards.find((item) => item.slug === slug);
   if (!card) return {};
   const pageLabel = card.hasGuide ? "Stats & Strategy" : "Official Card Details";
-  return {
+  return createPageMetadata({
     title: `${card.name} · Palworld TCG – ${card.rarity} ${card.color} ${pageLabel}`,
     description: card.hasGuide
       ? `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`
       : `Official card text, stats and set information for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`,
-  };
+    path: `/card/${card.slug}`,
+    image: { url: `https://palworldcardgame.wiki${card.image}`, alt: getCardImageAlt(card) },
+  });
 }
 
 export default async function CardDetailPage({
@@ -41,7 +44,14 @@ export default async function CardDetailPage({
 
   return (
     <div className="detail-layout shell">
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: displayNumber, additionalType: `Palworld TCG ${card.type} card` }} />
+      <JsonLd data={[
+        { "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: displayNumber, additionalType: `Palworld TCG ${card.type} card` },
+        createBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Cards", path: "/cards" },
+          { name: card.name, path: `/card/${card.slug}` },
+        ]),
+      ]} />
       <figure className="detail-art">
         <CardMagnifier
           src={displayImage}

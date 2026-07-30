@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import { CardExplorer } from "@/components/CardExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import { cards } from "@/lib/data";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Complete Palworld TCG Card List – BP01 & Trial Decks", description: "Search all 148 launch main-deck cards from Dawn of Palpagos BP01 and both Trial Decks by name, number, color, type, cost and rarity." };
+export const metadata: Metadata = createPageMetadata({
+  title: "Complete Palworld TCG Card List – BP01 & Trial Decks",
+  description: "Search all 148 launch main-deck cards from Dawn of Palpagos BP01 and both Trial Decks by name, number, color, type, cost and rarity.",
+  path: "/cards",
+});
 
 export default async function CardsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;

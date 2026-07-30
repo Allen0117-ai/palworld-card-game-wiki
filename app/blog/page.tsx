@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { guides } from "@/lib/data";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Palworld Card Game Guides – Rules, Products, Decks & Cards", description: "Complete launch-day Palworld Card Game guides for first games, deck rules, Trial Deck choices, BP01 cards, keywords, rarity and products." };
+export const metadata: Metadata = createPageMetadata({
+  title: "Palworld Card Game Guides – Rules, Products, Decks & Cards",
+  description: "Complete launch-day Palworld Card Game guides for first games, deck rules, Trial Deck choices, BP01 cards, keywords, rarity and products.",
+  path: "/blog",
+});
 
 export default function GuidesPage() {
   return (

@@ -1,4 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Privacy",
+  description: "Read how Palworld Card Game Wiki handles local deck drafts, accounts, analytics and user data.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

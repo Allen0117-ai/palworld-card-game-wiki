@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { SiteSearchResults } from "@/components/SiteSearchResults";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Search Palworld Card Game Cards, Rules & Guides",
   description: "Ask natural-language questions or search the complete Palworld Card Game launch card pool, official Q&A, guides, products and decks.",
-};
+  path: "/search",
+});
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;

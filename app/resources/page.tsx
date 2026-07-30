@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Palworld Card Game Resource Hub – Rules, Cards, Events & Community",
   description: "A curated starting point for official Palworld Card Game rules, card data, products, retailers, events, deck tools and community discussion.",
-};
+  path: "/resources",
+});
 
 const resourceGroups = [
   {
