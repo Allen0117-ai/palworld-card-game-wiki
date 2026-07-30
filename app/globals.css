@@ -737,14 +737,33 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   background: linear-gradient(90deg, rgba(12, 14, 12, .72), transparent 22%, transparent 78%, rgba(12, 14, 12, .72));
 }
 .special-gallery-card {
+  --gallery-tilt-x: 0deg;
+  --gallery-tilt-y: 0deg;
+  --gallery-pointer-x: 50%;
+  --gallery-pointer-y: 50%;
   position: absolute;
   left: 50%;
   top: 50%;
   display: block;
-  overflow: hidden;
   border-radius: 14px;
   filter: drop-shadow(0 36px 30px rgba(0, 0, 0, .58));
-  transition: transform .38s ease, opacity .38s ease, filter .38s ease;
+  transform-origin: center;
+  transition:
+    width .48s cubic-bezier(.22, 1, .36, 1),
+    transform .48s cubic-bezier(.22, 1, .36, 1),
+    opacity .36s ease,
+    filter .48s ease;
+  will-change: width, transform, opacity;
+}
+.special-gallery-card-face {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  border-radius: inherit;
+  transform: perspective(1000px) rotateX(var(--gallery-tilt-x)) rotateY(var(--gallery-tilt-y));
+  transform-style: preserve-3d;
+  transition: transform .14s ease-out;
 }
 .special-gallery-card img { display: block; width: 100%; height: auto; }
 .special-gallery-aura {
@@ -763,22 +782,14 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   animation: special-gallery-aura-pulse 5.5s ease-in-out infinite alternate;
 }
 .special-gallery-card-active {
-  --gallery-tilt-x: 0deg;
-  --gallery-tilt-y: 0deg;
-  --gallery-pointer-x: 50%;
-  --gallery-pointer-y: 50%;
   z-index: 4;
   width: min(330px, 34vw);
-  transform: translate(-50%, -50%) perspective(1000px) rotateX(var(--gallery-tilt-x)) rotateY(var(--gallery-tilt-y));
-  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
   filter:
     drop-shadow(0 36px 30px rgba(0, 0, 0, .58))
     drop-shadow(0 0 24px rgba(var(--gallery-accent-rgb), .2));
-  transition: transform .14s ease-out, filter .25s ease;
-  will-change: transform;
-  animation: special-gallery-card-reveal .42s ease-out;
 }
-.special-gallery-card-active::after {
+.special-gallery-card-active .special-gallery-card-face::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -791,20 +802,33 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
     inset 0 0 2px rgba(255, 255, 255, .75);
 }
 .special-gallery-card-active:hover {
-  transform: translate(-50%, -51.2%) perspective(1000px) rotateX(var(--gallery-tilt-x)) rotateY(var(--gallery-tilt-y)) scale(1.012);
   filter:
     drop-shadow(0 40px 32px rgba(0, 0, 0, .62))
     drop-shadow(0 0 30px rgba(var(--gallery-accent-rgb), .3));
+}
+.special-gallery-card-active:hover .special-gallery-card-face {
+  transform: perspective(1000px) rotateX(var(--gallery-tilt-x)) rotateY(var(--gallery-tilt-y)) scale(1.012);
 }
 .special-gallery-card-previous,
 .special-gallery-card-next {
   z-index: 1;
   width: min(220px, 22vw);
   opacity: .44;
+  cursor: pointer;
   filter: blur(.6px) saturate(.7) drop-shadow(0 30px 24px rgba(0, 0, 0, .52));
 }
 .special-gallery-card-previous { transform: translate(-154%, -48%) rotate(-8deg); }
 .special-gallery-card-next { transform: translate(54%, -48%) rotate(8deg); }
+.special-gallery-card-far-previous,
+.special-gallery-card-far-next {
+  z-index: 0;
+  width: min(180px, 18vw);
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(2px) saturate(.55);
+}
+.special-gallery-card-far-previous { transform: translate(-245%, -46%) rotate(-14deg) scale(.84); }
+.special-gallery-card-far-next { transform: translate(145%, -46%) rotate(14deg) scale(.84); }
 .special-gallery-glare {
   position: absolute;
   inset: -35%;
@@ -1805,11 +1829,6 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   to { opacity: .82; transform: translate(-50%, -50%) scale(1.05); }
 }
 
-@keyframes special-gallery-card-reveal {
-  from { opacity: .35; }
-  to { opacity: 1; }
-}
-
 @keyframes special-gallery-holo-drift {
   from { background-position: 0 0; }
   to { background-position: 180% 100%; }
@@ -2049,6 +2068,7 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
     --gallery-tilt-y: 0deg !important;
   }
   .special-gallery-card,
+  .special-gallery-card-face,
   .special-gallery-aura,
   .special-gallery-glare,
   .special-gallery-glare::before { transition: none; animation: none; }

@@ -2,24 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import type { SpecialArtwork } from "@/lib/data";
+
+const galleryImageSizes = "(max-width: 520px) 68vw, (max-width: 760px) 63vw, (max-width: 1050px) 300px, 330px";
+
+function getCircularOffset(cardIndex: number, activeIndex: number, cardCount: number) {
+  let offset = cardIndex - activeIndex;
+  if (offset > cardCount / 2) offset -= cardCount;
+  if (offset < -cardCount / 2) offset += cardCount;
+  return offset;
+}
+
+function getPositionClass(offset: number) {
+  if (offset === 0) return "special-gallery-card-active";
+  if (offset === -1) return "special-gallery-card-previous";
+  if (offset === 1) return "special-gallery-card-next";
+  return offset < 0 ? "special-gallery-card-far-previous" : "special-gallery-card-far-next";
+}
 
 export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeCardRef = useRef<HTMLAnchorElement>(null);
   const active = artwork[activeIndex];
-  const previous = artwork[(activeIndex - 1 + artwork.length) % artwork.length];
-  const next = artwork[(activeIndex + 1) % artwork.length];
 
   if (!active) return null;
 
+  function selectCard(nextIndex: number) {
+    if (nextIndex === activeIndex) return;
+    resetActiveCardTilt();
+    setActiveIndex(nextIndex);
+  }
+
   function selectPrevious() {
-    setActiveIndex((index) => (index - 1 + artwork.length) % artwork.length);
+    selectCard((activeIndex - 1 + artwork.length) % artwork.length);
   }
 
   function selectNext() {
-    setActiveIndex((index) => (index + 1) % artwork.length);
+    selectCard((activeIndex + 1) % artwork.length);
+  }
+
+  function selectSideCard(event: ReactMouseEvent<HTMLAnchorElement>, cardIndex: number) {
+    if (cardIndex === activeIndex) return;
+    event.preventDefault();
+    selectCard(cardIndex);
   }
 
   function tiltActiveCard(event: ReactPointerEvent<HTMLAnchorElement>) {
@@ -49,31 +75,39 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
   return (
     <div className="special-gallery">
       <div className={`special-gallery-stage color-${active.card.color}`}>
-        <div className="special-gallery-card special-gallery-card-previous" aria-hidden="true">
-          <Image src={previous.image} alt="" width={1117} height={1560} sizes="240px" />
-        </div>
         <span className="special-gallery-aura" aria-hidden="true" />
-        <Link
-          ref={activeCardRef}
-          key={active.variantNumber}
-          className="special-gallery-card special-gallery-card-active"
-          href={`/card/${active.card.slug}?variant=${active.variantNumber}`}
-          onPointerMove={tiltActiveCard}
-          onPointerLeave={resetActiveCardTilt}
-        >
-          <Image
-            src={active.image}
-            alt={`${active.card.name} — ${active.card.subtitle}, ${active.variantNumber} special artwork`}
-            width={1117}
-            height={1560}
-            sizes="(max-width: 520px) 68vw, (max-width: 760px) 63vw, (max-width: 1050px) 300px, 330px"
-            loading="lazy"
-          />
-          <span className="special-gallery-glare" aria-hidden="true" />
-        </Link>
-        <div className="special-gallery-card special-gallery-card-next" aria-hidden="true">
-          <Image src={next.image} alt="" width={1117} height={1560} sizes="240px" />
-        </div>
+        {artwork.map((item, cardIndex) => {
+          const positionOffset = getCircularOffset(cardIndex, activeIndex, artwork.length);
+          const isActive = positionOffset === 0;
+
+          return (
+            <Link
+              ref={isActive ? activeCardRef : null}
+              className={`special-gallery-card ${getPositionClass(positionOffset)}`}
+              href={`/card/${item.card.slug}?variant=${item.variantNumber}`}
+              onClick={(event) => selectSideCard(event, cardIndex)}
+              onPointerMove={isActive ? tiltActiveCard : undefined}
+              onPointerLeave={isActive ? resetActiveCardTilt : undefined}
+              aria-label={isActive ? `Explore ${item.card.name}` : `Show ${item.card.name}`}
+              aria-current={isActive ? "true" : undefined}
+              aria-hidden={isActive ? undefined : true}
+              tabIndex={isActive ? 0 : -1}
+              key={item.variantNumber}
+            >
+              <span className="special-gallery-card-face">
+                <Image
+                  src={item.image}
+                  alt={isActive ? `${item.card.name} — ${item.card.subtitle}, ${item.variantNumber} special artwork` : ""}
+                  width={1117}
+                  height={1560}
+                  sizes={galleryImageSizes}
+                  loading="lazy"
+                />
+                {isActive ? <span className="special-gallery-glare" aria-hidden="true" /> : null}
+              </span>
+            </Link>
+          );
+        })}
 
         <button className="special-gallery-arrow special-gallery-arrow-previous" type="button" onClick={selectPrevious} aria-label="Show previous special card">
           <span aria-hidden="true">←</span>
@@ -99,7 +133,7 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
           <button
             className={index === activeIndex ? "is-active" : ""}
             type="button"
-            onClick={() => setActiveIndex(index)}
+            onClick={() => selectCard(index)}
             aria-label={`Show ${item.card.name}`}
             aria-current={index === activeIndex ? "true" : undefined}
             key={item.variantNumber}
