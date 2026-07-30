@@ -3,17 +3,17 @@ import { CardExplorer } from "@/components/CardExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import { cards } from "@/lib/data";
 
-export const metadata: Metadata = { title: "Palworld TCG Card List – Dawn of Palpagos Preview", description: "Browse verified Dawn of Palpagos cards with official stats, rarity, color, cost, card text and strategy notes." };
+export const metadata: Metadata = { title: "Complete Palworld TCG Card List – BP01 & Trial Decks", description: "Search all 148 launch main-deck cards from Dawn of Palpagos BP01 and both Trial Decks by name, number, color, type, cost and rarity." };
 
 export default async function CardsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;
   return (
     <>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: cards.map((card, index) => ({ "@type": "ListItem", position: index + 1, url: `https://palworldcardgame.wiki/card/${card.slug}` })) }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "CollectionPage", name: "Palworld Card Game launch card database", numberOfItems: cards.length }} />
       <header className="page-hero shell">
-        <p className="eyebrow"><span>Database</span> · Dawn of Palpagos</p>
+        <p className="eyebrow"><span>Official data snapshot</span> · Updated July 30, 2026</p>
         <h1>Palworld TCG<br />card list.</h1>
-        <p>Explore a curated launch database. Filter cards by color and type, then open any card for strategy notes and deck ideas.</p>
+        <p>Search all 148 launch main-deck card entries: 100 BP01 cards plus 24 unique cards from each Trial Deck. Filter by set, color, type, cost or rarity, then open card text without leaving the page.</p>
       </header>
       <CardExplorer initialQuery={q} />
     </>

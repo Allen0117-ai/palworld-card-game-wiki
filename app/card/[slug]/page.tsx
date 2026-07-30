@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { cards, decks } from "@/lib/data";
+import { decks, featuredCards } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { CardMagnifier } from "@/components/CardMagnifier";
 import type { Metadata } from "next";
 
-export function generateStaticParams() { return cards.map((card) => ({ slug: card.slug })); }
+export function generateStaticParams() { return featuredCards.map((card) => ({ slug: card.slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const card = cards.find((item) => item.slug === slug);
+  const card = featuredCards.find((item) => item.slug === slug);
   if (!card) return {};
   return {
     title: `${card.name} · Palworld TCG – ${card.rarity} ${card.color} Card Stats & Price`,
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CardDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const card = cards.find((item) => item.slug === slug);
+  const card = featuredCards.find((item) => item.slug === slug);
   if (!card) notFound();
   const relatedDecks = decks.filter((deck) => deck.core.includes(card.slug));
 

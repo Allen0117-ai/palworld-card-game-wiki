@@ -10,15 +10,20 @@ export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
   const [type, setType] = useState("all");
   const [cost, setCost] = useState("all");
   const [rarity, setRarity] = useState("all");
+  const [set, setSet] = useState("all");
 
   const results = useMemo(() => cards.filter((card) => {
-    const matchesQuery = `${card.name} ${card.subtitle} ${card.number}`.toLowerCase().includes(query.toLowerCase());
+    const matchesQuery = `${card.name} ${card.subtitle} ${card.number} ${card.ability}`.toLowerCase().includes(query.toLowerCase());
     return matchesQuery
       && (color === "all" || card.color === color)
       && (type === "all" || card.type === type)
       && (cost === "all" || card.cost === Number(cost))
-      && (rarity === "all" || card.rarity === rarity);
-  }), [query, color, type, cost, rarity]);
+      && (rarity === "all" || card.rarity === rarity)
+      && (set === "all" || card.set === set);
+  }), [query, color, type, cost, rarity, set]);
+
+  const costs = [...new Set(cards.map((card) => card.cost))].sort((a, b) => a - b);
+  const rarities = [...new Set(cards.map((card) => card.rarity))].sort();
 
   return (
     <div className="page-layout shell">
@@ -26,6 +31,15 @@ export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
         <div className="filter-group">
           <label htmlFor="card-search">Search cards</label>
           <input id="card-search" className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Name or card no." />
+        </div>
+        <div className="filter-group">
+          <label htmlFor="set-filter">Card set</label>
+          <select id="set-filter" className="select" value={set} onChange={(e) => setSet(e.target.value)}>
+            <option value="all">All launch cards</option>
+            <option value="EBP01">BP01 Booster</option>
+            <option value="ETD01">Red / Blue Trial Deck</option>
+            <option value="ETD02">Green / Purple Trial Deck</option>
+          </select>
         </div>
         <div className="filter-group">
           <label htmlFor="color-filter">Color</label>
@@ -46,17 +60,17 @@ export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
           <label htmlFor="cost-filter">Cost</label>
           <select id="cost-filter" className="select" value={cost} onChange={(e) => setCost(e.target.value)}>
             <option value="all">All costs</option>
-            {[2, 3, 6, 7, 8].map((value) => <option value={value} key={value}>{value}</option>)}
+            {costs.map((value) => <option value={value} key={value}>{value}</option>)}
           </select>
         </div>
         <div className="filter-group">
           <label htmlFor="rarity-filter">Rarity</label>
           <select id="rarity-filter" className="select" value={rarity} onChange={(e) => setRarity(e.target.value)}>
             <option value="all">All rarities</option>
-            <option value="RR">RR</option><option value="R">R</option>
+            {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
           </select>
         </div>
-        <div className="filter-group"><strong>Results</strong><span className="filter-count">{results.length}</span></div>
+        <div className="filter-group"><strong>Results</strong><span className="filter-count">{results.length} / {cards.length}</span></div>
       </aside>
       <div>
         {results.length ? <div className="card-grid listing">{results.map((card) => <CardTile card={card} key={card.slug} />)}</div> : <div className="empty-state">No cards match those filters.</div>}

@@ -33,6 +33,8 @@ const publicRoutes = [
   "/decks",
   "/tools/deck-builder",
   "/blog",
+  "/resources",
+  "/search",
   "/about",
   "/privacy",
   "/card/jormuntide-ignis-savage-lava-dragon",
@@ -45,7 +47,13 @@ const publicRoutes = [
   "/deck/green-blue-base-value",
   "/deck/mono-red-pal-rush",
   "/blog/how-to-play-palworld-card-game",
+  "/blog/palworld-card-game-deck-building-rules",
+  "/blog/red-blue-vs-green-purple-trial-deck",
+  "/blog/palworld-card-game-products-where-to-buy",
+  "/blog/dawn-of-palpagos-card-list-guide",
+  "/blog/palworld-card-game-keyword-glossary",
   "/blog/palworld-tcg-rarity-guide",
+  "/blog/dawn-of-palpagos-pull-rates",
 ];
 
 test("every published page renders successfully", async () => {
@@ -104,4 +112,18 @@ test("browser icon assets are present", async () => {
     access(new URL("../app/favicon.ico", import.meta.url)),
     access(new URL("../app/icon.png", import.meta.url)),
   ]);
+});
+
+test("the complete launch card image catalog is present", async () => {
+  const expectedCards = [
+    "EBP01-001",
+    "EBP01-100",
+    "ETD01-001",
+    "ETD01-024",
+    "ETD02-001",
+    "ETD02-024",
+  ];
+  await Promise.all(expectedCards.map((number) => (
+    access(new URL(`../public/cards/catalog/${number}.png`, import.meta.url))
+  )));
 });

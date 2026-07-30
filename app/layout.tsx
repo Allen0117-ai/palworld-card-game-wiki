@@ -10,11 +10,11 @@ const cinzel = Cinzel({ variable: "--font-display", subsets: ["latin"], weight: 
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://palworldcardgame.wiki"),
-  title: { default: "Palworld TCG Card Database – Cards, Decks & Builder", template: "%s | Palworld Card Game Wiki" },
-  description: "Explore verified Palworld Card Game data, launch deck ideas, beginner guides and a free deck builder.",
+  title: { default: "Palworld Card Game Guide – Rules, Cards, Decks & Builder", template: "%s | Palworld Card Game Wiki" },
+  description: "Get clear Palworld Card Game rules, all 148 launch main-deck cards, Trial Deck guides, product answers and a free deck builder.",
   openGraph: {
     title: "Palworld Card Game Wiki",
-    description: "Cards, decks, tools and launch-meta guides for the Palworld Official Card Game.",
+    description: "Clear launch-day rules, cards, Trial Deck help and tools for the Palworld Official Card Game.",
     type: "website",
     images: [{ url: "https://palworldcardgame.wiki/og.png", width: 1200, height: 630, alt: "Palworld Card Game Wiki — cards, decks and deck builder" }],
   },
@@ -36,8 +36,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <nav aria-label="Main navigation">
               <Link href="/cards">Cards</Link>
               <Link href="/decks">Decks</Link>
-              <Link href="/tools/deck-builder">Deck Builder</Link>
               <Link href="/blog">Guides</Link>
+              <Link href="/resources">Resources</Link>
+              <Link href="/search">Search</Link>
             </nav>
             <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>◆</span></Link>
           </div>
@@ -55,9 +56,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div>
               <strong>Explore</strong>
               <Link href="/cards">Card database</Link>
-              <Link href="/decks">Meta decks</Link>
+              <Link href="/decks">Trial Deck guides</Link>
               <Link href="/tools/deck-builder">Deck builder</Link>
               <Link href="/blog">Guides</Link>
+              <Link href="/resources">Source hub</Link>
             </div>
             <div>
               <strong>Site</strong>

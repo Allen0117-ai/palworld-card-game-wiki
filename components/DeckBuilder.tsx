@@ -9,15 +9,28 @@ export function DeckBuilder() {
   const [deck, setDeck] = useState<DeckMap>({});
   const [query, setQuery] = useState("");
   const [color, setColor] = useState("all");
+  const [set, setSet] = useState("all");
   const [notice, setNotice] = useState("");
   const total = Object.values(deck).reduce((sum, value) => sum + value, 0);
   const deckCards = cards.filter((card) => deck[card.slug]);
   const selectedColors = useMemo(() => new Set(deckCards.filter((card) => card.color !== "colorless").map((card) => card.color)), [deckCards]);
-  const visible = cards.filter((card) => card.name.toLowerCase().includes(query.toLowerCase()) && (color === "all" || card.color === color));
+  const visible = cards.filter((card) => (
+    `${card.name} ${card.subtitle} ${card.number}`.toLowerCase().includes(query.toLowerCase())
+    && (color === "all" || card.color === color)
+    && (set === "all" || card.set === set)
+  ));
 
   function addCard(slug: string) {
     const card = cards.find((item) => item.slug === slug);
-    if (!card || total >= 50 || (deck[slug] || 0) >= 4) return;
+    if (!card || total >= 50) return;
+    const cardName = `${card.name} — ${card.subtitle}`;
+    const copiesWithSameName = deckCards
+      .filter((item) => `${item.name} — ${item.subtitle}` === cardName)
+      .reduce((sum, item) => sum + (deck[item.slug] || 0), 0);
+    if (copiesWithSameName >= 4) {
+      setNotice("You can use up to four cards with the same full card name.");
+      return;
+    }
     if (card.color !== "colorless" && !selectedColors.has(card.color) && selectedColors.size >= 2) {
       setNotice("A legal main deck can use no more than two colors.");
       return;
@@ -41,8 +54,16 @@ export function DeckBuilder() {
 
   function loadDeck() {
     const saved = localStorage.getItem("pwcg-deck-draft");
-    if (saved) { setDeck(JSON.parse(saved)); setNotice("Saved draft loaded."); }
-    else setNotice("No saved draft found yet.");
+    if (!saved) {
+      setNotice("No saved draft found yet.");
+      return;
+    }
+    try {
+      setDeck(JSON.parse(saved));
+      setNotice("Saved draft loaded.");
+    } catch {
+      setNotice("That saved draft could not be read. Clear it and start a new list.");
+    }
   }
 
   function beginDrag(event: React.DragEvent, slug: string) {
@@ -64,7 +85,14 @@ export function DeckBuilder() {
             <option value="all">All colors</option><option value="red">Red</option><option value="blue">Blue</option>
             <option value="green">Green</option><option value="purple">Purple</option><option value="colorless">Colorless</option>
           </select>
+          <select className="select" aria-label="Filter by set" value={set} onChange={(e) => setSet(e.target.value)}>
+            <option value="all">All 148 cards</option>
+            <option value="EBP01">BP01</option>
+            <option value="ETD01">Red / Blue TD</option>
+            <option value="ETD02">Green / Purple TD</option>
+          </select>
         </div>
+        <p className="builder-result-count">{visible.length} cards shown · Official launch card data updated July 30, 2026</p>
         <div className="builder-card-list">
           {visible.map((card) => (
             <button className="builder-card" key={card.slug} onClick={() => addCard(card.slug)} draggable onDragStart={(event) => beginDrag(event, card.slug)} aria-label={`Add ${card.name}`}>

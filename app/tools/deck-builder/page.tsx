@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DeckBuilder } from "@/components/DeckBuilder";
 import { JsonLd } from "@/components/JsonLd";
 
-export const metadata: Metadata = { title: "Palworld TCG Deck Builder – Build & Share Your Deck", description: "Build a Palworld TCG deck with our interactive deck builder. Search cards, check legal limits, and save a draft on your device." };
+export const metadata: Metadata = { title: "Palworld TCG Deck Builder – All 148 Launch Cards", description: "Build a Palworld TCG deck with all BP01 and Trial Deck cards. Check the 50-card, four-copy and two-color rules, then save a draft on your device." };
 
 export default function DeckBuilderPage() {
   return (
@@ -11,7 +11,7 @@ export default function DeckBuilderPage() {
       <header className="page-hero shell">
         <p className="eyebrow"><span>Free tool</span> · No account needed</p>
         <h1>Palworld TCG<br />deck builder.</h1>
-        <p>Click cards to add them. The builder checks the 50-card limit, four-copy limit and two-color rule. Drafts stay on your device.</p>
+        <p>Search all 148 launch main-deck cards. The builder checks the 50-card limit, same-name four-copy limit and two-color rule. Drafts stay on your device.</p>
       </header>
       <DeckBuilder />
     </>

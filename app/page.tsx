@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CardTile } from "@/components/CardTile";
 import { DeckTile } from "@/components/DeckTile";
-import { cards, decks, guides } from "@/lib/data";
+import { decks, guides, homepageShowcaseCards } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { HeroSearch } from "@/components/HeroSearch";
 
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <JsonLd data={[
         { "@context": "https://schema.org", "@type": "Organization", name: "Palworld Card Game Wiki", url: "https://palworldcardgame.wiki" },
-        { "@context": "https://schema.org", "@type": "WebSite", name: "Palworld Card Game Wiki", url: "https://palworldcardgame.wiki", potentialAction: { "@type": "SearchAction", target: "https://palworldcardgame.wiki/cards?q={search_term_string}", "query-input": "required name=search_term_string" } },
+        { "@context": "https://schema.org", "@type": "WebSite", name: "Palworld Card Game Wiki", url: "https://palworldcardgame.wiki", potentialAction: { "@type": "SearchAction", target: "https://palworldcardgame.wiki/search?q={search_term_string}", "query-input": "required name=search_term_string" } },
       ]} />
       <section className="hero hero-map">
         <img
@@ -29,25 +29,25 @@ export default function Home() {
         </div>
         <div className="hero-inner shell">
           <div className="hero-copy">
-            <p className="eyebrow"><span>Palworld Card Database</span> · Deck Builder · Guides</p>
-            <h1>Explore every card.<br /><em>Build your Pal team.</em></h1>
+            <p className="eyebrow"><span>Launch-day field guide</span> · Rules · Cards · Decks</p>
+            <h1>Learn every rule.<br /><em>Build your Pal team.</em></h1>
             <p className="hero-lede">
-              Your independent field guide to the Palworld Official Card Game:
-              verified card data, launch strategies, and a free deck builder.
+              Clear answers for your first game: verified rules, all 148 launch
+              main-deck cards, Trial Deck help, and a free deck builder.
             </p>
             <HeroSearch />
             <div className="hero-actions">
-              <Link className="button primary" href="/tools/deck-builder">Open deck builder <span>◆</span></Link>
-              <Link className="button ghost" href="/cards">Browse all cards</Link>
+              <Link className="button primary" href="/blog/how-to-play-palworld-card-game">Start learning <span>◆</span></Link>
+              <Link className="button ghost" href="/cards">Browse 148 cards</Link>
             </div>
             <div className="hero-stats" aria-label="Database highlights">
-              <div><strong>100</strong><span>base cards in BP01</span></div>
+              <div><strong>148</strong><span>launch main-deck cards</span></div>
               <div><strong>4</strong><span>deck colors</span></div>
               <div><strong>50+10</strong><span>legal deck</span></div>
             </div>
           </div>
 
-          <div className="hero-product" aria-label="Dawn of Palpagos launch cards and booster pack">
+          <div className="hero-product" aria-label="Dawn of Palpagos launch card showcase">
             <div className="hero-product-stage" data-tilt>
               <div className="hero-product-stamp">
                 <span>First booster set · EBP01</span>
@@ -55,15 +55,16 @@ export default function Home() {
                 <small>Official launch product</small>
               </div>
               <div className="hero-card hero-card-back">
-                <img src="/cards/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
+                <img src="/cards/catalog/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-front">
-                <img src="/cards/EBP01-002.png" alt="Suzaku official card" width={400} height={559} />
+                <img src="/cards/catalog/EBP01-025.png" alt="Chillet official card" width={400} height={559} />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
-              <div className="hero-booster">
-                <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} />
+              <div className="hero-card hero-card-third">
+                <img src="/cards/catalog/EBP01-074.png" alt="Shadowbeak official card" width={400} height={559} />
+                <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
             </div>
@@ -72,7 +73,22 @@ export default function Home() {
       </section>
 
       <section className="ticker" aria-label="Site features">
-        <div>Card database <span>◆</span> Deck builder <span>◆</span> Deck guides <span>◆</span> Official card data <span>◆</span> Beginner guides</div>
+        <div>Launch-day rules <span>◆</span> 148-card database <span>◆</span> Trial Deck guides <span>◆</span> Source labels <span>◆</span> Beginner answers</div>
+      </section>
+
+      <section className="launch-paths shell" data-reveal>
+        <div className="launch-paths-heading">
+          <div><p className="eyebrow"><span>What do you need today?</span> · Start with a task</p><h2>Get the answer faster.</h2></div>
+          <p>The official information is accurate but scattered. We organize it around the real jobs a new player is trying to finish.</p>
+        </div>
+        <div className="launch-path-grid">
+          <Link href="/blog/how-to-play-palworld-card-game"><span>01 · First game</span><strong>How do I play?</strong><p>Setup, phases, attacks, blocking and winning.</p></Link>
+          <Link href="/blog/red-blue-vs-green-purple-trial-deck"><span>02 · Buying</span><strong>Which Trial Deck?</strong><p>Red/Blue and Green/Purple compared clearly.</p></Link>
+          <Link href="/blog/palworld-card-game-deck-building-rules"><span>03 · Rules</span><strong>How do I build a legal deck?</strong><p>50 cards, 10 Souls, two colors and copy limits.</p></Link>
+          <Link href="/cards"><span>04 · Database</span><strong>Find a card</strong><p>Search all BP01 and Trial Deck main-deck cards.</p></Link>
+          <Link href="/blog/palworld-card-game-keyword-glossary"><span>05 · Card text</span><strong>What does this keyword mean?</strong><p>Interrupt, Quick, Taunt, Stealth and more.</p></Link>
+          <Link href="/resources"><span>06 · Information hub</span><strong>Where can I learn more?</strong><p>Official rules, events, retailers and community sources.</p></Link>
+        </div>
       </section>
 
       <section className="section shell" data-reveal>
@@ -84,7 +100,7 @@ export default function Home() {
           <Link className="text-link" href="/cards">View card database →</Link>
         </div>
         <div className="card-grid">
-          {cards.slice(0, 4).map((card) => <CardTile key={card.slug} card={card} enableTilt />)}
+          {homepageShowcaseCards.map((card) => <CardTile key={card.slug} card={card} enableTilt />)}
         </div>
       </section>
 
@@ -110,8 +126,8 @@ export default function Home() {
         <div>
           <div className="section-heading compact">
             <div>
-              <p className="eyebrow">Community lab</p>
-              <h2>Decks to test</h2>
+              <p className="eyebrow">Launch deck center</p>
+              <h2>Learn before you tune</h2>
             </div>
             <Link className="text-link" href="/decks">All decks →</Link>
           </div>
@@ -125,7 +141,7 @@ export default function Home() {
             <span className="tool-mark">50</span>
           </div>
           <h3>Your next deck<br />starts here.</h3>
-          <p>Search the launch card pool, stay inside the two-color rule, and save a legal list on your device.</p>
+          <p>Search all 148 launch cards, stay inside the two-color and copy limits, and save a legal list on your device.</p>
           <Link className="button ink" href="/tools/deck-builder">Start building <span>↗</span></Link>
         </aside>
       </section>
@@ -139,7 +155,7 @@ export default function Home() {
           <Link className="text-link" href="/blog">View all guides →</Link>
         </div>
         <div className="guide-grid">
-          {guides.map((guide, index) => (
+          {guides.slice(0, 6).map((guide, index) => (
             <Link href={`/blog/${guide.slug}`} className={`guide-card guide-${index + 1}`} key={guide.slug}>
               <span className="guide-number">0{index + 1}</span>
               <div>

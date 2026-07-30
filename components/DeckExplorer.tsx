@@ -7,10 +7,9 @@ import { decks } from "@/lib/data";
 export function DeckExplorer() {
   const [query, setQuery] = useState("");
   const [color, setColor] = useState("all");
-  const [sort, setSort] = useState("score");
   const results = useMemo(() => decks
     .filter((deck) => deck.name.toLowerCase().includes(query.toLowerCase()) && (color === "all" || deck.colors.includes(color as never)))
-    .sort((a, b) => sort === "name" ? a.name.localeCompare(b.name) : b.score - a.score), [query, color, sort]);
+    .sort((a, b) => a.name.localeCompare(b.name)), [query, color]);
 
   return (
     <div className="shell deck-explorer">
@@ -20,14 +19,13 @@ export function DeckExplorer() {
           <option value="all">All colors</option><option value="red">Red</option><option value="blue">Blue</option>
           <option value="green">Green</option><option value="purple">Purple</option>
         </select>
-        <select className="select" value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort decks">
-          <option value="score">Most popular</option><option value="name">Name A–Z</option>
-        </select>
+        <div className="deck-data-note">Launch-day verified · No fake meta ranking</div>
       </div>
       <div className="deck-page-grid">
         {results.map((deck) => (
           <article className="deck-page-card" key={deck.slug}>
             <div className="color-pips">{deck.colors.map((deckColor) => <span className={`pip ${deckColor}`} key={deckColor} />)}</div>
+            <span className="source-badge">{deck.status}</span>
             <h2>{deck.name}</h2>
             <p>{deck.description}</p>
             <Link className="text-link" href={`/deck/${deck.slug}`}>View deck guide →</Link>

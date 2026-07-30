@@ -10,7 +10,7 @@ export function DeckTile({ deck, rank }: { deck: Deck; rank: number }) {
         <h3>{deck.name}</h3>
         <p>{deck.archetype} · {deck.difficulty}</p>
       </div>
-      <div className="deck-score"><strong>{deck.score}</strong><span>lab score</span></div>
+      <div className="deck-score deck-status-badge"><strong>{deck.status === "Official Trial Deck" ? "OFFICIAL" : "LAB"}</strong><span>{deck.updated}</span></div>
     </Link>
   );
 }

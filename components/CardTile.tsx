@@ -3,13 +3,9 @@ import { Card } from "@/lib/data";
 
 export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?: boolean }) {
   const isFoil = card.rarity === "RR";
-
-  return (
-    <Link
-      className={`card-tile${isFoil ? " card-tile-foil" : ""}`}
-      href={`/card/${card.slug}`}
-      data-tilt={enableTilt ? "" : undefined}
-    >
+  const className = `card-tile${isFoil ? " card-tile-foil" : ""}${card.hasGuide ? "" : " card-tile-reference"}`;
+  const content = (
+    <>
       <div className="card-image-wrap">
         <img
           className="card-image"
@@ -26,6 +22,26 @@ export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?
         <h3>{card.name}</h3>
         <p>{card.number} · {card.color} · {card.type}</p>
       </div>
+      {!card.hasGuide && (
+        <details className="card-rules">
+          <summary>Read card text</summary>
+          <p>{card.ability || "This card has no printed ability text."}</p>
+        </details>
+      )}
+    </>
+  );
+
+  return card.hasGuide ? (
+    <Link
+      className={className}
+      href={`/card/${card.slug}`}
+      data-tilt={enableTilt ? "" : undefined}
+    >
+      {content}
     </Link>
+  ) : (
+    <article className={className}>
+      {content}
+    </article>
   );
 }
