@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { guides } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
+import { ArticleEnhancements } from "@/components/ArticleEnhancements";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -327,7 +328,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <strong>{guide.sourceStatus}</strong>
         <span>Launch-day edition</span>
       </div>
-      {guideContent[slug]}
+      <ArticleEnhancements />
+      <div className="article-body">
+        {guideContent[slug]}
+      </div>
 
       <section className="source-panel">
         <p className="eyebrow">Sources & verification</p>

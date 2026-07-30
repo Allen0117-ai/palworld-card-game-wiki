@@ -25,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cinzel.variable}`}>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
         <InteractionEffects />
         <ScrollReveal />
         <header className="site-header">
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span className="brand-mark">◆</span>
               <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
             </Link>
-            <nav aria-label="Main navigation">
+            <nav className="desktop-nav" aria-label="Main navigation">
               <Link href="/cards">Cards</Link>
               <Link href="/decks">Decks</Link>
               <Link href="/blog">Guides</Link>
@@ -41,9 +42,20 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/search">Search</Link>
             </nav>
             <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>◆</span></Link>
+            <details className="mobile-nav">
+              <summary><span>Menu</span><span aria-hidden="true">◆</span></summary>
+              <nav aria-label="Mobile navigation">
+                <Link href="/cards">Cards</Link>
+                <Link href="/decks">Decks</Link>
+                <Link href="/tools/deck-builder">Deck Builder</Link>
+                <Link href="/blog">Guides</Link>
+                <Link href="/resources">Resources</Link>
+                <Link href="/search">Search</Link>
+              </nav>
+            </details>
           </div>
         </header>
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <footer className="site-footer">
           <div className="shell footer-grid">
             <div>
