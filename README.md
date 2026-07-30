@@ -1,8 +1,13 @@
-# vinext-starter
+# Palworld Card Game Wiki
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+An unofficial fan-made guide for the Palworld Official Card Game, featuring
+rules, a card database, Trial Deck guides, and a free deck builder.
+
+- [Visit Palworld Card Game Wiki](https://palworldcardgame.wiki)
+- [Open the Deck Builder](https://palworldcardgame.wiki/tools/deck-builder)
+
+Built with [vinext](https://github.com/cloudflare/vinext), with optional
+Cloudflare D1 and Drizzle support.
 
 ## Prerequisites
 
