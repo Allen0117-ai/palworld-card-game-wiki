@@ -27,6 +27,7 @@ export default function Home() {
           <span className="map-light map-light-gold" />
           <span className="map-light map-light-sky" />
         </div>
+        <div className="hero-atmosphere" aria-hidden="true" />
         <div className="hero-inner shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Palworld Card Database</span> · Deck Builder · Guides</p>
