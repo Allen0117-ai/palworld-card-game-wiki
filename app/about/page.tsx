@@ -1,0 +1,3 @@
+export default function AboutPage() {
+  return <article className="simple-page shell"><p className="eyebrow"><span>About</span> · Independent fan resource</p><h1>Built for players.</h1><p>Palworld Card Game Wiki is an independent database, deck-building tool and strategy companion. Our goal is to make rules, cards and competitive ideas easier to understand.</p><p>Palworld and all related names and card artwork belong to their respective owners. This site is not affiliated with, endorsed by or sponsored by Pocketpair, Inc. or Bushiroad. We use original interface artwork and clearly separate confirmed facts from community observations.</p></article>;
+}
