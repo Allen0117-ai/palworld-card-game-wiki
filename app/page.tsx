@@ -32,7 +32,8 @@ export default function Home() {
           alt=""
           width={1915}
           height={821}
-          fetchPriority="high"
+          sizes="100vw"
+          preload
           aria-hidden="true"
         />
         <div className="hero-map-overlay" />
@@ -75,15 +76,36 @@ export default function Home() {
                 <small>Official launch product</small>
               </div>
               <div className="hero-card hero-card-back">
-                <Image src="/cards/showcase/EBP01-025SSP.webp" alt="Chillet EBP01-025SSP special artwork card" width={1117} height={1560} loading="eager" />
+                <Image
+                  src="/cards/showcase/EBP01-025SSP.webp"
+                  alt="Chillet EBP01-025SSP special artwork card"
+                  width={1117}
+                  height={1560}
+                  sizes="(max-width: 520px) 116px, (max-width: 760px) 142px, (max-width: 1050px) 176px, 205px"
+                  loading="eager"
+                />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-front">
-                <Image src="/cards/showcase/EBP01-002SP.webp" alt="Suzaku EBP01-002SP special artwork card" width={1117} height={1560} loading="eager" />
+                <Image
+                  src="/cards/showcase/EBP01-002SP.webp"
+                  alt="Suzaku EBP01-002SP special artwork card"
+                  width={1117}
+                  height={1560}
+                  sizes="(max-width: 520px) 125px, (max-width: 760px) 151px, (max-width: 1050px) 187px, 218px"
+                  loading="eager"
+                />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-third">
-                <Image src="/cards/showcase/EBP01-073SSP.webp" alt="Helzephyr EBP01-073SSP special artwork card" width={1117} height={1560} loading="eager" />
+                <Image
+                  src="/cards/showcase/EBP01-073SSP.webp"
+                  alt="Helzephyr EBP01-073SSP special artwork card"
+                  width={1117}
+                  height={1560}
+                  sizes="(max-width: 520px) 108px, (max-width: 760px) 130px, (max-width: 1050px) 158px, 184px"
+                  loading="eager"
+                />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>

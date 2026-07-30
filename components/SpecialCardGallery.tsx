@@ -66,8 +66,8 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
             alt={`${active.card.name} — ${active.card.subtitle}, ${active.variantNumber} special artwork`}
             width={1117}
             height={1560}
-            sizes="(max-width: 760px) 72vw, 470px"
-            priority
+            sizes="(max-width: 520px) 68vw, (max-width: 760px) 63vw, (max-width: 1050px) 300px, 330px"
+            loading="lazy"
           />
           <span className="special-gallery-glare" aria-hidden="true" />
         </Link>
