@@ -71,7 +71,7 @@ export default function Home() {
             <p className="eyebrow"><span>First booster set</span> · EBP01</p>
             <h2>Answer the call<br />of Palpagos.</h2>
             <p>Dawn of Palpagos introduces 100 base cards, four colors and alternate treatments built around the creatures, tools and survival systems of Palworld.</p>
-            <a className="button primary" href="https://en.palworld-official-cardgame.com/products/ebp01/" target="_blank" rel="noreferrer">Visit official product page <span>↗</span></a>
+            <a className="button primary" href="https://en.palworld-official-cardgame.com/products/bp01" target="_blank" rel="noreferrer">Visit official product page <span>↗</span></a>
           </div>
           <div className="product-pack">
             <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} loading="lazy" />
