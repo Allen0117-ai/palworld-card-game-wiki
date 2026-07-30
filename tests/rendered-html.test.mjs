@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { access } from "node:fs/promises";
 import test from "node:test";
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -96,4 +97,11 @@ test("unknown pages use the branded not-found experience", async () => {
   const response = await render("/this-page-does-not-exist");
   assert.equal(response.status, 404);
   assert.match(await response.text(), /This trail ends here\./);
+});
+
+test("browser icon assets are present", async () => {
+  await Promise.all([
+    access(new URL("../app/favicon.ico", import.meta.url)),
+    access(new URL("../app/icon.png", import.meta.url)),
+  ]);
 });
