@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Inter } from "next/font/google";
+import { Cinzel, Inter, Oxanium } from "next/font/google";
 import Link from "next/link";
 import { InteractionEffects } from "@/components/InteractionEffects";
 import { MobileNav } from "@/components/MobileNav";
@@ -8,6 +8,7 @@ import "./globals.css";
 
 const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
 const cinzel = Cinzel({ variable: "--font-display", subsets: ["latin"], weight: ["600", "700", "800", "900"] });
+const oxanium = Oxanium({ variable: "--font-ui", subsets: ["latin"], weight: ["600", "700", "800"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://palworldcardgame.wiki"),
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${cinzel.variable}`}>
+      <body className={`${inter.variable} ${cinzel.variable} ${oxanium.variable}`}>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <InteractionEffects />
         <ScrollReveal />
