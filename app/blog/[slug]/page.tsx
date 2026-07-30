@@ -27,10 +27,56 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+const guideQuickAnswers: Record<string, { label: string; answer: React.ReactNode }> = {
+  "how-to-play-palworld-card-game": {
+    label: "The short version",
+    answer: "Both players start with 10 life. Build a 50-card Main Deck and a separate 10-card Soul Deck, use Souls to pay costs, and attack with Pals. Reduce the opposing player to 0 life to win. You also lose if your Main Deck has no cards remaining.",
+  },
+  "palworld-card-game-deck-building-rules": {
+    label: "Legal deck checklist",
+    answer: "Exactly 50 Main Deck cards, exactly 10 Soul cards, up to two colors plus Colorless, no more than four cards with the same full card name, and no more than eight cards with a Lucky icon.",
+  },
+  "red-blue-vs-green-purple-trial-deck": {
+    label: "Fast recommendation",
+    answer: "Choose Red/Blue if you want direct damage, Structures and clearer immediate pressure. Choose Green/Purple if you enjoy resource setup, Taunt defense, Stealth attacks and more sequencing decisions. Both products are complete first decks.",
+  },
+  "palworld-card-game-products-where-to-buy": {
+    label: "Best launch-day path",
+    answer: "New player: buy one Trial Deck. Two new players: buy one Trial Deck each. Collector or upgrader: add Dawn of Palpagos boosters after you can already play a complete deck.",
+  },
+  "dawn-of-palpagos-card-list-guide": {
+    label: "Launch database snapshot",
+    answer: "BP01 contains 100 base cards. The two Trial Decks add 24 unique Main Deck entries each, giving players 148 searchable launch Main Deck cards before counting parallel treatments.",
+  },
+  "palworld-card-game-keyword-glossary": {
+    label: "How to read a keyword",
+    answer: "The bold keyword is a reusable rules shortcut. Parenthetical text explains it. The official Q&A says the effect is unchanged when a card omits the reminder text.",
+  },
+  "palworld-tcg-rarity-guide": {
+    label: "Base rarity",
+    answer: "Dawn of Palpagos uses C, U, R and RR for base cards. The set also has 61 parallel card types. Rarity describes distribution and treatment, not automatic deck strength.",
+  },
+  "dawn-of-palpagos-pull-rates": {
+    label: "Current answer",
+    answer: "Bushiroad confirms 100 base card types plus 61 parallel types in BP01, but we have not found official per-rarity pull odds. A few launch-day openings are not enough to publish reliable percentages.",
+  },
+  "palworld-card-game-2026-roadmap": {
+    label: "Next confirmed dates",
+    answer: "The game launches worldwide on July 30, Grand Release Tournaments run during August, Sleeve & Card Set Vol. 1 arrives October 2, and the second booster set—Legends Awaken—releases October 30, 2026.",
+  },
+  "palworld-card-game-errata-tracker": {
+    label: "Confirmed launch correction",
+    answer: "The official Red/Blue Trial Deck page reports a printed card with omitted “Strike” text. Bushiroad says the card remains legal at every level of play and functions as though the correct Strike text is present.",
+  },
+  "palworld-card-game-color-guide": {
+    label: "Choose by play style",
+    answer: "Red applies direct pressure, Blue controls tempo and cards, Green builds Ingredient-powered boards, and Purple disrupts combat through Stealth, removal, night and graveyard effects. A legal deck may use up to two of these colors plus Colorless cards.",
+  },
+};
+
 const guideContent: Record<string, React.ReactNode> = {
   "how-to-play-palworld-card-game": (
     <>
-      <div className="quick-answer"><strong>The short version</strong><p>Both players start with 10 life. Build a 50-card Main Deck and a separate 10-card Soul Deck, use Souls to pay costs, and attack with Pals. Reduce the opposing player to 0 life to win. You also lose if your Main Deck has no cards remaining.</p></div>
       <h2>What you need for your first game</h2>
       <ul>
         <li><strong>Main Deck:</strong> exactly 50 Pal, Gear, Event and Structure cards.</li>
@@ -94,7 +140,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-deck-building-rules": (
     <>
-      <div className="quick-answer"><strong>Legal deck checklist</strong><p>Exactly 50 Main Deck cards, exactly 10 Soul cards, up to two colors plus Colorless, no more than four cards with the same full card name, and no more than eight cards with a Lucky icon.</p></div>
       <h2>Main Deck and Soul Deck are separate</h2>
       <p>Your Main Deck contains Pals, Gear, Events and Structures. It must contain exactly 50 cards. The Soul Deck contains exactly 10 Soul cards and does not count toward the 50.</p>
       <h2>Choose up to two colors</h2>
@@ -128,7 +173,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "red-blue-vs-green-purple-trial-deck": (
     <>
-      <div className="quick-answer"><strong>Fast recommendation</strong><p>Choose Red/Blue if you want direct damage, Structures and clearer immediate pressure. Choose Green/Purple if you enjoy resource setup, Taunt defense, Stealth attacks and more sequencing decisions. Both products are complete first decks.</p></div>
       <h2>What both Trial Decks include</h2>
       <ul>
         <li>A fixed 50-card Main Deck and 10-card Soul Deck.</li>
@@ -159,7 +203,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-products-where-to-buy": (
     <>
-      <div className="quick-answer"><strong>Best launch-day path</strong><p>New player: buy one Trial Deck. Two new players: buy one Trial Deck each. Collector or upgrader: add Dawn of Palpagos boosters after you can already play a complete deck.</p></div>
       <h2>Launch date and products</h2>
       <p>The Palworld Official Card Game launched on July 30, 2026 with the Dawn of Palpagos BP01 booster and two Trial Decks: Red/Blue TD01 and Green/Purple TD02.</p>
       <h2>What a Trial Deck gives you</h2>
@@ -180,7 +223,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "dawn-of-palpagos-card-list-guide": (
     <>
-      <div className="quick-answer"><strong>Launch database snapshot</strong><p>BP01 contains 100 base cards. The two Trial Decks add 24 unique Main Deck entries each, giving players 148 searchable launch Main Deck cards before counting parallel treatments.</p></div>
       <h2>BP01 at a glance</h2>
       <div className="stat-table">
         <div><strong>100</strong><span>base cards</span></div>
@@ -208,7 +250,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-keyword-glossary": (
     <>
-      <div className="quick-answer"><strong>How to read a keyword</strong><p>The bold keyword is a reusable rules shortcut. Parenthetical text explains it. The official Q&amp;A says the effect is unchanged when a card omits the reminder text.</p></div>
       <h2>Combat keywords</h2>
       <dl className="glossary-list">
         <div><dt>Assault</dt><dd>The Pal can attack opposing Pals in the stand state.</dd></div>
@@ -243,7 +284,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-tcg-rarity-guide": (
     <>
-      <div className="quick-answer"><strong>Base rarity</strong><p>Dawn of Palpagos uses C, U, R and RR for base cards. The set also has 61 parallel card types. Rarity describes distribution and treatment, not automatic deck strength.</p></div>
       <h2>Base labels</h2>
       <ul>
         <li><strong>C — Common:</strong> the broadest base rarity.</li>
@@ -267,7 +307,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "dawn-of-palpagos-pull-rates": (
     <>
-      <div className="quick-answer"><strong>Current answer</strong><p>Bushiroad confirms 100 base card types plus 61 parallel types in BP01, but we have not found official per-rarity pull odds. A few launch-day openings are not enough to publish reliable percentages.</p></div>
       <h2>What is officially confirmed</h2>
       <p>Dawn of Palpagos released on July 30, 2026 and contains 100 base card types plus 61 parallel card types. The official card list identifies the available treatments, but the product page does not publish complete odds for each label.</p>
       <h2>Why early videos are not a true pull rate</h2>
@@ -285,7 +324,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-2026-roadmap": (
     <>
-      <div className="quick-answer"><strong>Next confirmed dates</strong><p>The game launches worldwide on July 30, Grand Release Tournaments run during August, Sleeve &amp; Card Set Vol. 1 arrives October 2, and the second booster set—Legends Awaken—releases October 30, 2026.</p></div>
       <h2>July 30: Dawn of Palpagos launch</h2>
       <p>The first release wave contains the 100-card BP01 base set plus parallel treatments and two ready-to-play Trial Decks: Red/Blue TD01 and Green/Purple TD02. Each Trial Deck supplies a complete 50-card Main Deck, 10-card Soul Deck and the basic play accessories needed for a first match.</p>
       <h2>August 1-31: Grand Release Tournament</h2>
@@ -313,7 +351,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-errata-tracker": (
     <>
-      <div className="quick-answer"><strong>Confirmed launch correction</strong><p>The official Red/Blue Trial Deck page reports a printed card with omitted “Strike” text. Bushiroad says the card remains legal at every level of play and functions as though the correct Strike text is present.</p></div>
       <h2>Current confirmed product errata</h2>
       <div className="verification-strip">
         <strong>TD01 · Confirmed</strong>
@@ -342,7 +379,6 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-color-guide": (
     <>
-      <div className="quick-answer"><strong>Choose by play style</strong><p>Red applies direct pressure, Blue controls tempo and cards, Green builds Ingredient-powered boards, and Purple disrupts combat through Stealth, removal, night and graveyard effects. A legal deck may use up to two of these colors plus Colorless cards.</p></div>
       <h2>Red: damage and Material pressure</h2>
       <p>Red launch cards reward proactive turns. Its Structures create Materials, its effects deal direct damage to Pals, and its larger threats can turn a developed Base into immediate pressure. Choose Red if you want the clearest path from setup to attacking.</p>
       <h2>Blue: draw, rest and defensive timing</h2>
@@ -430,7 +466,8 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const guide = guides.find((item) => item.slug === slug);
-  if (!guide || !guideContent[slug]) notFound();
+  const quickAnswer = guideQuickAnswers[slug];
+  if (!guide || !guideContent[slug] || !quickAnswer) notFound();
   const related = guides.filter((item) => item.slug !== slug).slice(0, 3);
   const primaryImage = getGuidePrimaryImage(slug);
 
@@ -440,13 +477,21 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <p className="eyebrow"><span>{guide.category}</span> · {guide.readTime}</p>
       <h1>{guide.title}</h1>
       <p className="article-lede">{guide.description}</p>
-      <div className="article-trust">
-        <span>Updated {guide.updated}</span>
-        <strong>{guide.sourceStatus}</strong>
-        <span>Launch-day edition</span>
+      <div className="guide-intro-flow">
+        <div className="article-trust">
+          <span>Updated {guide.updated}</span>
+          <strong>{guide.sourceStatus}</strong>
+          <span>Launch-day edition</span>
+        </div>
+        <GuideSeoImagePanel slug={slug} />
+        <GuideToc contentId="guide-content" />
+        <div className="guide-answer-slot">
+          <div className="quick-answer">
+            <strong>{quickAnswer.label}</strong>
+            <p>{quickAnswer.answer}</p>
+          </div>
+        </div>
       </div>
-      <GuideSeoImagePanel slug={slug} />
-      <GuideToc contentId="guide-content" />
       <div id="guide-content" className="guide-body">
         {guideContent[slug]}
       </div>

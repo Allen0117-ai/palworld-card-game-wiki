@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 export default async function RulesPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;
+  const hasQuery = Boolean(q.trim());
 
   return (
     <>
@@ -23,17 +24,20 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
           acceptedAnswer: { "@type": "Answer", text: rule.answer },
         })),
       }} />
-      <header className="page-hero rules-hero shell">
-        <p className="eyebrow"><span>Rules answer center</span> · Checked July 30, 2026</p>
-        <h1>Ask the question.<br />Get the ruling.</h1>
-        <p>Search in normal language. We combine plain-English essentials with all {officialRuleCount} official launch-day Q&amp;As and always show where the answer came from.</p>
-        <div className="rules-hero-stats" aria-label="Rules database coverage">
-          <div><strong>{featuredRuleAnswers.length}</strong><span>plain-English essentials</span></div>
-          <div><strong>{officialRuleCount}</strong><span>official Q&amp;As indexed</span></div>
-          <div><strong>1</strong><span>search across every answer</span></div>
+      <header className={`page-hero rules-hero shell${hasQuery ? " has-query" : ""}`}>
+        <div className="rules-query-desktop-copy">
+          <p className="eyebrow"><span>Rules answer center</span> · Checked July 30, 2026</p>
+          <h1>Ask the question.<br />Get the ruling.</h1>
+          <p>Search in normal language. We combine plain-English essentials with all {officialRuleCount} official launch-day Q&amp;As and always show where the answer came from.</p>
+          <div className="rules-hero-stats" aria-label="Rules database coverage">
+            <div><strong>{featuredRuleAnswers.length}</strong><span>plain-English essentials</span></div>
+            <div><strong>{officialRuleCount}</strong><span>official Q&amp;As indexed</span></div>
+            <div><strong>1</strong><span>search across every answer</span></div>
+          </div>
         </div>
+        {hasQuery && <h1 className="rules-query-mobile-title">Rule answer.</h1>}
       </header>
-      <div className="seo-image-panel-shell shell">
+      <div className="seo-image-panel-shell rules-visual-panel shell">
         <SeoImagePanel
           label="Rules in real card text"
           title="Quick, Interrupt, Taunt and Stealth examples"

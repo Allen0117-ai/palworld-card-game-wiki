@@ -47,7 +47,7 @@ export function RuleExplorer({ initialQuery = "" }: { initialQuery?: string }) {
       : `${visibleRules.length} answers in ${category}`;
 
   return (
-    <div className="rule-explorer shell">
+    <div className={`rule-explorer shell${normalizedQuery ? " has-query" : ""}`}>
       <form className="rule-search" role="search" action="/rules">
         <label htmlFor="rule-search-input">Ask a rules question in your own words</label>
         <div>
