@@ -19,6 +19,28 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
+async function fetchImageAsset(path: string, request: Request, assets?: Fetcher): Promise<Response> {
+  const assetRequest = new Request(new URL(path, request.url));
+  const response = assets ? await assets.fetch(assetRequest) : await fetch(assetRequest);
+
+  if (!response.ok || !path.toLowerCase().endsWith(".webp")) {
+    return response;
+  }
+
+  const contentType = response.headers.get("Content-Type")?.split(";")[0].trim().toLowerCase();
+  if (contentType === "image/webp") {
+    return response;
+  }
+
+  const headers = new Headers(response.headers);
+  headers.set("Content-Type", "image/webp");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 // Image security config. SVG sources with .svg extension auto-skip the
 // optimization endpoint on the client side (served directly, no proxy).
 // To route SVGs through the optimizer (with security headers), set
@@ -40,9 +62,7 @@ const worker = {
         : undefined;
 
       return handleImageOptimization(request, {
-        fetchAsset: (path) => env.ASSETS
-          ? env.ASSETS.fetch(new Request(new URL(path, request.url)))
-          : fetch(new Request(new URL(path, request.url))),
+        fetchAsset: (path) => fetchImageAsset(path, request, env.ASSETS),
         transformImage,
       }, allowedWidths);
     }

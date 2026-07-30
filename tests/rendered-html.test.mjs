@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -138,6 +138,26 @@ test("the optimized launch artwork assets are present", async () => {
     access(new URL("../public/media-kit/palworld-card-game-dawn-of-palpagos-launch-artwork.webp", import.meta.url)),
     access(new URL("../public/media-kit/palworld-card-game-official-card-back.webp", import.meta.url)),
   ]);
+});
+
+test("the image optimizer accepts WebP assets whose storage metadata is generic", async () => {
+  const webp = await readFile(new URL("../public/hero-palpagos-map.webp", import.meta.url));
+  const response = await worker.fetch(
+    new Request("http://localhost/_vinext/image?url=%2Fhero-palpagos-map.webp&w=640&q=75", {
+      headers: { accept: "image/webp" },
+    }),
+    {
+      ASSETS: {
+        fetch: async () => new Response(webp, {
+          headers: { "content-type": "application/octet-stream" },
+        }),
+      },
+    },
+    context,
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("content-type"), "image/webp");
 });
 
 test("natural-language questions return the correct direct answer first", async () => {
