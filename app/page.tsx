@@ -12,39 +12,54 @@ export default function Home() {
         { "@context": "https://schema.org", "@type": "Organization", name: "Palworld Card Game Wiki", url: "https://palworldcardgame.wiki" },
         { "@context": "https://schema.org", "@type": "WebSite", name: "Palworld Card Game Wiki", url: "https://palworldcardgame.wiki", potentialAction: { "@type": "SearchAction", target: "https://palworldcardgame.wiki/cards?q={search_term_string}", "query-input": "required name=search_term_string" } },
       ]} />
-      <section className="hero shell">
-        <div className="hero-copy">
-          <p className="eyebrow"><span>Unofficial field guide</span> · Dawn of Palpagos</p>
-          <h1>Master the wild.<br /><em>Build your team.</em></h1>
-          <p className="hero-lede">
-            Explore real cards, discover launch-set strategies, and shape your next
-            Palworld Card Game deck in one player-first companion.
-          </p>
-          <HeroSearch />
-          <div className="hero-actions">
-            <Link className="button primary" href="/tools/deck-builder">Open deck builder <span>◆</span></Link>
-            <Link className="button ghost" href="/cards">Browse all cards</Link>
+      <section className="hero hero-map">
+        <img
+          className="hero-map-background"
+          src="/hero-palpagos-map.webp"
+          alt=""
+          width={1915}
+          height={821}
+          fetchPriority="high"
+          aria-hidden="true"
+        />
+        <div className="hero-map-overlay" />
+        <div className="hero-inner shell">
+          <div className="hero-copy">
+            <p className="eyebrow"><span>Palworld Card Database</span> · Deck Builder · Guides</p>
+            <h1>Explore every card.<br /><em>Build your Pal team.</em></h1>
+            <p className="hero-lede">
+              Your independent field guide to the Palworld Official Card Game:
+              verified card data, launch strategies, and a free deck builder.
+            </p>
+            <HeroSearch />
+            <div className="hero-actions">
+              <Link className="button primary" href="/tools/deck-builder">Open deck builder <span>◆</span></Link>
+              <Link className="button ghost" href="/cards">Browse all cards</Link>
+            </div>
+            <div className="hero-stats" aria-label="Database highlights">
+              <div><strong>100</strong><span>base cards in BP01</span></div>
+              <div><strong>4</strong><span>deck colors</span></div>
+              <div><strong>50+10</strong><span>legal deck</span></div>
+            </div>
           </div>
-          <div className="hero-stats" aria-label="Database highlights">
-            <div><strong>100</strong><span>base cards in BP01</span></div>
-            <div><strong>4</strong><span>deck colors</span></div>
-            <div><strong>50+10</strong><span>legal deck</span></div>
-          </div>
-        </div>
 
-        <div className="hero-visual" aria-label="Featured launch cards">
-          <div className="map-ring ring-one" />
-          <div className="map-ring ring-two" />
-          <div className="hero-card hero-card-left">
-            <img src="/cards/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
+          <div className="hero-product" aria-label="Dawn of Palpagos launch cards and booster pack">
+            <div className="hero-product-stamp">
+              <span>First booster set · EBP01</span>
+              <strong>Dawn of Palpagos</strong>
+              <small>Official launch product</small>
+            </div>
+            <div className="hero-card hero-card-back">
+              <img src="/cards/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
+            </div>
+            <div className="hero-card hero-card-front">
+              <img src="/cards/EBP01-002.png" alt="Suzaku official card" width={400} height={559} />
+            </div>
+            <div className="hero-booster">
+              <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} />
+            </div>
+            <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
           </div>
-          <div className="hero-card hero-card-main">
-            <img src="/cards/EBP01-002.png" alt="Suzaku official card" width={400} height={559} />
-          </div>
-          <div className="hero-card hero-card-right">
-            <img src="/cards/EBP01-049.png" alt="Lyleen official card" width={400} height={559} />
-          </div>
-          <span className="hero-credit">Official card images · ©Bushiroad ©PALWORLD</span>
         </div>
       </section>
 
