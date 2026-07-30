@@ -198,6 +198,12 @@ h1, h2, h3 {
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
+  background:
+    radial-gradient(circle at 16% 46%, rgba(210, 182, 109, .13), transparent 29%),
+    radial-gradient(circle at 48% 42%, rgba(90, 171, 193, .08), transparent 26%),
+    radial-gradient(circle at 81% 44%, rgba(90, 171, 193, .14), transparent 31%),
+    radial-gradient(circle at 96% 72%, rgba(210, 182, 109, .1), transparent 22%);
+  mix-blend-mode: screen;
 }
 .hero-atmosphere::before,
 .hero-atmosphere::after {
@@ -210,31 +216,71 @@ h1, h2, h3 {
   border-radius: 50%;
   background: rgba(255, 235, 166, .9);
   box-shadow:
-    7vw 22vh 6px 1px rgba(255, 225, 132, .55),
-    18vw 5vh 5px 0 rgba(255, 242, 198, .72),
-    28vw 38vh 7px 1px rgba(210, 182, 109, .55),
-    40vw 16vh 5px 0 rgba(255, 235, 166, .6),
-    53vw 44vh 7px 1px rgba(255, 225, 132, .46),
-    65vw 9vh 6px 0 rgba(255, 242, 198, .65),
-    77vw 33vh 7px 1px rgba(210, 182, 109, .48),
-    88vw 18vh 5px 0 rgba(255, 235, 166, .56);
+    6vw 12vh 5px 0 rgba(255, 242, 198, .72),
+    11vw 36vh 7px 1px rgba(255, 225, 132, .58),
+    17vw 62vh 5px 0 rgba(210, 182, 109, .62),
+    23vw 20vh 6px 1px rgba(255, 235, 166, .66),
+    29vw 48vh 7px 1px rgba(255, 225, 132, .52),
+    35vw 8vh 5px 0 rgba(255, 242, 198, .74),
+    41vw 70vh 6px 1px rgba(210, 182, 109, .58),
+    47vw 31vh 5px 0 rgba(255, 235, 166, .68),
+    53vw 58vh 7px 1px rgba(255, 225, 132, .52),
+    59vw 16vh 6px 0 rgba(255, 242, 198, .7),
+    65vw 44vh 7px 1px rgba(210, 182, 109, .6),
+    71vw 73vh 5px 0 rgba(255, 235, 166, .64),
+    77vw 27vh 7px 1px rgba(255, 225, 132, .58),
+    83vw 55vh 5px 0 rgba(255, 242, 198, .72),
+    89vw 10vh 6px 1px rgba(210, 182, 109, .62),
+    93vw 38vh 7px 1px rgba(255, 235, 166, .6),
+    96vw 69vh 5px 0 rgba(255, 225, 132, .68);
   animation: hero-particle-drift 11s ease-in-out infinite alternate;
 }
 .hero-atmosphere::after {
-  left: 7%;
-  top: 63%;
+  left: 3%;
+  top: 78%;
   width: 2px;
   height: 2px;
   background: rgba(173, 232, 244, .92);
   box-shadow:
-    8vw -29vh 5px 1px rgba(126, 218, 236, .58),
-    20vw 8vh 6px 1px rgba(173, 232, 244, .5),
-    34vw -13vh 5px 0 rgba(126, 218, 236, .55),
-    48vw 5vh 7px 1px rgba(173, 232, 244, .43),
-    61vw -26vh 5px 0 rgba(126, 218, 236, .54),
-    73vw 2vh 6px 1px rgba(173, 232, 244, .48),
-    84vw -19vh 5px 0 rgba(126, 218, 236, .5);
+    5vw -54vh 5px 1px rgba(126, 218, 236, .64),
+    10vw -18vh 6px 1px rgba(173, 232, 244, .58),
+    16vw 6vh 5px 0 rgba(126, 218, 236, .62),
+    22vw -41vh 7px 1px rgba(173, 232, 244, .54),
+    28vw -7vh 5px 0 rgba(126, 218, 236, .66),
+    34vw -60vh 6px 1px rgba(173, 232, 244, .6),
+    40vw -25vh 5px 0 rgba(126, 218, 236, .62),
+    46vw 3vh 7px 1px rgba(173, 232, 244, .52),
+    52vw -47vh 5px 0 rgba(126, 218, 236, .64),
+    58vw -13vh 6px 1px rgba(173, 232, 244, .58),
+    64vw -65vh 5px 0 rgba(126, 218, 236, .68),
+    70vw -30vh 7px 1px rgba(173, 232, 244, .54),
+    76vw 5vh 5px 0 rgba(126, 218, 236, .64),
+    82vw -51vh 6px 1px rgba(173, 232, 244, .6),
+    88vw -16vh 5px 0 rgba(126, 218, 236, .66),
+    94vw -62vh 7px 1px rgba(173, 232, 244, .56),
+    97vw -32vh 5px 0 rgba(126, 218, 236, .62);
   animation-duration: 14s;
+  animation-direction: alternate-reverse;
+}
+.hero-particle-mist {
+  position: absolute;
+  inset: -14%;
+  opacity: .52;
+  background-image:
+    radial-gradient(circle, rgba(255, 239, 179, .95) 0 1.2px, transparent 2px),
+    radial-gradient(circle, rgba(210, 182, 109, .72) 0 1px, transparent 1.8px);
+  background-position: 0 0, 48px 72px;
+  background-size: 118px 118px, 181px 181px;
+  animation: hero-particle-mist-drift 18s linear infinite alternate;
+}
+.hero-particle-mist-sky {
+  opacity: .46;
+  background-image:
+    radial-gradient(circle, rgba(173, 232, 244, .92) 0 1.1px, transparent 2px),
+    radial-gradient(circle, rgba(90, 171, 193, .68) 0 1px, transparent 1.8px);
+  background-position: 36px 18px, 92px 126px;
+  background-size: 149px 149px, 223px 223px;
+  animation-duration: 24s;
   animation-direction: alternate-reverse;
 }
 .hero::after {
@@ -1080,9 +1126,14 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 }
 
 @keyframes hero-particle-drift {
-  from { transform: translate3d(-6px, 18px, 0) scale(.82); opacity: .3; }
-  55% { opacity: .82; }
-  to { transform: translate3d(18px, -26px, 0) scale(1.16); opacity: .42; }
+  from { transform: translate3d(-6px, 18px, 0) scale(.82); opacity: .52; }
+  55% { opacity: .94; }
+  to { transform: translate3d(18px, -26px, 0) scale(1.16); opacity: .64; }
+}
+
+@keyframes hero-particle-mist-drift {
+  from { transform: translate3d(-2%, 3%, 0); }
+  to { transform: translate3d(3%, -4%, 0); }
 }
 
 @keyframes border-beam {

@@ -27,7 +27,10 @@ export default function Home() {
           <span className="map-light map-light-gold" />
           <span className="map-light map-light-sky" />
         </div>
-        <div className="hero-atmosphere" aria-hidden="true" />
+        <div className="hero-atmosphere" aria-hidden="true">
+          <span className="hero-particle-mist hero-particle-mist-gold" />
+          <span className="hero-particle-mist hero-particle-mist-sky" />
+        </div>
         <div className="hero-inner shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Launch-day field guide</span> · Rules · Cards · Decks</p>
