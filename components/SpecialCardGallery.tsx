@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import type { SpecialArtwork } from "@/lib/data";
 
 export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeCardRef = useRef<HTMLAnchorElement>(null);
   const active = artwork[activeIndex];
   const previous = artwork[(activeIndex - 1 + artwork.length) % artwork.length];
   const next = artwork[(activeIndex + 1) % artwork.length];
@@ -21,15 +22,44 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
     setActiveIndex((index) => (index + 1) % artwork.length);
   }
 
+  function tiltActiveCard(event: ReactPointerEvent<HTMLAnchorElement>) {
+    if (event.pointerType === "touch") return;
+
+    const cardBounds = event.currentTarget.getBoundingClientRect();
+    const horizontalPosition = (event.clientX - cardBounds.left) / cardBounds.width - 0.5;
+    const verticalPosition = (event.clientY - cardBounds.top) / cardBounds.height - 0.5;
+    const cardStyle = event.currentTarget.style;
+
+    cardStyle.setProperty("--gallery-tilt-x", `${(-verticalPosition * 7).toFixed(2)}deg`);
+    cardStyle.setProperty("--gallery-tilt-y", `${(horizontalPosition * 7).toFixed(2)}deg`);
+    cardStyle.setProperty("--gallery-pointer-x", `${((horizontalPosition + 0.5) * 100).toFixed(1)}%`);
+    cardStyle.setProperty("--gallery-pointer-y", `${((verticalPosition + 0.5) * 100).toFixed(1)}%`);
+  }
+
+  function resetActiveCardTilt() {
+    const cardStyle = activeCardRef.current?.style;
+    if (!cardStyle) return;
+
+    cardStyle.setProperty("--gallery-tilt-x", "0deg");
+    cardStyle.setProperty("--gallery-tilt-y", "0deg");
+    cardStyle.setProperty("--gallery-pointer-x", "50%");
+    cardStyle.setProperty("--gallery-pointer-y", "50%");
+  }
+
   return (
     <div className="special-gallery">
       <div className={`special-gallery-stage color-${active.card.color}`}>
         <div className="special-gallery-card special-gallery-card-previous" aria-hidden="true">
           <Image src={previous.image} alt="" width={1117} height={1560} sizes="240px" />
         </div>
+        <span className="special-gallery-aura" aria-hidden="true" />
         <Link
+          ref={activeCardRef}
+          key={active.variantNumber}
           className="special-gallery-card special-gallery-card-active"
           href={`/card/${active.card.slug}?variant=${active.variantNumber}`}
+          onPointerMove={tiltActiveCard}
+          onPointerLeave={resetActiveCardTilt}
         >
           <Image
             src={active.image}
