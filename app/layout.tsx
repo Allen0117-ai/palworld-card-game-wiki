@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cinzel, Inter } from "next/font/google";
 import Link from "next/link";
+import { InteractionEffects } from "@/components/InteractionEffects";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
@@ -23,6 +25,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cinzel.variable}`}>
+        <InteractionEffects />
+        <ScrollReveal />
         <header className="site-header">
           <div className="shell nav-wrap">
             <Link className="brand" href="/" aria-label="Palworld Card Game Wiki home">

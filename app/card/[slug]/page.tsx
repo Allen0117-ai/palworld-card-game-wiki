@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cards, decks } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
+import { CardMagnifier } from "@/components/CardMagnifier";
 import type { Metadata } from "next";
 
 export function generateStaticParams() { return cards.map((card) => ({ slug: card.slug })); }
@@ -26,7 +27,11 @@ export default async function CardDetailPage({ params }: { params: Promise<{ slu
     <div className="detail-layout shell">
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: card.number, additionalType: `Palworld TCG ${card.type} card` }} />
       <aside className="detail-art">
-        <img src={card.image} alt={`${card.name} — ${card.subtitle}, ${card.number}`} width={400} height={559} />
+        <CardMagnifier
+          src={card.image}
+          alt={`${card.name} — ${card.subtitle}, ${card.number}`}
+          isFoil={card.rarity === "RR"}
+        />
         <p>Official card image · ©Bushiroad ©PALWORLD</p>
       </aside>
       <article className="detail-content">

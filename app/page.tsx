@@ -23,6 +23,10 @@ export default function Home() {
           aria-hidden="true"
         />
         <div className="hero-map-overlay" />
+        <div className="hero-map-lights" aria-hidden="true">
+          <span className="map-light map-light-gold" />
+          <span className="map-light map-light-sky" />
+        </div>
         <div className="hero-inner shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Palworld Card Database</span> · Deck Builder · Guides</p>
@@ -44,21 +48,25 @@ export default function Home() {
           </div>
 
           <div className="hero-product" aria-label="Dawn of Palpagos launch cards and booster pack">
-            <div className="hero-product-stamp">
-              <span>First booster set · EBP01</span>
-              <strong>Dawn of Palpagos</strong>
-              <small>Official launch product</small>
+            <div className="hero-product-stage" data-tilt>
+              <div className="hero-product-stamp">
+                <span>First booster set · EBP01</span>
+                <strong>Dawn of Palpagos</strong>
+                <small>Official launch product</small>
+              </div>
+              <div className="hero-card hero-card-back">
+                <img src="/cards/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
+                <span className="hero-card-glare" aria-hidden="true" />
+              </div>
+              <div className="hero-card hero-card-front">
+                <img src="/cards/EBP01-002.png" alt="Suzaku official card" width={400} height={559} />
+                <span className="hero-card-glare" aria-hidden="true" />
+              </div>
+              <div className="hero-booster">
+                <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} />
+              </div>
+              <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
             </div>
-            <div className="hero-card hero-card-back">
-              <img src="/cards/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
-            </div>
-            <div className="hero-card hero-card-front">
-              <img src="/cards/EBP01-002.png" alt="Suzaku official card" width={400} height={559} />
-            </div>
-            <div className="hero-booster">
-              <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} />
-            </div>
-            <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
           </div>
         </div>
       </section>
@@ -67,7 +75,7 @@ export default function Home() {
         <div>Card database <span>◆</span> Deck builder <span>◆</span> Deck guides <span>◆</span> Official card data <span>◆</span> Beginner guides</div>
       </section>
 
-      <section className="section shell">
+      <section className="section shell" data-reveal>
         <div className="section-heading">
           <div>
             <p className="eyebrow">Fresh from BP01</p>
@@ -76,11 +84,11 @@ export default function Home() {
           <Link className="text-link" href="/cards">View card database →</Link>
         </div>
         <div className="card-grid">
-          {cards.slice(0, 4).map((card) => <CardTile key={card.slug} card={card} />)}
+          {cards.slice(0, 4).map((card) => <CardTile key={card.slug} card={card} enableTilt />)}
         </div>
       </section>
 
-      <section className="product-section">
+      <section className="product-section" data-reveal>
         <div className="shell product-grid">
           <div className="product-copy">
             <p className="eyebrow"><span>First booster set</span> · EBP01</p>
@@ -98,7 +106,7 @@ export default function Home() {
         <p className="asset-credit shell">Official promotional assets shown unmodified · ©Bushiroad ©PALWORLD</p>
       </section>
 
-      <section className="section shell split-section">
+      <section className="section shell split-section" data-reveal>
         <div>
           <div className="section-heading compact">
             <div>
@@ -122,7 +130,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="section shell">
+      <section className="section shell" data-reveal>
         <div className="section-heading">
           <div>
             <p className="eyebrow">Learn the game</p>
@@ -145,7 +153,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="official-banner shell" aria-label="Dawn of Palpagos official launch artwork">
+      <section className="official-banner shell" aria-label="Dawn of Palpagos official launch artwork" data-reveal>
         <img src="/media-kit/launch-banner.jpg" alt="Dawn of Palpagos official promotional artwork" width={1920} height={1080} loading="lazy" />
         <div className="official-banner-caption">
           <div><span>Official launch artwork</span><strong>Dawn of Palpagos</strong></div>
