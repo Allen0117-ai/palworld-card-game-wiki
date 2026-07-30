@@ -259,10 +259,10 @@ h1, h2, h3 {
   overflow: hidden;
   pointer-events: none;
   background:
-    radial-gradient(circle at 16% 46%, rgba(210, 182, 109, .13), transparent 29%),
-    radial-gradient(circle at 48% 42%, rgba(90, 171, 193, .08), transparent 26%),
-    radial-gradient(circle at 81% 44%, rgba(90, 171, 193, .14), transparent 31%),
-    radial-gradient(circle at 96% 72%, rgba(210, 182, 109, .1), transparent 22%);
+    radial-gradient(circle at 16% 46%, rgba(210, 182, 109, .15), transparent 29%),
+    radial-gradient(circle at 48% 42%, rgba(90, 171, 193, .09), transparent 26%),
+    radial-gradient(circle at 81% 44%, rgba(90, 171, 193, .16), transparent 31%),
+    radial-gradient(circle at 96% 72%, rgba(210, 182, 109, .115), transparent 22%);
   mix-blend-mode: screen;
 }
 .hero-atmosphere::before,
@@ -330,7 +330,7 @@ h1, h2, h3 {
     radial-gradient(circle, rgba(255, 239, 179, .95) 0 1.2px, transparent 2px),
     radial-gradient(circle, rgba(210, 182, 109, .72) 0 1px, transparent 1.8px);
   background-position: 0 0, 48px 72px;
-  background-size: 118px 118px, 181px 181px;
+  background-size: 128px 128px, 194px 194px;
   animation: hero-particle-mist-drift 18s linear infinite alternate;
 }
 .hero-particle-mist-sky {
@@ -339,7 +339,7 @@ h1, h2, h3 {
     radial-gradient(circle, rgba(173, 232, 244, .92) 0 1.1px, transparent 2px),
     radial-gradient(circle, rgba(90, 171, 193, .68) 0 1px, transparent 1.8px);
   background-position: 36px 18px, 92px 126px;
-  background-size: 149px 149px, 223px 223px;
+  background-size: 160px 160px, 238px 238px;
   animation-duration: 24s;
   animation-direction: alternate-reverse;
 }
@@ -1284,13 +1284,13 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 }
 
 @keyframes map-light-sway {
-  from { transform: rotate(-1.5deg) scale(1); opacity: .18; }
-  to { transform: rotate(1.5deg) scale(1.035); opacity: .32; }
+  from { transform: rotate(-1.5deg) scale(1); opacity: .2; }
+  to { transform: rotate(1.5deg) scale(1.035); opacity: .34; }
 }
 
 @keyframes map-sky-glow {
-  from { transform: translate3d(-2%, 1%, 0) scale(.96); opacity: .09; }
-  to { transform: translate3d(3%, -2%, 0) scale(1.06); opacity: .17; }
+  from { transform: translate3d(-2%, 1%, 0) scale(.96); opacity: .11; }
+  to { transform: translate3d(3%, -2%, 0) scale(1.06); opacity: .19; }
 }
 
 @keyframes hero-particle-drift {
