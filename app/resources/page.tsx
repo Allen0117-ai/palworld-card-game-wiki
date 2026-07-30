@@ -86,7 +86,7 @@ export default function ResourcesPage() {
         <section className="question-box">
           <div><p className="eyebrow">Help shape the next update</p><h2>Couldn&apos;t find your answer?</h2></div>
           <p>Send the question exactly as you searched it. We will use repeated questions to decide the next guide and will correct any sourced factual error.</p>
-          <a className="button primary" href="mailto:hello@palworldcardgame.wiki?subject=Palworld%20Card%20Game%20question%20or%20correction">Submit a question or correction</a>
+          <a className="button primary" href="mailto:paweyan163@gmail.com?subject=Palworld%20Card%20Game%20question%20or%20correction">Submit a question or correction</a>
         </section>
       </div>
     </>

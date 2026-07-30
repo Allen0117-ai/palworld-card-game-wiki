@@ -70,7 +70,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <strong>Site</strong>
               <Link href="/about">About & disclaimer</Link>
               <Link href="/privacy">Privacy</Link>
-              <a href="mailto:hello@palworldcardgame.wiki">Contact</a>
+              <a href="mailto:paweyan163@gmail.com">Contact</a>
             </div>
           </div>
           <div className="shell legal">

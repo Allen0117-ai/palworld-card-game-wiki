@@ -23,7 +23,7 @@ export default function AboutPage() {
         <h2>Independent and unofficial</h2>
         <p>Official card and promotional images are displayed for identification, education and product promotion under the official media and fan-content guidance. ©Bushiroad ©PALWORLD.</p>
         <p>Palworld and all related names, characters and artwork belong to their respective owners. This site is not affiliated with, endorsed by or sponsored by Pocketpair, Inc. or Bushiroad.</p>
-        <a className="text-link" href="mailto:hello@palworldcardgame.wiki">Corrections or takedown request</a>
+        <a className="text-link" href="mailto:paweyan163@gmail.com">Corrections or takedown request</a>
       </section>
     </article>
   );

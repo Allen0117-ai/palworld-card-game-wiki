@@ -105,7 +105,7 @@ export function RuleExplorer({ initialQuery = "" }: { initialQuery?: string }) {
         <div className="rule-empty">
           <strong>We do not have a confident answer for that wording yet.</strong>
           <p>Try a card number or a shorter phrase. You can also send the exact question so it can be added to the next update.</p>
-          <a className="button primary" href={`mailto:hello@palworldcardgame.wiki?subject=${encodeURIComponent("Palworld Card Game question")}&body=${encodeURIComponent(`I searched: ${normalizedQuery}`)}`}>Submit this question</a>
+          <a className="button primary" href={`mailto:paweyan163@gmail.com?subject=${encodeURIComponent("Palworld Card Game question")}&body=${encodeURIComponent(`I searched: ${normalizedQuery}`)}`}>Submit this question</a>
         </div>
       )}
 

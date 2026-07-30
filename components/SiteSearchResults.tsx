@@ -68,7 +68,7 @@ export function SiteSearchResults({ initialQuery = "" }: { initialQuery?: string
         <div className="search-empty">
           <strong>No confident answer yet.</strong>
           <p>Try a card number or shorter phrase, or send the exact question so we can cover it next.</p>
-          <a className="button primary" href={`mailto:hello@palworldcardgame.wiki?subject=${encodeURIComponent("Palworld Card Game question")}&body=${encodeURIComponent(`I searched: ${query.trim()}`)}`}>Submit this question</a>
+          <a className="button primary" href={`mailto:paweyan163@gmail.com?subject=${encodeURIComponent("Palworld Card Game question")}&body=${encodeURIComponent(`I searched: ${query.trim()}`)}`}>Submit this question</a>
         </div>
       )}
 
