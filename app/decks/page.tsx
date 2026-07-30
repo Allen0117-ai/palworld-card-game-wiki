@@ -3,7 +3,7 @@ import { decks } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { DeckExplorer } from "@/components/DeckExplorer";
 
-export const metadata: Metadata = { title: "Best Palworld TCG Decks – Community Meta & Deck Builder", description: "Explore practical Palworld TCG launch decks by color and archetype, with cards, strategy and matchup notes." };
+export const metadata: Metadata = { title: "Palworld TCG Launch Deck Ideas & Deck Builder", description: "Explore practical Palworld TCG launch deck ideas by color and archetype, with core cards and strategy notes." };
 
 export default function DecksPage() {
   return (

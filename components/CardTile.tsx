@@ -1,11 +1,19 @@
 import Link from "next/link";
-import { Card, getInitials } from "@/lib/data";
+import { Card } from "@/lib/data";
 
 export function CardTile({ card }: { card: Card }) {
   return (
     <Link className="card-tile" href={`/card/${card.slug}`}>
-      <div className={`card-art art-${card.color}`} data-initials={getInitials(card.name)} role="img" aria-label={`${card.name} — ${card.subtitle} (${card.number}, ${card.rarity}, ${card.color})`}>
-        <span className="rarity">{card.rarity}</span>
+      <div className="card-image-wrap">
+        <img
+          className="card-image"
+          src={card.image}
+          alt={`${card.name} — ${card.subtitle}, ${card.number}`}
+          width={400}
+          height={559}
+          loading="lazy"
+        />
+        <span className={`color-tab ${card.color}`}>{card.rarity}</span>
       </div>
       <div className="card-meta">
         <h3>{card.name}</h3>

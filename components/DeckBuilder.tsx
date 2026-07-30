@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { cards, getInitials } from "@/lib/data";
+import { cards } from "@/lib/data";
 
 type DeckMap = Record<string, number>;
 
@@ -68,7 +68,9 @@ export function DeckBuilder() {
         <div className="builder-card-list">
           {visible.map((card) => (
             <button className="builder-card" key={card.slug} onClick={() => addCard(card.slug)} draggable onDragStart={(event) => beginDrag(event, card.slug)} aria-label={`Add ${card.name}`}>
-              <span className={`builder-art art-${card.color}`}>{getInitials(card.name)}</span>
+              <span className="builder-art">
+                <img src={card.image} alt="" width={400} height={559} loading="lazy" />
+              </span>
               <strong>{card.name}</strong>
               <small>{card.number} · Cost {card.cost}</small>
             </button>

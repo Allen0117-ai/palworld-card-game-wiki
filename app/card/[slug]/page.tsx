@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { cards, decks, getInitials } from "@/lib/data";
+import { cards, decks } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
 
@@ -26,7 +26,8 @@ export default async function CardDetailPage({ params }: { params: Promise<{ slu
     <div className="detail-layout shell">
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: card.number, additionalType: `Palworld TCG ${card.type} card` }} />
       <aside className="detail-art">
-        <div className={`card-art art-${card.color}`} data-initials={getInitials(card.name)} role="img" aria-label={`${card.name} — ${card.subtitle} (${card.number}, ${card.rarity}, ${card.color})`}><span className="rarity">{card.rarity}</span></div>
+        <img src={card.image} alt={`${card.name} — ${card.subtitle}, ${card.number}`} width={400} height={559} />
+        <p>Official card image · ©Bushiroad ©PALWORLD</p>
       </aside>
       <article className="detail-content">
         <p className="eyebrow"><span>{card.number}</span> · Dawn of Palpagos</p>
@@ -38,6 +39,10 @@ export default async function CardDetailPage({ params }: { params: Promise<{ slu
           <div className="stat"><span>Power</span><strong>{card.power || "—"}</strong></div>
           <div className="stat"><span>Strike</span><strong>{card.strike || "—"}</strong></div>
         </div>
+        <section className="content-block">
+          <h2>Official card text</h2>
+          <p>{card.ability}</p>
+        </section>
         <section className="content-block">
           <h2>Strategy snapshot</h2>
           <p>{card.summary} Start by testing two to four copies, then adjust once you know how often you want to see it in your opening and midgame hands.</p>

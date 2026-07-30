@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Inter } from "next/font/google";
+import { Cinzel, Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
-const barlow = Barlow_Condensed({ variable: "--font-display", subsets: ["latin"], weight: ["600", "700", "800", "900"] });
+const cinzel = Cinzel({ variable: "--font-display", subsets: ["latin"], weight: ["600", "700", "800", "900"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://palworldcardgame.wiki"),
-  title: { default: "Palworld TCG Card Database – Cards, Decks & Prices", template: "%s | Palworld Card Game Wiki" },
-  description: "Complete database of Palworld Trading Card Game cards. Browse card stats, deck lists, pull rates, and prices.",
+  title: { default: "Palworld TCG Card Database – Cards, Decks & Builder", template: "%s | Palworld Card Game Wiki" },
+  description: "Explore verified Palworld Card Game data, launch deck ideas, beginner guides and a free deck builder.",
   openGraph: {
     title: "Palworld Card Game Wiki",
     description: "Cards, decks, tools and launch-meta guides for the Palworld Official Card Game.",
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${barlow.variable}`}>
+      <body className={`${inter.variable} ${cinzel.variable}`}>
         <header className="site-header">
           <div className="shell nav-wrap">
             <Link className="brand" href="/" aria-label="Palworld Card Game Wiki home">
-              <span className="brand-block">P</span>
-              <span>PWCG<small>//WIKI</small></span>
+              <span className="brand-mark">◆</span>
+              <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
             </Link>
             <nav aria-label="Main navigation">
               <Link href="/cards">Cards</Link>
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/tools/deck-builder">Deck Builder</Link>
               <Link href="/blog">Guides</Link>
             </nav>
-            <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>↗</span></Link>
+            <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>◆</span></Link>
           </div>
         </header>
         <main>{children}</main>
@@ -43,10 +43,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="shell footer-grid">
             <div>
               <Link className="brand footer-brand" href="/">
-                <span className="brand-block">P</span>
-                <span>PWCG<small>//WIKI</small></span>
+                <span className="brand-mark">◆</span>
+                <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
               </Link>
-              <p>An independent card database and strategy companion built for players.</p>
+              <p>An unofficial, non-commercial card database and strategy companion built by fans, for players.</p>
             </div>
             <div>
               <strong>Explore</strong>
@@ -63,8 +63,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </div>
           </div>
           <div className="shell legal">
-            <span>© 2026 Palworld Card Game Wiki</span>
-            <span>Fan-made. Not affiliated with Pocketpair or Bushiroad.</span>
+            <span>© 2026 Palworld Card Game Wiki · ©Bushiroad ©PALWORLD</span>
+            <span>Unofficial fan site. Not affiliated with or endorsed by Pocketpair or Bushiroad.</span>
           </div>
         </footer>
       </body>
