@@ -249,9 +249,9 @@ h1, h2, h3 {
 .hero-inner {
   min-height: inherit;
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(410px, .88fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(430px, .92fr);
   align-items: center;
-  gap: 24px;
+  gap: 38px;
   padding-block: 74px 56px;
 }
 .hero-copy { max-width: 675px; position: relative; z-index: 4; }
@@ -349,10 +349,6 @@ h1 em { color: var(--gold); font-style: normal; }
   min-height: 585px;
   position: relative;
   align-self: end;
-  width: min(100%, 510px);
-  justify-self: center;
-  transform: translateX(-18px) scale(.94);
-  transform-origin: center bottom;
   z-index: 2;
 }
 .hero-product-stage {
