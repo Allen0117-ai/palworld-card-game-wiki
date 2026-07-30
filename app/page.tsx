@@ -60,11 +60,11 @@ export default function Home() {
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-front">
-                <img src="/cards/catalog/EBP01-025.png" alt="Chillet official card" width={400} height={559} />
+                <img src="/cards/showcase/EBP01-025.png" alt="Chillet official card" width={400} height={559} />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-third">
-                <img src="/cards/catalog/EBP01-074.png" alt="Shadowbeak official card" width={400} height={559} />
+                <img src="/cards/showcase/EBP01-074.png" alt="Shadowbeak official card" width={400} height={559} />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
