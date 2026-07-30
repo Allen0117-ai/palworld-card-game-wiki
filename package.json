@@ -12,6 +12,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "cards:sync": "node scripts/sync-official-cards.mjs",
+    "rules:sync": "node scripts/sync-official-rules.mjs",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

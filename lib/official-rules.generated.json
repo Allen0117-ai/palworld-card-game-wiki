@@ -1,0 +1,1589 @@
+{
+  "syncedOn": "2026-07-30",
+  "total": 97,
+  "rules": [
+    {
+      "id": "official-97",
+      "question": "I have three Pals in my base with different card names, none of which are 《Lamball – My First Pal》. Using the ability 〈Declare 1 card name. Choose all of your cards, and they get that declared card name in addition until end of turn.〉 of BP01-040 《Antique Dresser》, I added the card name 《Lamball – My First Pal》 to my cards. In this case, is the condition for BP01-100 《Beginning of the Adventure》 which states 〈If you have 3 or more Pals with 《My First》 in their different card names〉 fulfilled?",
+      "answer": "No, it is not fulfilled.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-040",
+        "EBP01-100",
+        "EBP01-100SR"
+      ],
+      "cardNames": "[EBP01-040 : Antique Dresser] [EBP01-100 : The Adventure Begins] [EBP01-100SR : The Adventure Begins]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-96",
+      "question": "Does \"[Rest 3 Souls] Draw 1 card\" count as playing a card?",
+      "answer": "No, it does not.",
+      "category": "Flow of the Game",
+      "cardNumbers": [
+        "EBP01-100",
+        "EBP01-100SR"
+      ],
+      "cardNames": "[EBP01-100 : The Adventure Begins] [EBP01-100SR : The Adventure Begins]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-95",
+      "question": "I played a card that states 〈Choose up to 1 (specific) card from your hand and deploy it〉. What happens if there is no such specific card in my hand?",
+      "answer": "Choose 0 cards and resolve the rest of the effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-094"
+      ],
+      "cardNames": "[EBP01-094 : Daedream's Necklace]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-94",
+      "question": "On my turn, I played an ability that states 〈It becomes night until the end of the opponent's next turn.〉 If the card that played this ability is put into the graveyard during the opponent's next turn, does it stop being night?",
+      "answer": "No, it does not stop being night.\nEven if the card that played this ability leaves the base, it is night until the end of the opponent's next turn.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-088",
+        "EBP01-088SR",
+        "EBP01-089",
+        "EBP01-094"
+      ],
+      "cardNames": "[EBP01-088 : Lamp] [EBP01-088SR : Lamp] [EBP01-089 : Shoddy Bed] [EBP01-094 : Daedream's Necklace]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-93",
+      "question": "A Pal's 【Power】 was reduced by a card effect and became equal to or less than the 【Damage】 that Pal had already taken. Is that Pal put into the graveyard?",
+      "answer": "Yes, it is put into the graveyard.\nIf the damage taken becomes greater than its 【Power】, the Pal is put into the graveyard.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-082",
+        "EBP01-085"
+      ],
+      "cardNames": "[EBP01-082 : Daedream – Deep Slumber] [EBP01-085 : Maraith – Twilight Messenger]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-92",
+      "question": "A Pal's 【Power】 became 0 or less due to a card effect. Is that Pal put into the graveyard?",
+      "answer": "No, it is not put there.\nA Pal is not put into the graveyard simply by its 【Power】 becoming 0 or less. It is put into the graveyard when the damage it has taken becomes greater than its 【Power】.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-082",
+        "EBP01-085"
+      ],
+      "cardNames": "[EBP01-082 : Daedream – Deep Slumber] [EBP01-085 : Maraith – Twilight Messenger]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-91",
+      "question": "Does BP01-079 《Depresso》 possess two instances of 【CONT】 Nocturnal (If it is night, this card gets [Power]+300)?",
+      "answer": "Yes, that is correct.\nIf it is night, it receives a total of +600 【Power】.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-079",
+        "EBP01-079SR"
+      ],
+      "cardNames": "[EBP01-079 : Depresso – Late Night Hustler] [EBP01-079SR : Depresso – Late Night Hustler]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-90",
+      "question": "While BP01-075 《Katress – Abyssal Sorcerer》 was in my base, I activated the 【ACT】 ability of BP01-093 《Meat Cleaver》 and butchered one of my 5-cost Pals. The 【AUTO】 ability of 《Katress – Abyssal Sorcerer》 triggers; should I resolve this or the ability of 《Meat Cleaver》 that states 〈Reveal the top 3 cards of your deck, choose 1 card from among them and add it to hand, and put the remaining cards into the graveyard〉 first?",
+      "answer": "Resolve the effect of 《Meat Cleaver》 first.\nEven if an 【AUTO】 ability activates in the middle of resolving an effect, the pending 【AUTO】 ability will be processed after the resolution of the current effect finishes. In this case, after the effect of 《Meat Cleaver》 finishes resolving, you can choose a Pal with a cost of [butchered card's cost - 1] from the graveyard to deploy with the 【AUTO】 ability of 《Katress – Abyssal Sorcerer》. As a supplementary note, if a Pal with a cost of [butchered card's cost - 1] is among the cards put into the graveyard by the effect of 《Meat Cleaver》, it can be chosen by the 【AUTO】 ability of 《Katress – Abyssal Sorcerer》.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP",
+        "EBP01-093",
+        "EBP01-093SR"
+      ],
+      "cardNames": "[EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer] [EBP01-093 : Meat Cleaver] [EBP01-093SR : Meat Cleaver]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-89",
+      "question": "While BP01-075 《Katress – Abyssal Sorcerer》 was in my base, I butchered a ◇5 Pal. Can I deploy a ◇2 or ◇3 Pal using the 【AUTO】 ability of 《Katress – Abyssal Sorcerer》?",
+      "answer": "No, you cannot.\nYou can deploy a Pal with a cost of [its cost - 1]. In this specific case, you can only deploy a ◇4 Pal.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP"
+      ],
+      "cardNames": "[EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-88",
+      "question": "If BP01-075 《Katress – Abyssal Sorcerer》 is butchered, does the 【AUTO】 ability of the butchered 《Katress – Abyssal Sorcerer》 itself activate?",
+      "answer": "Yes, it activates. \nEven if 《Katress – Abyssal Sorcerer》 itself is butchered, its own ability activates, allowing you to deploy a Pal with a cost of [its cost - 1] from the graveyard.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP"
+      ],
+      "cardNames": "[EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-87",
+      "question": "I played a card that states 〈Choose up to X (specific) cards from your graveyard and return them to your hand〉 or 〈Choose up to X (specific) cards from your graveyard and deploy them〉. What happens if there are no such specific cards in the graveyard?",
+      "answer": "Choose 0 cards and resolve the rest of the effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP",
+        "EBP01-084",
+        "EBP01-095",
+        "EBP01-095OSR",
+        "EBP01-095SP",
+        "EBP01-097"
+      ],
+      "cardNames": "[EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer] [EBP01-084 : Menasting – Darkness-Dwelling Scorpion] [EBP01-095 : Zoe's Strategy] [EBP01-095OSR : Zoe's Strategy] [EBP01-095SP : Zoe's Strategy] [EBP01-097 : Black Marketeer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-86",
+      "question": "Does the ability 〈【CONT】 If it is night, your Pal's 【AUTO】 abilities activate twice〉 of BP01-074 《Shadowbeak – Seed of Despair》 cause 〈【AUTO】 Breakthrough (When the opposing combat Pal is put into the graveyard during this card's attack, deal damage to the opponent player)〉 to activate twice?",
+      "answer": "Yes, it activates.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-050",
+        "EBP01-050OSR",
+        "EBP01-050SP",
+        "EBP01-059",
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP"
+      ],
+      "cardNames": "[EBP01-050 : Digtoise – Seismic Drillback] [EBP01-050OSR : Digtoise – Seismic Drillback] [EBP01-050SP : Digtoise – Seismic Drillback] [EBP01-059 : Digtoise – Keen Needleback] [EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-85",
+      "question": "I have two copies of BP01-074 《Shadowbeak – Seed of Despair》 in my Base, and 〈【CONT】 If it is night, your Pal's 【AUTO】 abilities activate twice〉 is active. The 【AUTO】 ability of 《Shadowbeak – Seed of Despair》 triggers at the end of the turn; how many times does the 【AUTO】 ability activate?",
+      "answer": "It is twice.\nThe ability 〈【CONT】 If it is night, your Pal's 【AUTO】 abilities activate twice〉 of 《Shadowbeak – Seed of Despair》 does not add +1 to the number of activations; rather, it is an ability that causes an 【AUTO】 ability to activate twice whenever it triggers once.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP"
+      ],
+      "cardNames": "[EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-84",
+      "question": "I have a copy of BP01-074 《Shadowbeak – Seed of Despair》 in the rest state and BP01-075 《Katress – Abyssal Sorcerer》 in my base, and no effect other than 《Shadowbeak – Seed of Despair》 is causing it to be night. In this state, 《Shadowbeak – Seed of Despair》 was butchered by its own 【AUTO】 ability at the end of the turn. In this case, how many times does each 【AUTO】 ability activate, and in what order should they be resolved?",
+      "answer": "First, at the end of the turn, the 【AUTO】 ability of 《Shadowbeak – Seed of Despair》 activates twice and enters a pending state. By resolving one of the pending 【AUTO】 abilities of 《Shadowbeak – Seed of Despair》 and butchering 《Shadowbeak – Seed of Despair》, the 【AUTO】 ability of 《Katress – Abyssal Sorcerer》 activates twice (factoring in the 【CONT】 ability of 《Shadowbeak – Seed of Despair》) and enters a pending state. After the resolution of the first 【AUTO】 ability of 《Shadowbeak – Seed of Despair》, you can resolve the remaining one 【AUTO】 ability of 《Shadowbeak – Seed of Despair》 and the two 【AUTO】 abilities of 《Katress – Abyssal Sorcerer》 in any order.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP",
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP"
+      ],
+      "cardNames": "[EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair] [EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-83",
+      "question": "I have a copy of BP01-074 《Shadowbeak – Seed of Despair》 in the rest state and BP01-075 《Katress – Abyssal Sorcerer》 in my base, and no effect other than 《Shadowbeak – Seed of Despair》 is causing it to be night. If 《Shadowbeak – Seed of Despair》 is butchered in this state, how many times does the 【AUTO】 ability of 《Katress – Abyssal Sorcerer》 activate?",
+      "answer": "It activates twice.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP",
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP"
+      ],
+      "cardNames": "[EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair] [EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-82",
+      "question": "Does the ability 〈【CONT】 If it is night, your Pal's 【AUTO】 abilities activate twice〉 of BP01-074 《Shadowbeak – Seed of Despair》 cause this card's own 【AUTO】 ability to activate twice?",
+      "answer": "Yes, it activates.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP"
+      ],
+      "cardNames": "[EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-81",
+      "question": "What is 〈Butcher〉?",
+      "answer": "It means putting the specified number of Pals in the Base into the graveyard. For 〈Choose 1 of your Pals, and butcher it〉, choose 1 Pal in your Base and put it into the graveyard.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP",
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP",
+        "EBP01-093",
+        "EBP01-093SR",
+        "EBP01-095",
+        "EBP01-095OSR",
+        "EBP01-095SP"
+      ],
+      "cardNames": "[EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair] [EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer] [EBP01-093 : Meat Cleaver] [EBP01-093SR : Meat Cleaver] [EBP01-095 : Zoe's Strategy] [EBP01-095OSR : Zoe's Strategy] [EBP01-095SP : Zoe's Strategy]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-80",
+      "question": "I have BP01-073 《Helzephyr – Wings of the Moonless Night》 and BP01-088 《Lamp》 in my base, and the game state is night. If one of my Pals that does not have 〈Nocturnal〉 is deployed, can I put a Pal into the graveyard using the 【AUTO】 ability of 《Helzephyr – Wings of the Moonless Night》?",
+      "answer": "Yes, you can put it into the graveyard.\nEven if a Pal originally lacks 〈Nocturnal〉, it gains 〈Nocturnal〉 through the ability of 《Lamp》, allowing you to put a Pal into the graveyard with the 【AUTO】 ability of 《Helzephyr – Wings of the Moonless Night》.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-073",
+        "EBP01-073OSR",
+        "EBP01-073SSP",
+        "EBP01-088",
+        "EBP01-088SR"
+      ],
+      "cardNames": "[EBP01-073 : Helzephyr – Wings of the Moonless Night] [EBP01-073OSR : Helzephyr – Wings of the Moonless Night] [EBP01-073SSP : Helzephyr – Wings of the Moonless Night] [EBP01-088 : Lamp] [EBP01-088SR : Lamp]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-79",
+      "question": "I put a Pal into the graveyard using the 【AUTO】 ability of BP01-073 《Helzephyr – Wings of the Moonless Night》. If this card is already in the rest state at the end of the turn, how should the clause 〈If 1 or more cards were put [into the graveyard], rest this card at the end of that turn〉 be resolved?",
+      "answer": "If it is in the rest state at the end of the turn, nothing in particular happens because it is already rested. Since a Pal in the rest state cannot become rested again, the resolution finishes without any change.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-073",
+        "EBP01-073OSR",
+        "EBP01-073SSP"
+      ],
+      "cardNames": "[EBP01-073 : Helzephyr – Wings of the Moonless Night] [EBP01-073OSR : Helzephyr – Wings of the Moonless Night] [EBP01-073SSP : Helzephyr – Wings of the Moonless Night]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-78",
+      "question": "Does the ability 〈【AUTO】 When your Pal with 〈Nocturnal〉 is deployed〉 of BP01-073 《Helzephyr – Wings of the Moonless Night》 activate when 《Helzephyr – Wings of the Moonless Night》 itself is deployed?ますか？",
+      "answer": "Yes, it activates. \nSince 《Helzephyr – Wings of the Moonless Night》 itself possesses 〈Nocturnal〉, its 【AUTO】 ability activates when it is deployed.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-073",
+        "EBP01-073OSR",
+        "EBP01-073SSP"
+      ],
+      "cardNames": "[EBP01-073 : Helzephyr – Wings of the Moonless Night] [EBP01-073OSR : Helzephyr – Wings of the Moonless Night] [EBP01-073SSP : Helzephyr – Wings of the Moonless Night]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-77",
+      "question": "Can I choose an opponent's Pal with the Main Name 《Digtoise》 using the 【ACT】 ability of BP01-068 《Digtoise's Headband》 to get 2 Materials or 2 Ingredients?",
+      "answer": "Yes, you can get them.\nHowever, even if you choose an opponent's Pal, its 【Power】 will still be increased by +200.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-068"
+      ],
+      "cardNames": "[EBP01-068 : Digtoise's Headband]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-76",
+      "question": "I played an ability that states 〈Increase your soul by X (in the rest state)〉 Can I increase the number of my souls beyond 10?",
+      "answer": "No, you cannot.\nThe maximum limit for souls is 10, so you cannot increase them beyond that number.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-057",
+        "EBP01-065",
+        "EBP01-070",
+        "EBP01-070OSR",
+        "EBP01-070SP"
+      ],
+      "cardNames": "[EBP01-057 : Dumud – Mellow Bounty] [EBP01-065 : Feed Box] [EBP01-070 : Lily's Strategy] [EBP01-070OSR : Lily's Strategy] [EBP01-070SP : Lily's Strategy]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-75",
+      "question": "What does \"increase soul\" mean?",
+      "answer": "It means placing the specified number of souls from the Soul Deck into the Soul Area.",
+      "category": "Flow of the Game",
+      "cardNumbers": [
+        "EBP01-057",
+        "EBP01-065",
+        "EBP01-070",
+        "EBP01-070OSR",
+        "EBP01-070SP"
+      ],
+      "cardNames": "[EBP01-057 : Dumud – Mellow Bounty] [EBP01-065 : Feed Box] [EBP01-070 : Lily's Strategy] [EBP01-070OSR : Lily's Strategy] [EBP01-070SP : Lily's Strategy]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-74",
+      "question": "A Pal had its 【Power】 increased by a 【CONT】 ability, but the condition for the 【CONT】 ability is no longer met, causing its 【Power】 to return to normal. At this moment, if the Pal has already taken 【Damage】 equal to or greater than its returned 【Power】, what happens?",
+      "answer": "Since it has taken 【Damage】 equal to or greater than its 【Power】, it is put into the graveyard.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-053",
+        "EBP01-053SR"
+      ],
+      "cardNames": "[EBP01-053 : Elizabee – Queen of the Flower Garden] [EBP01-053SR : Elizabee – Queen of the Flower Garden]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-73",
+      "question": "I looked at the top card of my deck using the 【ACT】 ability of BP01-053 《Elizabee – Queen of the Flower Garden》, and its Main Name was 《Beegarde》. Before playing it with its cost reduced by 2, can I declare an attack or play other cards from my hand?",
+      "answer": "No, you cannot.\nYou cannot declare attacks or play cards from your hand in the middle of resolving an effect, so do so either before the ability activates or after the resolution finishes.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-053",
+        "EBP01-053SR"
+      ],
+      "cardNames": "[EBP01-053 : Elizabee – Queen of the Flower Garden] [EBP01-053SR : Elizabee – Queen of the Flower Garden]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-72",
+      "question": "I looked at the top card of my deck using the 【ACT】 ability of BP01-053 《Elizabee – Queen of the Flower Garden》, but its Main Name was not 《Beegarde》. What happens in this case?",
+      "answer": "Look at the top card of the deck, and if it is not 《Beegarde》, return it to the top of the deck as it is and finish resolving the effect.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-053",
+        "EBP01-053SR"
+      ],
+      "cardNames": "[EBP01-053 : Elizabee – Queen of the Flower Garden] [EBP01-053SR : Elizabee – Queen of the Flower Garden]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-71",
+      "question": "I attacked a structure with a Pal that has the ability 〈【AUTO】 When this card attacks a structure〉. If that attack is blocked by an opponent's Pal, does the ability still activate?",
+      "answer": "Yes, it activates. \nAn ability triggered by 〈When this card attacks a structure〉activates at the exact moment the card declares an attack on the structure, which occurs before the opponent designates a blocking Pal.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-052",
+        "EBP01-052SR"
+      ],
+      "cardNames": "[EBP01-052 : Rushoar – Reckless Destruction] [EBP01-052SR : Rushoar – Reckless Destruction]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-70",
+      "question": "With the ability of BP01-046 《Victor's Strategy》 that states 〈Look at the top 5 cards of your deck, choose 1 card and add it to your hand, and shuffle the rest of the cards with the deck〉, is it possible to choose not to select a card?",
+      "answer": "No, you cannot.\nYou must choose exactly 1 card from among the 5 cards to add to your hand.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-046",
+        "EBP01-046OSR",
+        "EBP01-046SP"
+      ],
+      "cardNames": "[EBP01-046 : Victor's Strategy] [EBP01-046OSR : Victor's Strategy] [EBP01-046SP : Victor's Strategy]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-69",
+      "question": "I forgot the exact card name for the ability 〈Declare 1 card name〉 of BP01-040 《Antique Dresser》. How should this be handled?",
+      "answer": "While it is preferable to declare the exact card name, the declaration is valid as long as both players can identify the intended card. Please communicate with your opponent to resolve the effect. If players cannot agree on a single card name during a tournament or official event, call a judge and have the judge verify the card name.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-040"
+      ],
+      "cardNames": "[EBP01-040 : Antique Dresser]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-68",
+      "question": "With the ability 〈Declare 1 card name〉 of BP01-040 《Antique Dresser》, can I declare a card name that does not exist?",
+      "answer": "No, you cannot. You must declare a card name that has been released or distributed and exists within the official card list.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-040"
+      ],
+      "cardNames": "[EBP01-040 : Antique Dresser]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-67",
+      "question": "With the ability 〈Declare 1 card name〉 of BP01-040 《Antique Dresser》, can I declare the name of a card that has not yet been released or distributed?",
+      "answer": "No, you cannot.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-040"
+      ],
+      "cardNames": "[EBP01-040 : Antique Dresser]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-66",
+      "question": "I declared 《Farming Hat》 for the ability 〈Declare 1 card name〉 of BP01-040 《Antique Dresser》. I then assigned a card with the ability 〈When this card is assigned to a \"Farming\" structure〉 to a structure that has acquired the name 《Farming Hat》 but does not possess the Work Suitability \"Farming\". Does this ability activate?",
+      "answer": "No, it does not activate.\nA \"Farming\" structure refers specifically to a structure that has the Work Suitability \"Farming\". Even if the card name contains 《Farming》, the condition for 〈When this card is assigned to a \"Farming\" structure〉 is not fulfilled.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-035",
+        "EBP01-040",
+        "EBP01-061"
+      ],
+      "cardNames": "[EBP01-035 : Mau Cryst – Harbinger of Riches] [EBP01-040 : Antique Dresser] [EBP01-061 : Beegarde – Knight of the Flower Garden]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-65",
+      "question": "I have a copy of BP01-033 《Wumpo – Frostpeak Sentinel》 in the rest state in my base. It is put into the graveyard due to an attack from an opponent's Pal with 〈【AUTO】 Breakthrough (When the opposing combat Pal is put into the graveyard during this card's attack, deal damage to the opponent player)〉. The 【Strike】 of the Pal with 〈Breakthrough〉 was reduced by 1 due to the 【CONT】 ability of 《Wumpo – Frostpeak Sentinel》, making it 2 instead of 3. In this case, is the damage dealt by Breakthrough 2 or 3?",
+      "answer": "It becomes 2.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-033",
+        "EBP01-050",
+        "EBP01-050OSR",
+        "EBP01-050SP",
+        "EBP01-059"
+      ],
+      "cardNames": "[EBP01-033 : Wumpo – Frostpeak Sentinel] [EBP01-050 : Digtoise – Seismic Drillback] [EBP01-050OSR : Digtoise – Seismic Drillback] [EBP01-050SP : Digtoise – Seismic Drillback] [EBP01-059 : Digtoise – Keen Needleback]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-64",
+      "question": "Can a Pal's 【Strike】 become 0 or less due to the 【CONT】 ability of BP01-033《Wumpo – Frostpeak Sentinel》?",
+      "answer": "Yes, it can.\nIf damage is to be dealt to a player while 【Strike】 is 0 or less, that damage is not dealt.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-033"
+      ],
+      "cardNames": "[EBP01-033 : Wumpo – Frostpeak Sentinel]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-63",
+      "question": "Two structures with 【On Deploy】 【AUTO】 abilities were deployed by the 【ACT】 ability of BP01-030《Reptyro Cryst – Glacial Devourer》. In what order should these 【AUTO】 abilities be resolved?",
+      "answer": "Resolve them one by one in any order you choose.\nFor example, if BP01-042 《Antique Mirror》 and TD01-019 《Antique Wooden Chair》 are deployed by the 【ACT】 ability of BP01-030 《Reptyro Cryst – Glacial Devourer》, you can resolve \"Draw 1 card\" and \"Choose up to 1 Pal, and it gets Power@+1000 until end of turn\" in whichever order you prefer.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-030",
+        "EBP01-030SR"
+      ],
+      "cardNames": "[EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-62",
+      "question": "Can a card chosen by the 【AUTO】 ability of BP01-026 《Relaxaurus – Hungry Gunner》 be stood up by a card effect?",
+      "answer": "No, you cannot.\nThe card chosen by the 【AUTO】 ability of BP01-026 《Relaxaurus – Hungry Gunner》 cannot be stood up even by card effects as long as 《Relaxaurus – Hungry Gunner》 remains in the base.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-026",
+        "EBP01-026OSR",
+        "EBP01-026SP"
+      ],
+      "cardNames": "[EBP01-026 : Relaxaurus – Hungry Gunner] [EBP01-026OSR : Relaxaurus – Hungry Gunner] [EBP01-026SP : Relaxaurus – Hungry Gunner]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-61",
+      "question": "I played a card that states 〈Choose up to X (specific condition) Pals, and rest them. During (specific period), they do not stand〉. Can I choose a Pal that is already in the rest state?",
+      "answer": "Yes, you can choose it.\nSince it is already in the rest state, it will not become rested again, but the chosen card will not stand for the duration specified by the played card.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-026",
+        "EBP01-026OSR",
+        "EBP01-026SP",
+        "EBP01-027",
+        "EBP01-027OSR",
+        "EBP01-027SP",
+        "EBP01-041"
+      ],
+      "cardNames": "[EBP01-026 : Relaxaurus – Hungry Gunner] [EBP01-026OSR : Relaxaurus – Hungry Gunner] [EBP01-026SP : Relaxaurus – Hungry Gunner] [EBP01-027 : Jormuntide – Surging Sea Serpent] [EBP01-027OSR : Jormuntide – Surging Sea Serpent] [EBP01-027SP : Jormuntide – Surging Sea Serpent] [EBP01-041 : Hot Spring]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-60",
+      "question": "I played a card that states 〈Look at the top X cards of your deck, choose up to Y (specific) cards and deploy them, and shuffle the rest of the cards with the deck〉. What happens if there are no such specific cards among the cards I looked at?",
+      "answer": "Choose 0 cards and resolve the rest of the effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-005",
+        "EBP01-005SR",
+        "EBP01-030",
+        "EBP01-030SR",
+        "EBP01-049",
+        "EBP01-049OSR",
+        "EBP01-049SSP"
+      ],
+      "cardNames": "[EBP01-005 : Reptyro – Ore Gorger] [EBP01-005SR : Reptyro – Ore Gorger] [EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer] [EBP01-049 : Lyleen – Blessing of the Goddess] [EBP01-049OSR : Lyleen – Blessing of the Goddess] [EBP01-049SSP : Lyleen – Blessing of the Goddess]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-59",
+      "question": "I played a card that states 〈Look at the top X cards of your deck, choose up to Y (specific) cards and add them to your hand, and shuffle the rest of the cards with the deck〉. What happens if there are no such specific cards among the cards I looked at?",
+      "answer": "Choose 0 cards and resolve the rest of the effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-024",
+        "EBP01-071"
+      ],
+      "cardNames": "[EBP01-024 : Treasure Chest Found!] [EBP01-071 : Found an Egg!]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-58",
+      "question": "When I have two copies of BP01-019 《Foxparks' Harness》, I chose the same 《Foxparks》 for each 【ACT】 ability and granted it two instances of 〈【AUTO】【On Attack】 Choose up to 1 Pal, and deal 700 [Damage]〉. Can I choose the same Pal once for each granted ability?",
+      "answer": "Yes, you can choose it.\nYou can choose the same Pal or choose different Pals.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-006",
+        "EBP01-006SR",
+        "EBP01-019",
+        "EBP01-019SR",
+        "ETD01-004"
+      ],
+      "cardNames": "[EBP01-006 : Foxparks – Light of Courage] [EBP01-006SR : Foxparks – Light of Courage] [EBP01-019 : Foxparks' Harness] [EBP01-019SR : Foxparks' Harness] [ETD01-004 : Foxparks – A Toasty Hug]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-57",
+      "question": "When I have two copies of BP01-019 《Foxparks' Harness》, can I choose the same 《Foxparks》 for each of their 【ACT】 abilities to grant it two instances of 〈【AUTO】【On Attack】 Choose up to 1 Pal, and deal 700 [Damage]〉?",
+      "answer": "Yes, you can grant them.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-006",
+        "EBP01-006SR",
+        "EBP01-019",
+        "EBP01-019SR",
+        "ETD01-004"
+      ],
+      "cardNames": "[EBP01-006 : Foxparks – Light of Courage] [EBP01-006SR : Foxparks – Light of Courage] [EBP01-019 : Foxparks' Harness] [EBP01-019SR : Foxparks' Harness] [ETD01-004 : Foxparks – A Toasty Hug]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-56",
+      "question": "I consumed 2 Materials for the 【ACT】 ability of BP01-015 《Mounted Machine Gun》. For \"Choose 1 Pal, and deal 500 [Damage],\" can I choose the same Pal twice?",
+      "answer": "Yes, you can choose it.\nSince you perform 〈Choose 1 Pal, and deal 500 [Damage]〉 twice, you can choose the same Pal twice, or choose different Pals once each.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-015",
+        "EBP01-015SP"
+      ],
+      "cardNames": "[EBP01-015 : Mounted Machine Gun] [EBP01-015SP : Mounted Machine Gun]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-55",
+      "question": "Does the phrase 〈Choose all red Pals〉 in the 【AUTO】 ability of BP01-010 《Ragnahawk – Emberwing Striker》 include this card itself?",
+      "answer": "Yes, it includes itself.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-010"
+      ],
+      "cardNames": "[EBP01-010 : Ragnahawk – Emberwing Striker]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-54",
+      "question": "While I have two copies of BP01-003 《Gobfin Ignis – Blazing Hothead》 in my Base, does each of their abilities increase 【Power】?",
+      "answer": "Yes, it increases.\n《Gobfin Ignis》A's 【Power】 increases by 300 via the ability of《Gobfin Ignis》B, and 《Gobfin Ignis》B's 【Power】 increases by 300 via the ability of 《Gobfin Ignis》A.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-003",
+        "EBP01-003SR"
+      ],
+      "cardNames": "[EBP01-003 : Gobfin Ignis – Blazing Hothead] [EBP01-003SR : Gobfin Ignis – Blazing Hothead]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-53",
+      "question": "Does the continuous ability of BP01-002 《Suzaku – Wings of Blazing Fire》 increase the 【Damage】 dealt to Pals by my red structures, gears, or events by +200?",
+      "answer": "Yes, it is increased.\nIn addition to damage dealt by Pal abilities, damage dealt to Pals by structures, gears, or events is also increased by +200.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-002",
+        "EBP01-002OSR",
+        "EBP01-002SP"
+      ],
+      "cardNames": "[EBP01-002 : Suzaku – Hellfire Wings] [EBP01-002OSR : Suzaku – Hellfire Wings] [EBP01-002SP : Suzaku – Hellfire Wings]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-52",
+      "question": "The 【ACT】 ability of BP01-001 《Jormuntide Ignis – Savage Lava Dragon》 states [Once Per Turn]. After paying ③ to activate the ability, can I activate the ability again by discarding 2 cards from my hand?",
+      "answer": "No, it cannot be activated.\nRegardless of which cost you pay, a [Once Per Turn] ability can only be activated once per turn.",
+      "category": "Q&A about Cards",
+      "cardNumbers": [
+        "EBP01-001",
+        "EBP01-001OSR",
+        "EBP01-001SSP"
+      ],
+      "cardNames": "[EBP01-001 : Jormuntide Ignis – Savage Lava Dragon] [EBP01-001OSR : Jormuntide Ignis – Savage Lava Dragon] [EBP01-001SSP : Jormuntide Ignis – Savage Lava Dragon]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-51",
+      "question": "Can an ability that states 〈【ACT】 Interrupt (【Hand】【Quick】[①, discard this card] OR [Discard this card and 1 other card from hand] Nullify the opponent's attack. Battle damage does not occur)〉 be activated even if the card with this ability is in the base?",
+      "answer": "No, it cannot be activated.\n〈Interrupt〉 is an ability that can be activated only while the card is in the hand.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-004",
+        "EBP01-004SR",
+        "EBP01-014",
+        "EBP01-038",
+        "EBP01-062",
+        "EBP01-077",
+        "EBP01-077SR",
+        "ETD01-004",
+        "ETD01-016",
+        "ETD02-004",
+        "ETD02-014"
+      ],
+      "cardNames": "[EBP01-004 : Bushi – Ephemeral Blade] [EBP01-004SR : Bushi – Ephemeral Blade] [EBP01-014 : Blazehowl – Hellflame Defender] [EBP01-038 : Cryolinx – Arctic Ordeal] [EBP01-062 : Wumpo Botan – Tropical Sentinel] [EBP01-077 : Pyrin Noct – Steed of Azure Flames] [EBP01-077SR : Pyrin Noct – Steed of Azure Flames] [ETD01-004 : Foxparks – A Toasty Hug] [ETD01-016 : Reindrix – Icy Gaze] [ETD02-004 : Dinossom – Radiant Fragrance] [ETD02-014 : Leezpunk – Treasure Bandit]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-50",
+      "question": "Does an ability that states 〈When this card is attacked〉 activate even if I block using the card that has this ability?",
+      "answer": "No, it does not activate.\nIt activates when that card is attacked by an opponent's Pal.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-032"
+      ],
+      "cardNames": "[EBP01-032 : Fuack – Manic Wave Ripper]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-49",
+      "question": "My Pal attacked an opponent's Pal. During this, the target Pal left the base due to an 【On Attack】 ability of my attacking Pal. In this case, can I change the target of the attack to the opponent player or another Pal?",
+      "answer": "No, you cannot.\nEven if the target Pal leaves, the battle proceeds as normal. However, because there is no battle opponent, the battle ends without the attacking Pal dealing or taking any damage.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-019",
+        "EBP01-019SR",
+        "ETD02-012",
+        "ETD02-012TSP",
+        "ETD02-012TSR"
+      ],
+      "cardNames": "[EBP01-019 : Foxparks' Harness] [EBP01-019SR : Foxparks' Harness] [ETD02-012 : Astegon – Aegis Wyvern of Death] [ETD02-012TSP : Astegon – Aegis Wyvern of Death] [ETD02-012TSR : Astegon – Aegis Wyvern of Death]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-48",
+      "question": "If a card has two or more 【ACT】 abilities that are [Once Per Turn], can each 【ACT】 ability be activated once?",
+      "answer": "Yes, it can be activated.\nIf a single card has multiple 【ACT】 abilities that are [Once Per Turn], each one can be activated once.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-016",
+        "EBP01-040",
+        "EBP01-063",
+        "EBP01-063SR"
+      ],
+      "cardNames": "[EBP01-016 : Primitive Furnace] [EBP01-040 : Antique Dresser] [EBP01-063 : Breeding Farm] [EBP01-063SR : Breeding Farm]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-47",
+      "question": "Do abilities that refer to \"all red Pals\" or \"all blue Pals\" include colorless Pals?",
+      "answer": "No, it does not include them.\nColorless Pals do not have a color.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-010",
+        "EBP01-017"
+      ],
+      "cardNames": "[EBP01-010 : Ragnahawk – Emberwing Striker] [EBP01-017 : Flame Cauldron]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-46",
+      "question": "For an ability that states \"You may [do X],\" is it mandatory to [do X]?",
+      "answer": "No, it is not mandatory.\nYou can choose whether or not to do it.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-004",
+        "EBP01-004SR",
+        "EBP01-025",
+        "EBP01-025OSR",
+        "EBP01-025SSP",
+        "EBP01-053",
+        "EBP01-053SR",
+        "EBP01-081",
+        "EBP01-081SR",
+        "EBP01-098",
+        "ETD01-020"
+      ],
+      "cardNames": "[EBP01-004 : Bushi – Ephemeral Blade] [EBP01-004SR : Bushi – Ephemeral Blade] [EBP01-025 : Chillet – Dragon Whisperer] [EBP01-025OSR : Chillet – Dragon Whisperer] [EBP01-025SSP : Chillet – Dragon Whisperer] [EBP01-053 : Elizabee – Queen of the Flower Garden] [EBP01-053SR : Elizabee – Queen of the Flower Garden] [EBP01-081 : Lovander – Heartstealer] [EBP01-081SR : Lovander – Heartstealer] [EBP01-098 : Elphidran – Gentle Radiance] [ETD01-020 : Primitive Workbench]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-45",
+      "question": "Does an ability that states 〈At the end of the battle this card attacked〉 activate even if the attack was 【Interrupted】?",
+      "answer": "Yes, it activates.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-004",
+        "EBP01-004SR"
+      ],
+      "cardNames": "[EBP01-004 : Bushi – Ephemeral Blade] [EBP01-004SR : Bushi – Ephemeral Blade]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-44",
+      "question": "I have multiple copies of the same card with a [Once Per Turn] ability in my base. Can the [Once Per Turn] ability be activated once for each individual card?",
+      "answer": "Yes, it can be activated.\nFor example, if you have multiple copies of TD01-008 〈Stone Pit〉 in your base, even if you activate the 【ACT】 ability of 〈Stone Pit〉 A, you can still activate the 【ACT】 ability of 〈Stone Pit〉 B.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-001",
+        "EBP01-001OSR",
+        "EBP01-001SSP",
+        "EBP01-005",
+        "EBP01-005SR",
+        "EBP01-015",
+        "EBP01-015SP",
+        "EBP01-016",
+        "EBP01-030",
+        "EBP01-030SR",
+        "EBP01-040",
+        "EBP01-041",
+        "EBP01-043",
+        "EBP01-049",
+        "EBP01-049OSR",
+        "EBP01-049SSP",
+        "EBP01-050",
+        "EBP01-050OSR",
+        "EBP01-050SP",
+        "EBP01-055",
+        "EBP01-055SR",
+        "EBP01-059",
+        "EBP01-063",
+        "EBP01-063SR",
+        "EBP01-064",
+        "EBP01-064SR",
+        "EBP01-065",
+        "EBP01-066",
+        "EBP01-067",
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP",
+        "EBP01-088",
+        "EBP01-088SR",
+        "EBP01-089",
+        "EBP01-090",
+        "EBP01-092",
+        "ETD01-008",
+        "ETD01-008TSR",
+        "ETD01-009",
+        "ETD01-020",
+        "ETD02-008",
+        "ETD02-008TSR",
+        "ETD02-009",
+        "ETD02-019"
+      ],
+      "cardNames": "[EBP01-001 : Jormuntide Ignis – Savage Lava Dragon] [EBP01-001OSR : Jormuntide Ignis – Savage Lava Dragon] [EBP01-001SSP : Jormuntide Ignis – Savage Lava Dragon] [EBP01-005 : Reptyro – Ore Gorger] [EBP01-005SR : Reptyro – Ore Gorger] [EBP01-015 : Mounted Machine Gun] [EBP01-015SP : Mounted Machine Gun] [EBP01-016 : Primitive Furnace] [EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer] [EBP01-040 : Antique Dresser] [EBP01-041 : Hot Spring] [EBP01-043 : Sphere Workbench] [EBP01-049 : Lyleen – Blessing of the Goddess] [EBP01-049OSR : Lyleen – Blessing of the Goddess] [EBP01-049SSP : Lyleen – Blessing of the Goddess] [EBP01-050 : Digtoise – Seismic Drillback] [EBP01-050OSR : Digtoise – Seismic Drillback] [EBP01-050SP : Digtoise – Seismic Drillback] [EBP01-055 : Vaelet – Bewitching Blossom] [EBP01-055SR : Vaelet – Bewitching Blossom] [EBP01-059 : Digtoise – Keen Needleback] [EBP01-063 : Breeding Farm] [EBP01-063SR : Breeding Farm] [EBP01-064 : Cola Vending Machine] [EBP01-064SR : Cola Vending Machine] [EBP01-065 : Feed Box] [EBP01-066 : Ranch] [EBP01-067 : No Pals Beyond Sign] [EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer] [EBP01-088 : Lamp] [EBP01-088SR : Lamp] [EBP01-089 : Shoddy Bed] [EBP01-090 : Medieval Medicine Workbench] [EBP01-092 : Viewing Cage] [ETD01-008 : Stone Pit] [ETD01-008TSR : Stone Pit] [ETD01-009 : Weapon Workbench] [ETD01-020 : Primitive Workbench] [ETD02-008 : Berry Plantation] [ETD02-008TSR : Berry Plantation] [ETD02-009 : Campfire] [ETD02-019 : Hanging Trap]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-43",
+      "question": "If multiple 【AUTO】 abilities activate at the same time, in what order should they be resolved?",
+      "answer": "The turn player resolves all of their own 【AUTO】 abilities in any order they choose, followed by the non-turn player resolving all of their own 【AUTO】 abilities in any order they choose. Additionally, the following rules apply as supplementary details:\n・If 【AUTO】 ability B is pending, and a new 【AUTO】 ability C activates during the resolution of 【AUTO】 ability A, after resolving A, you can resolve B and C in any order you choose (there is no need to resolve the newly generated C last; they can be resolved in the order of C → B).\n・If non-turn player's 【AUTO】 ability E is pending, and a new turn player's 【AUTO】 ability F activates during the resolution of non-turn player's 【AUTO】 ability D, after resolving D, return to resolving the turn player's 【AUTO】 ability first.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-42",
+      "question": "An 【AUTO】 ability activated in the middle of resolving an effect. Should I resolve the effect currently in progress or the activated 【AUTO】 ability first?",
+      "answer": "Resolve the effect currently in progress first. Even if an 【AUTO】 ability activates in the middle of resolving an effect, the pending 【AUTO】 ability will be resolved after the processing of the current effect finishes.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-41",
+      "question": "Does an ability that states 〈When this card is put into the graveyard〉 activate even if it is put into the graveyard from the hand or deck?",
+      "answer": "No, it does not activate.\nUnless specified otherwise, it activates only when put into the graveyard from the base.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-028",
+        "EBP01-028SR",
+        "EBP01-084",
+        "EBP01-091",
+        "ETD01-024",
+        "ETD01-024TSR",
+        "ETD02-007",
+        "ETD02-007TSR",
+        "ETD02-014",
+        "ETD02-014TSR",
+        "ETD02-024",
+        "ETD02-024TSR"
+      ],
+      "cardNames": "[EBP01-028 : Pengullet – Yearning for the Sky] [EBP01-028SR : Pengullet – Yearning for the Sky] [EBP01-084 : Menasting – Darkness-Dwelling Scorpion] [EBP01-091 : Wooden Wall] [ETD01-024 : Ribbuny – Little Princess] [ETD01-024TSR : Ribbuny – Little Princess] [ETD02-007 : Mammorest – Roar of the Wilds] [ETD02-007TSR : Mammorest – Roar of the Wilds] [ETD02-014 : Leezpunk – Treasure Bandit] [ETD02-014TSR : Leezpunk – Treasure Bandit] [ETD02-024 : Chikipi – My First Pal] [ETD02-024TSR : Chikipi – My First Pal]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-40",
+      "question": "If there are multiple cards with 〈Taunt〉, which card should I prioritize attacking?",
+      "answer": "The attacking player can choose the target of the attack from among the cards that possess \"Taunt\".",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-054",
+        "EBP01-054SR",
+        "EBP01-067",
+        "EBP01-091",
+        "ETD02-005",
+        "ETD02-006",
+        "ETD02-006TSR"
+      ],
+      "cardNames": "[EBP01-054 : Warsect – Iron Fortress] [EBP01-054SR : Warsect – Iron Fortress] [EBP01-067 : No Pals Beyond Sign] [EBP01-091 : Wooden Wall] [ETD02-005 : Eikthyrdeer Terra – Guardian of Nature] [ETD02-006 : Broncherry – Brimming Adoration] [ETD02-006TSR : Broncherry – Brimming Adoration]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-39",
+      "question": "I played an ability that states \"Reveal the top X cards of your deck,\" but the number of cards in my deck was fewer than X.\nIn this case, can the effect still be resolved?",
+      "answer": "Yes, you can. \nReveal the remaining cards in the deck as much as possible and resolve the effect. Furthermore, even if the deck temporarily becomes 0 cards during the resolution of the effect, as long as there is 1 or more cards in the deck after the resolution finishes, you do not lose the game.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-076",
+        "EBP01-076SR"
+      ],
+      "cardNames": "[EBP01-076 : Tombat – Out of Nowhere!?] [EBP01-076SR : Tombat – Out of Nowhere!?]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-38",
+      "question": "I played an ability that states \"Look at the top X cards of your deck,\" but the number of cards in my deck was fewer than X.\nIn this case, can the effect still be resolved?",
+      "answer": "Yes, you can. \nLook at the remaining cards in the deck as much as possible and resolve the effect. Furthermore, even if the deck temporarily becomes 0 cards during the resolution of the effect, as long as there is 1 or more cards in the deck after the resolution finishes, you do not lose the game.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-005",
+        "EBP01-005SR",
+        "EBP01-024",
+        "EBP01-030",
+        "EBP01-030SR",
+        "EBP01-046",
+        "EBP01-046OSR",
+        "EBP01-046SP",
+        "EBP01-049",
+        "EBP01-049OSR",
+        "EBP01-049SSP",
+        "EBP01-071"
+      ],
+      "cardNames": "[EBP01-005 : Reptyro – Ore Gorger] [EBP01-005SR : Reptyro – Ore Gorger] [EBP01-024 : Treasure Chest Found!] [EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer] [EBP01-046 : Victor's Strategy] [EBP01-046OSR : Victor's Strategy] [EBP01-046SP : Victor's Strategy] [EBP01-049 : Lyleen – Blessing of the Goddess] [EBP01-049OSR : Lyleen – Blessing of the Goddess] [EBP01-049SSP : Lyleen – Blessing of the Goddess] [EBP01-071 : Found an Egg!]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-37",
+      "question": "Can I choose not to activate an automatic ability whose trigger conditions have been met?",
+      "answer": "No, you cannot.\nIt must always be activated.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-006",
+        "EBP01-006SR",
+        "EBP01-009",
+        "EBP01-010",
+        "EBP01-025",
+        "EBP01-025OSR",
+        "EBP01-025SSP",
+        "EBP01-028",
+        "EBP01-028SR",
+        "EBP01-029",
+        "EBP01-029SR",
+        "EBP01-030",
+        "EBP01-030SR",
+        "EBP01-035",
+        "EBP01-036",
+        "EBP01-042",
+        "EBP01-076",
+        "EBP01-076SR",
+        "ETD01-021"
+      ],
+      "cardNames": "[EBP01-006 : Foxparks – Light of Courage] [EBP01-006SR : Foxparks – Light of Courage] [EBP01-009 : Univolt – Valiant Thunderclap] [EBP01-010 : Ragnahawk – Emberwing Striker] [EBP01-025 : Chillet – Dragon Whisperer] [EBP01-025OSR : Chillet – Dragon Whisperer] [EBP01-025SSP : Chillet – Dragon Whisperer] [EBP01-028 : Pengullet – Yearning for the Sky] [EBP01-028SR : Pengullet – Yearning for the Sky] [EBP01-029 : Azurobe – Water Dragon Waltz] [EBP01-029SR : Azurobe – Water Dragon Waltz] [EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer] [EBP01-035 : Mau Cryst – Harbinger of Riches] [EBP01-036 : Celaray – Loop De Loop] [EBP01-042 : Antique Mirror] [EBP01-076 : Tombat – Out of Nowhere!?] [EBP01-076SR : Tombat – Out of Nowhere!?] [ETD01-021 : Single-Shot Sphere Launcher]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-36",
+      "question": "With an ability that states \"Choose all,\" can I choose to exclude some of them?",
+      "answer": "No, you cannot.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-010",
+        "EBP01-020",
+        "EBP01-020SR",
+        "EBP01-040",
+        "EBP01-044",
+        "EBP01-044SR",
+        "EBP01-070",
+        "EBP01-070OSR",
+        "EBP01-070SP",
+        "ETD01-009",
+        "ETD02-012",
+        "ETD02-012TSP",
+        "ETD02-012TSR"
+      ],
+      "cardNames": "[EBP01-010 : Ragnahawk – Emberwing Striker] [EBP01-020 : Pump-Action Shotgun] [EBP01-020SR : Pump-Action Shotgun] [EBP01-040 : Antique Dresser] [EBP01-044 : Pengullet Rocket Launcher] [EBP01-044SR : Pengullet Rocket Launcher] [EBP01-070 : Lily's Strategy] [EBP01-070OSR : Lily's Strategy] [EBP01-070SP : Lily's Strategy] [ETD01-009 : Weapon Workbench] [ETD02-012 : Astegon – Aegis Wyvern of Death] [ETD02-012TSP : Astegon – Aegis Wyvern of Death] [ETD02-012TSR : Astegon – Aegis Wyvern of Death]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-35",
+      "question": "With an ability that states \"Consume X [resources],\" can I choose 0?",
+      "answer": "Yes, you can.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-015",
+        "EBP01-015SP"
+      ],
+      "cardNames": "[EBP01-015 : Mounted Machine Gun] [EBP01-015SP : Mounted Machine Gun]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-34",
+      "question": "With an ability that states \"Choose up to X cards,\" can I choose 0 cards?",
+      "answer": "Yes, you can. \nEven if there are eligible cards to choose, by choosing 0 cards, you can effectively choose not to select any.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-002",
+        "EBP01-002OSR",
+        "EBP01-002SP",
+        "EBP01-005",
+        "EBP01-005SR",
+        "EBP01-007",
+        "EBP01-007SR",
+        "EBP01-008",
+        "EBP01-019",
+        "EBP01-019SR",
+        "EBP01-021",
+        "EBP01-024",
+        "EBP01-026",
+        "EBP01-026OSR",
+        "EBP01-026SP",
+        "EBP01-027",
+        "EBP01-027OSR",
+        "EBP01-027SP",
+        "EBP01-029",
+        "EBP01-029SR",
+        "EBP01-030",
+        "EBP01-030SR",
+        "BT01-039",
+        "BT01-039SR",
+        "EBP01-048",
+        "EBP01-049",
+        "EBP01-049OSR",
+        "EBP01-049SSP",
+        "EBP01-071",
+        "EBP01-073",
+        "EBP01-073OSR",
+        "EBP01-073SSP",
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP",
+        "EBP01-075",
+        "EBP01-075OSR",
+        "EBP01-075SP",
+        "EBP01-076",
+        "EBP01-076SR",
+        "EBP01-083",
+        "EBP01-084",
+        "EBP01-087",
+        "EBP01-094",
+        "EBP01-095",
+        "EBP01-095OSR",
+        "EBP01-095SP",
+        "EBP01-097",
+        "ETD01-007",
+        "ETD01-007TSR",
+        "ETD01-009",
+        "ETD01-010",
+        "ETD01-015",
+        "ETD01-019",
+        "ETD02-012",
+        "ETD02-012TSP",
+        "ETD02-012TSR"
+      ],
+      "cardNames": "[EBP01-002 : Suzaku – Hellfire Wings] [EBP01-002OSR : Suzaku – Hellfire Wings] [EBP01-002SP : Suzaku – Hellfire Wings] [EBP01-005 : Reptyro – Ore Gorger] [EBP01-005SR : Reptyro – Ore Gorger] [EBP01-007 : Kitsun – Wyrmbane Fangs] [EBP01-007SR : Kitsun – Wyrmbane Fangs] [EBP01-008 : Sparkit – Hazardous Contact] [EBP01-019 : Foxparks' Harness] [EBP01-019SR : Foxparks' Harness] [EBP01-021 : Makeshift Handgun] [EBP01-024 : Treasure Chest Found!] [EBP01-026 : Relaxaurus – Hungry Gunner] [EBP01-026OSR : Relaxaurus – Hungry Gunner] [EBP01-026SP : Relaxaurus – Hungry Gunner] [EBP01-027 : Jormuntide – Surging Sea Serpent] [EBP01-027OSR : Jormuntide – Surging Sea Serpent] [EBP01-027SP : Jormuntide – Surging Sea Serpent] [EBP01-029 : Azurobe – Water Dragon Waltz] [EBP01-029SR : Azurobe – Water Dragon Waltz] [EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer] [BT01-039 : ] [BT01-039SR : ] [EBP01-048 : Aurora Guide] [EBP01-049 : Lyleen – Blessing of the Goddess] [EBP01-049OSR : Lyleen – Blessing of the Goddess] [EBP01-049SSP : Lyleen – Blessing of the Goddess] [EBP01-071 : Found an Egg!] [EBP01-073 : Helzephyr – Wings of the Moonless Night] [EBP01-073OSR : Helzephyr – Wings of the Moonless Night] [EBP01-073SSP : Helzephyr – Wings of the Moonless Night] [EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair] [EBP01-075 : Katress – Abyssal Sorcerer] [EBP01-075OSR : Katress – Abyssal Sorcerer] [EBP01-075SP : Katress – Abyssal Sorcerer] [EBP01-076 : Tombat – Out of Nowhere!?] [EBP01-076SR : Tombat – Out of Nowhere!?] [EBP01-083 : Vanwyrm – Marauder of the Skies] [EBP01-084 : Menasting – Darkness-Dwelling Scorpion] [EBP01-087 : Loupmoon – Glinting Moonlight] [EBP01-094 : Daedream's Necklace] [EBP01-095 : Zoe's Strategy] [EBP01-095OSR : Zoe's Strategy] [EBP01-095SP : Zoe's Strategy] [EBP01-097 : Black Marketeer] [ETD01-007 : Blazamut – Molten Sovereign] [ETD01-007TSR : Blazamut – Molten Sovereign] [ETD01-009 : Weapon Workbench] [ETD01-010 : Single-Shot Rifle] [ETD01-015 : Hangyu Cryst – Frigid Wanderer] [ETD01-019 : Antique Wooden Chair] [ETD02-012 : Astegon – Aegis Wyvern of Death] [ETD02-012TSP : Astegon – Aegis Wyvern of Death] [ETD02-012TSR : Astegon – Aegis Wyvern of Death]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-33",
+      "question": "With an ability that states \"Choose X cards,\" can I choose a number fewer than X?",
+      "answer": "No, you cannot.\nYou must choose targets as much as possible.\nFor example, for an ability that states 〈Choose 2 Pals〉, if there are 2 or more Pals in the base, you must choose exactly 2. If there is only 1 Pal in the base, choose that Pal and resolve the rest of the effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-022",
+        "ETD01-012",
+        "ETD01-012TSP",
+        "ETD01-012TSR"
+      ],
+      "cardNames": "[EBP01-022 : Stone Pickaxe] [ETD01-012 : Elphidran Aqua – Gentle Ripples] [ETD01-012TSP : Elphidran Aqua – Gentle Ripples] [ETD01-012TSR : Elphidran Aqua – Gentle Ripples]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-32",
+      "question": "Does an 【On Deploy】 ability activate even if the card is deployed from a zone other than the hand?",
+      "answer": "Yes, it activates.\nThe 【On Deploy】 ability activates not only when deployed from the hand, but also when deployed from the deck, graveyard, or other zones by card effects.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-002",
+        "EBP01-002OSR",
+        "EBP01-002SP",
+        "EBP01-005",
+        "EBP01-005SR",
+        "EBP01-007",
+        "EBP01-007SR",
+        "EBP01-008",
+        "EBP01-012",
+        "EBP01-020",
+        "EBP01-020SR",
+        "EBP01-021",
+        "EBP01-025",
+        "EBP01-025OSR",
+        "EBP01-025SSP",
+        "EBP01-026",
+        "EBP01-026OSR",
+        "EBP01-026SP",
+        "EBP01-027",
+        "EBP01-027OSR",
+        "EBP01-027SP",
+        "EBP01-029",
+        "EBP01-029SR",
+        "EBP01-030",
+        "EBP01-030SR",
+        "BT01-039",
+        "BT01-039SR",
+        "EBP01-042",
+        "EBP01-049",
+        "EBP01-049OSR",
+        "EBP01-049SSP",
+        "EBP01-051",
+        "EBP01-051OSR",
+        "EBP01-051SP",
+        "EBP01-058",
+        "EBP01-061",
+        "EBP01-073",
+        "EBP01-073OSR",
+        "EBP01-073SSP",
+        "EBP01-076",
+        "EBP01-076SR",
+        "EBP01-083",
+        "EBP01-087",
+        "EBP01-090",
+        "EBP01-094",
+        "ETD01-005",
+        "ETD01-007",
+        "ETD01-007TSR",
+        "ETD01-012",
+        "ETD01-012TSP",
+        "ETD01-012TSR",
+        "ETD01-015",
+        "ETD01-019",
+        "ETD01-021",
+        "ETD02-002",
+        "ETD02-002TSR",
+        "ETD02-012",
+        "ETD02-012TSP",
+        "ETD02-012TSR"
+      ],
+      "cardNames": "[EBP01-002 : Suzaku – Hellfire Wings] [EBP01-002OSR : Suzaku – Hellfire Wings] [EBP01-002SP : Suzaku – Hellfire Wings] [EBP01-005 : Reptyro – Ore Gorger] [EBP01-005SR : Reptyro – Ore Gorger] [EBP01-007 : Kitsun – Wyrmbane Fangs] [EBP01-007SR : Kitsun – Wyrmbane Fangs] [EBP01-008 : Sparkit – Hazardous Contact] [EBP01-012 : Flambelle – Scorching Tears] [EBP01-020 : Pump-Action Shotgun] [EBP01-020SR : Pump-Action Shotgun] [EBP01-021 : Makeshift Handgun] [EBP01-025 : Chillet – Dragon Whisperer] [EBP01-025OSR : Chillet – Dragon Whisperer] [EBP01-025SSP : Chillet – Dragon Whisperer] [EBP01-026 : Relaxaurus – Hungry Gunner] [EBP01-026OSR : Relaxaurus – Hungry Gunner] [EBP01-026SP : Relaxaurus – Hungry Gunner] [EBP01-027 : Jormuntide – Surging Sea Serpent] [EBP01-027OSR : Jormuntide – Surging Sea Serpent] [EBP01-027SP : Jormuntide – Surging Sea Serpent] [EBP01-029 : Azurobe – Water Dragon Waltz] [EBP01-029SR : Azurobe – Water Dragon Waltz] [EBP01-030 : Reptyro Cryst – Glacial Devourer] [EBP01-030SR : Reptyro Cryst – Glacial Devourer] [BT01-039 : ] [BT01-039SR : ] [EBP01-042 : Antique Mirror] [EBP01-049 : Lyleen – Blessing of the Goddess] [EBP01-049OSR : Lyleen – Blessing of the Goddess] [EBP01-049SSP : Lyleen – Blessing of the Goddess] [EBP01-051 : Petallia – Sweet Blessings] [EBP01-051OSR : Petallia – Sweet Blessings] [EBP01-051SP : Petallia – Sweet Blessings] [EBP01-058 : Gumoss – Curious Sprout] [EBP01-061 : Beegarde – Knight of the Flower Garden] [EBP01-073 : Helzephyr – Wings of the Moonless Night] [EBP01-073OSR : Helzephyr – Wings of the Moonless Night] [EBP01-073SSP : Helzephyr – Wings of the Moonless Night] [EBP01-076 : Tombat – Out of Nowhere!?] [EBP01-076SR : Tombat – Out of Nowhere!?] [EBP01-083 : Vanwyrm – Marauder of the Skies] [EBP01-087 : Loupmoon – Glinting Moonlight] [EBP01-090 : Medieval Medicine Workbench] [EBP01-094 : Daedream's Necklace] [ETD01-005 : Arsox – Burning Spoils] [ETD01-007 : Blazamut – Molten Sovereign] [ETD01-007TSR : Blazamut – Molten Sovereign] [ETD01-012 : Elphidran Aqua – Gentle Ripples] [ETD01-012TSP : Elphidran Aqua – Gentle Ripples] [ETD01-012TSR : Elphidran Aqua – Gentle Ripples] [ETD01-015 : Hangyu Cryst – Frigid Wanderer] [ETD01-019 : Antique Wooden Chair] [ETD01-021 : Single-Shot Sphere Launcher] [ETD02-002 : Gumoss – Dreamy Seedling] [ETD02-002TSR : ] [ETD02-012 : Astegon – Aegis Wyvern of Death] [ETD02-012TSP : Astegon – Aegis Wyvern of Death] [ETD02-012TSR : Astegon – Aegis Wyvern of Death]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-31",
+      "question": "Does a card's ability activate regardless of which zone the card is currently in?",
+      "answer": "No, it does not activate.\nUnless specified otherwise, it is effective only while in the Base.\nCertain abilities, such as 〈Interrupt〉, can become effective outside of the Base.",
+      "category": "Card Abilities",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-30",
+      "question": "Can I play multiple cards with 【Quick】 during a battle on the opponent's turn?",
+      "answer": "Yes, you can. \nFirst, choose 1 card you wish to play, play it, and resolve its effect. Then, if there is another card you wish to play, you may play it and resolve its effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-096",
+        "ETD01-0011",
+        "ETD01-011TSR",
+        "ETD01-022",
+        "ETD01-022TSR",
+        "ETD02-011"
+      ],
+      "cardNames": "[EBP01-096 : Dark Cannon] [ETD01-0011 : ] [ETD01-011TSR : Ignis Breath] [ETD01-022 : Crystal Breath] [ETD01-022TSR : Crystal Breath] [ETD02-011 : Stone Blast]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-29",
+      "question": "Can I play a card with 【Quick】 during a battle on my turn?",
+      "answer": "No, you cannot.\nCards with 【Quick】 can only be used during battle on the opponent's turn.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-096",
+        "ETD01-0011",
+        "ETD01-011TSR",
+        "ETD01-022",
+        "ETD01-022TSR",
+        "ETD02-011"
+      ],
+      "cardNames": "[EBP01-096 : Dark Cannon] [ETD01-0011 : ] [ETD01-011TSR : Ignis Breath] [ETD01-022 : Crystal Breath] [ETD01-022TSR : Crystal Breath] [ETD02-011 : Stone Blast]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-28",
+      "question": "Can I play a card with 【Quick】 during the Main Phase of my turn?",
+      "answer": "Yes, you can.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-096",
+        "ETD01-0011",
+        "ETD01-011TSR",
+        "ETD01-022",
+        "ETD01-022TSR",
+        "ETD02-011"
+      ],
+      "cardNames": "[EBP01-096 : Dark Cannon] [ETD01-0011 : ] [ETD01-011TSR : Ignis Breath] [ETD01-022 : Crystal Breath] [ETD01-022TSR : Crystal Breath] [ETD02-011 : Stone Blast]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-27",
+      "question": "When a card ability does not specify a zone—such as \"Choose X Pals,\" \"The number of your gears,\" or \"Choose all cards\"—does it refer to cards in other zones like the hand or deck, in addition to the base?",
+      "answer": "No, it does not. Unless a specific zone is stated, it refers to cards in the base.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-023",
+        "EBP01-023OSR",
+        "EBP01-023SP",
+        "EBP01-040",
+        "EBP01-046",
+        "EBP01-046OSR",
+        "EBP01-046SP"
+      ],
+      "cardNames": "[EBP01-023 : Axel's Strategy] [EBP01-023OSR : Axel's Strategy] [EBP01-023SP : Axel's Strategy] [EBP01-040 : Antique Dresser] [EBP01-046 : Victor's Strategy] [EBP01-046OSR : Victor's Strategy] [EBP01-046SP : Victor's Strategy]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-26",
+      "question": "What is a \"Main Name\"?",
+      "answer": "It is the portion before the \" – \" in the card name.\nIt is a piece of information possessed by cards, and may be referred to by card abilities.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-019",
+        "EBP01-019SR",
+        "EBP01-031",
+        "EBP01-031SR",
+        "EBP01-044",
+        "EBP01-044SR",
+        "EBP01-053",
+        "EBP01-053SR",
+        "EBP01-068"
+      ],
+      "cardNames": "[EBP01-019 : Foxparks' Harness] [EBP01-019SR : Foxparks' Harness] [EBP01-031 : Penking – Mighty Warrior of the Deep] [EBP01-031SR : Penking – Mighty Warrior of the Deep] [EBP01-044 : Pengullet Rocket Launcher] [EBP01-044SR : Pengullet Rocket Launcher] [EBP01-053 : Elizabee – Queen of the Flower Garden] [EBP01-053SR : Elizabee – Queen of the Flower Garden] [EBP01-068 : Digtoise's Headband]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-25",
+      "question": "Can I play cards from my hand, activate abilities, or attack with my Pals during the opponent's turn?",
+      "answer": "No, you cannot.\nHowever, cards with 【Quick】 can be played during battle on the opponent's turn.\nAdditionally, automatic and continuous abilities will activate/apply during the opponent's turn as long as their conditions are met.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-24",
+      "question": "Can I deploy one of my cards to the opponent's base?",
+      "answer": "No, you cannot.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-23",
+      "question": "Can I deploy a card that has the same card name as a card already in my base?",
+      "answer": "Yes, you can.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-22",
+      "question": "Is it possible to choose not to draw a card during the Draw Phase?",
+      "answer": "No, you cannot.\nYou must always draw a card.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-21",
+      "question": "Some cards that have keywords like Interrupt, Taunt, or Brave lack the text written in parentheses ( ). Does this mean their effects are different?",
+      "answer": "No, the effect is the same.\nThe text written in parentheses ( ) is explanatory text, so its presence or absence does not change the card's effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-20",
+      "question": "Some cards with the same name but different rarities lack the text written in parentheses ( ). Does this mean their effects are different?",
+      "answer": "No, the effect is the same.\nThe text written in parentheses ( ) is explanatory text, so its presence or absence does not change the card's effect.",
+      "category": "Card Abilities",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-19",
+      "question": "What is an \"Owner\"?",
+      "answer": "It refers to the owner of that card.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-092",
+        "ETD02-019"
+      ],
+      "cardNames": "[EBP01-092 : Viewing Cage] [ETD02-019 : Hanging Trap]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-18",
+      "question": "What are terms like 【Fire】 or 【Dragon】 on the cards?",
+      "answer": "They are elements. It is a piece of information possessed by cards, and may be referred to by card abilities.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-025",
+        "EBP01-025OSR",
+        "EBP01-025SSP",
+        "EBP01-098"
+      ],
+      "cardNames": "[EBP01-025 : Chillet – Dragon Whisperer] [EBP01-025OSR : Chillet – Dragon Whisperer] [EBP01-025SSP : Chillet – Dragon Whisperer] [EBP01-098 : Elphidran – Gentle Radiance]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-17",
+      "question": "What is the significance of a card's \"Color\"?",
+      "answer": "When constructing a deck, you must build it using up to any two chosen colors plus colorless cards. Additionally, colors may be referred to by card abilities.",
+      "category": "Card Abilities",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-16",
+      "question": "If a card has two or more Work Suitabilities, does it mean it possesses each one of them?",
+      "answer": "Yes, that is correct.\nFor example, if a card has \"Kindling\" and \"Crafting\", it possesses both \"Kindling\" and \"Crafting\" individually, and it can be referred to by either \"Kindling\" or \"Crafting\".",
+      "category": "Card Abilities",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-15",
+      "question": "What are terms like \"Kindling\" or \"Farming\" written on the cards?",
+      "answer": "They are Work Suitabilities.\nIt is a piece of information possessed by cards, and may be referred to by card abilities.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-035",
+        "EBP01-061",
+        "EBP01-063",
+        "EBP01-063SR",
+        "EBP01-066"
+      ],
+      "cardNames": "[EBP01-035 : Mau Cryst – Harbinger of Riches] [EBP01-061 : Beegarde – Knight of the Flower Garden] [EBP01-063 : Breeding Farm] [EBP01-063SR : Breeding Farm] [EBP01-066 : Ranch]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-14",
+      "question": "What are 【Material】 and 【Ingredient】?",
+      "answer": "These are information of a player. 【Material】 and 【Ingredient】 by themselves do not hold any special abilities, but they may be gained or consumed by card abilities.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-005",
+        "EBP01-005SR",
+        "EBP01-012",
+        "EBP01-015",
+        "EBP01-015SP",
+        "EBP01-016",
+        "EBP01-017",
+        "EBP01-022",
+        "EBP01-024",
+        "EBP01-049",
+        "EBP01-049OSR",
+        "EBP01-049SSP",
+        "EBP01-050",
+        "EBP01-050OSR",
+        "EBP01-050SP",
+        "EBP01-053",
+        "EBP01-053SR",
+        "EBP01-057",
+        "EBP01-059",
+        "EBP01-061",
+        "EBP01-063",
+        "EBP01-063SR",
+        "EBP01-064",
+        "EBP01-064SR",
+        "EBP01-065",
+        "EBP01-066",
+        "EBP01-068",
+        "EBP01-069",
+        "EBP01-071",
+        "EBP01-095",
+        "EBP01-095OSR",
+        "EBP01-095SP",
+        "ETD01-005",
+        "ETD01-005TSR",
+        "ETD01-006",
+        "ETD01-009",
+        "ETD01-024",
+        "ETD01-024TSR",
+        "ETD02-002",
+        "ETD02-002TSR",
+        "ETD02-005",
+        "ETD02-007",
+        "ETD02-007TSR",
+        "ETD02-008",
+        "ETD02-008TSR",
+        "ETD02-009",
+        "ETD02-024",
+        "ETD02-024TSR"
+      ],
+      "cardNames": "[EBP01-005 : Reptyro – Ore Gorger] [EBP01-005SR : Reptyro – Ore Gorger] [EBP01-012 : Flambelle – Scorching Tears] [EBP01-015 : Mounted Machine Gun] [EBP01-015SP : Mounted Machine Gun] [EBP01-016 : Primitive Furnace] [EBP01-017 : Flame Cauldron] [EBP01-022 : Stone Pickaxe] [EBP01-024 : Treasure Chest Found!] [EBP01-049 : Lyleen – Blessing of the Goddess] [EBP01-049OSR : Lyleen – Blessing of the Goddess] [EBP01-049SSP : Lyleen – Blessing of the Goddess] [EBP01-050 : Digtoise – Seismic Drillback] [EBP01-050OSR : Digtoise – Seismic Drillback] [EBP01-050SP : Digtoise – Seismic Drillback] [EBP01-053 : Elizabee – Queen of the Flower Garden] [EBP01-053SR : Elizabee – Queen of the Flower Garden] [EBP01-057 : Dumud – Mellow Bounty] [EBP01-059 : Digtoise – Keen Needleback] [EBP01-061 : Beegarde – Knight of the Flower Garden] [EBP01-063 : Breeding Farm] [EBP01-063SR : Breeding Farm] [EBP01-064 : Cola Vending Machine] [EBP01-064SR : Cola Vending Machine] [EBP01-065 : Feed Box] [EBP01-066 : Ranch] [EBP01-068 : Digtoise's Headband] [EBP01-069 : Farming Hat] [EBP01-071 : Found an Egg!] [EBP01-095 : Zoe's Strategy] [EBP01-095OSR : Zoe's Strategy] [EBP01-095SP : Zoe's Strategy] [ETD01-005 : Arsox – Burning Spoils] [ETD01-005TSR : Arsox – Burning Spoils] [ETD01-006 : Mossanda Lux – Vanguard Captain] [ETD01-009 : Weapon Workbench] [ETD01-024 : Ribbuny – Little Princess] [ETD01-024TSR : Ribbuny – Little Princess] [ETD02-002 : Gumoss – Dreamy Seedling] [ETD02-002TSR : ] [ETD02-005 : Eikthyrdeer Terra – Guardian of Nature] [ETD02-007 : Mammorest – Roar of the Wilds] [ETD02-007TSR : Mammorest – Roar of the Wilds] [ETD02-008 : Berry Plantation] [ETD02-008TSR : Berry Plantation] [ETD02-009 : Campfire] [ETD02-024 : Chikipi – My First Pal] [ETD02-024TSR : Chikipi – My First Pal]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-13",
+      "question": "What is night?",
+      "answer": "This is a game state that changes via card effects. Being \"night\" does not inherently trigger any rules by itself, but certain cards have abilities that activate or become active while it is night. Additionally, if either player changes the state to night, the abilities of both players that become active while it is night become active for that duration.",
+      "category": "Card Abilities",
+      "cardNumbers": [
+        "EBP01-073",
+        "EBP01-073OSR",
+        "EBP01-073SSP",
+        "EBP01-074",
+        "EBP01-074OSR",
+        "EBP01-074SP",
+        "EBP01-077",
+        "EBP01-077SR",
+        "EBP01-079",
+        "EBP01-079SR",
+        "EBP01-080",
+        "EBP01-080SR",
+        "EBP01-082",
+        "EBP01-085",
+        "EBP01-087",
+        "EBP01-088",
+        "EBP01-088SR",
+        "EBP01-089",
+        "EBP01-094",
+        "EBP01-097"
+      ],
+      "cardNames": "[EBP01-073 : Helzephyr – Wings of the Moonless Night] [EBP01-073OSR : Helzephyr – Wings of the Moonless Night] [EBP01-073SSP : Helzephyr – Wings of the Moonless Night] [EBP01-074 : Shadowbeak – Seed of Despair] [EBP01-074OSR : Shadowbeak – Seed of Despair] [EBP01-074SP : Shadowbeak – Seed of Despair] [EBP01-077 : Pyrin Noct – Steed of Azure Flames] [EBP01-077SR : Pyrin Noct – Steed of Azure Flames] [EBP01-079 : Depresso – Late Night Hustler] [EBP01-079SR : Depresso – Late Night Hustler] [EBP01-080 : Daedream – First Slumber] [EBP01-080SR : Daedream – First Slumber] [EBP01-082 : Daedream – Deep Slumber] [EBP01-085 : Maraith – Twilight Messenger] [EBP01-087 : Loupmoon – Glinting Moonlight] [EBP01-088 : Lamp] [EBP01-088SR : Lamp] [EBP01-089 : Shoddy Bed] [EBP01-094 : Daedream's Necklace] [EBP01-097 : Black Marketeer]",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-12",
+      "question": "Is there a limit to the number of structures and gears in the base?",
+      "answer": "No, there isn't.\nYou may deploy any number of structures and gears.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-11",
+      "question": "When my base has 5 Pals, can I deploy a new Pal?",
+      "answer": "Yes, you can.\nWhile the number of Pals in the base is limited to 5, when you deploy the 6th or more Pals, put Pals into your graveyard after deploying until your base has 5 Pals.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-10",
+      "question": "Is there a limit to hand size?",
+      "answer": "No, there isn't.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-9",
+      "question": "When performing mulligan during game preparation, can I choose which cards to redraw instead of all 5 cards?",
+      "answer": "No, you cannot.\nIf you wish to redraw, all 5 cards must be redrawn.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-8",
+      "question": "If we're deciding the order with rock paper scissors, can the winner choose whether they want to go first or second?",
+      "answer": "Yes, they can.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-7",
+      "question": "Is there a time limit for the game?",
+      "answer": "When participating in tournaments or events, a time limit is set for each game. Please check the details and floor rules for each specific tournament or event.\nIf you are playing casually with friends rather than at a tournament or event, feel free to take as much time as you like.",
+      "category": "Tournaments/Events",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-6",
+      "question": "What is a playmat?",
+      "answer": "This item shows where to place your cards.\nWhile it is not strictly required for gameplay, it is highly recommended to use it until you become familiar with the game.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-5",
+      "question": "What are sleeves?",
+      "answer": "This item is used to protect your cards.\nPlease check the details and floor rules for each tournament or event, as card sleeves are required when participating in official tournaments and events.\nIf you are playing casually with friends rather than at a tournament or event, feel free to play without them.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-4",
+      "question": "Is there anything I should take note of when shuffling the deck?",
+      "answer": "Please shuffle the cards such that neither player is able to discern the order or position of any card in the deck.\nIf you're participating in a tournament or event, after you're done shuffling your deck, do allow your opponent to shuffle your deck as well.",
+      "category": "Flow of the Game",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-3",
+      "question": "Can I include any number of Pal cards, gear cards, structure cards, and event cards in the deck?",
+      "answer": "Yes, you may include any number of them in the deck.\nAs long as you follow the rules for deck construction, you may create a deck with 50 Pal cards too.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-2",
+      "question": "Can I include 4 pieces each of cards with the same card name but different card number/artwork/rarity in the same deck?",
+      "answer": "No, you cannot.\nEven if the cards have different card number/artwork/rarity, you may only include up to 4 pieces of cards with the same card name in total in a deck.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    },
+    {
+      "id": "official-1",
+      "question": "Can I construct a deck with cards from both Trial Deck and Booster Pack cards?",
+      "answer": "Yes, you can.\nThe deck can be constructed with cards from other products.",
+      "category": "Game Preparation",
+      "cardNumbers": [],
+      "cardNames": "",
+      "updated": "2026/07/30",
+      "sourceUrl": "https://en.palworld-official-cardgame.com/question"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { decks, featuredCards } from "@/lib/data";
+import { decks, featuredCards, getCardImageAlt } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { CardMagnifier } from "@/components/CardMagnifier";
 import type { Metadata } from "next";
@@ -26,14 +26,14 @@ export default async function CardDetailPage({ params }: { params: Promise<{ slu
   return (
     <div className="detail-layout shell">
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: card.number, additionalType: `Palworld TCG ${card.type} card` }} />
-      <aside className="detail-art">
+      <figure className="detail-art">
         <CardMagnifier
           src={card.image}
-          alt={`${card.name} — ${card.subtitle}, ${card.number}`}
+          alt={`${getCardImageAlt(card)} strategy guide`}
           isFoil={card.rarity === "RR"}
         />
-        <p>Official card image · ©Bushiroad ©PALWORLD</p>
-      </aside>
+        <figcaption>{card.name} card image for this Palworld Card Game strategy guide · Official art ©Bushiroad ©PALWORLD</figcaption>
+      </figure>
       <article className="detail-content">
         <p className="eyebrow"><span>{card.number}</span> · Dawn of Palpagos</p>
         <h1>{card.name}</h1>

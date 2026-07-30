@@ -34,6 +34,7 @@ const publicRoutes = [
   "/tools/deck-builder",
   "/blog",
   "/resources",
+  "/rules",
   "/search",
   "/about",
   "/privacy",
@@ -126,4 +127,65 @@ test("the complete launch card image catalog is present", async () => {
   await Promise.all(expectedCards.map((number) => (
     access(new URL(`../public/cards/catalog/${number}.png`, import.meta.url))
   )));
+});
+
+test("the optimized launch artwork assets are present", async () => {
+  await Promise.all([
+    access(new URL("../public/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp", import.meta.url)),
+    access(new URL("../public/media-kit/palworld-card-game-dawn-of-palpagos-launch-artwork.webp", import.meta.url)),
+    access(new URL("../public/media-kit/palworld-card-game-official-card-back.webp", import.meta.url)),
+  ]);
+});
+
+test("natural-language questions return the correct direct answer first", async () => {
+  const questionMatrix = [
+    ["how big is my deck", "How many cards are in a Palworld Card Game deck?"],
+    ["is this game for 2 players", "How many players can play?"],
+    ["how do you win", "How do you win or lose the game?"],
+    ["starting health", "How much life does each player start with?"],
+    ["opening hand size", "How many cards are in the opening hand?"],
+    ["can i redraw my starting cards", "How does a mulligan or redraw work?"],
+    ["does going second get a soul", "Does the second player start with an extra Soul?"],
+    ["does first player draw", "Does the first player draw on the first turn?"],
+    ["can a new pal attack right away", "Can I attack on the first turn or with a Pal deployed this turn?"],
+    ["what am i allowed to attack", "What can a Pal attack?"],
+    ["how do i block", "How does blocking work?"],
+    ["do structures hit back", "Does a Structure deal damage back when attacked?"],
+    ["what is a damage check", "How does player damage and a damage check work?"],
+    ["what does lucky do", "What does the Lucky icon do during damage?"],
+    ["can my deck have 3 colors", "How many colors can a deck use?"],
+    ["maximum copies of one card", "How many copies of the same card can I use?"],
+    ["what does quick mean", "What does Quick mean?"],
+    ["how does interrupt stop an attack", "What does Interrupt do?"],
+    ["explain taunt", "How does Taunt work?"],
+    ["what does stealth mean", "What does Stealth mean?"],
+    ["what is assault", "What does Assault mean?"],
+    ["can i spend souls to draw", "Can I rest three Souls to draw a card?"],
+    ["what do i buy to start", "What should a new player buy first?"],
+    ["where can i shop for cards", "Where can I buy Palworld Card Game products?"],
+    ["is one booster enough to play", "Can I start playing with only a booster pack?"],
+    ["best meta deck", "What is the best deck or launch-day tier list?"],
+    ["what are the booster pull odds", "What are the Dawn of Palpagos pull rates?"],
+    ["when is the release tournament", "When are the Grand Release Tournaments?"],
+    ["what set releases next", "What Palworld Card Game products come after launch?"],
+  ];
+
+  const mismatches = [];
+  for (const [query, expectedQuestion] of questionMatrix) {
+    const response = await render(`/search?q=${encodeURIComponent(query)}`);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    const bestMatch = html.match(/<article class="direct-answer"[\s\S]*?<h3>(.*?)<\/h3>/)?.[1];
+    if (bestMatch !== expectedQuestion) mismatches.push({ query, expectedQuestion, bestMatch });
+  }
+  assert.deepEqual(mismatches, []);
+});
+
+test("rules center exposes official answers and clear sourcing", async () => {
+  const response = await render("/rules");
+  const html = await response.text();
+  assert.match(html, /97(?:<!-- -->)? official launch-day Q&amp;As/);
+  assert.match(html, /Comprehensive Rules/);
+  assert.match(html, /Ask a rules question in your own words/);
+  assert.match(html, /If a Lucky icon appears, the check stops and that life loss is cancelled\./);
 });

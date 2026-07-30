@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cinzel, Inter } from "next/font/google";
 import Link from "next/link";
 import { InteractionEffects } from "@/components/InteractionEffects";
+import { MobileNav } from "@/components/MobileNav";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import "./globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cinzel.variable}`}>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
         <InteractionEffects />
         <ScrollReveal />
         <header className="site-header">
@@ -33,7 +35,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span className="brand-mark">◆</span>
               <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
             </Link>
-            <nav aria-label="Main navigation">
+            <nav className="desktop-nav" aria-label="Main navigation">
+              <Link href="/rules">Rules</Link>
               <Link href="/cards">Cards</Link>
               <Link href="/decks">Decks</Link>
               <Link href="/blog">Guides</Link>
@@ -41,9 +44,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/search">Search</Link>
             </nav>
             <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>◆</span></Link>
+            <MobileNav />
           </div>
         </header>
-        <main>{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <footer className="site-footer">
           <div className="shell footer-grid">
             <div>
@@ -58,6 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/cards">Card database</Link>
               <Link href="/decks">Trial Deck guides</Link>
               <Link href="/tools/deck-builder">Deck builder</Link>
+              <Link href="/rules">Rules &amp; FAQ</Link>
               <Link href="/blog">Guides</Link>
               <Link href="/resources">Source hub</Link>
             </div>

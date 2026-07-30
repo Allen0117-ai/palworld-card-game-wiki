@@ -23,6 +23,11 @@ export type Card = {
   hasGuide: boolean;
 };
 
+export function getCardImageAlt(card: Pick<Card, "color" | "name" | "number" | "subtitle" | "type">) {
+  const cardName = card.subtitle ? `${card.name} — ${card.subtitle}` : card.name;
+  return `${cardName} (${card.number}), ${card.color} ${card.type} card from the Palworld Card Game`;
+}
+
 const editorialCards: Card[] = [
   {
     slug: "jormuntide-ignis-savage-lava-dragon",

@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { guides } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
+import { GuideToc } from "@/components/GuideToc";
+import { getGuidePrimaryImage, GuideSeoImagePanel } from "@/components/SeoImagePanel";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -12,7 +14,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const guide = guides.find((item) => item.slug === slug);
   if (!guide) return {};
-  return { title: guide.title, description: guide.description };
+  const primaryImage = getGuidePrimaryImage(slug);
+  return {
+    title: guide.title,
+    description: guide.description,
+    openGraph: primaryImage ? {
+      type: "article",
+      title: guide.title,
+      description: guide.description,
+      images: [primaryImage],
+    } : undefined,
+  };
 }
 
 const guideContent: Record<string, React.ReactNode> = {
@@ -66,8 +78,8 @@ const guideContent: Record<string, React.ReactNode> = {
       <p>The defending player may rest a Pal to block, changing the attack target to that blocker. The defender may also use legal Quick cards or Interrupt effects at their stated timing.</p>
 
       <h2>Damage Check and the Lucky icon</h2>
-      <p>If a player attack is not blocked or interrupted, the defending player loses life equal to the attacker&apos;s Strike and reveals that many cards from the top of their Main Deck one at a time. Revealed cards go to the Graveyard. If a card with the Lucky icon appears, stop revealing and cancel the remaining damage from that check.</p>
-      <div className="example-box"><strong>Example</strong><p>A Pal with Strike 4 hits the opposing player. The defender reveals cards one by one. If the second card has a Lucky icon, the check stops after that card instead of continuing through all four reveals.</p></div>
+      <p>If a player attack is not blocked or interrupted, put cards from the top of the defending player&apos;s Main Deck into the Graveyard one at a time, up to the attacker&apos;s Strike. If no Lucky icon appears, the defender then loses life equal to the full Strike. If a Lucky icon appears, the check stops and that life loss is cancelled.</p>
+      <div className="example-box"><strong>Example</strong><p>A Pal with Strike 4 hits the opposing player. If the second checked card has a Lucky icon, those two cards remain in the Graveyard, the check stops, and the defender loses no life from that damage.</p></div>
 
       <h2>First-game mistakes to avoid</h2>
       <ul>
@@ -315,10 +327,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const guide = guides.find((item) => item.slug === slug);
   if (!guide || !guideContent[slug]) notFound();
   const related = guides.filter((item) => item.slug !== slug).slice(0, 3);
+  const primaryImage = getGuidePrimaryImage(slug);
 
   return (
     <article className="article-shell">
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, datePublished: "2026-07-30", dateModified: "2026-07-30", author: { "@type": "Organization", name: "Palworld Card Game Wiki" }, mainEntityOfPage: `https://palworldcardgame.wiki/blog/${guide.slug}` }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, image: primaryImage?.url, datePublished: "2026-07-30", dateModified: "2026-07-30", author: { "@type": "Organization", name: "Palworld Card Game Wiki" }, mainEntityOfPage: `https://palworldcardgame.wiki/blog/${guide.slug}` }} />
       <p className="eyebrow"><span>{guide.category}</span> · {guide.readTime}</p>
       <h1>{guide.title}</h1>
       <p className="article-lede">{guide.description}</p>
@@ -327,7 +340,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <strong>{guide.sourceStatus}</strong>
         <span>Launch-day edition</span>
       </div>
-      {guideContent[slug]}
+      <GuideSeoImagePanel slug={slug} />
+      <GuideToc contentId="guide-content" />
+      <div id="guide-content" className="guide-body">
+        {guideContent[slug]}
+      </div>
 
       <section className="source-panel">
         <p className="eyebrow">Sources & verification</p>
@@ -347,6 +364,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       </section>
 
       <div className="article-actions">
+        <Link className="button primary" href="/rules">Search rules &amp; FAQ</Link>
         <Link className="button primary" href="/cards">Browse cards</Link>
         <Link className="button ghost" href="/tools/deck-builder">Build a deck</Link>
         <Link className="button ghost" href="/resources">Open source hub</Link>

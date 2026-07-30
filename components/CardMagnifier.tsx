@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 
 type CardMagnifierProps = {
@@ -31,7 +32,7 @@ export function CardMagnifier({ alt, isFoil = false, src }: CardMagnifierProps) 
       onPointerMove={moveLens}
       onPointerLeave={(event) => event.currentTarget.classList.remove("is-magnifying")}
     >
-      <img src={src} alt={alt} width={400} height={559} />
+      <Image src={src} alt={alt} width={400} height={559} priority />
       {isFoil && <span className="detail-foil" aria-hidden="true" />}
       <span
         ref={lensRef}

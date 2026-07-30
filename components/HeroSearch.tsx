@@ -15,7 +15,7 @@ export function HeroSearch() {
   return (
     <form className="hero-search beam-border" onSubmit={submit} role="search">
       <label className="sr-only" htmlFor="hero-card-search">Search Palworld Card Game cards, rules, decks and guides</label>
-      <input id="hero-card-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search cards, rules, decks or products…" />
+      <input id="hero-card-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ask “Can I attack on the first turn?”" />
       <button type="submit">Search <span>↗</span></button>
     </form>
   );

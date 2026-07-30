@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { cards } from "@/lib/data";
+import Image from "next/image";
+import { cards, getCardImageAlt } from "@/lib/data";
 
 type DeckMap = Record<string, number>;
 
@@ -97,7 +98,7 @@ export function DeckBuilder() {
           {visible.map((card) => (
             <button className="builder-card" key={card.slug} onClick={() => addCard(card.slug)} draggable onDragStart={(event) => beginDrag(event, card.slug)} aria-label={`Add ${card.name}`}>
               <span className="builder-art">
-                <img src={card.image} alt="" width={400} height={559} loading="lazy" />
+                <Image src={card.image} alt={getCardImageAlt(card)} width={400} height={559} loading="lazy" />
               </span>
               <strong>{card.name}</strong>
               <small>{card.number} · Cost {card.cost}</small>

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Card } from "@/lib/data";
+import Image from "next/image";
+import { Card, getCardImageAlt } from "@/lib/data";
 
 export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?: boolean }) {
   const isFoil = card.rarity === "RR";
@@ -7,10 +8,10 @@ export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?
   const content = (
     <>
       <div className="card-image-wrap">
-        <img
+        <Image
           className="card-image"
           src={card.image}
-          alt={`${card.name} — ${card.subtitle}, ${card.number}`}
+          alt={getCardImageAlt(card)}
           width={400}
           height={559}
           loading="lazy"

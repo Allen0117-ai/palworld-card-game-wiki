@@ -3,7 +3,7 @@ import { SiteSearchResults } from "@/components/SiteSearchResults";
 
 export const metadata: Metadata = {
   title: "Search Palworld Card Game Cards, Rules & Guides",
-  description: "Search the complete Palworld Card Game launch card pool, beginner rules, Trial Deck guides and product answers in one place.",
+  description: "Ask natural-language questions or search the complete Palworld Card Game launch card pool, official Q&A, guides, products and decks.",
 };
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
@@ -13,7 +13,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <header className="page-hero shell">
         <p className="eyebrow"><span>One search</span> · Cards, rules, decks & products</p>
         <h1>Find the answer,<br />not another menu.</h1>
-        <p>Search card names and numbers, printed abilities, rules explanations, Trial Deck help and launch buying guides together.</p>
+        <p>Ask a full question or search a card name, number, printed ability, rule, Trial Deck or launch product. The clearest sourced answer appears first.</p>
       </header>
       <SiteSearchResults initialQuery={q} />
     </>

@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CardTile } from "@/components/CardTile";
 import { DeckTile } from "@/components/DeckTile";
 import { decks, guides, homepageShowcaseCards } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { HeroSearch } from "@/components/HeroSearch";
+import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
 
 export default function Home() {
   return (
@@ -13,7 +15,7 @@ export default function Home() {
         { "@context": "https://schema.org", "@type": "WebSite", name: "Palworld Card Game Wiki", url: "https://palworldcardgame.wiki", potentialAction: { "@type": "SearchAction", target: "https://palworldcardgame.wiki/search?q={search_term_string}", "query-input": "required name=search_term_string" } },
       ]} />
       <section className="hero hero-map">
-        <img
+        <Image
           className="hero-map-background"
           src="/hero-palpagos-map.webp"
           alt=""
@@ -27,23 +29,26 @@ export default function Home() {
           <span className="map-light map-light-gold" />
           <span className="map-light map-light-sky" />
         </div>
-        <div className="hero-atmosphere" aria-hidden="true" />
+        <div className="hero-atmosphere" aria-hidden="true">
+          <span className="hero-particle-mist hero-particle-mist-gold" />
+          <span className="hero-particle-mist hero-particle-mist-sky" />
+        </div>
         <div className="hero-inner shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Launch-day field guide</span> · Rules · Cards · Decks</p>
-            <h1>Learn every rule.<br /><em>Build your Pal team.</em></h1>
+            <h1>Find your answer.<br /><em>Build your Pal team.</em></h1>
             <p className="hero-lede">
-              Clear answers for your first game: verified rules, all 148 launch
-              main-deck cards, Trial Deck help, and a free deck builder.
+              Ask rules in normal language, browse all 148 launch main-deck
+              cards, compare Trial Decks, and build a legal deck.
             </p>
             <HeroSearch />
             <div className="hero-actions">
-              <Link className="button primary" href="/blog/how-to-play-palworld-card-game">Start learning <span>◆</span></Link>
+              <Link className="button primary" href="/rules">Ask a rules question <span>◆</span></Link>
               <Link className="button ghost" href="/cards">Browse 148 cards</Link>
             </div>
             <div className="hero-stats" aria-label="Database highlights">
               <div><strong>148</strong><span>launch main-deck cards</span></div>
-              <div><strong>4</strong><span>deck colors</span></div>
+              <div><strong>{officialRuleCount}</strong><span>official Q&amp;As indexed</span></div>
               <div><strong>50+10</strong><span>legal deck</span></div>
             </div>
           </div>
@@ -56,15 +61,15 @@ export default function Home() {
                 <small>Official launch product</small>
               </div>
               <div className="hero-card hero-card-back">
-                <img src="/cards/catalog/EBP01-001.png" alt="Jormuntide Ignis official card" width={400} height={559} />
+                <Image src="/cards/catalog/EBP01-001.png" alt="Jormuntide Ignis EBP01-001 red Pal card from the Palworld Card Game" width={400} height={559} loading="eager" />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-front">
-                <img src="/cards/showcase/EBP01-025.png" alt="Chillet official card" width={400} height={559} />
+                <Image src="/cards/showcase/EBP01-025.png" alt="Chillet EBP01-025 red Pal card from the Palworld Card Game" width={400} height={559} loading="eager" />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-third">
-                <img src="/cards/showcase/EBP01-074.png" alt="Shadowbeak official card" width={400} height={559} />
+                <Image src="/cards/showcase/EBP01-074.png" alt="Shadowbeak EBP01-074 purple Pal card from the Palworld Card Game" width={400} height={559} loading="eager" />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
@@ -88,7 +93,31 @@ export default function Home() {
           <Link href="/blog/palworld-card-game-deck-building-rules"><span>03 · Rules</span><strong>How do I build a legal deck?</strong><p>50 cards, 10 Souls, two colors and copy limits.</p></Link>
           <Link href="/cards"><span>04 · Database</span><strong>Find a card</strong><p>Search all BP01 and Trial Deck main-deck cards.</p></Link>
           <Link href="/blog/palworld-card-game-keyword-glossary"><span>05 · Card text</span><strong>What does this keyword mean?</strong><p>Interrupt, Quick, Taunt, Stealth and more.</p></Link>
-          <Link href="/resources"><span>06 · Information hub</span><strong>Where can I learn more?</strong><p>Official rules, events, retailers and community sources.</p></Link>
+          <Link href="/rules"><span>06 · Rules answer center</span><strong>Can I ask a specific question?</strong><p>Search {featuredRuleAnswers.length} essentials and all {officialRuleCount} official Q&amp;As.</p></Link>
+        </div>
+      </section>
+
+      <section className="latest-updates shell" data-reveal>
+        <div className="latest-updates-heading">
+          <div><p className="eyebrow"><span>Updated today</span> · July 30, 2026</p><h2>What changed at launch.</h2></div>
+          <p>This area tracks useful official changes so returning players can see what is newly verified.</p>
+        </div>
+        <div className="latest-update-grid">
+          <Link href="/rules">
+            <span>Rules · New</span>
+            <strong>Comprehensive Rules now checked</strong>
+            <p>First-turn attacks, setup, battle timing and loss conditions are linked to the full official rulebook.</p>
+          </Link>
+          <Link href="/rules">
+            <span>Q&amp;A · {officialRuleCount} entries</span>
+            <strong>Every launch ruling is searchable</strong>
+            <p>Search official card interactions by normal question, card name or card number.</p>
+          </Link>
+          <a href="https://en.palworld-official-cardgame.com/events/grand-release-tournament" target="_blank" rel="noreferrer">
+            <span>Events · Aug 1–31</span>
+            <strong>Grand Release Tournament window</strong>
+            <p>Official tournament stores may hold one launch event during August. Check participating stores before travelling.</p>
+          </a>
         </div>
       </section>
 
@@ -114,10 +143,10 @@ export default function Home() {
             <a className="button primary" href="https://en.palworld-official-cardgame.com/products/bp01" target="_blank" rel="noreferrer">Visit official product page <span>↗</span></a>
           </div>
           <div className="product-pack">
-            <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} loading="lazy" />
+            <Image src="/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp" alt="Palworld Card Game Dawn of Palpagos BP01 booster pack" width={828} height={1713} loading="lazy" />
           </div>
           <div className="product-art">
-            <img src="/media-kit/card-back.png" alt="Official Palworld Card Game card back" width={607} height={849} loading="lazy" />
+            <Image src="/media-kit/palworld-card-game-official-card-back.webp" alt="Official Palworld Card Game card back design" width={607} height={849} loading="lazy" />
           </div>
         </div>
         <p className="asset-credit shell">Official promotional assets shown unmodified · ©Bushiroad ©PALWORLD</p>
@@ -171,7 +200,7 @@ export default function Home() {
       </section>
 
       <section className="official-banner shell" aria-label="Dawn of Palpagos official launch artwork" data-reveal>
-        <img src="/media-kit/launch-banner.jpg" alt="Dawn of Palpagos official promotional artwork" width={1920} height={1080} loading="lazy" />
+        <Image src="/media-kit/palworld-card-game-dawn-of-palpagos-launch-artwork.webp" alt="Palworld Card Game Dawn of Palpagos official launch artwork" width={1440} height={810} loading="lazy" />
         <div className="official-banner-caption">
           <div><span>Official launch artwork</span><strong>Dawn of Palpagos</strong></div>
           <span>©Bushiroad ©PALWORLD</span>
