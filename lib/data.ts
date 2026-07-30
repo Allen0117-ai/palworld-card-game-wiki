@@ -103,6 +103,59 @@ export const cards: Card[] = [
     ability: "On deploy, gain 3 Ingredients. Once per turn, consume 3 Ingredients to find and deploy a cost 6 or lower Pal from your top 5 cards.",
     summary: "A Green value engine that creates Ingredients and converts them into another Pal from the top of your deck.",
   },
+  {
+    slug: "jormuntide-surging-sea-serpent-ebp01-027",
+    name: "Jormuntide",
+    subtitle: "Surging Sea Serpent",
+    number: "EBP01-027",
+    image: "/cards/showcase/EBP01-027.png",
+    rarity: "R",
+    color: "blue",
+    type: "Pal",
+    cost: 8,
+    power: 1600,
+    strike: 3,
+    ability: "On deploy, draw a card, rest an opposing cost 7 or lower Pal, and keep it from standing during the opponent's next stand phase.",
+    summary: "A huge Blue sea serpent that combines high power with card draw and strong tempo control.",
+  },
+  {
+    slug: "digtoise-seismic-drillback-ebp01-050",
+    name: "Digtoise",
+    subtitle: "Seismic Drillback",
+    number: "EBP01-050",
+    image: "/cards/showcase/EBP01-050.png",
+    rarity: "RR",
+    color: "green",
+    type: "Pal",
+    cost: 6,
+    power: 900,
+    strike: 2,
+    ability: "With 10 or more Souls this card gains 1000 Power and 1 Strike. It can also consume Ingredients to gain Power and Breakthrough for the turn.",
+    summary: "A Green finisher that turns stored Souls and Ingredients into a hard-hitting Breakthrough threat.",
+  },
+  {
+    slug: "pyrin-noct-steed-of-azure-flames-ebp01-077",
+    name: "Pyrin Noct",
+    subtitle: "Steed of Azure Flames",
+    number: "EBP01-077",
+    image: "/cards/showcase/EBP01-077.png",
+    rarity: "R",
+    color: "purple",
+    type: "Pal",
+    cost: 7,
+    power: 1100,
+    strike: 3,
+    ability: "Nocturnal gives this card 300 Power at night. Its Interrupt ability can be discarded from hand to nullify an opposing attack.",
+    summary: "A dramatic Purple threat that becomes stronger at night and can double as emergency defense from hand.",
+  },
+];
+
+export const homepageShowcaseCards = [
+  cards[1],
+  ...["EBP01-027", "EBP01-050", "EBP01-077"].flatMap((number) => {
+    const card = cards.find((item) => item.number === number);
+    return card ? [card] : [];
+  }),
 ];
 
 export type Deck = {

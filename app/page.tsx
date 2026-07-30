@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CardTile } from "@/components/CardTile";
 import { DeckTile } from "@/components/DeckTile";
-import { cards, decks, guides } from "@/lib/data";
+import { decks, guides, homepageShowcaseCards } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { HeroSearch } from "@/components/HeroSearch";
 
@@ -47,7 +47,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-product" aria-label="Dawn of Palpagos launch cards and booster pack">
+          <div className="hero-product" aria-label="Dawn of Palpagos launch card showcase">
             <div className="hero-product-stage" data-tilt>
               <div className="hero-product-stamp">
                 <span>First booster set · EBP01</span>
@@ -59,11 +59,12 @@ export default function Home() {
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-front">
-                <img src="/cards/EBP01-002.png" alt="Suzaku official card" width={400} height={559} />
+                <img src="/cards/showcase/EBP01-025.png" alt="Chillet official card" width={400} height={559} />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
-              <div className="hero-booster">
-                <img src="/media-kit/bp01-booster.png" alt="Dawn of Palpagos booster pack" width={828} height={1713} />
+              <div className="hero-card hero-card-third">
+                <img src="/cards/showcase/EBP01-074.png" alt="Shadowbeak official card" width={400} height={559} />
+                <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
             </div>
@@ -84,7 +85,7 @@ export default function Home() {
           <Link className="text-link" href="/cards">View card database →</Link>
         </div>
         <div className="card-grid">
-          {cards.slice(0, 4).map((card) => <CardTile key={card.slug} card={card} enableTilt />)}
+          {homepageShowcaseCards.map((card) => <CardTile key={card.slug} card={card} enableTilt />)}
         </div>
       </section>
 
