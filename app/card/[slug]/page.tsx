@@ -1,57 +1,71 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { decks, featuredCards, getCardImageAlt } from "@/lib/data";
+import { cards, decks, getCardImageAlt, specialArtworkByVariant } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { CardMagnifier } from "@/components/CardMagnifier";
+import { CardDetailsTable } from "@/components/CardDetailsTable";
 import type { Metadata } from "next";
 
-export function generateStaticParams() { return featuredCards.map((card) => ({ slug: card.slug })); }
+export function generateStaticParams() { return cards.map((card) => ({ slug: card.slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const card = featuredCards.find((item) => item.slug === slug);
+  const card = cards.find((item) => item.slug === slug);
   if (!card) return {};
+  const pageLabel = card.hasGuide ? "Stats & Strategy" : "Official Card Details";
   return {
-    title: `${card.name} · Palworld TCG – ${card.rarity} ${card.color} Card Stats & Strategy`,
-    description: `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from Dawn of Palpagos.`,
+    title: `${card.name} · Palworld TCG – ${card.rarity} ${card.color} ${pageLabel}`,
+    description: card.hasGuide
+      ? `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`
+      : `Official card text, stats and set information for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`,
   };
 }
 
-export default async function CardDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CardDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ variant?: string }>;
+}) {
   const { slug } = await params;
-  const card = featuredCards.find((item) => item.slug === slug);
+  const { variant } = await searchParams;
+  const card = cards.find((item) => item.slug === slug);
   if (!card) notFound();
+  const requestedArtwork = specialArtworkByVariant(variant);
+  const specialArtwork = requestedArtwork?.card.slug === card.slug ? requestedArtwork : undefined;
+  const displayImage = specialArtwork?.image || card.image;
+  const displayNumber = specialArtwork?.variantNumber || card.number;
+  const displayRarity = specialArtwork?.rarity || card.rarity;
   const relatedDecks = decks.filter((deck) => deck.core.includes(card.slug));
 
   return (
     <div className="detail-layout shell">
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: card.number, additionalType: `Palworld TCG ${card.type} card` }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: displayNumber, additionalType: `Palworld TCG ${card.type} card` }} />
       <figure className="detail-art">
         <CardMagnifier
-          src={card.image}
-          alt={`${getCardImageAlt(card)} strategy guide`}
-          isFoil={card.rarity === "RR"}
+          src={displayImage}
+          alt={`${getCardImageAlt(card)} detail view`}
+          isFoil={Boolean(specialArtwork) || card.rarity === "RR"}
         />
-        <figcaption>{card.name} card image for this Palworld Card Game strategy guide · Official art ©Bushiroad ©PALWORLD</figcaption>
+        <figcaption>
+          {specialArtwork ? `${displayNumber} parallel artwork` : `${card.number} base artwork`}
+          {" · "}Official art ©Bushiroad ©PALWORLD
+        </figcaption>
       </figure>
       <article className="detail-content">
-        <p className="eyebrow"><span>{card.number}</span> · Dawn of Palpagos</p>
-        <h1>{card.name}</h1>
-        <div className="detail-tags"><span className="tag">{card.rarity}</span><span className="tag">{card.color}</span><span className="tag">{card.type}</span></div>
-        <p className="hero-lede">{card.subtitle}. {card.summary}</p>
-        <div className="stats-row">
-          <div className="stat"><span>Cost</span><strong>{card.cost}</strong></div>
-          <div className="stat"><span>Power</span><strong>{card.power || "—"}</strong></div>
-          <div className="stat"><span>Strike</span><strong>{card.strike || "—"}</strong></div>
-        </div>
-        <section className="content-block">
-          <h2>Official card text</h2>
-          <p>{card.ability}</p>
+        <section className="card-data-panel">
+          <p className="eyebrow"><span>{displayNumber}</span> · Official card details</p>
+          <h1>{card.name}{card.subtitle ? ` — ${card.subtitle}` : ""}</h1>
+          <p className="card-data-summary">{card.summary}</p>
+          <CardDetailsTable card={card} displayNumber={displayNumber} displayRarity={displayRarity} />
         </section>
-        <section className="content-block">
-          <h2>Strategy snapshot</h2>
-          <p>{card.summary} Start by testing two to four copies, then adjust once you know how often you want to see it in your opening and midgame hands.</p>
-        </section>
+        {card.hasGuide && (
+          <section className="content-block">
+            <h2>Strategy snapshot</h2>
+            <p>{card.summary} Start by testing two to four copies, then adjust once you know how often you want to see it in your opening and midgame hands.</p>
+          </section>
+        )}
         <section className="content-block">
           <h2>Decks using this card</h2>
           {relatedDecks.length ? <ul>{relatedDecks.map((deck) => <li key={deck.slug}><Link className="text-link" href={`/deck/${deck.slug}`}>{deck.name} →</Link></li>)}</ul> : <p>No featured launch deck uses this card yet. Try it in the deck builder.</p>}

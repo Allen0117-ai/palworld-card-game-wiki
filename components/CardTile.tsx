@@ -4,8 +4,8 @@ import { Card, getCardImageAlt } from "@/lib/data";
 
 export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?: boolean }) {
   const isFoil = card.rarity === "RR";
-  const className = `card-tile${isFoil ? " card-tile-foil" : ""}${card.hasGuide ? "" : " card-tile-reference"}`;
-  const content = (
+  const className = `card-tile${isFoil ? " card-tile-foil" : ""}`;
+  const cardPreview = (
     <>
       <div className="card-image-wrap">
         <Image
@@ -23,26 +23,21 @@ export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?
         <h3>{card.name}</h3>
         <p>{card.number} · {card.color} · {card.type}</p>
       </div>
-      {!card.hasGuide && (
-        <details className="card-rules">
-          <summary>Read card text</summary>
-          <p>{card.ability || "This card has no printed ability text."}</p>
-        </details>
-      )}
     </>
   );
 
-  return card.hasGuide ? (
-    <Link
-      className={className}
-      href={`/card/${card.slug}`}
-      data-tilt={enableTilt ? "" : undefined}
-    >
-      {content}
-    </Link>
-  ) : (
-    <article className={className}>
-      {content}
+  return (
+    <article className={className} data-tilt={enableTilt ? "" : undefined}>
+      <Link href={`/card/${card.slug}`}>
+        {cardPreview}
+      </Link>
+      <details className="card-rules">
+        <summary>Read card text</summary>
+        <p>{card.ability || "This card has no printed ability text."}</p>
+      </details>
+      <Link className="card-guide-link" href={`/card/${card.slug}`}>
+        {card.hasGuide ? "View card guide" : "View card details"}
+      </Link>
     </article>
   );
 }

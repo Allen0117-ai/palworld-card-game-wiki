@@ -22,20 +22,22 @@ export function InteractionEffects() {
     const cursorAura = cursorAuraRef.current;
     const sparkLayer = sparkLayerRef.current;
     if (!cursorAura || !sparkLayer) return;
+    const activeCursorAura = cursorAura;
+    const activeSparkLayer = sparkLayer;
 
     document.documentElement.classList.add("pointer-effects-ready");
     let activeTilt: HTMLElement | null = null;
 
     function movePointer(event: PointerEvent) {
-      cursorAura.style.setProperty("--pointer-x", `${event.clientX}px`);
-      cursorAura.style.setProperty("--pointer-y", `${event.clientY}px`);
-      cursorAura.classList.add("is-visible");
+      activeCursorAura.style.setProperty("--pointer-x", `${event.clientX}px`);
+      activeCursorAura.style.setProperty("--pointer-y", `${event.clientY}px`);
+      activeCursorAura.classList.add("is-visible");
 
       const eventTarget = event.target;
       const interactiveTarget = eventTarget instanceof Element
         ? eventTarget.closest("a, button, input, select, [data-tilt]")
         : null;
-      cursorAura.classList.toggle("is-interactive", Boolean(interactiveTarget));
+      activeCursorAura.classList.toggle("is-interactive", Boolean(interactiveTarget));
 
       const tiltTarget = eventTarget instanceof Element
         ? eventTarget.closest<HTMLElement>("[data-tilt]")
@@ -56,7 +58,7 @@ export function InteractionEffects() {
     }
 
     function hidePointer() {
-      cursorAura.classList.remove("is-visible", "is-interactive");
+      activeCursorAura.classList.remove("is-visible", "is-interactive");
       resetTilt(activeTilt);
       activeTilt = null;
     }
@@ -74,7 +76,7 @@ export function InteractionEffects() {
         spark.style.setProperty("--spark-x", `${Math.cos(angle * Math.PI / 180) * distance}px`);
         spark.style.setProperty("--spark-y", `${Math.sin(angle * Math.PI / 180) * distance}px`);
         spark.style.setProperty("--spark-rotation", `${angle + 45}deg`);
-        sparkLayer.appendChild(spark);
+        activeSparkLayer.appendChild(spark);
         spark.addEventListener("animationend", () => spark.remove(), { once: true });
       }
     }

@@ -127,7 +127,7 @@ export function SiteSearchResults({ initialQuery = "" }: { initialQuery?: string
           <div className="search-group-heading"><h2>Cards</h2><span>{cardResults.length}</span></div>
           <div className="search-card-results">
             {cardResults.slice(0, 18).map((card) => (
-              <Link href={card.hasGuide ? `/card/${card.slug}` : `/cards?q=${encodeURIComponent(card.number)}`} key={card.slug}>
+              <Link href={`/card/${card.slug}`} key={card.slug}>
                 <Image src={card.image} alt={getCardImageAlt(card)} width={80} height={112} loading="lazy" />
                 <div><strong>{card.name}</strong><span>{card.number} · {card.color} · {card.type}</span></div>
               </Link>

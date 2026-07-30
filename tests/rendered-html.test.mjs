@@ -17,6 +17,10 @@ const context = {
   passThroughOnException() {},
 };
 
+const launchCards = JSON.parse(
+  await readFile(new URL("../lib/official-cards.generated.json", import.meta.url), "utf8"),
+);
+
 async function render(pathname) {
   return worker.fetch(
     new Request(`http://localhost${pathname}`, {
@@ -38,12 +42,7 @@ const publicRoutes = [
   "/search",
   "/about",
   "/privacy",
-  "/card/jormuntide-ignis-savage-lava-dragon",
-  "/card/suzaku-hellfire-wings",
-  "/card/gobfin-ignis-blazing-hothead",
-  "/card/pump-action-shotgun",
-  "/card/pal-sphere",
-  "/card/lyleen-blessing-of-the-goddess",
+  ...launchCards.map((card) => `/card/${card.slug}`),
   "/deck/red-blue-launch-pressure",
   "/deck/green-blue-base-value",
   "/deck/mono-red-pal-rush",
@@ -137,7 +136,21 @@ test("the optimized launch artwork assets are present", async () => {
     access(new URL("../public/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp", import.meta.url)),
     access(new URL("../public/media-kit/palworld-card-game-dawn-of-palpagos-launch-artwork.webp", import.meta.url)),
     access(new URL("../public/media-kit/palworld-card-game-official-card-back.webp", import.meta.url)),
+    ..."002SP 025SSP 026SP 049SSP 050SP 051SP 073SSP 075SP".split(" ").map((number) => (
+      access(new URL(`../public/cards/showcase/EBP01-${number}.webp`, import.meta.url))
+    )),
   ]);
+});
+
+test("parallel artwork pages keep the official card text and clearer labels", async () => {
+  const response = await render("/card/suzaku-hellfire-wings?variant=EBP01-002SP");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /EBP01-002SP parallel artwork/);
+  assert.match(html, /Official card details/);
+  assert.match(html, /ability-badge ability-badge-cont/);
+  assert.match(html, /ability-damage/);
 });
 
 test("the image optimizer accepts WebP assets whose storage metadata is generic", async () => {

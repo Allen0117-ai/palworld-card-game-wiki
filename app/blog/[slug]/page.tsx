@@ -242,7 +242,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Search a Pal name or card number when checking a pull.</li>
         <li>Search an ability word such as “Interrupt” or “night” to find related cards.</li>
         <li>Filter by set before comparing Trial Deck cards with BP01 upgrades.</li>
-        <li>Open “Read card text” directly in the grid; only cards with substantial editorial analysis have separate detail pages.</li>
+        <li>Open any card’s detail page for its official text, stats and set information; selected cards also include editorial strategy notes.</li>
       </ul>
       <Link className="button primary" href="/cards">Search all 148 launch cards</Link>
     </>

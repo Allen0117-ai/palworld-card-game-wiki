@@ -11,6 +11,7 @@ export type Card = {
   rarity: string;
   color: CardColor;
   type: "Pal" | "Gear" | "Event" | "Structure";
+  subtype?: string;
   cost: number;
   power?: number | null;
   strike?: number | null;
@@ -151,7 +152,7 @@ const officialCards = officialCardData as Card[];
 
 export const cards: Card[] = officialCards.map((card) => {
   const editorial = editorialCards.find((item) => item.number === card.number);
-  return editorial ? { ...card, ...editorial, image: card.image } : card;
+  return editorial ? { ...card, summary: editorial.summary, hasGuide: true } : card;
 });
 
 export const featuredCards = editorialCards.map((editorial) => (
@@ -162,15 +163,32 @@ export function cardByNumber(number: string) {
   return cards.find((card) => card.number === number);
 }
 
-export const homepageShowcaseCards = [
-  "EBP01-002",
-  "EBP01-027",
-  "EBP01-050",
-  "EBP01-077",
-].flatMap((number) => {
-  const card = cardByNumber(number);
-  return card ? [card] : [];
+export type SpecialArtwork = {
+  card: Card;
+  image: string;
+  rarity: "SP" | "SSP";
+  variantNumber: string;
+};
+
+const specialArtworkData = [
+  { baseNumber: "EBP01-025", variantNumber: "EBP01-025SSP", rarity: "SSP", image: "/cards/showcase/EBP01-025SSP.webp" },
+  { baseNumber: "EBP01-073", variantNumber: "EBP01-073SSP", rarity: "SSP", image: "/cards/showcase/EBP01-073SSP.webp" },
+  { baseNumber: "EBP01-049", variantNumber: "EBP01-049SSP", rarity: "SSP", image: "/cards/showcase/EBP01-049SSP.webp" },
+  { baseNumber: "EBP01-002", variantNumber: "EBP01-002SP", rarity: "SP", image: "/cards/showcase/EBP01-002SP.webp" },
+  { baseNumber: "EBP01-026", variantNumber: "EBP01-026SP", rarity: "SP", image: "/cards/showcase/EBP01-026SP.webp" },
+  { baseNumber: "EBP01-051", variantNumber: "EBP01-051SP", rarity: "SP", image: "/cards/showcase/EBP01-051SP.webp" },
+  { baseNumber: "EBP01-050", variantNumber: "EBP01-050SP", rarity: "SP", image: "/cards/showcase/EBP01-050SP.webp" },
+  { baseNumber: "EBP01-075", variantNumber: "EBP01-075SP", rarity: "SP", image: "/cards/showcase/EBP01-075SP.webp" },
+] as const;
+
+export const homepageSpecialArtwork: SpecialArtwork[] = specialArtworkData.flatMap((artwork) => {
+  const card = cardByNumber(artwork.baseNumber);
+  return card ? [{ ...artwork, card }] : [];
 });
+
+export function specialArtworkByVariant(variantNumber?: string) {
+  return homepageSpecialArtwork.find((artwork) => artwork.variantNumber === variantNumber);
+}
 
 export type Deck = {
   slug: string;

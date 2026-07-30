@@ -89,6 +89,7 @@ const cards = sourceCards.map((card) => {
     rarity: card.rare,
     color: (card.color || "Colorless").toLowerCase(),
     type: card.card_kind,
+    subtype: card.card_kind_sub || "",
     cost: Number(card.cost || 0),
     power: card.power ? Number(card.power) : null,
     strike: card.attack ? Number(card.attack) : null,

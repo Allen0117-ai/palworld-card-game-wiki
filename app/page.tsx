@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CardTile } from "@/components/CardTile";
 import { DeckTile } from "@/components/DeckTile";
-import { decks, guides, homepageShowcaseCards } from "@/lib/data";
+import { decks, guides, homepageSpecialArtwork } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { HeroSearch } from "@/components/HeroSearch";
+import { SpecialCardGallery } from "@/components/SpecialCardGallery";
 import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
 
 export default function Home() {
@@ -61,15 +61,15 @@ export default function Home() {
                 <small>Official launch product</small>
               </div>
               <div className="hero-card hero-card-back">
-                <Image src="/cards/catalog/EBP01-001.png" alt="Jormuntide Ignis EBP01-001 red Pal card from the Palworld Card Game" width={400} height={559} loading="eager" />
+                <Image src="/cards/showcase/EBP01-025SSP.webp" alt="Chillet EBP01-025SSP special artwork card" width={1117} height={1560} loading="eager" />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-front">
-                <Image src="/cards/showcase/EBP01-025.png" alt="Chillet EBP01-025 red Pal card from the Palworld Card Game" width={400} height={559} loading="eager" />
+                <Image src="/cards/showcase/EBP01-002SP.webp" alt="Suzaku EBP01-002SP special artwork card" width={1117} height={1560} loading="eager" />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <div className="hero-card hero-card-third">
-                <Image src="/cards/showcase/EBP01-074.png" alt="Shadowbeak EBP01-074 purple Pal card from the Palworld Card Game" width={400} height={559} loading="eager" />
+                <Image src="/cards/showcase/EBP01-073SSP.webp" alt="Helzephyr EBP01-073SSP special artwork card" width={1117} height={1560} loading="eager" />
                 <span className="hero-card-glare" aria-hidden="true" />
               </div>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
@@ -121,17 +121,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section shell" data-reveal>
+      <section className="section shell special-gallery-section" data-reveal>
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Fresh from BP01</p>
-            <h2>Cards worth knowing</h2>
+            <p className="eyebrow">SP &amp; SSP parallel gallery</p>
+            <h2>See the cards at their best.</h2>
           </div>
           <Link className="text-link" href="/cards">View card database →</Link>
         </div>
-        <div className="card-grid">
-          {homepageShowcaseCards.map((card) => <CardTile key={card.slug} card={card} enableTilt />)}
-        </div>
+        <SpecialCardGallery artwork={homepageSpecialArtwork} />
+        <p className="asset-credit">Official card artwork shown unmodified · Parallel art shares card text with its base card · ©Bushiroad ©PALWORLD</p>
       </section>
 
       <section className="product-section" data-reveal>
