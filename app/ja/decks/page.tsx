@@ -37,11 +37,15 @@ export default function JapaneseDecksPage() {
       <header className="page-hero shell">
         <p className="eyebrow"><span>初心者向けデッキ攻略</span> · カード画像つき</p>
         <h1>パルワールドカードゲーム<br />デッキレシピ</h1>
-        <p>公式トライアルデッキ2種と、BP01の初心者向け50枚サンプルを掲載。最初に出すカード、中盤の動き、勝ちにつなげる攻め方を順番に確認できます。</p>
+        <p>公式トライアルデッキ2種と、BP01の初心者向け50枚デッキを掲載。最初に出すカード、中盤の動き、勝ちにつなげる攻め方を順番に確認できます。</p>
+        <div className="article-actions">
+          <Link className="button primary" href="/ja/tools/deck-builder">デッキを作る</Link>
+          <Link className="button ghost" href="/ja/guide/deck-building-rules">構築ルールを見る</Link>
+        </div>
       </header>
 
       <section className="deck-explorer shell">
-        <div className="deck-data-note">公式商品情報とカードデータを確認して掲載しています</div>
+        <div className="deck-data-note">商品内容とカード情報は、公式発表に基づいて掲載しています</div>
         <div className="deck-page-grid">
           {japaneseDecks.map((deck) => {
             const previewCards = deck.core.slice(0, 3).map((slug) => {
@@ -80,6 +84,23 @@ export default function JapaneseDecksPage() {
             );
           })}
         </div>
+      </section>
+
+      <section className="section shell split-section ja-deck-choice">
+        <div>
+          <p className="eyebrow"><span>最初の1個を選ぶ</span> · TD01 / TD02</p>
+          <h2>攻めるか、整えて勝つか。</h2>
+          <p className="deck-home-intro">レッド・ブルーは素材と建築物から直接的な攻めへつなぎます。グリーン・パープルは食材、回復、隠密を使い、順番を考えて有利を広げます。</p>
+          <div className="article-actions">
+            <Link className="button primary" href="/ja/guide/trial-deck-comparison">2つを詳しく比較する</Link>
+          </div>
+        </div>
+        <aside className="builder-promo">
+          <div className="builder-promo-top"><span className="mini-label">日本語カード対応</span><span className="tool-mark">50</span></div>
+          <h3>レシピを見たら、<br />自分の50枚へ。</h3>
+          <p>カードを入れ替えながら、2色と同名4枚の条件を確認。完成したデッキは端末に保存して共有できます。</p>
+          <Link className="button ink" href="/ja/tools/deck-builder">デッキビルダーを開く ↗</Link>
+        </aside>
       </section>
     </>
   );

@@ -17,7 +17,10 @@ const japaneseMobileLinks = [
   ["/ja", "ホーム"],
   ["/ja/cards", "カードリスト"],
   ["/ja/decks", "デッキレシピ"],
+  ["/ja/tools/deck-builder", "デッキビルダー"],
   ["/ja/rules", "ルール・遊び方"],
+  ["/ja/guides", "攻略ガイド"],
+  ["/ja/search", "検索"],
   ["/", "English"],
 ];
 

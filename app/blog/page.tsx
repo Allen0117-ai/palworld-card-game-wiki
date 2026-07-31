@@ -20,7 +20,7 @@ export default function GuidesPage() {
       </header>
       <div className="seo-image-panel-shell shell">
         <SeoImagePanel
-          label="Guide center preview"
+          label="Featured guide cards"
           title="Rules, cards, decks and collecting"
           caption="Representative cards from all four Palworld Card Game colors featured across our launch guides."
           cardNumbers={["EBP01-002", "EBP01-025", "EBP01-050", "EBP01-074"]}

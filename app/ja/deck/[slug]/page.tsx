@@ -92,7 +92,7 @@ export default async function JapaneseDeckDetailPage({ params }: { params: Promi
       <article className="article-shell">
         <div className="verification-strip">
           <strong>{deck.japaneseStatus}</strong>
-          <span>{deck.status === "Official Trial Deck" ? "商品内容とカード情報は公式データを確認。回し方は初心者向けに編集した攻略内容です。" : "公式大会の上位デッキではなく、ゲームを覚えるためのサンプルレシピです。"}</span>
+          <span>{deck.status === "Official Trial Deck" ? "商品内容と収録カードは公式情報に基づいています。基本の回し方を初心者向けにわかりやすく解説します。" : "初心者がゲームの流れを覚えるための参考レシピです。公式大会の入賞デッキではありません。"}</span>
         </div>
 
         <div className="deck-at-a-glance" aria-label="デッキの特徴">
@@ -127,8 +127,8 @@ export default async function JapaneseDeckDetailPage({ params }: { params: Promi
         ) : null}
 
         <div className="article-actions">
-          <Link className="button primary" href="/ja/cards">カードリストで探す</Link>
-          <a className="button ghost" href={deck.sourceUrl} target="_blank" rel="noreferrer">公式商品情報を確認する ↗</a>
+          <Link className="button primary" href={deck.recipe ? `/ja/tools/deck-builder?deck=${deck.slug}` : "/ja/tools/deck-builder"}>{deck.recipe ? "この50枚をデッキビルダーで開く" : "デッキビルダーで作る"}</Link>
+          <a className="button ghost" href={deck.japaneseSourceUrl} target="_blank" rel="noreferrer">公式商品情報を確認する ↗</a>
         </div>
 
         <section className="deck-next-steps" aria-labelledby="ja-keep-learning">
@@ -136,6 +136,7 @@ export default async function JapaneseDeckDetailPage({ params }: { params: Promi
           <h2 id="ja-keep-learning">ほかの攻略も確認</h2>
           <div>
             <Link href="/ja/rules"><span>初心者向け</span><strong>ルール・遊び方を見る →</strong></Link>
+            <Link href="/ja/guide/deck-building-rules"><span>デッキ作り</span><strong>構築ルールを確認する →</strong></Link>
             {otherDecks.map((otherDeck) => (
               <Link href={`/ja/deck/${otherDeck.slug}`} key={otherDeck.slug}>
                 <span>ほかのデッキ</span><strong>{otherDeck.japaneseName} →</strong>

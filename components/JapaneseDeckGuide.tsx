@@ -52,10 +52,37 @@ export function JapaneseDeckGuide({ deck }: { deck: JapaneseDeck }) {
         </div>
       </section>
 
+      <section className="deck-guide-section" aria-labelledby="ja-deck-combos">
+        <p className="eyebrow"><span>カードの組み合わせ</span> · 先に覚える3組</p>
+        <h2 id="ja-deck-combos">一緒に使うカードを画像で確認</h2>
+        <div className="deck-combo-grid">
+          {deck.japaneseCombos.map((combo) => (
+            <article className="deck-combo-card" key={combo.title}>
+              <div className="deck-combo-images">
+                {combo.cardNumbers.map(cardForNumber).map((card) => (
+                  <Link href={`/ja/card/${card.slug}`} key={card.slug} aria-label={`${card.name}を見る`}>
+                    <Image
+                      src={card.image}
+                      alt={getJapaneseCardImageAlt(card)}
+                      width={400}
+                      height={card.type === "Structure" ? 286 : 559}
+                      sizes="96px"
+                      loading="lazy"
+                    />
+                  </Link>
+                ))}
+              </div>
+              <h3>{combo.title}</h3>
+              <p>{combo.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {recipeCards ? (
         <section className="deck-guide-section" aria-labelledby="ja-sample-deck-list">
-          <p className="eyebrow"><span>サンプルレシピ</span> · メインデッキ50枚</p>
-          <h2 id="ja-sample-deck-list">初心者向けデッキレシピ</h2>
+          <p className="eyebrow"><span>初心者向けデッキレシピ</span> · メインデッキ50枚</p>
+          <h2 id="ja-sample-deck-list">50枚のデッキリスト</h2>
           <p className="deck-section-intro">まずはこの50枚で数回遊び、使いにくかったカードを少しずつ入れ替えてください。別にソウルデッキ10枚が必要です。</p>
           <div className="deck-recipe-grid">
             {recipeCards.map(({ card, copies }) => (
@@ -83,6 +110,9 @@ export function JapaneseDeckGuide({ deck }: { deck: JapaneseDeck }) {
             <span>{recipeCards.length}種類</span>
             <span>赤・青</span>
           </div>
+          <p className="deck-builder-cta">
+            <Link className="button primary" href={`/ja/tools/deck-builder?deck=${deck.slug}`}>この50枚をデッキビルダーで開く</Link>
+          </p>
         </section>
       ) : null}
     </>

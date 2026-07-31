@@ -124,7 +124,13 @@ export type JapaneseDeck = Deck & {
   japaneseArchetype: string;
   japaneseStatus: string;
   japaneseDescription: string;
+  japaneseSourceUrl: string;
   japaneseGamePlan: Array<{
+    title: string;
+    description: string;
+    cardNumbers: string[];
+  }>;
+  japaneseCombos: Array<{
     title: string;
     description: string;
     cardNumbers: string[];
@@ -137,6 +143,7 @@ const japaneseDeckCopy: Record<string, Omit<JapaneseDeck, keyof Deck>> = {
     japaneseArchetype: "素材・建築物・盤面コントロール",
     japaneseStatus: "公式構築済みデッキ",
     japaneseDescription: "素材を増やして建築物とギアにつなぎ、大型パルで押し切る初心者向けデッキです。",
+    japaneseSourceUrl: "https://palworld-official-cardgame.com/products/td01",
     japaneseGamePlan: [
       {
         title: "序盤は素材を増やす",
@@ -154,12 +161,30 @@ const japaneseDeckCopy: Record<string, Omit<JapaneseDeck, keyof Deck>> = {
         cardNumbers: ["ETD01-001", "ETD01-018"],
       },
     ],
+    japaneseCombos: [
+      {
+        title: "採石場 → 武器製作台",
+        description: "採石場で作った素材を武器製作台の能力に使います。資源を攻撃へ変える、このデッキで最も覚えやすい組み合わせです。",
+        cardNumbers: ["ETD01-008", "ETD01-009"],
+      },
+      {
+        title: "原始的な作業台 ＋ 氷原に轟く者 – ブリザモス",
+        description: "建築物を増やす動きがブリザモスの戦闘力につながります。序盤の準備がそのまま終盤の強さになります。",
+        cardNumbers: ["ETD01-020", "ETD01-018"],
+      },
+      {
+        title: "優しい波紋 – シルティア ＋ コールドブレス",
+        description: "手札を整えながら相手の打撃力と次のスタンドを抑え、重要なターンを守ります。",
+        cardNumbers: ["ETD01-012", "ETD01-022"],
+      },
+    ],
   },
   "green-blue-base-value": {
     japaneseName: "グリーン・パープル トライアルデッキ",
     japaneseArchetype: "食材・回復・除去",
     japaneseStatus: "公式構築済みデッキ",
     japaneseDescription: "食材を増やして回復と強化に使い、守りながら有利な盤面を作るデッキです。",
+    japaneseSourceUrl: "https://palworld-official-cardgame.com/products/td02",
     japaneseGamePlan: [
       {
         title: "食材を確保する",
@@ -168,21 +193,39 @@ const japaneseDeckCopy: Record<string, Omit<JapaneseDeck, keyof Deck>> = {
       },
       {
         title: "回復と強化を同時に進める",
-        description: "「キャンプファイヤー」でライフを回復し、そのターンのパルをまとめて強化します。",
+        description: "「キャンプファイア」でライフを回復し、そのターンのパルをまとめて強化します。",
         cardNumbers: ["ETD02-009", "ETD02-006"],
       },
       {
         title: "ブロックを避けて攻める",
-        description: "ヤミトバリのステルスとジオラーヴァの弱体化・除去を使い、相手の守りを崩します。",
+        description: "ヤミトバリの隠密とジオラーヴァの弱体化・除去を使い、相手の守りを崩します。",
         cardNumbers: ["ETD02-018", "ETD02-012"],
+      },
+    ],
+    japaneseCombos: [
+      {
+        title: "ベリー農園 → キャンプファイア",
+        description: "ベリー農園で食材と手札を増やし、キャンプファイアで回復と全体強化に変えます。",
+        cardNumbers: ["ETD02-008", "ETD02-009"],
+      },
+      {
+        title: "溢れる愛情 – ラブラドンがヤミトバリを守る",
+        description: "挑発を持つラブラドンで攻撃を受け、隠密を持つヤミトバリが安全に攻撃するターンを増やします。",
+        cardNumbers: ["ETD02-006", "ETD02-018"],
+      },
+      {
+        title: "ジオラーヴァ ＋ お宝の予感 – ダリザード",
+        description: "登場時に相手パルの戦闘力を下げ、攻撃時の能力で低い戦闘力のパルをまとめて処理します。自分の盤面も先に確認します。",
+        cardNumbers: ["ETD02-012", "ETD02-014"],
       },
     ],
   },
   "mono-red-pal-rush": {
     japaneseName: "BP01 レッド・ブルー 建築物デッキ",
     japaneseArchetype: "素材・建築物・直接ダメージ",
-    japaneseStatus: "初心者向けサンプルレシピ",
-    japaneseDescription: "BP01の赤と青を使った50枚のサンプルです。素材を増やし、建築物と直接ダメージで主導権を取ります。",
+    japaneseStatus: "初心者向けデッキレシピ",
+    japaneseDescription: "BP01の赤と青を使った初心者向けの50枚デッキです。素材を増やし、建築物と直接ダメージで主導権を取ります。",
+    japaneseSourceUrl: "https://palworld-official-cardgame.com/cardlist/",
     japaneseGamePlan: [
       {
         title: "軽いパルと建築物から始める",
@@ -198,6 +241,23 @@ const japaneseDeckCopy: Record<string, Omit<JapaneseDeck, keyof Deck>> = {
         title: "大型パルで詰める",
         description: "スザクとアズレーンで攻撃の質を上げ、最後のライフを狙います。",
         cardNumbers: ["EBP01-002", "EBP01-029"],
+      },
+    ],
+    japaneseCombos: [
+      {
+        title: "原始的な炉 ＋ 宝箱発見！",
+        description: "赤の建築物とギアを探しながら素材を増やし、毎ターンの動きを安定させます。",
+        cardNumbers: ["EBP01-016", "EBP01-024"],
+      },
+      {
+        title: "聖火台 ＋ 灼熱のナミダ – ラヴィ",
+        description: "赤のパルを登場させるたびに素材を増やし、ラヴィ自身の登場時能力でも追加の素材を確保します。",
+        cardNumbers: ["EBP01-017", "EBP01-012"],
+      },
+      {
+        title: "業火の翼 – スザク ＋ 触るな危険 – ボルトラ",
+        description: "スザクがバトル以外のダメージを200増やし、ボルトラの登場時ダメージを700にします。",
+        cardNumbers: ["EBP01-002", "EBP01-008"],
       },
     ],
   },

@@ -49,6 +49,15 @@ const publicRoutes = [
   "/ja/cards",
   "/ja/decks",
   "/ja/rules",
+  "/ja/search",
+  "/ja/guides",
+  "/ja/tools/deck-builder",
+  "/ja/guide/how-to-play",
+  "/ja/guide/deck-building-rules",
+  "/ja/guide/trial-deck-comparison",
+  "/ja/guide/bp01-booster-box",
+  "/ja/guide/card-list-guide",
+  "/ja/guide/keyword-glossary",
   ...launchCards.map((card) => `/card/${card.slug}`),
   ...launchCards.map((card) => `/ja/card/${card.slug}`),
   "/deck/red-blue-launch-pressure",
@@ -129,6 +138,39 @@ test("Japanese pages use native copy, Japanese card data and reciprocal hreflang
   assert.match(englishCardHtml, /hrefLang="ja" href="https:\/\/palworldcardgame\.wiki\/ja\/card\/jormuntide-ignis-savage-lava-dragon"/);
 });
 
+test("Japanese edition has full search, official Q&A, guides and deck building", async () => {
+  const homeHtml = await (await render("/ja")).text();
+  const rulesHtml = await (await render("/ja/rules?q=BP01-100")).text();
+  const searchHtml = await (await render("/ja/search?q=パルパゴス")).text();
+  const builderHtml = await (await render("/ja/tools/deck-builder?deck=mono-red-pal-rush")).text();
+  const deckHtml = await (await render("/ja/deck/mono-red-pal-rush")).text();
+
+  assert.match(homeHtml, /日本語カード148枚/);
+  assert.match(homeHtml, /デッキビルダー/);
+  assert.match(homeHtml, /日本語攻略ガイド/);
+  assert.match(rulesHtml, /公式(?:日本語)?Q(?:&amp;|\\u0026)A/);
+  assert.match(rulesHtml, /冒険の始まり/);
+  assert.match(searchHtml, /攻略ガイド/);
+  assert.match(builderHtml, /50(?:<!-- -->)? \/ (?:<!-- -->)?50枚/);
+  assert.match(deckHtml, /一緒に使うカードを画像で確認/);
+  assert.match(deckHtml, /この50枚をデッキビルダーで開く/);
+});
+
+test("Japanese homepage prioritizes current official information and native product visuals", async () => {
+  const homeHtml = await (await render("/ja")).text();
+  const guidesHtml = await (await render("/ja/guides")).text();
+
+  assert.match(homeHtml, /公式最新情報/);
+  assert.match(homeHtml, /秋葉原で期間限定ストア開催/);
+  assert.match(homeHtml, /BP02「目覚めし伝説」10月30日発売/);
+  assert.match(homeHtml, /class="product-pack ja-product-pack"/);
+  assert.match(homeHtml, /公式日本語カード/);
+  assert.doesNotMatch(homeHtml, /日本語版で追加したもの/);
+  assert.doesNotMatch(homeHtml, /設計しています/);
+  assert.doesNotMatch(guidesHtml, /英語版の文章を置き換えた/);
+  assert.doesNotMatch(homeHtml, /palworld-card-game-dawn-of-palpagos-booster-pack\.webp/);
+});
+
 test("the booster box guide exposes verified product facts and structured data", async () => {
   const response = await render("/blog/palworld-booster-box");
   const html = await response.text();
@@ -184,12 +226,12 @@ test("deck discovery links homepage, deck pools and card pages in both direction
 
 test("the BP01 starter provides a complete 50-card list that opens in the builder", async () => {
   const deckHtml = await (await render("/deck/mono-red-pal-rush")).text();
-  assert.match(deckHtml, /Complete beginner deck list/);
+  assert.match(deckHtml, /Complete 50-card deck list/);
   assert.match(deckHtml, /50(?:<!-- -->)? cards/);
   assert.match(deckHtml, /Open this list in deck builder/);
 
   const builderHtml = await (await render("/tools/deck-builder?deck=mono-red-pal-rush")).text();
-  assert.match(builderHtml, /Loaded template/);
+  assert.match(builderHtml, /Starting deck loaded/);
   assert.match(builderHtml, /Red \/ Blue BP01 Structure Starter/);
   assert.match(builderHtml, /50(?:<!-- -->)? \/ (?:<!-- -->)?50 cards/);
 });
@@ -376,6 +418,17 @@ test("the complete launch card image catalog is present", async () => {
   ];
   await Promise.all(expectedCards.map((number) => (
     access(new URL(`../public/cards/catalog/${number}.png`, import.meta.url))
+  )));
+});
+
+test("the complete official Japanese card image catalog is present", async () => {
+  const japaneseCards = JSON.parse(
+    await readFile(new URL("../lib/official-cards-ja.generated.json", import.meta.url), "utf8"),
+  );
+  assert.equal(japaneseCards.length, 148);
+  assert.ok(japaneseCards.every((card) => card.image.startsWith("/cards/ja-official/")));
+  await Promise.all(japaneseCards.map((card) => (
+    access(new URL(`../public${card.image}`, import.meta.url))
   )));
 });
 

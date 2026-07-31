@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CardMagnifier } from "@/components/CardMagnifier";
 import { JapaneseCardDetailsTable } from "@/components/JapaneseCardDetailsTable";
+import { JapaneseRecentCardTracker } from "@/components/JapaneseRecentCardTracker";
 import { JsonLd } from "@/components/JsonLd";
 import {
   getJapaneseCard,
@@ -50,6 +51,7 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
 
   return (
     <>
+      <JapaneseRecentCardTracker slug={card.slug} name={card.name} number={card.japaneseNumber} />
       <JsonLd data={[
         {
           "@context": "https://schema.org",
@@ -100,7 +102,10 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
             <h2>{card.name}のカード効果</h2>
             <p>{card.ability || "このカードに効果テキストはありません。"}</p>
             <p>実際の対戦では、最新の総合ルールと公式Q&amp;Aもあわせて確認してください。</p>
-            <Link className="text-link" href="/ja/rules">ルール・遊び方を見る →</Link>
+            <div className="article-actions">
+              <Link className="text-link" href={`/ja/rules?q=${encodeURIComponent(card.japaneseNumber)}`}>このカードの公式Q&amp;Aを探す →</Link>
+              <Link className="text-link" href="/ja/tools/deck-builder">デッキビルダーで使う →</Link>
+            </div>
           </section>
 
           <section className="content-block">

@@ -393,10 +393,10 @@ const essentialRules: RuleAnswer[] = [
   {
     id: "best-deck",
     question: "What is the best deck or launch-day tier list?",
-    answer: "There is no reliable tournament meta yet. The two official Trial Decks are the only fixed complete lists at launch; treat other decks as testing ideas until verified event results exist.",
+    answer: "There is no reliable tournament meta yet. The two official Trial Decks are the only fixed complete lists at launch; other deck lists should be treated as beginner recommendations until verified event results are available.",
     category: "Decks",
     searchTerms: ["best deck", "meta deck", "tier list", "top deck", "winning list"],
-    sourceLabel: "Editorial status based on available results",
+    sourceLabel: "Current assessment based on available results",
     sourceUrl: "/decks",
     updated: "2026/07/30",
     cardNumbers: [],

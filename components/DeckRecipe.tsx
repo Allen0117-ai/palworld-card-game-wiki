@@ -18,9 +18,9 @@ export function DeckRecipe({ deck }: { deck: Deck }) {
 
   return (
     <section className="deck-guide-section" aria-labelledby="sample-deck-list">
-      <p className="eyebrow"><span>Copy-ready sample</span> · 50 Main Deck cards</p>
-      <h2 id="sample-deck-list">Complete beginner deck list</h2>
-      <p className="deck-section-intro">This is an editorial starting list, not an official tournament result. Copy it first, play five games, then change only a few cards at a time. Add the separate 10-card Soul Deck required by the rules.</p>
+      <p className="eyebrow"><span>Beginner deck list</span> · 50 Main Deck cards</p>
+      <h2 id="sample-deck-list">Complete 50-card deck list</h2>
+      <p className="deck-section-intro">Use this list as a starting point for learning the game. Play a few matches, then adjust a small number of cards at a time. The rules also require a separate 10-card Soul Deck.</p>
       <div className="deck-recipe-grid">
         {recipeCards.map(({ card, copies }) => (
           <article className="deck-recipe-card" key={card.slug}>

@@ -41,7 +41,7 @@ export function DeckExplorer({ decks }: { decks: DeckPreview[] }) {
           <option value="all">All colors</option><option value="red">Red</option><option value="blue">Blue</option>
           <option value="green">Green</option><option value="purple">Purple</option>
         </select>
-        <div className="deck-data-note">Launch-day verified · No fake meta ranking</div>
+        <div className="deck-data-note">Verified launch information · Tournament results still developing</div>
       </div>
       <div className="deck-page-grid">
         {results.map((deck) => {
@@ -67,7 +67,7 @@ export function DeckExplorer({ decks }: { decks: DeckPreview[] }) {
               <div className="deck-page-card-facts">
                 <span>3-step walkthrough</span>
                 <span>3 visual combos</span>
-                <span>{deck.hasRecipe ? "50-card sample list" : "24-card verified pool"}</span>
+                <span>{deck.hasRecipe ? "50-card beginner deck" : "24-card verified pool"}</span>
               </div>
               <Link className="text-link" href={`/deck/${deck.slug}`}>View illustrated deck guide →</Link>
             </article>

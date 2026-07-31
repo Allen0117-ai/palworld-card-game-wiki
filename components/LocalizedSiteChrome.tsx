@@ -27,12 +27,14 @@ export function LocalizedSiteHeader() {
             <span className="brand-copy">Palpagos Archive<small>パルワールドカードゲーム攻略</small></span>
           </Link>
           <nav className="desktop-nav" aria-label="メインナビゲーション">
-            <Link href="/ja/cards">カードリスト</Link>
-            <Link href="/ja/decks">デッキレシピ</Link>
-            <Link href="/ja/rules">ルール・遊び方</Link>
+            <Link href="/ja/rules">ルール</Link>
+            <Link href="/ja/cards">カード</Link>
+            <Link href="/ja/decks">デッキ</Link>
+            <Link href="/ja/guides">攻略</Link>
+            <Link href="/ja/search">検索</Link>
           </nav>
           <Link className="language-switch" href="/">English</Link>
-          <Link className="nav-cta" href="/ja/cards">カードを探す <span>◆</span></Link>
+          <Link className="nav-cta" href="/ja/tools/deck-builder">デッキを作る <span>◆</span></Link>
           <MobileNav locale="ja" />
         </div>
       </header>
@@ -81,7 +83,10 @@ export function LocalizedSiteFooter() {
             <strong>攻略メニュー</strong>
             <Link href="/ja/cards">カードリスト</Link>
             <Link href="/ja/decks">デッキレシピ</Link>
+            <Link href="/ja/tools/deck-builder">デッキビルダー</Link>
             <Link href="/ja/rules">ルール・遊び方</Link>
+            <Link href="/ja/guides">攻略ガイド</Link>
+            <Link href="/ja/search">サイト内検索</Link>
           </div>
           <div>
             <strong>サイト情報</strong>

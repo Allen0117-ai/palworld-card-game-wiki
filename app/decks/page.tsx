@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Palworld Card Game Deck Lists, Combos & Beginner Guides",
-  description: "See illustrated Palworld Card Game deck guides, three-step play plans, key card combinations, both Trial Deck pools and a complete 50-card beginner sample list.",
+  description: "See illustrated Palworld Card Game deck guides, three-step play plans, key card combinations, both Trial Deck pools and a complete 50-card beginner deck.",
   path: "/decks",
   absoluteTitle: true,
 });
@@ -39,7 +39,7 @@ export default function DecksPage() {
       <header className="page-hero shell">
         <p className="eyebrow"><span>Illustrated deck center</span> · Updated July 31, 2026</p>
         <h1>See the cards.<br />Learn the sequence.</h1>
-        <p>Choose between two official Trial Deck guides and one complete 50-card BP01 beginner sample. Every guide shows what to play early, how the key cards combine and how the deck tries to finish.</p>
+        <p>Choose between two official Trial Deck guides and one complete 50-card BP01 beginner deck. Every guide shows what to play early, how the key cards combine and how the deck aims to finish.</p>
       </header>
       <div className="seo-image-panel-shell shell">
         <SeoImagePanel

@@ -1,74 +1,45 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const cardListUrl = "https://palworldtcg.gg/ja/cards";
-const cardPageBase = "https://palworldtcg.gg/ja/card/";
-const imageBase = "https://palworldtcg.gg/img/card-images/official/";
-const outputDirectory = join(root, "public", "cards", "ja");
+const apiBase = "https://palworld-official-cardgame.com/manage/card-list-user/list";
+const imageBase = "https://palworld-official-cardgame.com/wordpress/wp-content/images/cardlist/";
+const outputDirectory = join(root, "public", "cards", "ja-official");
 const outputJson = join(root, "lib", "official-cards-ja.generated.json");
-const requestBatchSize = 12;
-
-const cardRowPattern = /\{\\"slug\\":\\"([^"]+)\\",\\"set_code\\":\\"([^"]+)\\",\\"card_number\\":\\"([^"]+)\\",\\"name\\":\\"([^"]+)\\",\\"japanese_name\\":\\"([^"]+)\\"/g;
+const englishJson = join(root, "lib", "official-cards.generated.json");
 const baseCardNumberPattern = /^(BP01|TD01|TD02)-\d{3}$/;
-const japaneseEffectPattern = /\\"text\\":\\"((?:\\\\.|[^"\\])*)\\",\\"jp\\":true/;
+const requestBatchSize = 12;
+const requestHeaders = {
+  "user-agent": "PalworldCardGameWiki-JapaneseCardsSync/2.0",
+  referer: "https://palworld-official-cardgame.com/cardlist/",
+};
 
 function englishCardNumber(japaneseCardNumber) {
   return `E${japaneseCardNumber}`;
 }
 
-function readEscapedText(value) {
-  return JSON.parse(`"${value}"`).replaceAll("\\n", "\n");
+async function fetchJson(url, label) {
+  const response = await fetch(url, { headers: requestHeaders });
+  if (!response.ok) throw new Error(`${label} returned ${response.status}: ${url}`);
+  return response.json();
 }
 
-function parseCardRows(html) {
-  const rows = [...html.matchAll(cardRowPattern)]
-    .map((match) => ({
-      sourceSlug: match[1],
-      set: match[2],
-      number: match[3],
-      englishName: match[4],
-      name: match[5],
-    }))
-    .filter((card) => baseCardNumberPattern.test(card.number));
+async function fetchAllOfficialCards() {
+  const rows = [];
+  let page = 1;
+  let total = Number.POSITIVE_INFINITY;
 
-  const uniqueRows = [...new Map(rows.map((card) => [card.number, card])).values()];
-  if (uniqueRows.length !== 148) {
-    throw new Error(`Expected 148 Japanese base cards, received ${uniqueRows.length}`);
+  while (rows.length < total) {
+    const payload = await fetchJson(`${apiBase}?page=${page}&per_page=100&status=published`, `Japanese card page ${page}`);
+    if (!Array.isArray(payload.items)) throw new Error("Official Japanese card API returned invalid items");
+    rows.push(...payload.items);
+    total = Number(payload.total || rows.length);
+    if (payload.items.length === 0) break;
+    page += 1;
   }
-  return uniqueRows;
-}
 
-async function fetchText(url, label) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`${label} returned ${response.status}: ${url}`);
-  }
-  return response.text();
-}
-
-async function fetchCardDetails(card) {
-  const pageHtml = await fetchText(`${cardPageBase}${card.sourceSlug}`, card.number);
-  const effectMatch = pageHtml.match(japaneseEffectPattern);
-
-  return {
-    ...card,
-    englishNumber: englishCardNumber(card.number),
-    ability: effectMatch ? readEscapedText(effectMatch[1]) : "",
-    image: `/cards/ja/${englishCardNumber(card.number)}.png`,
-  };
-}
-
-async function downloadCardImage(card) {
-  const response = await fetch(`${imageBase}${card.set}/${card.number}.png`);
-  if (!response.ok) {
-    throw new Error(`Japanese card image returned ${response.status}: ${card.number}`);
-  }
-  await writeFile(
-    join(outputDirectory, `${card.englishNumber}.png`),
-    Buffer.from(await response.arrayBuffer()),
-  );
+  return rows.filter((card) => baseCardNumberPattern.test(card.card_number));
 }
 
 async function mapInBatches(items, mapper) {
@@ -81,9 +52,52 @@ async function mapInBatches(items, mapper) {
 
 await mkdir(outputDirectory, { recursive: true });
 
-const listHtml = await fetchText(cardListUrl, "Japanese card list");
-const cards = await mapInBatches(parseCardRows(listHtml), fetchCardDetails);
-await mapInBatches(cards, downloadCardImage);
-await writeFile(outputJson, `${JSON.stringify(cards, null, 2)}\n`);
+const englishCards = JSON.parse(await readFile(englishJson, "utf8"));
+const englishCardsByNumber = new Map(englishCards.map((card) => [card.number, card]));
+const officialCards = await fetchAllOfficialCards();
+const uniqueCards = [...new Map(officialCards.map((card) => [card.card_number, card])).values()];
 
-console.log(`Synced ${cards.length} official Japanese base cards.`);
+if (uniqueCards.length !== 148) {
+  throw new Error(`Expected 148 official Japanese base cards, received ${uniqueCards.length}`);
+}
+
+const cards = uniqueCards.map((card) => {
+  const englishNumber = englishCardNumber(card.card_number);
+  const englishCard = englishCardsByNumber.get(englishNumber);
+  if (!englishCard) throw new Error(`English card mapping is missing for ${card.card_number}`);
+
+  return {
+    sourceSlug: `${card.card_number.toLowerCase()}-${englishCard.slug}`,
+    set: card.expansion,
+    number: card.card_number,
+    englishName: englishCard.subtitle ? `${englishCard.name} – ${englishCard.subtitle}` : englishCard.name,
+    name: card.card_name,
+    englishNumber,
+    ability: card.text || "",
+    image: `/cards/ja-official/${englishNumber}.png`,
+    officialImagePath: card.picture,
+  };
+});
+
+await mapInBatches(cards, async (card) => {
+  const response = await fetch(`${imageBase}${card.officialImagePath}`, { headers: requestHeaders });
+  if (!response.ok) throw new Error(`Japanese card image returned ${response.status}: ${card.number}`);
+  await writeFile(
+    join(outputDirectory, `${card.englishNumber}.png`),
+    Buffer.from(await response.arrayBuffer()),
+  );
+});
+
+const savedCards = cards.map((card) => ({
+  sourceSlug: card.sourceSlug,
+  set: card.set,
+  number: card.number,
+  englishName: card.englishName,
+  name: card.name,
+  englishNumber: card.englishNumber,
+  ability: card.ability,
+  image: card.image,
+}));
+await writeFile(outputJson, `${JSON.stringify(savedCards, null, 2)}\n`);
+
+console.log(`Synced ${savedCards.length} official Japanese cards and card images.`);

@@ -37,7 +37,7 @@ export function DeckTile({ deck, rank }: { deck: Deck; rank: number }) {
         </span>
       </div>
       <span className="deck-score deck-status-badge">
-        <strong>{deck.status === "Official Trial Deck" ? "OFFICIAL" : "STARTER"}</strong>
+        <strong>{deck.status === "Official Trial Deck" ? "OFFICIAL" : "BEGINNER GUIDE"}</strong>
         <span>{deck.updated}</span>
         <em>Open guide →</em>
       </span>

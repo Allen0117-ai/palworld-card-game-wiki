@@ -31,9 +31,13 @@ export default async function JapaneseCardsPage({ searchParams }: { searchParams
         <p className="eyebrow"><span>日本語カードデータ</span> · BP01・TD01・TD02</p>
         <h1>パルワールドカードゲーム<br />カードリスト</h1>
         <p>全148枚の日本語カードを掲載。カード名、カード番号、色、種類、コスト、レアリティ、カード効果から探せます。</p>
+        <div className="article-actions">
+          <Link className="button primary" href="/ja/tools/deck-builder">デッキを作る</Link>
+          <Link className="button ghost" href="/ja/guide/card-list-guide">カードの探し方を見る</Link>
+        </div>
       </header>
       <div className="shell">
-        <div className="callout"><strong>はじめての方へ：</strong> カードの見方やデッキの枚数がわからない場合は、先に<Link className="text-link" href="/ja/rules">ルール・遊び方</Link>を確認してください。</div>
+        <div className="callout"><strong>はじめての方へ：</strong> カードの見方やデッキの枚数がわからない場合は、先に<Link className="text-link" href="/ja/rules">ルール・遊び方</Link>を確認してください。カード名と効果テキストは、日本語版の公式表記に基づいています。</div>
       </div>
       <JapaneseCardExplorer initialQuery={q} />
       <section className="card-link-index shell" aria-label="全カードリンク">

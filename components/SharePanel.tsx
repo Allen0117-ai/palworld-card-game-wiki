@@ -77,8 +77,8 @@ export function SharePanel({
       setPreviewUrl(URL.createObjectURL(createdFile));
       generatedAssetKeyRef.current = assetKey;
       setStatus("Your share card is ready.");
-    } catch (error) {
-      setStatus(error instanceof Error ? `${error.message} You can still share the link.` : "Preview unavailable. You can still share the link.");
+    } catch {
+      setStatus("The poster could not be created. You can still share the direct link.");
     } finally {
       setIsCreating(false);
     }

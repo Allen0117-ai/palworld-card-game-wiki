@@ -144,7 +144,7 @@ export default async function CardDetailPage({
         </section>
         <section className="content-block">
           <h2>Price & availability</h2>
-          <p>Verified market-price data is coming soon. We do not publish estimated prices without a reliable marketplace source.</p>
+          <p>Prices vary by seller and region. Check recent completed sales and trusted retailers before buying; we do not publish estimates without a reliable marketplace source.</p>
           <Link className="text-link" href="/blog/palworld-booster-box">See the Palworld Booster Box buying guide →</Link>
         </section>
       </article>

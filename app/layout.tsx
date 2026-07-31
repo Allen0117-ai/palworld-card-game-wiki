@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <Script id="localized-document-language" strategy="beforeInteractive">
           {`document.documentElement.lang = window.location.pathname === '/ja' || window.location.pathname.startsWith('/ja/') ? 'ja' : 'en';`}

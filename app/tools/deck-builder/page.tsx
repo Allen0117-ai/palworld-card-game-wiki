@@ -56,8 +56,8 @@ export default async function DeckBuilderPage({
         <h1>Palworld TCG<br />deck builder.</h1>
         <p>Search all 148 launch main-deck cards. The builder checks the 50-card limit, same-name four-copy limit and two-color rule. Drafts stay on your device.</p>
         {hasSharedDeck ? <p className="builder-template-note">A friend shared this deck with you. <strong>Remix it below, then share your version back.</strong></p> : null}
-        {!hasSharedDeck && starterDeck ? <p className="builder-template-note">Loaded template: <strong>{starterDeck.name}</strong>. Save it on this device or change cards below.</p> : null}
-        {!hasSharedDeck && !starterDeck ? <p><Link className="text-link" href="/deck/mono-red-pal-rush">New player? Start from the illustrated 50-card Red / Blue sample →</Link></p> : null}
+        {!hasSharedDeck && starterDeck ? <p className="builder-template-note">Starting deck loaded: <strong>{starterDeck.name}</strong>. Save it on this device or customize the cards below.</p> : null}
+        {!hasSharedDeck && !starterDeck ? <p><Link className="text-link" href="/deck/mono-red-pal-rush">New player? Start with the illustrated 50-card Red / Blue beginner deck →</Link></p> : null}
         <p><Link className="text-link" href="/blog/palworld-booster-box">Need BP01 cards? Compare a Booster Box with a Trial Deck →</Link></p>
       </header>
       <DeckBuilder

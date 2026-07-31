@@ -199,7 +199,7 @@ export type Deck = {
   archetype: string;
   difficulty: string;
   bestFor: string;
-  status: "Official Trial Deck" | "Editorial Launch Lab";
+  status: "Official Trial Deck" | "Beginner Deck Guide";
   description: string;
   core: string[];
   cardPool: string[];
@@ -341,8 +341,8 @@ export const decks: Deck[] = [
     archetype: "Materials · Structures · Direct damage",
     difficulty: "Beginner",
     bestFor: "Best for copying a complete 50-card list into the deck builder.",
-    status: "Editorial Launch Lab",
-    description: "A complete 50-card beginner sample list using BP01 Red and Blue cards, with a clear Material engine, card draw and direct-damage finishers.",
+    status: "Beginner Deck Guide",
+    description: "A complete 50-card beginner deck using BP01 Red and Blue cards, built around Materials, card draw and direct damage.",
     core: ["EBP01-016", "EBP01-017", "EBP01-002", "EBP01-029"].map(slugForNumber),
     cardPool: cards
       .filter((card) => card.set === "EBP01" && ["red", "blue", "colorless"].includes(card.color))

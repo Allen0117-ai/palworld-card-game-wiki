@@ -1,135 +1,104 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JapaneseRuleExplorer } from "@/components/JapaneseRuleExplorer";
 import { JsonLd } from "@/components/JsonLd";
+import {
+  JAPANESE_COMPREHENSIVE_RULES_URL,
+  JAPANESE_PLAY_GUIDE_URL,
+  JAPANESE_PLAYMAT_URL,
+  japaneseFeaturedRuleAnswers,
+  japaneseOfficialRuleCount,
+} from "@/lib/japanese-rules";
 import { createPageMetadata, JAPANESE_SOCIAL_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "パルワールドカードゲーム ルール・遊び方｜初心者向け",
-  description: "パルワールドカードゲームのルールと遊び方を初心者向けに解説。必要なカード、対戦準備、ターンの流れ、攻撃・ブロック、勝利条件、デッキ構築ルールがわかります。",
+  title: "パルワールドカードゲーム ルール・遊び方・公式Q&A検索",
+  description: `パルワールドカードゲームの遊び方を初心者向けに解説。デッキ枚数、ターンの流れ、攻撃、ダメージチェックに加え、公式日本語Q&A ${japaneseOfficialRuleCount}件を検索できます。`,
   path: "/ja/rules",
   absoluteTitle: true,
   locale: "ja",
   image: JAPANESE_SOCIAL_IMAGE,
 });
 
-const faq = [
-  {
-    question: "対戦には何が必要ですか？",
-    answer: "各プレイヤーがメインデッキ50枚、ソウルデッキ10枚、ライフや素材を記録するカウンターを用意します。",
-  },
-  {
-    question: "最初の手札は何枚ですか？",
-    answer: "メインデッキから5枚引きます。必要なら手札をすべて戻してシャッフルし、1度だけ5枚引き直せます。",
-  },
-  {
-    question: "どうなれば勝ちですか？",
-    answer: "相手のライフを0以下にするか、相手のメインデッキを0枚にすると勝利です。",
-  },
-  {
-    question: "同じ名前のカードは何枚まで入れられますか？",
-    answer: "同じカード名は4枚までです。ラッキーアイコンを持つカードは、メインデッキ全体で8枚まで入れられます。",
-  },
-];
-
 const phases = [
-  ["1", "スタンドフェイズ", "自分のベースとソウルエリアにあるカードをスタンドします。"],
+  ["1", "スタンドフェイズ", "自分の拠点とソウルエリアにあるカードをスタンドします。"],
   ["2", "ドローフェイズ", "メインデッキから1枚引きます。先攻の最初のターンは引きません。"],
   ["3", "ソウルフェイズ", "ソウルデッキから2枚をスタンド状態でソウルエリアに置きます。"],
-  ["4", "メインフェイズ", "カードを使う、能力を使う、パルをアサインする、攻撃するなど、好きな順番で行います。"],
-  ["5", "エンドフェイズ", "パルと建築物が受けているダメージを0にし、ターン終了時の処理を行います。"],
+  ["4", "メインフェイズ", "カードのプレイ、能力、アサイン、攻撃を好きな順番で行います。"],
+  ["5", "エンドフェイズ", "パルと建築物のダメージを0にし、ターン終了時の処理を行います。"],
 ];
 
-export default function JapaneseRulesPage() {
+export default async function JapaneseRulesPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q = "" } = await searchParams;
+  const hasQuery = Boolean(q.trim());
+
   return (
     <>
       <JsonLd data={{
         "@context": "https://schema.org",
         "@type": "FAQPage",
         inLanguage: "ja-JP",
-        mainEntity: faq.map((item) => ({
+        mainEntity: japaneseFeaturedRuleAnswers.map((item) => ({
           "@type": "Question",
           name: item.question,
           acceptedAnswer: { "@type": "Answer", text: item.answer },
         })),
       }} />
-      <header className="page-hero shell">
-        <p className="eyebrow"><span>初心者向けルールガイド</span> · 対戦準備から勝利条件まで</p>
-        <h1>パルワールドカードゲーム<br />ルール・遊び方</h1>
-        <p>初めて遊ぶ人が迷いやすいポイントを、対戦の順番に沿って説明します。カードの細かな処理で迷った場合は、公式の最新ルールとQ&amp;Aを優先してください。</p>
-        <div className="article-actions">
-          <a className="button ghost" href="https://palworld-official-cardgame.com/" target="_blank" rel="noreferrer">公式サイトを確認する ↗</a>
-          <Link className="button primary" href="/ja/cards">カードリストを見る</Link>
+
+      <header className={`page-hero rules-hero shell${hasQuery ? " has-query" : ""}`}>
+        <div className="rules-query-desktop-copy">
+          <p className="eyebrow"><span>ルール回答センター</span> · 公式日本語Q&amp;A収録</p>
+          <h1>遊び方から個別裁定まで、<br />ここで解決。</h1>
+          <p>初心者向けの基本ルールと、カード固有の公式Q&amp;Aをまとめて検索できます。カード番号でも、普段の言葉でも探せます。</p>
+          <div className="rules-hero-stats">
+            <div><strong>{japaneseOfficialRuleCount}</strong><span>公式Q&amp;A</span></div>
+            <div><strong>5</strong><span>ターンのフェイズ</span></div>
+            <div><strong>50+10</strong><span>デッキ枚数</span></div>
+          </div>
         </div>
+        {hasQuery && <h1 className="rules-query-mobile-title">ルール検索結果</h1>}
       </header>
 
-      <article className="article-shell">
+      <JapaneseRuleExplorer initialQuery={q} />
+
+      <article className="article-shell ja-rules-guide" id="beginner-guide">
+        <p className="eyebrow"><span>最初の対戦ガイド</span> · 5分で全体像をつかむ</p>
+        <h2>初めて遊ぶ人が、先に覚えること。</h2>
         <div className="verification-strip">
-          <strong>最初に覚える数字</strong>
+          <strong>必要な数字</strong>
           <span>メインデッキ50枚・ソウルデッキ10枚・初期ライフ10・初期手札5枚です。</span>
         </div>
 
         <h2>対戦前の準備</h2>
         <ol>
-          <li>メインデッキ50枚をよくシャッフルし、裏向きで置きます。</li>
-          <li>ソウルデッキ10枚を、メインデッキとは別に置きます。</li>
-          <li>お互いのライフを10にします。</li>
-          <li>先攻・後攻を決め、メインデッキから5枚引きます。</li>
-          <li>手札を引き直す場合は5枚すべてを戻し、シャッフルして5枚引きます。引き直しは1回だけです。</li>
+          <li>メインデッキ50枚とソウルデッキ10枚を分けて置きます。</li>
+          <li>ライフを10にし、先攻・後攻を決めます。</li>
+          <li>後攻プレイヤーはソウル1枚を、スタンド状態でソウルエリアに置きます。</li>
+          <li>お互いにメインデッキから5枚引きます。引き直しは5枚すべてを戻し、1度だけ行えます。</li>
         </ol>
 
         <h2>ターンの流れ</h2>
-        <p>自分のターンは5つのフェイズで進みます。最初は「使ったカードを戻す → 1枚引く → ソウルを増やす → 行動する → 終了」と覚えれば大丈夫です。</p>
+        <p>「起こす → 引く → ソウルを増やす → 行動する → 終了」の順で覚えると迷いません。</p>
         <div className="phase-list">
           {phases.map(([number, name, detail]) => (
             <div key={number}><span>{number}</span><strong>{name}</strong><p>{detail}</p></div>
           ))}
         </div>
 
-        <h2>カードを使う方法</h2>
-        <p>カードや能力のコストは、主にソウルをレストして支払います。パルはベースに出して戦い、建築物にはパルをアサインして能力を使います。素材や食材は、一部のカードが作る専用カウンターです。</p>
-        <div className="glossary-list">
-          <div><dt>スタンド</dt><dd>カードが縦向きで、行動に使える状態です。</dd></div>
-          <div><dt>レスト</dt><dd>カードを横向きにした状態です。攻撃やコストの支払いでレストします。</dd></div>
-          <div><dt>アサイン</dt><dd>自分のパルを建築物に置き、その仕事や能力に使うことです。</dd></div>
-          <div><dt>クイック</dt><dd>バトル中の決められたタイミングでも使えるカードや能力です。</dd></div>
+        <h2>攻撃と勝利条件</h2>
+        <p>スタンド状態のパルをレストして攻撃します。相手プレイヤー、相手の建築物、または基本的にレスト状態の相手パルを選べます。相手のライフを0以下にするか、相手のメインデッキを0枚にすると勝利です。</p>
+        <div className="callout"><strong>迷いやすい点：</strong>登場したターンのパルも、スタンド状態なら攻撃できます。先攻の最初のターンに飛ばすのはドローフェイズです。</div>
+
+        <h2>公式ルール資料</h2>
+        <p>細かな処理や大会での裁定は更新される場合があります。必ず最新版の公式資料を優先してください。</p>
+        <div className="official-rule-links">
+          <a href={JAPANESE_PLAY_GUIDE_URL} target="_blank" rel="noreferrer"><span>初心者向け</span><strong>公式プレイガイド PDF ↗</strong></a>
+          <a href={JAPANESE_COMPREHENSIVE_RULES_URL} target="_blank" rel="noreferrer"><span>詳細ルール</span><strong>総合ルール PDF ↗</strong></a>
+          <a href={JAPANESE_PLAYMAT_URL} target="_blank" rel="noreferrer"><span>対戦準備</span><strong>公式プレイマット PDF ↗</strong></a>
         </div>
-
-        <h2>攻撃・ブロック・ダメージ</h2>
-        <p>スタンド状態のパルをレストすると、相手プレイヤーか相手のスタンド状態のパルを攻撃できます。相手は条件を満たすパルでブロックでき、クイックやインタラプトを使うタイミングを確認したあと、バトルを解決します。</p>
-        <p>プレイヤーへの攻撃が通った場合は、攻撃したパルの打撃力と同じ枚数まで、相手のメインデッキ上から1枚ずつ墓地に置いてダメージチェックを行います。途中でラッキーアイコンが出ると、その攻撃によるライフ減少は発生しません。</p>
-
-        <h2>勝利条件</h2>
-        <ul>
-          <li>相手のライフが0以下になった。</li>
-          <li>相手のメインデッキが0枚になった。</li>
-        </ul>
-        <p>両方のプレイヤーが同時に敗北条件を満たした場合は引き分けです。</p>
-
-        <h2>デッキ構築ルール</h2>
-        <ul>
-          <li>メインデッキはちょうど50枚。</li>
-          <li>ソウルデッキは別に10枚。</li>
-          <li>メインデッキの色は2色まで。無色は色数に含みません。</li>
-          <li>同じカード名は4枚まで。</li>
-          <li>ラッキーアイコンを持つカードは合計8枚まで。</li>
-        </ul>
-
-        <h2>よくある質問</h2>
-        <dl className="glossary-list">
-          {faq.map((item) => (
-            <div key={item.question}>
-              <dt>{item.question}</dt>
-              <dd>{item.answer}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <div className="source-panel">
-          <h2>公式情報について</h2>
-          <p>カードの個別処理や大会ルールは更新される場合があります。迷ったときは公式サイトの総合ルールとQ&amp;Aを確認してください。</p>
-          <div>
-            <a href="https://palworld-official-cardgame.com/" target="_blank" rel="noreferrer">パルワールドカードゲーム公式サイト ↗</a>
-          </div>
+        <div className="article-actions">
+          <Link className="button primary" href="/ja/guide/how-to-play">遊び方を詳しく読む</Link>
+          <Link className="button ghost" href="/ja/tools/deck-builder">デッキを作る</Link>
         </div>
       </article>
     </>

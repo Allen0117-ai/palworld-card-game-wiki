@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return createPageMetadata({
     title: isOfficialTrialDeck
       ? `${deck.name.replace(" Guide", "")} List & Guide – Palworld TCG`
-      : "Red / Blue BP01 Starter Deck – Complete 50-Card List",
+      : "Red / Blue BP01 Beginner Deck – Complete 50-Card List",
     description: isOfficialTrialDeck
       ? `See all 24 unique ${deck.colors.join("/")} Main Deck cards, product contents, key combos and a beginner game plan for this Palworld TCG Trial Deck.`
       : deck.description,
@@ -80,7 +80,7 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
       <article className="article-shell">
         <div className="verification-strip">
           <strong>{deck.status}</strong>
-          <span>{deck.status === "Official Trial Deck" ? "Product and card facts are verified. Strategy is our plain-English editorial analysis." : "This is a testing framework, not a tournament result or meta ranking."}</span>
+          <span>{deck.status === "Official Trial Deck" ? "Product and card facts are verified. Strategy guidance is written for new players." : "A beginner-friendly deck list based on the current card pool. It is not a tournament result or tier ranking."}</span>
         </div>
         <div className="deck-at-a-glance" aria-label="Deck overview">
           <div><span>Colors</span><strong>{deck.colors.join(" + ")}</strong></div>
@@ -108,7 +108,7 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
             </div>
           </section>
         )}
-        <div className="callout"><strong>Freshness note:</strong> The game launched on July 30, 2026. Tournament results are not yet mature enough for honest tier rankings; this page will be updated when official deck lists and meaningful event data appear.</div>
+        <div className="callout"><strong>Current information:</strong> Tournament results are still emerging. This guide will be updated when reliable event data becomes available.</div>
         <div className="article-actions">
           <Link className="button primary" href={deck.recipe ? `/tools/deck-builder?deck=${deck.slug}` : "/tools/deck-builder"}>
             {deck.recipe ? "Open this 50-card list" : "Customize in deck builder"}

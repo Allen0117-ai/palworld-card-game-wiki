@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { cards, decks, guides } from "@/lib/data";
+import { japaneseGuides } from "@/lib/japanese-guides";
 
 const baseUrl = "https://palworldcardgame.wiki";
 
@@ -37,14 +38,42 @@ function localizedSitemapEntries(path: string, lastModified: string): MetadataRo
   ];
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+function localizedSitemapPairEntries(englishPath: string, japanesePath: string, lastModified: string): MetadataRoute.Sitemap {
+  const languages = {
+    en: `${baseUrl}${englishPath}`,
+    ja: `${baseUrl}${japanesePath}`,
+    "x-default": `${baseUrl}${englishPath}`,
+  };
   return [
-    ...["", "/rules", "/cards", "/decks"].flatMap((path) => localizedSitemapEntries(path, "2026-07-31")),
-    ...["/cards/pals", "/tools/deck-builder", "/tools/dawn-of-palpagos-checklist", "/blog", "/resources", "/search", "/about", "/privacy"]
+    { ...sitemapEntry(englishPath, lastModified), alternates: { languages } },
+    { ...sitemapEntry(japanesePath, lastModified), alternates: { languages } },
+  ];
+}
+
+const japaneseGuidePairs: Record<string, string> = {
+  "how-to-play": "how-to-play-palworld-card-game",
+  "deck-building-rules": "palworld-card-game-deck-building-rules",
+  "trial-deck-comparison": "red-blue-vs-green-purple-trial-deck",
+  "bp01-booster-box": "palworld-booster-box",
+  "card-list-guide": "dawn-of-palpagos-card-list-guide",
+  "keyword-glossary": "palworld-card-game-keyword-glossary",
+};
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const localizedEnglishGuideSlugs = new Set(Object.values(japaneseGuidePairs));
+  return [
+    ...["", "/rules", "/cards", "/decks", "/tools/deck-builder", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-07-31")),
+    ...localizedSitemapPairEntries("/blog", "/ja/guides", "2026-07-31"),
+    ...["/cards/pals", "/tools/dawn-of-palpagos-checklist", "/resources", "/about", "/privacy"]
       .map((path) => sitemapEntry(path, "2026-07-31")),
     ...cards.flatMap((card) => localizedSitemapEntries(`/card/${card.slug}`, "2026-07-30")),
     ...decks.flatMap((deck) => localizedSitemapEntries(`/deck/${deck.slug}`, deck.modified)),
-    ...guides.map((guide) => sitemapEntry(
+    ...japaneseGuides.flatMap((guide) => localizedSitemapPairEntries(
+      `/blog/${japaneseGuidePairs[guide.slug]}`,
+      `/ja/guide/${guide.slug}`,
+      guide.updated,
+    )),
+    ...guides.filter((guide) => !localizedEnglishGuideSlugs.has(guide.slug)).map((guide) => sitemapEntry(
       `/blog/${guide.slug}`,
       guide.modified || guide.published || guide.updated,
     )),

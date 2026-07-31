@@ -38,15 +38,33 @@ export function absoluteSiteUrl(path: string) {
   return new URL(path, SITE_URL).toString();
 }
 
+const localizedPathPairs: Array<[string, string]> = [
+  ["/", "/ja"],
+  ["/cards", "/ja/cards"],
+  ["/decks", "/ja/decks"],
+  ["/rules", "/ja/rules"],
+  ["/tools/deck-builder", "/ja/tools/deck-builder"],
+  ["/search", "/ja/search"],
+  ["/blog", "/ja/guides"],
+  ["/blog/how-to-play-palworld-card-game", "/ja/guide/how-to-play"],
+  ["/blog/palworld-card-game-deck-building-rules", "/ja/guide/deck-building-rules"],
+  ["/blog/red-blue-vs-green-purple-trial-deck", "/ja/guide/trial-deck-comparison"],
+  ["/blog/palworld-booster-box", "/ja/guide/bp01-booster-box"],
+  ["/blog/dawn-of-palpagos-card-list-guide", "/ja/guide/card-list-guide"],
+  ["/blog/palworld-card-game-keyword-glossary", "/ja/guide/keyword-glossary"],
+];
+
 function getLocalizedAlternates(path: string) {
-  const englishPath = path === "/ja" ? "/" : path.startsWith("/ja/") ? path.slice(3) : path;
-  const isLocalizedPage = ["/", "/cards", "/decks", "/rules"].includes(englishPath)
-    || englishPath.startsWith("/card/")
-    || englishPath.startsWith("/deck/");
+  let pair = localizedPathPairs.find(([englishPath, japanesePath]) => path === englishPath || path === japanesePath);
+  if (!pair && (path.startsWith("/card/") || path.startsWith("/deck/"))) {
+    pair = [path, `/ja${path}`];
+  }
+  if (!pair && (path.startsWith("/ja/card/") || path.startsWith("/ja/deck/"))) {
+    pair = [path.slice(3), path];
+  }
+  if (!pair) return undefined;
 
-  if (!isLocalizedPage) return undefined;
-
-  const japanesePath = englishPath === "/" ? "/ja" : `/ja${englishPath}`;
+  const [englishPath, japanesePath] = pair;
   return {
     en: absoluteSiteUrl(englishPath),
     ja: absoluteSiteUrl(japanesePath),

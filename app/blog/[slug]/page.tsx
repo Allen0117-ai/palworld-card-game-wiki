@@ -236,7 +236,7 @@ const guideContent: Record<string, React.ReactNode> = {
       <h2>There is no required card-type ratio</h2>
       <p>The official Q&amp;A confirms that a deck may use any number of Pal, Gear, Structure and Event cards as long as all construction rules are followed. A 50-Pal deck is technically legal, but legal does not mean consistent.</p>
       <h2>A beginner-friendly starting structure</h2>
-      <p>There is no official required ratio, so treat this as an editorial testing framework rather than a rule:</p>
+      <p>There is no official required ratio, so use this as a beginner-friendly starting point rather than a deck-building rule:</p>
       <ul>
         <li><strong>Early plays:</strong> enough cost 2-4 cards to avoid passing the first useful turns.</li>
         <li><strong>Engines:</strong> cards that draw, create Materials or Ingredients, or repeatedly improve the Base.</li>
@@ -483,7 +483,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Use the official event calendar and Bushi Navi for a real registration.</li>
         <li>Use our card database only for cards already published in the official list.</li>
       </ul>
-      <div className="callout"><strong>Tracker rule:</strong> confirmed dates are shown as facts. Teasers, retailer placeholders and community speculation stay labeled until an official source supports them.</div>
+      <div className="callout"><strong>How updates are verified:</strong> confirmed dates are shown as facts. Teasers, retailer listings and community speculation remain clearly labeled until an official source supports them.</div>
     </>
   ),
 
@@ -540,7 +540,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Change only a few slots, then record whether the new card was useful when drawn.</li>
       </ol>
       <h2>Why there is no honest launch-day tier list yet</h2>
-      <p>Card text can suggest strong synergies, but a real tier list needs repeated tournament results, known lists and matchup data. This guide describes verified mechanics and an editorial starting point; it does not present first-day opinions as a settled meta.</p>
+      <p>Card text can suggest strong synergies, but a reliable tier list needs repeated tournament results, known lists and matchup data. This guide covers verified mechanics and a beginner starting point; it does not present launch-day opinions as a settled meta.</p>
       <Link className="button primary" href="/tools/deck-builder">Test a two-color list</Link>
     </>
   ),
