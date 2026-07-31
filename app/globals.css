@@ -2793,8 +2793,9 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   .share-preview-image,
   .share-preview-loading { width: min(190px, 100%); }
   .share-dialog-copy { min-height: 0; justify-content: flex-start; padding: 25px 16px 0; }
+  .share-dialog-copy .eyebrow { margin-bottom: 9px; }
   .share-dialog-copy h2 { margin-bottom: 10px; font-size: 32px; }
-  .share-dialog-copy > p:not(.eyebrow, .share-status) { font-size: 13px; line-height: 1.6; }
+  .share-dialog-copy > p:not(.eyebrow, .share-status) { display: none; }
   .share-dialog-actions {
     order: 2;
     position: sticky;
