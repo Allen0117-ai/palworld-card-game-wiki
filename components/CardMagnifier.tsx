@@ -5,11 +5,13 @@ import { useRef } from "react";
 
 type CardMagnifierProps = {
   alt: string;
+  hintLabel?: string;
   isFoil?: boolean;
+  isLandscape?: boolean;
   src: string;
 };
 
-export function CardMagnifier({ alt, isFoil = false, src }: CardMagnifierProps) {
+export function CardMagnifier({ alt, hintLabel = "Move to inspect", isFoil = false, isLandscape = false, src }: CardMagnifierProps) {
   const lensRef = useRef<HTMLSpanElement>(null);
 
   function moveLens(event: React.PointerEvent<HTMLDivElement>) {
@@ -32,7 +34,7 @@ export function CardMagnifier({ alt, isFoil = false, src }: CardMagnifierProps) 
       onPointerMove={moveLens}
       onPointerLeave={(event) => event.currentTarget.classList.remove("is-magnifying")}
     >
-      <Image src={src} alt={alt} width={400} height={559} priority />
+      <Image src={src} alt={alt} width={400} height={isLandscape ? 286 : 559} priority />
       {isFoil && <span className="detail-foil" aria-hidden="true" />}
       <span
         ref={lensRef}
@@ -40,7 +42,7 @@ export function CardMagnifier({ alt, isFoil = false, src }: CardMagnifierProps) 
         style={{ backgroundImage: `url("${src}")` }}
         aria-hidden="true"
       />
-      <span className="magnifier-hint" aria-hidden="true">Move to inspect</span>
+      <span className="magnifier-hint" aria-hidden="true">{hintLabel}</span>
     </div>
   );
 }

@@ -33,7 +33,6 @@ export default function Home() {
           width={1915}
           height={821}
           sizes="100vw"
-          preload
           fetchPriority="high"
           aria-hidden="true"
         />
@@ -128,10 +127,35 @@ export default function Home() {
           <Link href="/blog/how-to-play-palworld-card-game"><span>01 · First game</span><strong>How do I play?</strong><p>Setup, phases, attacks, blocking and winning.</p></Link>
           <Link href="/blog/red-blue-vs-green-purple-trial-deck"><span>02 · Buying</span><strong>Which Trial Deck?</strong><p>Red/Blue and Green/Purple compared clearly.</p></Link>
           <Link href="/blog/palworld-card-game-deck-building-rules"><span>03 · Rules</span><strong>How do I build a legal deck?</strong><p>50 cards, 10 Souls, two colors and copy limits.</p></Link>
-          <Link href="/cards"><span>04 · Database</span><strong>Find a card</strong><p>Search all BP01 and Trial Deck main-deck cards.</p></Link>
-          <Link href="/blog/palworld-card-game-keyword-glossary"><span>05 · Card text</span><strong>What does this keyword mean?</strong><p>Interrupt, Quick, Taunt, Stealth and more.</p></Link>
+          <Link href="/tools/dawn-of-palpagos-checklist"><span>04 · Collection</span><strong>Track my BP01 set</strong><p>Check off all 162 base, parallel and special Soul entries.</p></Link>
+          <Link href="/deck/mono-red-pal-rush"><span>05 · Ready deck</span><strong>Can I copy a complete deck?</strong><p>Open an illustrated 50-card beginner list and load it into the builder.</p></Link>
           <Link href="/rules"><span>06 · Rules answer center</span><strong>Can I ask a specific question?</strong><p>Search {featuredRuleAnswers.length} essentials and all {officialRuleCount} official Q&amp;As.</p></Link>
         </div>
+      </section>
+
+      <section className="section shell split-section" data-reveal>
+        <div>
+          <div className="section-heading compact">
+            <div>
+              <p className="eyebrow">Launch deck center</p>
+              <h2>See the cards. Learn the plan.</h2>
+            </div>
+            <Link className="text-link" href="/decks">View illustrated deck guides →</Link>
+          </div>
+          <p className="deck-home-intro">Start with a verified Trial Deck or copy the complete 50-card beginner list. Every guide includes a three-step game plan and visual card combinations.</p>
+          <div className="deck-list">
+            {decks.map((deck, index) => <DeckTile key={deck.slug} deck={deck} rank={index + 1} />)}
+          </div>
+        </div>
+        <aside className="builder-promo">
+          <div className="builder-promo-top">
+            <span className="mini-label">Free tool</span>
+            <span className="tool-mark">50</span>
+          </div>
+          <h3>Your next deck<br />starts here.</h3>
+          <p>Search all 148 launch cards, stay inside the two-color and copy limits, and save a legal list on your device.</p>
+          <Link className="button ink" href="/tools/deck-builder">Start building <span>↗</span></Link>
+        </aside>
       </section>
 
       <section className="latest-updates shell" data-reveal>
@@ -150,10 +174,10 @@ export default function Home() {
             <strong>Stock and launch-price warning</strong>
             <p>Use official retailers, call before travelling and do not treat marketplace asking prices as settled value.</p>
           </Link>
-          <Link href="/blog/red-blue-vs-green-purple-trial-deck">
-            <span>Trial Deck FAQ · Jul 31</span>
-            <strong>Your parallel card keeps the deck playable</strong>
-            <p>Every Trial Deck still contains a complete 50-card Main Deck when one card is replaced by a TSR or TSP version.</p>
+          <Link href="/blog/dawn-of-palpagos-chase-cards">
+            <span>Collector guide · Jul 31</span>
+            <strong>Four SSP chase cards confirmed</strong>
+            <p>See exact card numbers, standout SP artwork and safer ways to check launch prices.</p>
           </Link>
         </div>
       </section>
@@ -180,6 +204,10 @@ export default function Home() {
               <Link className="button primary" href="/blog/palworld-booster-box">Read the Booster Box guide <span>→</span></Link>
               <a className="button ghost" href="https://en.palworld-official-cardgame.com/products/bp01" target="_blank" rel="noreferrer">Official product page <span>↗</span></a>
             </div>
+            <div className="product-collector-links" aria-label="Collector guides">
+              <Link className="text-link" href="/blog/dawn-of-palpagos-chase-cards">View chase cards →</Link>
+              <Link className="text-link" href="/blog/dawn-of-palpagos-pull-rates">Check pull rates →</Link>
+            </div>
           </div>
           <div className="product-pack">
             <Image src="/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp" alt="Palworld Card Game Dawn of Palpagos BP01 booster pack" width={828} height={1713} loading="lazy" />
@@ -189,31 +217,6 @@ export default function Home() {
           </div>
         </div>
         <p className="asset-credit shell">Official promotional assets shown unmodified · ©Bushiroad ©PALWORLD</p>
-      </section>
-
-      <section className="section shell split-section" data-reveal>
-        <div>
-          <div className="section-heading compact">
-            <div>
-              <p className="eyebrow">Launch deck center</p>
-              <h2>See the cards. Learn the plan.</h2>
-            </div>
-            <Link className="text-link" href="/decks">View illustrated deck guides →</Link>
-          </div>
-          <p className="deck-home-intro">Start with a verified Trial Deck or copy the complete 50-card beginner list. Every guide includes a three-step game plan and visual card combinations.</p>
-          <div className="deck-list">
-            {decks.map((deck, index) => <DeckTile key={deck.slug} deck={deck} rank={index + 1} />)}
-          </div>
-        </div>
-        <aside className="builder-promo">
-          <div className="builder-promo-top">
-            <span className="mini-label">Free tool</span>
-            <span className="tool-mark">50</span>
-          </div>
-          <h3>Your next deck<br />starts here.</h3>
-          <p>Search all 148 launch cards, stay inside the two-color and copy limits, and save a legal list on your device.</p>
-          <Link className="button ink" href="/tools/deck-builder">Start building <span>↗</span></Link>
-        </aside>
       </section>
 
       <section className="section shell" data-reveal>

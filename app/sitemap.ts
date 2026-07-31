@@ -15,13 +15,35 @@ function sitemapEntry(path: string, lastModified: string): MetadataRoute.Sitemap
   return { url: `${baseUrl}${path}`, lastModified: contentDate(lastModified) };
 }
 
+function localizedSitemapEntry(path: string, lastModified: string): MetadataRoute.Sitemap[number] {
+  const japanesePath = path ? `/ja${path}` : "/ja";
+  return {
+    ...sitemapEntry(path, lastModified),
+    alternates: {
+      languages: {
+        en: `${baseUrl}${path}`,
+        ja: `${baseUrl}${japanesePath}`,
+        "x-default": `${baseUrl}${path}`,
+      },
+    },
+  };
+}
+
+function localizedSitemapEntries(path: string, lastModified: string): MetadataRoute.Sitemap {
+  const englishEntry = localizedSitemapEntry(path, lastModified);
+  return [
+    englishEntry,
+    { ...englishEntry, url: `${baseUrl}${path ? `/ja${path}` : "/ja"}` },
+  ];
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    sitemapEntry("", "2026-07-31"),
-    ...["/rules", "/cards", "/cards/pals", "/decks", "/tools/deck-builder", "/tools/dawn-of-palpagos-checklist", "/blog", "/resources", "/search", "/about", "/privacy"]
+    ...["", "/rules", "/cards", "/decks"].flatMap((path) => localizedSitemapEntries(path, "2026-07-31")),
+    ...["/cards/pals", "/tools/deck-builder", "/tools/dawn-of-palpagos-checklist", "/blog", "/resources", "/search", "/about", "/privacy"]
       .map((path) => sitemapEntry(path, "2026-07-31")),
-    ...cards.map((card) => sitemapEntry(`/card/${card.slug}`, "2026-07-30")),
-    ...decks.map((deck) => sitemapEntry(`/deck/${deck.slug}`, deck.modified)),
+    ...cards.flatMap((card) => localizedSitemapEntries(`/card/${card.slug}`, "2026-07-30")),
+    ...decks.flatMap((deck) => localizedSitemapEntries(`/deck/${deck.slug}`, deck.modified)),
     ...guides.map((guide) => sitemapEntry(
       `/blog/${guide.slug}`,
       guide.modified || guide.published || guide.updated,

@@ -75,6 +75,7 @@ export default async function CardDetailPage({
           src={displayImage}
           alt={`${getCardImageAlt(card)} detail view`}
           isFoil={Boolean(specialArtwork) || card.rarity === "RR"}
+          isLandscape={card.type === "Structure"}
         />
         <figcaption>
           {specialArtwork ? `${displayNumber} parallel artwork` : `${card.number} base artwork`}

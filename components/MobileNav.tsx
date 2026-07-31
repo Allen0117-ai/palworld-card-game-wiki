@@ -10,6 +10,7 @@ const englishMobileLinks = [
   ["/tools/deck-builder", "Deck builder"],
   ["/resources", "Sources"],
   ["/search", "Search"],
+  ["/ja", "日本語"],
 ];
 
 const japaneseMobileLinks = [
