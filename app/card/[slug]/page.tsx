@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { cards, decks, getCardImageAlt, specialArtworkByVariant } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CardMagnifier } from "@/components/CardMagnifier";
 import { CardDetailsTable } from "@/components/CardDetailsTable";
+import { SharePanel } from "@/components/SharePanel";
 import type { Metadata } from "next";
 import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
@@ -40,10 +43,17 @@ export default async function CardDetailPage({
   const displayImage = specialArtwork?.image || card.image;
   const displayNumber = specialArtwork?.variantNumber || card.number;
   const displayRarity = specialArtwork?.rarity || card.rarity;
-  const relatedDecks = decks.filter((deck) => deck.core.includes(card.slug));
+  const relatedDecks = decks.filter((deck) => (
+    deck.core.includes(card.slug)
+    || deck.recipe?.some((entry) => entry.cardNumber === card.number)
+    || (deck.status === "Official Trial Deck" && deck.cardPool.includes(card.slug))
+  ));
+  const relatedCards = cards
+    .filter((item) => item.slug !== card.slug && item.color === card.color && item.type === card.type)
+    .slice(0, 4);
 
   return (
-    <div className="detail-layout shell">
+    <>
       <JsonLd data={[
         { "@context": "https://schema.org", "@type": "Thing", name: card.name, description: card.summary, identifier: displayNumber, additionalType: `Palworld TCG ${card.type} card` },
         createBreadcrumbJsonLd([
@@ -52,6 +62,14 @@ export default async function CardDetailPage({
           { name: card.name, path: `/card/${card.slug}` },
         ]),
       ]} />
+      <div className="detail-breadcrumb-shell shell">
+        <Breadcrumbs items={[
+          { name: "Home", href: "/" },
+          { name: "Cards", href: "/cards" },
+          { name: card.name },
+        ]} />
+      </div>
+      <div className="detail-layout shell">
       <figure className="detail-art">
         <CardMagnifier
           src={displayImage}
@@ -62,6 +80,28 @@ export default async function CardDetailPage({
           {specialArtwork ? `${displayNumber} parallel artwork` : `${card.number} base artwork`}
           {" · "}Official art ©Bushiroad ©PALWORLD
         </figcaption>
+        <div className="detail-share">
+          <SharePanel
+            assetKey={`card-${displayNumber}`}
+            triggerLabel="Share this card"
+            shareUrl={`/card/${card.slug}${specialArtwork ? `?variant=${specialArtwork.variantNumber}` : ""}`}
+            shareText={`${card.name}${card.subtitle ? ` — ${card.subtitle}` : ""}: ${card.summary} Would you play it?`}
+            payload={{
+              kind: "card",
+              eyebrow: `${displayNumber} · ${displayRarity} ${card.type}`,
+              title: `${card.name}${card.subtitle ? ` — ${card.subtitle}` : ""}`,
+              body: card.summary,
+              image: displayImage,
+              accent: card.color,
+              facts: [
+                `${card.color} ${card.type}`,
+                `Cost ${card.cost}`,
+                card.power ? `${card.power} power` : "",
+                card.strike ? `Strike ${card.strike}` : "",
+              ].filter(Boolean),
+            }}
+          />
+        </div>
       </figure>
       <article className="detail-content">
         <section className="card-data-panel">
@@ -82,10 +122,32 @@ export default async function CardDetailPage({
           <Link className="button primary" href="/tools/deck-builder">Open deck builder</Link>
         </section>
         <section className="content-block">
+          <h2>Related cards to compare</h2>
+          <p>Continue with cards that share this card’s color and type.</p>
+          <div className="related-card-strip">
+            {relatedCards.map((relatedCard) => (
+              <Link href={`/card/${relatedCard.slug}`} key={relatedCard.slug}>
+                <Image
+                  src={relatedCard.image}
+                  alt={getCardImageAlt(relatedCard)}
+                  width={400}
+                  height={relatedCard.type === "Structure" ? 286 : 559}
+                  sizes="(max-width: 520px) 38vw, 120px"
+                  loading="lazy"
+                />
+                <strong>{relatedCard.name}</strong>
+                <span>{relatedCard.number}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section className="content-block">
           <h2>Price & availability</h2>
           <p>Verified market-price data is coming soon. We do not publish estimated prices without a reliable marketplace source.</p>
+          <Link className="text-link" href="/blog/palworld-booster-box">See the Palworld Booster Box buying guide →</Link>
         </section>
       </article>
-    </div>
+      </div>
+    </>
   );
 }

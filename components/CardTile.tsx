@@ -4,7 +4,8 @@ import { Card, getCardImageAlt } from "@/lib/data";
 
 export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?: boolean }) {
   const isFoil = card.rarity === "RR";
-  const className = `card-tile${isFoil ? " card-tile-foil" : ""}`;
+  const isLandscape = card.type === "Structure";
+  const className = `card-tile${isFoil ? " card-tile-foil" : ""}${isLandscape ? " card-tile-landscape" : ""}`;
   const cardPreview = (
     <>
       <div className="card-image-wrap">
@@ -13,7 +14,7 @@ export function CardTile({ card, enableTilt = false }: { card: Card; enableTilt?
           src={card.image}
           alt={getCardImageAlt(card)}
           width={400}
-          height={559}
+          height={isLandscape ? 286 : 559}
           loading="lazy"
         />
         {isFoil && <span className="card-foil" aria-hidden="true" />}

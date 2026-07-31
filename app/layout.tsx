@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Cinzel, Inter, Oxanium } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script";
 import { InteractionEffects } from "@/components/InteractionEffects";
 import { MobileNav } from "@/components/MobileNav";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { AnalyticsConsent, PrivacyChoicesButton } from "@/components/AnalyticsConsent";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
 const cinzel = Cinzel({ variable: "--font-display", subsets: ["latin"], weight: ["600", "700", "800", "900"] });
 const oxanium = Oxanium({ variable: "--font-ui", subsets: ["latin"], weight: ["600", "700", "800"] });
+const analyticsConfigured = Boolean(
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://palworldcardgame.wiki"),
@@ -26,6 +32,32 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        {analyticsConfigured ? (
+          <Script id="analytics-consent-defaults" strategy="beforeInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                ad_personalization: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                analytics_storage: 'denied',
+                wait_for_update: 500
+              });
+              gtag('set', 'allow_google_signals', false);
+              gtag('set', 'allow_ad_personalization_signals', false);
+              window.clarity = window.clarity || function () {
+                (window.clarity.q = window.clarity.q || []).push(arguments);
+              };
+              window.clarity('consentv2', {
+                ad_Storage: 'denied',
+                analytics_Storage: 'denied'
+              });
+            `}
+          </Script>
+        ) : null}
+      </head>
       <body className={`${inter.variable} ${cinzel.variable} ${oxanium.variable}`}>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <InteractionEffects />
@@ -63,6 +95,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/cards">Card database</Link>
               <Link href="/decks">Trial Deck guides</Link>
               <Link href="/tools/deck-builder">Deck builder</Link>
+              <Link href="/tools/dawn-of-palpagos-checklist">BP01 checklist</Link>
               <Link href="/rules">Rules &amp; FAQ</Link>
               <Link href="/blog">Guides</Link>
               <Link href="/resources">Source hub</Link>
@@ -71,6 +104,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <strong>Site</strong>
               <Link href="/about">About & disclaimer</Link>
               <Link href="/privacy">Privacy</Link>
+              <PrivacyChoicesButton />
               <a href="mailto:paweyan163@gmail.com">Contact</a>
             </div>
           </div>
@@ -79,6 +113,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <span>Unofficial fan site. Not affiliated with or endorsed by Pocketpair or Bushiroad.</span>
           </div>
         </footer>
+        <Analytics />
+        <AnalyticsConsent />
       </body>
     </html>
   );

@@ -1,0 +1,1460 @@
+[
+  {
+    "number": "EBP01-001",
+    "baseNumber": "EBP01-001",
+    "name": "Jormuntide Ignis – Savage Lava Dragon",
+    "rarity": "RR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-001OSR",
+    "baseNumber": "EBP01-001",
+    "name": "Jormuntide Ignis – Savage Lava Dragon",
+    "rarity": "OSR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-001SSP",
+    "baseNumber": "EBP01-001",
+    "name": "Jormuntide Ignis – Savage Lava Dragon",
+    "rarity": "SSP",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-002",
+    "baseNumber": "EBP01-002",
+    "name": "Suzaku – Hellfire Wings",
+    "rarity": "RR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-002OSR",
+    "baseNumber": "EBP01-002",
+    "name": "Suzaku – Hellfire Wings",
+    "rarity": "OSR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-002SP",
+    "baseNumber": "EBP01-002",
+    "name": "Suzaku – Hellfire Wings",
+    "rarity": "SP",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-003",
+    "baseNumber": "EBP01-003",
+    "name": "Gobfin Ignis – Blazing Hothead",
+    "rarity": "R",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-003SR",
+    "baseNumber": "EBP01-003",
+    "name": "Gobfin Ignis – Blazing Hothead",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-004",
+    "baseNumber": "EBP01-004",
+    "name": "Bushi – Ephemeral Blade",
+    "rarity": "R",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-004SR",
+    "baseNumber": "EBP01-004",
+    "name": "Bushi – Ephemeral Blade",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-005",
+    "baseNumber": "EBP01-005",
+    "name": "Reptyro – Ore Gorger",
+    "rarity": "R",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-005SR",
+    "baseNumber": "EBP01-005",
+    "name": "Reptyro – Ore Gorger",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-006",
+    "baseNumber": "EBP01-006",
+    "name": "Foxparks – Light of Courage",
+    "rarity": "U",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-006SR",
+    "baseNumber": "EBP01-006",
+    "name": "Foxparks – Light of Courage",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-007",
+    "baseNumber": "EBP01-007",
+    "name": "Kitsun – Wyrmbane Fangs",
+    "rarity": "U",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-007SR",
+    "baseNumber": "EBP01-007",
+    "name": "Kitsun – Wyrmbane Fangs",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-008",
+    "baseNumber": "EBP01-008",
+    "name": "Sparkit – Hazardous Contact",
+    "rarity": "U",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-009",
+    "baseNumber": "EBP01-009",
+    "name": "Univolt – Valiant Thunderclap",
+    "rarity": "U",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-010",
+    "baseNumber": "EBP01-010",
+    "name": "Ragnahawk – Emberwing Striker",
+    "rarity": "U",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-011",
+    "baseNumber": "EBP01-011",
+    "name": "Rooby – Brave Sparks",
+    "rarity": "C",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-012",
+    "baseNumber": "EBP01-012",
+    "name": "Flambelle – Scorching Tears",
+    "rarity": "C",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-013",
+    "baseNumber": "EBP01-013",
+    "name": "Pyrin – Cinder Steed",
+    "rarity": "C",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-014",
+    "baseNumber": "EBP01-014",
+    "name": "Blazehowl – Hellflame Defender",
+    "rarity": "C",
+    "color": "red",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-015",
+    "baseNumber": "EBP01-015",
+    "name": "Mounted Machine Gun",
+    "rarity": "R",
+    "color": "red",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-015SP",
+    "baseNumber": "EBP01-015",
+    "name": "Mounted Machine Gun",
+    "rarity": "SP",
+    "color": "red",
+    "type": "Structure",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-016",
+    "baseNumber": "EBP01-016",
+    "name": "Primitive Furnace",
+    "rarity": "U",
+    "color": "red",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-017",
+    "baseNumber": "EBP01-017",
+    "name": "Flame Cauldron",
+    "rarity": "U",
+    "color": "red",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-018",
+    "baseNumber": "EBP01-018",
+    "name": "Alarm Bell",
+    "rarity": "C",
+    "color": "red",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-019",
+    "baseNumber": "EBP01-019",
+    "name": "Foxparks' Harness",
+    "rarity": "R",
+    "color": "red",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-019SR",
+    "baseNumber": "EBP01-019",
+    "name": "Foxparks' Harness",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Gear",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-020",
+    "baseNumber": "EBP01-020",
+    "name": "Pump-Action Shotgun",
+    "rarity": "R",
+    "color": "red",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-020SR",
+    "baseNumber": "EBP01-020",
+    "name": "Pump-Action Shotgun",
+    "rarity": "SR",
+    "color": "red",
+    "type": "Gear",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-021",
+    "baseNumber": "EBP01-021",
+    "name": "Makeshift Handgun",
+    "rarity": "C",
+    "color": "red",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-022",
+    "baseNumber": "EBP01-022",
+    "name": "Stone Pickaxe",
+    "rarity": "C",
+    "color": "red",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-023",
+    "baseNumber": "EBP01-023",
+    "name": "Axel's Strategy",
+    "rarity": "RR",
+    "color": "red",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-023OSR",
+    "baseNumber": "EBP01-023",
+    "name": "Axel's Strategy",
+    "rarity": "OSR",
+    "color": "red",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-023SP",
+    "baseNumber": "EBP01-023",
+    "name": "Axel's Strategy",
+    "rarity": "SP",
+    "color": "red",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-024",
+    "baseNumber": "EBP01-024",
+    "name": "Treasure Chest Found!",
+    "rarity": "C",
+    "color": "red",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-025",
+    "baseNumber": "EBP01-025",
+    "name": "Chillet – Dragon Whisperer",
+    "rarity": "RR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-025OSR",
+    "baseNumber": "EBP01-025",
+    "name": "Chillet – Dragon Whisperer",
+    "rarity": "OSR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-025SSP",
+    "baseNumber": "EBP01-025",
+    "name": "Chillet – Dragon Whisperer",
+    "rarity": "SSP",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-026",
+    "baseNumber": "EBP01-026",
+    "name": "Relaxaurus – Hungry Gunner",
+    "rarity": "RR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-026OSR",
+    "baseNumber": "EBP01-026",
+    "name": "Relaxaurus – Hungry Gunner",
+    "rarity": "OSR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-026SP",
+    "baseNumber": "EBP01-026",
+    "name": "Relaxaurus – Hungry Gunner",
+    "rarity": "SP",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-027",
+    "baseNumber": "EBP01-027",
+    "name": "Jormuntide – Surging Sea Serpent",
+    "rarity": "R",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-027OSR",
+    "baseNumber": "EBP01-027",
+    "name": "Jormuntide – Surging Sea Serpent",
+    "rarity": "OSR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-027SP",
+    "baseNumber": "EBP01-027",
+    "name": "Jormuntide – Surging Sea Serpent",
+    "rarity": "SP",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-028",
+    "baseNumber": "EBP01-028",
+    "name": "Pengullet – Yearning for the Sky",
+    "rarity": "R",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-028SR",
+    "baseNumber": "EBP01-028",
+    "name": "Pengullet – Yearning for the Sky",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-029",
+    "baseNumber": "EBP01-029",
+    "name": "Azurobe – Water Dragon Waltz",
+    "rarity": "R",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-029SR",
+    "baseNumber": "EBP01-029",
+    "name": "Azurobe – Water Dragon Waltz",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-030",
+    "baseNumber": "EBP01-030",
+    "name": "Reptyro Cryst – Glacial Devourer",
+    "rarity": "R",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-030SR",
+    "baseNumber": "EBP01-030",
+    "name": "Reptyro Cryst – Glacial Devourer",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-031",
+    "baseNumber": "EBP01-031",
+    "name": "Penking – Mighty Warrior of the Deep",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-031SR",
+    "baseNumber": "EBP01-031",
+    "name": "Penking – Mighty Warrior of the Deep",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-032",
+    "baseNumber": "EBP01-032",
+    "name": "Fuack – Manic Wave Ripper",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-033",
+    "baseNumber": "EBP01-033",
+    "name": "Wumpo – Frostpeak Sentinel",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-034",
+    "baseNumber": "EBP01-034",
+    "name": "Teafant – Fountain of Cheer",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-035",
+    "baseNumber": "EBP01-035",
+    "name": "Mau Cryst – Harbinger of Riches",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-036",
+    "baseNumber": "EBP01-036",
+    "name": "Celaray – Loop De Loop",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-037",
+    "baseNumber": "EBP01-037",
+    "name": "Surfent – Swift Swimmer",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-038",
+    "baseNumber": "EBP01-038",
+    "name": "Cryolinx – Arctic Ordeal",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-039",
+    "baseNumber": "EBP01-039",
+    "name": "Antique Curtain",
+    "rarity": "R",
+    "color": "blue",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-039SR",
+    "baseNumber": "EBP01-039",
+    "name": "Antique Curtain",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Structure",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-040",
+    "baseNumber": "EBP01-040",
+    "name": "Antique Dresser",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-041",
+    "baseNumber": "EBP01-041",
+    "name": "Hot Spring",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-042",
+    "baseNumber": "EBP01-042",
+    "name": "Antique Mirror",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-043",
+    "baseNumber": "EBP01-043",
+    "name": "Sphere Workbench",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-044",
+    "baseNumber": "EBP01-044",
+    "name": "Pengullet Rocket Launcher",
+    "rarity": "R",
+    "color": "blue",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-044SR",
+    "baseNumber": "EBP01-044",
+    "name": "Pengullet Rocket Launcher",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Gear",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-045",
+    "baseNumber": "EBP01-045",
+    "name": "Grappling Gun",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-046",
+    "baseNumber": "EBP01-046",
+    "name": "Victor's Strategy",
+    "rarity": "RR",
+    "color": "blue",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-046OSR",
+    "baseNumber": "EBP01-046",
+    "name": "Victor's Strategy",
+    "rarity": "OSR",
+    "color": "blue",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-046SP",
+    "baseNumber": "EBP01-046",
+    "name": "Victor's Strategy",
+    "rarity": "SP",
+    "color": "blue",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-047",
+    "baseNumber": "EBP01-047",
+    "name": "Pal Sphere",
+    "rarity": "U",
+    "color": "blue",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-047SR",
+    "baseNumber": "EBP01-047",
+    "name": "Pal Sphere",
+    "rarity": "SR",
+    "color": "blue",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-048",
+    "baseNumber": "EBP01-048",
+    "name": "Aurora Guide",
+    "rarity": "C",
+    "color": "blue",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-049",
+    "baseNumber": "EBP01-049",
+    "name": "Lyleen – Blessing of the Goddess",
+    "rarity": "RR/SSP",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-049OSR",
+    "baseNumber": "EBP01-049",
+    "name": "Lyleen – Blessing of the Goddess",
+    "rarity": "OSR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-049SSP",
+    "baseNumber": "EBP01-049",
+    "name": "Lyleen – Blessing of the Goddess",
+    "rarity": "SSP",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-050",
+    "baseNumber": "EBP01-050",
+    "name": "Digtoise – Seismic Drillback",
+    "rarity": "RR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-050OSR",
+    "baseNumber": "EBP01-050",
+    "name": "Digtoise – Seismic Drillback",
+    "rarity": "OSR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-050SP",
+    "baseNumber": "EBP01-050",
+    "name": "Digtoise – Seismic Drillback",
+    "rarity": "SP",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-051",
+    "baseNumber": "EBP01-051",
+    "name": "Petallia – Sweet Blessings",
+    "rarity": "R",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-051OSR",
+    "baseNumber": "EBP01-051",
+    "name": "Petallia – Sweet Blessings",
+    "rarity": "OSR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-051SP",
+    "baseNumber": "EBP01-051",
+    "name": "Petallia – Sweet Blessings",
+    "rarity": "SP",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-052",
+    "baseNumber": "EBP01-052",
+    "name": "Rushoar – Reckless Destruction",
+    "rarity": "R",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-052SR",
+    "baseNumber": "EBP01-052",
+    "name": "Rushoar – Reckless Destruction",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-053",
+    "baseNumber": "EBP01-053",
+    "name": "Elizabee – Queen of the Flower Garden",
+    "rarity": "R",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-053SR",
+    "baseNumber": "EBP01-053",
+    "name": "Elizabee – Queen of the Flower Garden",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-054",
+    "baseNumber": "EBP01-054",
+    "name": "Warsect – Iron Fortress",
+    "rarity": "R",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-054SR",
+    "baseNumber": "EBP01-054",
+    "name": "Warsect – Iron Fortress",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-055",
+    "baseNumber": "EBP01-055",
+    "name": "Vaelet – Bewitching Blossom",
+    "rarity": "U",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-055SR",
+    "baseNumber": "EBP01-055",
+    "name": "Vaelet – Bewitching Blossom",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-056",
+    "baseNumber": "EBP01-056",
+    "name": "Lifmunk – Promising Newbie",
+    "rarity": "C",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-056SR",
+    "baseNumber": "EBP01-056",
+    "name": "Lifmunk – Promising Newbie",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-057",
+    "baseNumber": "EBP01-057",
+    "name": "Dumud – Mellow Bounty",
+    "rarity": "U",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-058",
+    "baseNumber": "EBP01-058",
+    "name": "Gumoss – Curious Sprout",
+    "rarity": "U",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-059",
+    "baseNumber": "EBP01-059",
+    "name": "Digtoise – Keen Needleback",
+    "rarity": "U",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-060",
+    "baseNumber": "EBP01-060",
+    "name": "Tanzee – Cheerful Worker",
+    "rarity": "C",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-061",
+    "baseNumber": "EBP01-061",
+    "name": "Beegarde – Knight of the Flower Garden",
+    "rarity": "C",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-062",
+    "baseNumber": "EBP01-062",
+    "name": "Wumpo Botan – Tropical Sentinel",
+    "rarity": "C",
+    "color": "green",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-063",
+    "baseNumber": "EBP01-063",
+    "name": "Breeding Farm",
+    "rarity": "R",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-063SR",
+    "baseNumber": "EBP01-063",
+    "name": "Breeding Farm",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-064",
+    "baseNumber": "EBP01-064",
+    "name": "Cola Vending Machine",
+    "rarity": "R",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-064SR",
+    "baseNumber": "EBP01-064",
+    "name": "Cola Vending Machine",
+    "rarity": "SR",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-065",
+    "baseNumber": "EBP01-065",
+    "name": "Feed Box",
+    "rarity": "U",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-066",
+    "baseNumber": "EBP01-066",
+    "name": "Ranch",
+    "rarity": "U",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-067",
+    "baseNumber": "EBP01-067",
+    "name": "No Pals Beyond Sign",
+    "rarity": "C",
+    "color": "green",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-068",
+    "baseNumber": "EBP01-068",
+    "name": "Digtoise's Headband",
+    "rarity": "U",
+    "color": "green",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-069",
+    "baseNumber": "EBP01-069",
+    "name": "Farming Hat",
+    "rarity": "C",
+    "color": "green",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-070",
+    "baseNumber": "EBP01-070",
+    "name": "Lily's Strategy",
+    "rarity": "RR",
+    "color": "green",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-070OSR",
+    "baseNumber": "EBP01-070",
+    "name": "Lily's Strategy",
+    "rarity": "OSR",
+    "color": "green",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-070SP",
+    "baseNumber": "EBP01-070",
+    "name": "Lily's Strategy",
+    "rarity": "SP",
+    "color": "green",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-071",
+    "baseNumber": "EBP01-071",
+    "name": "Found an Egg!",
+    "rarity": "C",
+    "color": "green",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-072",
+    "baseNumber": "EBP01-072",
+    "name": "Blessing of the Flower Spirit",
+    "rarity": "C",
+    "color": "green",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-073",
+    "baseNumber": "EBP01-073",
+    "name": "Helzephyr – Wings of the Moonless Night",
+    "rarity": "RR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-073OSR",
+    "baseNumber": "EBP01-073",
+    "name": "Helzephyr – Wings of the Moonless Night",
+    "rarity": "OSR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-073SSP",
+    "baseNumber": "EBP01-073",
+    "name": "Helzephyr – Wings of the Moonless Night",
+    "rarity": "SSP",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-074",
+    "baseNumber": "EBP01-074",
+    "name": "Shadowbeak – Seed of Despair",
+    "rarity": "RR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-074OSR",
+    "baseNumber": "EBP01-074",
+    "name": "Shadowbeak – Seed of Despair",
+    "rarity": "OSR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-074SP",
+    "baseNumber": "EBP01-074",
+    "name": "Shadowbeak – Seed of Despair",
+    "rarity": "SP",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-075",
+    "baseNumber": "EBP01-075",
+    "name": "Katress – Abyssal Sorcerer",
+    "rarity": "R",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-075OSR",
+    "baseNumber": "EBP01-075",
+    "name": "Katress – Abyssal Sorcerer",
+    "rarity": "OSR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-075SP",
+    "baseNumber": "EBP01-075",
+    "name": "Katress – Abyssal Sorcerer",
+    "rarity": "SP",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-076",
+    "baseNumber": "EBP01-076",
+    "name": "Tombat – Out of Nowhere!?",
+    "rarity": "R",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-076SR",
+    "baseNumber": "EBP01-076",
+    "name": "Tombat – Out of Nowhere!?",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-077",
+    "baseNumber": "EBP01-077",
+    "name": "Pyrin Noct – Steed of Azure Flames",
+    "rarity": "R",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-077SR",
+    "baseNumber": "EBP01-077",
+    "name": "Pyrin Noct – Steed of Azure Flames",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-078",
+    "baseNumber": "EBP01-078",
+    "name": "Lyleen Noct – Providence of the Goddess",
+    "rarity": "R",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-078SR",
+    "baseNumber": "EBP01-078",
+    "name": "Lyleen Noct – Providence of the Goddess",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-079",
+    "baseNumber": "EBP01-079",
+    "name": "Depresso – Late Night Hustler",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-079SR",
+    "baseNumber": "EBP01-079",
+    "name": "Depresso – Late Night Hustler",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-080",
+    "baseNumber": "EBP01-080",
+    "name": "Daedream – First Slumber",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-080SR",
+    "baseNumber": "EBP01-080",
+    "name": "Daedream – First Slumber",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-081",
+    "baseNumber": "EBP01-081",
+    "name": "Lovander – Heartstealer",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-081SR",
+    "baseNumber": "EBP01-081",
+    "name": "Lovander – Heartstealer",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-082",
+    "baseNumber": "EBP01-082",
+    "name": "Daedream – Deep Slumber",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-083",
+    "baseNumber": "EBP01-083",
+    "name": "Vanwyrm – Marauder of the Skies",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-084",
+    "baseNumber": "EBP01-084",
+    "name": "Menasting – Darkness-Dwelling Scorpion",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-085",
+    "baseNumber": "EBP01-085",
+    "name": "Maraith – Twilight Messenger",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-086",
+    "baseNumber": "EBP01-086",
+    "name": "Nox – The Silent One",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-087",
+    "baseNumber": "EBP01-087",
+    "name": "Loupmoon – Glinting Moonlight",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-088",
+    "baseNumber": "EBP01-088",
+    "name": "Lamp",
+    "rarity": "R",
+    "color": "purple",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-088SR",
+    "baseNumber": "EBP01-088",
+    "name": "Lamp",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Structure",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-089",
+    "baseNumber": "EBP01-089",
+    "name": "Shoddy Bed",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-090",
+    "baseNumber": "EBP01-090",
+    "name": "Medieval Medicine Workbench",
+    "rarity": "U",
+    "color": "purple",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-091",
+    "baseNumber": "EBP01-091",
+    "name": "Wooden Wall",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-092",
+    "baseNumber": "EBP01-092",
+    "name": "Viewing Cage",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Structure",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-093",
+    "baseNumber": "EBP01-093",
+    "name": "Meat Cleaver",
+    "rarity": "R",
+    "color": "purple",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-093SR",
+    "baseNumber": "EBP01-093",
+    "name": "Meat Cleaver",
+    "rarity": "SR",
+    "color": "purple",
+    "type": "Gear",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-094",
+    "baseNumber": "EBP01-094",
+    "name": "Daedream's Necklace",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Gear",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-095",
+    "baseNumber": "EBP01-095",
+    "name": "Zoe's Strategy",
+    "rarity": "RR",
+    "color": "purple",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-095OSR",
+    "baseNumber": "EBP01-095",
+    "name": "Zoe's Strategy",
+    "rarity": "OSR",
+    "color": "purple",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-095SP",
+    "baseNumber": "EBP01-095",
+    "name": "Zoe's Strategy",
+    "rarity": "SP",
+    "color": "purple",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "EBP01-096",
+    "baseNumber": "EBP01-096",
+    "name": "Dark Cannon",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-097",
+    "baseNumber": "EBP01-097",
+    "name": "Black Marketeer",
+    "rarity": "C",
+    "color": "purple",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-098",
+    "baseNumber": "EBP01-098",
+    "name": "Elphidran – Gentle Radiance",
+    "rarity": "U",
+    "color": "colorless",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-099",
+    "baseNumber": "EBP01-099",
+    "name": "Direhowl – Proud Fang",
+    "rarity": "C",
+    "color": "colorless",
+    "type": "Pal",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-100",
+    "baseNumber": "EBP01-100",
+    "name": "The Adventure Begins",
+    "rarity": "U",
+    "color": "colorless",
+    "type": "Event",
+    "isParallel": false
+  },
+  {
+    "number": "EBP01-100SR",
+    "baseNumber": "EBP01-100",
+    "name": "The Adventure Begins",
+    "rarity": "SR",
+    "color": "colorless",
+    "type": "Event",
+    "isParallel": true
+  },
+  {
+    "number": "ESOUL-002",
+    "baseNumber": "ESOUL-002",
+    "name": "Soul",
+    "rarity": "SSS",
+    "color": "colorless",
+    "type": "Soul",
+    "isParallel": true
+  }
+]

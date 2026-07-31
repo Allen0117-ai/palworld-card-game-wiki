@@ -34,9 +34,12 @@ async function render(pathname) {
 const publicRoutes = [
   "/",
   "/cards",
+  "/cards/pals",
   "/decks",
   "/tools/deck-builder",
+  "/tools/dawn-of-palpagos-checklist",
   "/blog",
+  "/blog/palworld-booster-box",
   "/resources",
   "/rules",
   "/search",
@@ -53,6 +56,7 @@ const publicRoutes = [
   "/blog/dawn-of-palpagos-card-list-guide",
   "/blog/palworld-card-game-keyword-glossary",
   "/blog/palworld-tcg-rarity-guide",
+  "/blog/dawn-of-palpagos-chase-cards",
   "/blog/dawn-of-palpagos-pull-rates",
   "/blog/palworld-card-game-2026-roadmap",
   "/blog/palworld-card-game-errata-tracker",
@@ -102,6 +106,130 @@ test("homepage heading and detail-page breadcrumbs describe the page clearly", a
   }
 });
 
+test("the booster box guide exposes verified product facts and structured data", async () => {
+  const response = await render("/blog/palworld-booster-box");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /Palworld Booster Box Guide/);
+  assert.match(html, /12 packs/);
+  assert.match(html, /84 cards total/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /"@type":"FAQPage"/);
+});
+
+test("deck guides explain play sequences with card images and useful next steps", async () => {
+  for (const route of [
+    "/deck/red-blue-launch-pressure",
+    "/deck/green-blue-base-value",
+    "/deck/mono-red-pal-rush",
+  ]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /Play this deck in three steps/, `${route} is missing its beginner sequence`);
+    assert.match(html, /Three combinations to remember/, `${route} is missing visual card pairings`);
+    assert.match(html, /Do not stop at one page/, `${route} is missing retention links`);
+    assert.match(html, /<img\b/, `${route} does not render card images`);
+  }
+});
+
+test("deck discovery links homepage, deck pools and card pages in both directions", async () => {
+  const homeHtml = await (await render("/")).text();
+  assert.match(homeHtml, /class="deck-tile-art"/);
+  assert.match(homeHtml, /3-step plan/);
+  assert.match(homeHtml, /Complete 50-card list/);
+
+  const deckHtml = await (await render("/deck/red-blue-launch-pressure")).text();
+  assert.match(deckHtml, /<nav class="breadcrumbs" aria-label="Breadcrumb">/);
+  assert.ok(
+    deckHtml.includes('href="/card/ribbuny-little-princess-etd01-024"')
+      || deckHtml.includes('\\"href\\":\\"/card/ribbuny-little-princess-etd01-024\\"'),
+    "the Trial Deck pool does not link its final card",
+  );
+  assert.match(deckHtml, /property="og:image" content="https:\/\/palworldcardgame\.wiki\/og\/decks\/red-blue-launch-pressure\.png"/);
+  assert.match(deckHtml, /"dateModified":"2026-07-31"/);
+
+  const cardHtml = await (await render("/card/ribbuny-little-princess-etd01-024")).text();
+  assert.match(cardHtml, /<nav class="breadcrumbs" aria-label="Breadcrumb">/);
+  assert.match(cardHtml, /href="\/deck\/red-blue-launch-pressure"/);
+});
+
+test("the BP01 starter provides a complete 50-card list that opens in the builder", async () => {
+  const deckHtml = await (await render("/deck/mono-red-pal-rush")).text();
+  assert.match(deckHtml, /Complete beginner deck list/);
+  assert.match(deckHtml, /50(?:<!-- -->)? cards/);
+  assert.match(deckHtml, /Open this list in deck builder/);
+
+  const builderHtml = await (await render("/tools/deck-builder?deck=mono-red-pal-rush")).text();
+  assert.match(builderHtml, /Loaded template/);
+  assert.match(builderHtml, /Red \/ Blue BP01 Structure Starter/);
+  assert.match(builderHtml, /50(?:<!-- -->)? \/ (?:<!-- -->)?50 cards/);
+});
+
+test("shareable cards, rulings, guides and deck links render their share actions", async () => {
+  const cardHtml = await (await render("/card/suzaku-hellfire-wings")).text();
+  const rulesHtml = await (await render("/rules?q=Can%20I%20attack%20on%20the%20first%20turn%3F")).text();
+  const guideHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+  const sharedDeckHtml = await (await render("/tools/deck-builder?list=EBP01-001x2,EBP01-002x2&name=Palpagos%20Pressure")).text();
+
+  assert.match(cardHtml, /Share this card/);
+  assert.match(rulesHtml, /Share this ruling/);
+  assert.match(guideHtml, /Share this quick answer/);
+  assert.match(sharedDeckHtml, /A friend shared this deck with you/);
+  assert.match(sharedDeckHtml, /Palpagos Pressure/);
+  assert.match(sharedDeckHtml, /Share draft/);
+});
+
+test("the Pal collection page stays scoped to TCG Pal cards", async () => {
+  const response = await render("/cards/pals");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /Palworld Pals in the/);
+  assert.match(html, /91(?:<!-- -->)? launch entries/);
+  assert.match(html, /91(?:<!-- -->)? \/ (?:<!-- -->)?91/);
+  assert.match(html, /Card-game scope/);
+  assert.doesNotMatch(html, /<option value="Gear">/);
+  assert.match(html, /"@type":"CollectionPage"/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+});
+
+test("site search finds the Pal card collection", async () => {
+  const response = await render("/search?q=palworld%20pals");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /href="\/cards\/pals"/);
+  assert.match(html, /Palworld Pals in the Official Card Game/);
+});
+
+test("site search finds the BP01 collection checklist", async () => {
+  const response = await render("/search?q=bp01%20checklist");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /href="\/tools\/dawn-of-palpagos-checklist"/);
+  assert.match(html, /Dawn of Palpagos Card Checklist/);
+});
+
+test("the July 31 update includes newly verified official events and social sources", async () => {
+  const homeHtml = await (await render("/")).text();
+  const roadmapHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
+  const resourcesHtml = await (await render("/resources")).text();
+  const relatedGuidesHtml = roadmapHtml.match(/<section class="related-guides">.*?<\/section>/s)?.[0] ?? "";
+
+  assert.match(roadmapHtml, /3\.5 million pack sales/);
+  assert.match(roadmapHtml, /Singapore festival release events/);
+  assert.match(roadmapHtml, /September 5: Los Angeles Release Party/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official news/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Buyer watch/);
+  assert.match(homeHtml, /href="\/blog\/red-blue-vs-green-purple-trial-deck"[^>]*><span>Trial Deck FAQ/);
+  assert.match(relatedGuidesHtml, /palworld-card-game-products-where-to-buy/);
+  assert.match(relatedGuidesHtml, /palworld-card-game-errata-tracker/);
+  assert.match(relatedGuidesHtml, /palworld-booster-box/);
+  assert.match(resourcesHtml, /Official X/);
+  assert.match(resourcesHtml, /Official tutorial video/);
+});
+
 test("every internal link points to a published page", async () => {
   const knownRoutes = new Set(publicRoutes);
 
@@ -116,6 +244,48 @@ test("every internal link points to a published page", async () => {
       assert.ok(knownRoutes.has(href), `${route} links to unpublished route ${href}`);
     }
   }
+});
+
+test("every published page is reachable from the homepage within three internal-link steps", async () => {
+  const knownRoutes = new Set(publicRoutes);
+  const linkGraph = new Map();
+
+  for (const route of publicRoutes) {
+    const html = await (await render(route)).text();
+    const links = [...html.matchAll(/<a\b[^>]*\bhref=["']([^"'#?]+)(?:[?#][^"']*)?["']/gi)]
+      .map((match) => match[1])
+      .filter((href) => knownRoutes.has(href));
+    linkGraph.set(route, new Set(links));
+  }
+
+  const routeDepth = new Map([["/", 0]]);
+  const routeQueue = ["/"];
+  while (routeQueue.length) {
+    const currentRoute = routeQueue.shift();
+    const currentDepth = routeDepth.get(currentRoute);
+    for (const linkedRoute of linkGraph.get(currentRoute) || []) {
+      if (routeDepth.has(linkedRoute)) continue;
+      routeDepth.set(linkedRoute, currentDepth + 1);
+      routeQueue.push(linkedRoute);
+    }
+  }
+
+  for (const route of publicRoutes) {
+    assert.ok(routeDepth.has(route), `${route} is an orphan page`);
+    assert.ok(routeDepth.get(route) <= 3, `${route} needs ${routeDepth.get(route)} clicks from the homepage`);
+  }
+});
+
+test("the sitemap uses stable content dates without ignored priority hints", async () => {
+  const response = await render("/sitemap.xml");
+  const xml = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(xml, /<loc>https:\/\/palworldcardgame\.wiki\/tools\/dawn-of-palpagos-checklist<\/loc>/);
+  assert.match(xml, /<lastmod>2026-07-31T00:00:00\.000Z<\/lastmod>/);
+  assert.match(xml, /<lastmod>2026-07-30T00:00:00\.000Z<\/lastmod>/);
+  assert.doesNotMatch(xml, /<priority>/);
+  assert.doesNotMatch(xml, /<changefreq>/);
 });
 
 test("every external page link is live", async () => {

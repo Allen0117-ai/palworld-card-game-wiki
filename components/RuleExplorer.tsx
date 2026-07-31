@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { rankSearchItems, scoreSearchText } from "@/lib/search";
 import { featuredRuleAnswers, officialRuleCount, ruleAnswers, ruleCategories, type RuleAnswer } from "@/lib/rules";
+import { SharePanel } from "@/components/SharePanel";
 
 function RuleSourceLink({ rule }: { rule: RuleAnswer }) {
   if (rule.sourceUrl.startsWith("/")) {
@@ -96,6 +97,21 @@ export function RuleExplorer({ initialQuery = "" }: { initialQuery?: string }) {
                   <RuleSourceLink rule={rule} />
                   {rule.guideUrl && <Link href={rule.guideUrl}>Read the full guide →</Link>}
                   <span>Checked {rule.updated}</span>
+                  <SharePanel
+                    assetKey={`rule-${rule.id}`}
+                    triggerLabel="Share this ruling"
+                    shareUrl={`/rules?q=${encodeURIComponent(rule.question)}#${rule.id}`}
+                    shareText={`${rule.question}\n${rule.answer}`}
+                    className="share-trigger-inline"
+                    payload={{
+                      kind: "rule",
+                      eyebrow: rule.featured ? "Plain-English rules answer" : `${rule.category} ruling`,
+                      title: rule.question,
+                      body: rule.answer,
+                      source: rule.sourceLabel,
+                      checked: rule.updated,
+                    }}
+                  />
                 </footer>
               </div>
             </details>

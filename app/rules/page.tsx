@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { RuleExplorer } from "@/components/RuleExplorer";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
@@ -6,8 +7,8 @@ import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Palworld Card Game Rules & FAQ – Search Official Rulings",
-  description: "Ask Palworld Card Game rules questions in plain English and search essential answers plus all 97 launch-day official Q&A rulings.",
+  title: "Palworld TCG Rules, Rulebook PDF & Official Q&A",
+  description: "Search Palworld TCG rules in plain English, open the official rulebook PDF and check all 97 launch-day Q&A rulings with source links.",
   path: "/rules",
 });
 
@@ -29,8 +30,12 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
       <header className={`page-hero rules-hero shell${hasQuery ? " has-query" : ""}`}>
         <div className="rules-query-desktop-copy">
           <p className="eyebrow"><span>Rules answer center</span> · Checked July 30, 2026</p>
-          <h1>Ask the question.<br />Get the ruling.</h1>
+          <h1>Palworld TCG rules.<br />Get the ruling.</h1>
           <p>Search in normal language. We combine plain-English essentials with all {officialRuleCount} official launch-day Q&amp;As and always show where the answer came from.</p>
+          <div className="article-actions">
+            <a className="button ghost" href="https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" target="_blank" rel="noreferrer">Open official rules PDF ↗</a>
+            <Link className="button ghost" href="/blog/how-to-play-palworld-card-game">Read the beginner rulebook guide</Link>
+          </div>
           <div className="rules-hero-stats" aria-label="Rules database coverage">
             <div><strong>{featuredRuleAnswers.length}</strong><span>plain-English essentials</span></div>
             <div><strong>{officialRuleCount}</strong><span>official Q&amp;As indexed</span></div>

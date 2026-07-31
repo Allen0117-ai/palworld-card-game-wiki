@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import type { SpecialArtwork } from "@/lib/data";
+import { SharePanel } from "@/components/SharePanel";
 
 const galleryImageSizes = "(max-width: 520px) 68vw, (max-width: 760px) 63vw, (max-width: 1050px) 300px, 330px";
 
@@ -123,9 +124,32 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
           <strong>{active.card.name} — {active.card.subtitle}</strong>
           <small>Special artwork; card text matches {active.card.number}.</small>
         </div>
-        <Link className="text-link" href={`/card/${active.card.slug}?variant=${active.variantNumber}`}>
-          Explore this card →
-        </Link>
+        <div className="special-gallery-actions">
+          <SharePanel
+            assetKey={`gallery-${active.variantNumber}`}
+            triggerLabel="Share this artwork"
+            shareUrl={`/card/${active.card.slug}?variant=${active.variantNumber}`}
+            shareText={`${active.card.name} — ${active.card.subtitle}, ${active.variantNumber} ${active.rarity} parallel artwork. Which treatment would you collect?`}
+            className="share-trigger-inline"
+            payload={{
+              kind: "card",
+              eyebrow: `${active.variantNumber} · ${active.rarity} parallel`,
+              title: `${active.card.name} — ${active.card.subtitle}`,
+              body: `Special artwork treatment. Card text matches the ${active.card.number} base card.`,
+              image: active.image,
+              accent: active.card.color,
+              facts: [
+                `${active.card.color} ${active.card.type}`,
+                `Cost ${active.card.cost}`,
+                active.card.power ? `${active.card.power} power` : "",
+                active.card.strike ? `Strike ${active.card.strike}` : "",
+              ].filter(Boolean),
+            }}
+          />
+          <Link className="text-link" href={`/card/${active.card.slug}?variant=${active.variantNumber}`}>
+            Explore this card →
+          </Link>
+        </div>
       </div>
 
       <div className="special-gallery-pagination" aria-label="Choose a special card">

@@ -3,18 +3,33 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { cards, getCardImageAlt } from "@/lib/data";
+import { SharePanel } from "@/components/SharePanel";
+import { encodeDeckList, normalizeStoredDeck, sanitizeDeckName, type DeckMap } from "@/lib/deck-share";
 
-type DeckMap = Record<string, number>;
-
-export function DeckBuilder() {
-  const [deck, setDeck] = useState<DeckMap>({});
+export function DeckBuilder({
+  initialDeck = {},
+  initialName = "Untitled deck",
+  isSharedDeck = false,
+}: {
+  initialDeck?: DeckMap;
+  initialName?: string;
+  isSharedDeck?: boolean;
+}) {
+  const [deck, setDeck] = useState<DeckMap>(initialDeck);
+  const [deckName, setDeckName] = useState(() => sanitizeDeckName(initialName));
   const [query, setQuery] = useState("");
   const [color, setColor] = useState("all");
   const [set, setSet] = useState("all");
-  const [notice, setNotice] = useState("");
+  const [notice, setNotice] = useState(isSharedDeck ? "Shared deck loaded — change any card and make it yours." : "");
   const total = Object.values(deck).reduce((sum, value) => sum + value, 0);
   const deckCards = cards.filter((card) => deck[card.slug]);
   const selectedColors = useMemo(() => new Set(deckCards.filter((card) => card.color !== "colorless").map((card) => card.color)), [deckCards]);
+  const shareCards = [...deckCards]
+    .sort((firstCard, secondCard) => (deck[secondCard.slug] - deck[firstCard.slug]) || secondCard.cost - firstCard.cost)
+    .slice(0, 4);
+  const encodedDeck = encodeDeckList(deck);
+  const shareParameters = new URLSearchParams({ list: encodedDeck, name: deckName });
+  const sharePath = `/tools/deck-builder?${shareParameters.toString()}`;
   const visible = cards.filter((card) => (
     `${card.name} ${card.subtitle} ${card.number}`.toLowerCase().includes(query.toLowerCase())
     && (color === "all" || card.color === color)
@@ -49,7 +64,7 @@ export function DeckBuilder() {
   }
 
   function saveDeck() {
-    localStorage.setItem("pwcg-deck-draft", JSON.stringify(deck));
+    localStorage.setItem("pwcg-deck-draft", JSON.stringify({ version: 1, deck, name: deckName }));
     setNotice("Draft saved on this device.");
   }
 
@@ -60,7 +75,18 @@ export function DeckBuilder() {
       return;
     }
     try {
-      setDeck(JSON.parse(saved));
+      const parsedDraft: unknown = JSON.parse(saved);
+      const storedDeck = parsedDraft && typeof parsedDraft === "object" && "deck" in parsedDraft
+        ? normalizeStoredDeck(parsedDraft.deck)
+        : normalizeStoredDeck(parsedDraft);
+      if (!storedDeck) {
+        setNotice("That saved draft could not be read. Clear it and start a new list.");
+        return;
+      }
+      setDeck(storedDeck);
+      if (parsedDraft && typeof parsedDraft === "object" && "name" in parsedDraft && typeof parsedDraft.name === "string") {
+        setDeckName(sanitizeDeckName(parsedDraft.name));
+      }
       setNotice("Saved draft loaded.");
     } catch {
       setNotice("That saved draft could not be read. Clear it and start a new list.");
@@ -97,8 +123,8 @@ export function DeckBuilder() {
         <div className="builder-card-list">
           {visible.map((card) => (
             <button className="builder-card" key={card.slug} onClick={() => addCard(card.slug)} draggable onDragStart={(event) => beginDrag(event, card.slug)} aria-label={`Add ${card.name}`}>
-              <span className="builder-art">
-                <Image src={card.image} alt={getCardImageAlt(card)} width={400} height={559} loading="lazy" />
+              <span className={`builder-art${card.type === "Structure" ? " builder-art-landscape" : ""}`}>
+                <Image src={card.image} alt={getCardImageAlt(card)} width={400} height={card.type === "Structure" ? 286 : 559} loading="lazy" />
               </span>
               <strong>{card.name}</strong>
               <small>{card.number} · Cost {card.cost}</small>
@@ -108,7 +134,14 @@ export function DeckBuilder() {
       </section>
       <aside className="deck-panel" onDragOver={(event) => event.preventDefault()} onDrop={dropCard}>
         <p className="eyebrow">Main deck</p>
-        <h2>Untitled deck</h2>
+        <input
+          className="deck-name-input"
+          value={deckName}
+          onChange={(event) => setDeckName(sanitizeDeckName(event.target.value, ""))}
+          onBlur={() => setDeckName((currentName) => sanitizeDeckName(currentName))}
+          aria-label="Deck name"
+          maxLength={52}
+        />
         <div className="deck-progress"><span style={{ width: `${Math.min(total / 50 * 100, 100)}%` }} /></div>
         <div className="deck-status"><span>{total} / 50 cards</span><span>{selectedColors.size} / 2 colors</span></div>
         <div className="deck-rows" aria-label="Drop cards here or click cards to add">
@@ -126,6 +159,25 @@ export function DeckBuilder() {
         </div>
         <div className="builder-actions">
           <button className="button primary" onClick={saveDeck}>Save draft</button>
+          <SharePanel
+            assetKey={`deck-${encodedDeck}-${deckName}`}
+            triggerLabel={total === 50 ? "Share deck" : "Share draft"}
+            shareUrl={sharePath}
+            shareText={`I built “${deckName}” in the Palworld TCG deck builder. Open it, remix it, and show me your version.`}
+            disabled={total === 0}
+            payload={{
+              kind: "deck",
+              eyebrow: total === 50 ? "Ready-to-play deck" : "Deck builder draft",
+              title: deckName,
+              total,
+              colors: Array.from(selectedColors),
+              cards: shareCards.map((card) => ({
+                image: card.image,
+                name: card.name,
+                copies: deck[card.slug],
+              })),
+            }}
+          />
           <button className="button ghost" onClick={loadDeck}>Load saved deck</button>
           <button className="button ghost" onClick={() => { setDeck({}); setNotice("Deck cleared."); }}>Clear deck</button>
         </div>

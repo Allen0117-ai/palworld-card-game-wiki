@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-const mobileLinks = [
+const englishMobileLinks = [
   ["/rules", "Rules & FAQ"],
   ["/cards", "Card database"],
   ["/decks", "Deck guides"],
@@ -12,15 +12,27 @@ const mobileLinks = [
   ["/search", "Search"],
 ];
 
-export function MobileNav() {
+const japaneseMobileLinks = [
+  ["/ja", "ホーム"],
+  ["/ja/cards", "カードリスト"],
+  ["/ja/decks", "デッキレシピ"],
+  ["/ja/rules", "ルール・遊び方"],
+  ["/", "English"],
+];
+
+export function MobileNav({ locale = "en" }: { locale?: "en" | "ja" }) {
   const closeMenu = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.closest("details")?.removeAttribute("open");
   };
+  const mobileLinks = locale === "ja" ? japaneseMobileLinks : englishMobileLinks;
 
   return (
     <details className="mobile-nav">
-      <summary aria-label="Open main navigation"><span>Menu</span><span aria-hidden="true">◆</span></summary>
-      <nav aria-label="Mobile navigation">
+      <summary aria-label={locale === "ja" ? "メニューを開く" : "Open main navigation"}>
+        <span>{locale === "ja" ? "メニュー" : "Menu"}</span>
+        <span aria-hidden="true">◆</span>
+      </summary>
+      <nav aria-label={locale === "ja" ? "モバイルナビゲーション" : "Mobile navigation"}>
         {mobileLinks.map(([href, label]) => <Link href={href} onClick={closeMenu} key={href}>{label}</Link>)}
       </nav>
     </details>

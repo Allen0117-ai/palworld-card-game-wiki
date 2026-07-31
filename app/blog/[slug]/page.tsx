@@ -2,8 +2,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { guides } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { GuideToc } from "@/components/GuideToc";
 import { getGuidePrimaryImage, GuideSeoImagePanel } from "@/components/SeoImagePanel";
+import { SharePanel } from "@/components/SharePanel";
 import type { Metadata } from "next";
 import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
@@ -25,7 +27,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
 }
 
-const guideQuickAnswers: Record<string, { label: string; answer: React.ReactNode }> = {
+const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
+  "palworld-booster-box": {
+    label: "The short answer",
+    answer: "A sealed Dawn of Palpagos BP01 booster box contains 12 packs with 7 cards in each pack—84 cards total. Buy a box to collect or upgrade decks; buy a Trial Deck first if you need a complete deck that is ready to play.",
+  },
   "how-to-play-palworld-card-game": {
     label: "The short version",
     answer: "Both players start with 10 life. Build a 50-card Main Deck and a separate 10-card Soul Deck, use Souls to pay costs, and attack with Pals. Reduce the opposing player to 0 life to win. You also lose if your Main Deck has no cards remaining.",
@@ -54,6 +60,10 @@ const guideQuickAnswers: Record<string, { label: string; answer: React.ReactNode
     label: "Base rarity",
     answer: "Dawn of Palpagos uses C, U, R and RR for base cards. The set also has 61 parallel card types. Rarity describes distribution and treatment, not automatic deck strength.",
   },
+  "dawn-of-palpagos-chase-cards": {
+    label: "Collector answer",
+    answer: "The four confirmed BP01 SSP cards are Jormuntide Ignis EBP01-001SSP, Chillet EBP01-025SSP, Lyleen EBP01-049SSP and Helzephyr EBP01-073SSP. They are clear collector targets, but launch-week prices are too unstable for an honest value ranking.",
+  },
   "dawn-of-palpagos-pull-rates": {
     label: "Current answer",
     answer: "Bushiroad confirms 100 base card types plus 61 parallel types in BP01, but we have not found official per-rarity pull odds. A few launch-day openings are not enough to publish reliable percentages.",
@@ -73,6 +83,82 @@ const guideQuickAnswers: Record<string, { label: string; answer: React.ReactNode
 };
 
 const guideContent: Record<string, React.ReactNode> = {
+  "palworld-booster-box": (
+    <>
+      <h2>Dawn of Palpagos Booster Box — What&apos;s Inside</h2>
+      <p>The Palworld Dawn of Palpagos Booster Box is the sealed display for BP01, the first booster set for the Palworld Official Card Game. It launched on July 30, 2026 alongside the Red/Blue and Green/Purple Trial Decks.</p>
+      <div className="stat-table">
+        <div><strong>12</strong><span>packs per box</span></div>
+        <div><strong>7</strong><span>cards per pack</span></div>
+        <div><strong>84</strong><span>cards opened</span></div>
+        <div><strong>100</strong><span>base card types</span></div>
+        <div><strong>61</strong><span>parallel types</span></div>
+      </div>
+      <p>The 84-card total counts every card opened, not 84 guaranteed unique cards. Duplicate cards are normal, and one box is not guaranteed to complete the set.</p>
+
+      <h3>Pack breakdown — 12 packs × 7 cards</h3>
+      <p>Each sealed box contains 12 booster packs, and each pack contains 7 cards. The cards can include Pals, Gear, Events and Structures from the four colors plus Colorless cards.</p>
+
+      <h3>Card rarities and pull rates</h3>
+      <p>The official base rarities are C, U, R and RR, with separate parallel treatments. Bushiroad has not published guaranteed per-box pull odds, so no specific number of rare or parallel cards should be treated as guaranteed.</p>
+      <div className="callout"><strong>Pull-rate warning:</strong> early box openings are useful observations, but they are not official odds. See our <Link className="text-link" href="/blog/dawn-of-palpagos-pull-rates">verified pull-rate tracker</Link> before relying on community estimates.</div>
+
+      <h3>Dawn of Palpagos BP01 card list</h3>
+      <p>BP01 has 100 base cards and 61 parallel card types. Browse the complete searchable list before buying so you know which colors, cards and artwork you want to open.</p>
+      <Link className="button primary" href="/cards">Browse the BP01 card list</Link>
+
+      <h2>Palworld Booster Box Price — What Should You Compare?</h2>
+      <p>There is no single reliable worldwide price to publish: retailer prices, stock, shipping and tax change by country and can move quickly after release. Compare the final delivered price instead of trusting the first listing or a marketplace asking price.</p>
+      <h3>Does Dawn of Palpagos have an official English MSRP?</h3>
+      <p>The official English BP01 page lists the release date, set size and product contents but does not publish one universal English MSRP. Treat a retailer&apos;s “MSRP” label as a local claim and compare the final delivered price in your own country.</p>
+      <div className="comparison-table" role="region" aria-label="Palworld booster box price comparison checklist" tabIndex={0}>
+        <div className="comparison-head"><span>Check</span><strong>Why it matters</strong><strong>What to verify</strong></div>
+        <div><span>Product</span><p>Single packs and sealed boxes are different listings.</p><p>“BP01,” “Dawn of Palpagos” and “12 packs.”</p></div>
+        <div><span>Language</span><p>Tournament support differs by region.</p><p>English edition if you play outside Asian territories.</p></div>
+        <div><span>Condition</span><p>Loose packs do not equal a sealed display.</p><p>Factory-sealed box and a clear return policy.</p></div>
+        <div><span>Total cost</span><p>A low sticker price can hide expensive delivery.</p><p>Price plus shipping, tax and import fees.</p></div>
+        <div><span>Seller</span><p>Marketplace stock can be unverified or overpriced.</p><p>Official retailer status, reviews and buyer protection.</p></div>
+      </div>
+
+      <h3>Is a Palworld Booster Box worth it?</h3>
+      <p>A box makes the most sense for collectors, players who enjoy opening packs, or players upgrading more than one deck. It is a weaker first purchase if your main goal is to start playing immediately, because a box does not guarantee a legal 50-card Main Deck plus 10-card Soul Deck.</p>
+
+      <h2>Where to Buy Dawn of Palpagos Booster Boxes</h2>
+      <ol>
+        <li>Start with Bushiroad&apos;s official retailer finder.</li>
+        <li>Confirm the listing says BP01 Dawn of Palpagos and 12 packs per box.</li>
+        <li>Check the language, sealed condition, delivery date and return policy.</li>
+        <li>Compare the final delivered price across at least two trusted stores.</li>
+      </ol>
+      <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
+      <div className="callout"><strong>No paid links yet:</strong> this guide currently links to the official retailer finder. We will label any future affiliate links clearly instead of presenting them as neutral recommendations.</div>
+
+      <h2>Booster Box vs Trial Deck — Which Should You Buy?</h2>
+      <div className="comparison-table" role="region" aria-label="Palworld booster box and Trial Deck comparison" tabIndex={0}>
+        <div className="comparison-head"><span>Question</span><strong>Booster Box</strong><strong>Trial Deck</strong></div>
+        <div><span>Contents</span><p>12 random packs, 84 cards total</p><p>Fixed 50-card deck, 10 Souls and play accessories</p></div>
+        <div><span>Ready to play?</span><p>No complete legal deck is guaranteed</p><p>Yes, immediately</p></div>
+        <div><span>Best for</span><p>Collecting, opening and upgrades</p><p>Learning and playing a first game</p></div>
+        <div><span>Card choice</span><p>Random cards from BP01</p><p>Known Red/Blue or Green/Purple list</p></div>
+        <div><span>Simple pick</span><p>Buy after choosing a deck or collecting goal</p><p>Buy first if you are a new player</p></div>
+      </div>
+      <p>Not sure which starter product fits your play style? Compare the <Link className="text-link" href="/blog/red-blue-vs-green-purple-trial-deck">Red/Blue and Green/Purple Trial Decks</Link>.</p>
+
+      <h2>Palworld Booster Box FAQ</h2>
+      <h3>How many packs are in a Palworld Booster Box?</h3>
+      <p>A Dawn of Palpagos BP01 booster box contains 12 booster packs.</p>
+      <h3>How many cards are in a Palworld Booster Box?</h3>
+      <p>There are 7 cards per pack and 12 packs per box, for 84 cards total. Duplicates are possible.</p>
+      <h3>Are Palworld Booster Box pull rates guaranteed?</h3>
+      <p>No official per-box pull odds have been published. Do not treat early opening videos or small community samples as guaranteed ratios.</p>
+      <h3>Can I play with one Booster Box?</h3>
+      <p>A box does not guarantee a legal deck. A Trial Deck is the safer first purchase because it includes a fixed 50-card Main Deck and 10 Soul cards.</p>
+      <h3>What set is the first Palworld Booster Box?</h3>
+      <p>The first box is BP01 Dawn of Palpagos, released July 30, 2026.</p>
+      <h3>What is the Dawn of Palpagos Booster Box MSRP?</h3>
+      <p>The official English product page does not publish one universal MSRP. Local prices vary by country, tax, shipping and store stock.</p>
+    </>
+  ),
   "how-to-play-palworld-card-game": (
     <>
       <h2>What you need for your first game</h2>
@@ -195,6 +281,8 @@ const guideContent: Record<string, React.ReactNode> = {
       <p>Buying one of each gives both players different mechanics and exposes the full four-color launch experience. If both players want the simplest learning match, two copies of the same Trial Deck create a more symmetrical game, but one of each is more useful for discovering personal preferences.</p>
       <h2>Do not choose by rarity alone</h2>
       <p>Both decks include a parallel replacement, but the treatment does not change the underlying rules text. Choose the play pattern you want to learn; the included booster pack is a bonus, not a complete upgrade plan.</p>
+      <h2>Why one Trial Deck card may look different</h2>
+      <p>Every Trial Deck includes one TSR or TSP parallel card in place of a card in the fixed 50-card Main Deck. The deck still contains 50 cards and remains ready to play. If you prefer to protect an expensive-looking parallel, you can play it in a sleeve or obtain the regular version of the same card for the deck; launch-day marketplace asking prices are not verified long-term values.</p>
       <Link className="button primary" href="/decks">Open both Trial Deck guides</Link>
     </>
   ),
@@ -214,6 +302,8 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Check whether a listing is a single pack, sealed box or Trial Deck.</li>
         <li>Avoid paying a premium based only on an unverified marketplace asking price.</li>
       </ol>
+      <h2>Launch availability: what community reports can and cannot prove</h2>
+      <p>Launch-day posts show that stock varies sharply by city: some players found local products, while others reported delays, sell-outs or high marketplace listings. These reports are useful warnings, but they do not prove a worldwide shortage or a stable market price. Check Bushi Navi, call the store before travelling and compare completed sales rather than asking prices. As of July 31, we found no official restock schedule to publish.</p>
       <div className="callout"><strong>Product notice:</strong> the Red/Blue Trial Deck has an official errata notice for omitted “Strike” text on one printed card. The product page says the card remains legal and functions with the corrected text.</div>
       <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
     </>
@@ -303,12 +393,54 @@ const guideContent: Record<string, React.ReactNode> = {
     </>
   ),
 
+  "dawn-of-palpagos-chase-cards": (
+    <>
+      <h2>What counts as a Dawn of Palpagos chase card?</h2>
+      <p>A chase card is a card collectors actively hope to open because of its rarity, artwork, character or market demand. It is not automatically the strongest card in a deck, and an expensive asking price does not prove a completed sale.</p>
+      <div className="stat-table">
+        <div><strong>30</strong><span>SR cards</span></div>
+        <div><strong>15</strong><span>OSR cards</span></div>
+        <div><strong>12</strong><span>SP cards</span></div>
+        <div><strong>4</strong><span>SSP cards</span></div>
+        <div><strong>1</strong><span>SSS Soul</span></div>
+      </div>
+
+      <h2>The four confirmed BP01 SSP cards</h2>
+      <div className="comparison-table" role="region" aria-label="Dawn of Palpagos SSP chase cards" tabIndex={0}>
+        <div className="comparison-head"><span>Card number</span><strong>Card</strong><strong>Why collectors notice it</strong></div>
+        <div><span>EBP01-001SSP</span><p><Link className="text-link" href="/card/jormuntide-ignis-savage-lava-dragon">Jormuntide Ignis — Savage Lava Dragon</Link></p><p>Flagship Red Lucky Pal and a dramatic SSP treatment.</p></div>
+        <div><span>EBP01-025SSP</span><p><Link className="text-link" href="/card/chillet-dragon-whisperer-ebp01-025">Chillet — Dragon Whisperer</Link></p><p>Popular Pal with a calm alternate-art scene.</p></div>
+        <div><span>EBP01-049SSP</span><p><Link className="text-link" href="/card/lyleen-blessing-of-the-goddess">Lyleen — Blessing of the Goddess</Link></p><p>Character appeal plus a premium Green centerpiece.</p></div>
+        <div><span>EBP01-073SSP</span><p><Link className="text-link" href="/card/helzephyr-wings-of-the-moonless-night-ebp01-073">Helzephyr — Wings of the Moonless Night</Link></p><p>High-contrast Purple artwork and the SSP label.</p></div>
+      </div>
+
+      <h2>Standout SP artwork to know</h2>
+      <p>SP cards are a broader collector tier than SSP. Four easy cards to recognize are Suzaku EBP01-002SP, Mounted Machine Gun EBP01-015SP, Relaxaurus EBP01-026SP and Shadowbeak EBP01-074SP. Other collectors may prefer a different character, so this is an artwork shortlist rather than a price ranking.</p>
+
+      <h2>How to check a chase-card price safely</h2>
+      <ol>
+        <li>Match the complete card number, including SSP, SP, OSR or SR.</li>
+        <li>Confirm the language and condition shown in the listing.</li>
+        <li>Compare completed sales, not only unsold asking prices.</li>
+        <li>Use several recent sales and ignore a single extreme listing.</li>
+        <li>Recheck the market before buying because launch-week prices move quickly.</li>
+      </ol>
+      <div className="callout"><strong>No investment ranking:</strong> this page identifies official variants and collector appeal. It does not promise that a card will hold or increase its value.</div>
+
+      <h2>Track the full set</h2>
+      <p>The master checklist includes all 100 base cards, 61 parallel cards and the special SSS Soul entry. Progress saves locally without an account.</p>
+      <Link className="button primary" href="/tools/dawn-of-palpagos-checklist">Open the 162-card checklist</Link>
+    </>
+  ),
+
   "dawn-of-palpagos-pull-rates": (
     <>
       <h2>What is officially confirmed</h2>
       <p>Dawn of Palpagos released on July 30, 2026 and contains 100 base card types plus 61 parallel card types. The official card list identifies the available treatments, but the product page does not publish complete odds for each label.</p>
       <h2>Why early videos are not a true pull rate</h2>
       <p>One box or even ten boxes can show what is possible, but not a stable probability. Cases may vary, videos may omit packs, and replacement patterns can be misunderstood. Publishing a percentage without a large, auditable sample would mislead buyers.</p>
+      <h2>What launch-day community tracking adds</h2>
+      <p>One public tracker has now collected results from more than 48 packs. That is more useful than a single opening, but it is still a small, mixed sample and not an official collation guarantee. We will keep these observations separate from Bushiroad&apos;s published product facts.</p>
       <h2>What we will require before showing percentages</h2>
       <ul>
         <li>Sealed product with the region and language recorded.</li>
@@ -316,14 +448,18 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Card numbers and rarity labels checked against the official database.</li>
         <li>A visible sample size and clear separation between observed frequency and official guarantee.</li>
       </ul>
-      <div className="callout"><strong>Status — July 30:</strong> verification in progress. We will not invent “one per box” claims to fill an information gap.</div>
+      <div className="callout"><strong>Status — July 31:</strong> the community sample is growing, but it is not large or controlled enough for us to present estimated odds as guarantees.</div>
     </>
   ),
 
   "palworld-card-game-2026-roadmap": (
     <>
+      <h2>July 9: 3.5 million pack sales announced</h2>
+      <p>Bushiroad announced that Dawn of Palpagos had reached 3.5 million pack sales worldwide before the July 30 release. This is an official publisher milestone, not a secondary-market price signal or a guarantee that every local store has stock.</p>
       <h2>July 30: Dawn of Palpagos launch</h2>
       <p>The first release wave contains the 100-card BP01 base set plus parallel treatments and two ready-to-play Trial Decks: Red/Blue TD01 and Green/Purple TD02. Each Trial Deck supplies a complete 50-card Main Deck, 10-card Soul Deck and the basic play accessories needed for a first match.</p>
+      <h2>August 1–2: Singapore festival release events</h2>
+      <p>The July 30 official update confirms Palworld activities at Bushiroad Card Game Festival Singapore. The Special Release Tournament and Shacho Cup are free to enter through Bushi Navi; the Shacho Cup permits only unmodified English TD01 or TD02 decks. Demo participants can receive a Chillet foldable deck case, with an additional promo card for registering a Bushi Navi account after the demo.</p>
       <h2>August 1-31: Grand Release Tournament</h2>
       <p>Official tournament stores may hold one Grand Release Tournament during August. The announced format is Standard, up to five Swiss rounds, best-of-one and 30 minutes per round. Registration is handled through Bushi Navi, so players should check the actual store listing before travelling.</p>
       <ul>
@@ -331,6 +467,10 @@ const guideContent: Record<string, React.ReactNode> = {
         <li><strong>Champion:</strong> a Lily Everhart and Lyleen playmat plus a champion flair.</li>
         <li><strong>Important:</strong> prize availability and local entry details come from the organizer; a marketplace listing is not an event registration.</li>
       </ul>
+      <h2>August: regular shop tournaments begin</h2>
+      <p>August shop tournaments use Swiss rounds and best-of-one games until one undefeated player remains. Every participant receives one random card from the nine-card PR Card Pack Vol. 1 series and a Bushi Navi flair. The champion receives two additional promo cards and a champion flair; stores also receive two extra promo packs to distribute by their own announced method.</p>
+      <h2>September 5: Los Angeles Release Party</h2>
+      <p>The official Release Party page lists a one-day event at Crowne Plaza Los Angeles Harbor Hotel in San Pedro, California. The main event is five Swiss rounds, best-of-one and 30 minutes per round, with Entry Soul cards and a PR Card Pack Vol. 1 card for participation. Players with more than three wins receive a Vol. 1.5 promo card, while the undefeated player also receives the Lily Everhart and Lyleen playmat. A separate eight-player single-elimination event is also listed.</p>
       <h2>Autumn: the first competitive season</h2>
       <p>Official announcements place shop tournaments from August, the first Challengers Cup season from September through November, and regional Masters League competition across the 2026-27 season. Dates and locations can change, so the official event calendar remains the final source.</p>
       <h2>October 2: Sleeve &amp; Card Set Vol. 1</h2>
@@ -407,6 +547,12 @@ const guideContent: Record<string, React.ReactNode> = {
 };
 
 const officialSources: Record<string, Array<{ label: string; href: string }>> = {
+  "palworld-booster-box": [
+    { label: "Official BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
+    { label: "Official launch product announcement", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
+    { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
+    { label: "Official retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
+  ],
   "how-to-play-palworld-card-game": [
     { label: "Official Quick Manual", href: "https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" },
     { label: "Official Rule & Q&A", href: "https://en.palworld-official-cardgame.com/rule" },
@@ -425,6 +571,7 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
     { label: "Official product list", href: "https://en.palworld-official-cardgame.com/products" },
     { label: "Official retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
     { label: "Dawn of Palpagos product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
+    { label: "Community launch availability discussion — unverified", href: "https://www.reddit.com/r/PalworldTCG/comments/1vavklw/where_to_get_palworld_cards/" },
   ],
   "dawn-of-palpagos-card-list-guide": [
     { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
@@ -438,14 +585,24 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
     { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
     { label: "Official BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
   ],
+  "dawn-of-palpagos-chase-cards": [
+    { label: "Official BP01 161-card list", href: "https://en.palworld-official-cardgame.com/cardlist/searchresults?expansion=EBP01" },
+    { label: "Official BP01 product specifications", href: "https://en.palworld-official-cardgame.com/products/bp01" },
+  ],
   "dawn-of-palpagos-pull-rates": [
     { label: "Official BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
+    { label: "Community opening sample tracker — not official odds", href: "https://www.reddit.com/r/PalworldTCG/comments/1v893g8/palworld_tcg_rarity_guide_pull_rates_from_10/" },
+    { label: "48+ pack community tracker — not official odds", href: "https://www.reddit.com/r/PalworldTCG/comments/1v9fipg/estimated_pull_rates_card_odds_based_on_48/" },
   ],
   "palworld-card-game-2026-roadmap": [
     { label: "Official news and latest updates", href: "https://en.palworld-official-cardgame.com/news" },
+    { label: "Official 3.5 million pack-sales announcement", href: "https://en.palworld-official-cardgame.com/news/post-4" },
+    { label: "Official Singapore festival update", href: "https://en.palworld-official-cardgame.com/news/post-bcgf2026" },
     { label: "Official Legends Awaken announcement", href: "https://en.palworld-official-cardgame.com/news/post-preoders-bp02-ss01" },
     { label: "Official Grand Release Tournament", href: "https://en.palworld-official-cardgame.com/events/grand-release-tournament" },
+    { label: "Official August shop tournaments", href: "https://en.palworld-official-cardgame.com/events/shop-tournaments" },
+    { label: "Official Los Angeles Release Party", href: "https://en.palworld-official-cardgame.com/events/release-party-in-los-angeles" },
     { label: "Official 2026 event roadmap", href: "https://en.palworld-official-cardgame.com/news/post-becs-26" },
   ],
   "palworld-card-game-errata-tracker": [
@@ -461,26 +618,124 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
   ],
 };
 
+const relatedGuideSlugs: Record<string, string[]> = {
+  "palworld-booster-box": [
+    "palworld-card-game-products-where-to-buy",
+    "dawn-of-palpagos-pull-rates",
+    "palworld-tcg-rarity-guide",
+  ],
+  "how-to-play-palworld-card-game": [
+    "palworld-card-game-deck-building-rules",
+    "palworld-card-game-keyword-glossary",
+    "palworld-card-game-color-guide",
+  ],
+  "palworld-card-game-deck-building-rules": [
+    "palworld-card-game-color-guide",
+    "red-blue-vs-green-purple-trial-deck",
+    "how-to-play-palworld-card-game",
+  ],
+  "red-blue-vs-green-purple-trial-deck": [
+    "palworld-card-game-products-where-to-buy",
+    "palworld-card-game-color-guide",
+    "palworld-booster-box",
+  ],
+  "palworld-card-game-products-where-to-buy": [
+    "palworld-booster-box",
+    "red-blue-vs-green-purple-trial-deck",
+    "palworld-card-game-2026-roadmap",
+  ],
+  "dawn-of-palpagos-card-list-guide": [
+    "palworld-tcg-rarity-guide",
+    "palworld-card-game-color-guide",
+    "palworld-card-game-keyword-glossary",
+  ],
+  "palworld-card-game-keyword-glossary": [
+    "how-to-play-palworld-card-game",
+    "palworld-card-game-deck-building-rules",
+    "palworld-card-game-errata-tracker",
+  ],
+  "palworld-tcg-rarity-guide": [
+    "dawn-of-palpagos-chase-cards",
+    "dawn-of-palpagos-pull-rates",
+    "palworld-booster-box",
+  ],
+  "dawn-of-palpagos-chase-cards": [
+    "dawn-of-palpagos-pull-rates",
+    "palworld-tcg-rarity-guide",
+    "dawn-of-palpagos-card-list-guide",
+  ],
+  "dawn-of-palpagos-pull-rates": [
+    "dawn-of-palpagos-chase-cards",
+    "palworld-booster-box",
+    "palworld-tcg-rarity-guide",
+  ],
+  "palworld-card-game-2026-roadmap": [
+    "palworld-card-game-products-where-to-buy",
+    "palworld-card-game-errata-tracker",
+    "palworld-booster-box",
+  ],
+  "palworld-card-game-errata-tracker": [
+    "palworld-card-game-keyword-glossary",
+    "palworld-card-game-2026-roadmap",
+    "how-to-play-palworld-card-game",
+  ],
+  "palworld-card-game-color-guide": [
+    "red-blue-vs-green-purple-trial-deck",
+    "palworld-card-game-deck-building-rules",
+    "dawn-of-palpagos-card-list-guide",
+  ],
+};
+
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const guide = guides.find((item) => item.slug === slug);
   const quickAnswer = guideQuickAnswers[slug];
   if (!guide || !guideContent[slug] || !quickAnswer) notFound();
-  const related = guides.filter((item) => item.slug !== slug).slice(0, 3);
+  const related = (relatedGuideSlugs[slug] || []).map((relatedSlug) => {
+    const relatedGuide = guides.find((item) => item.slug === relatedSlug);
+    if (!relatedGuide) throw new Error(`Guide ${slug} references missing related guide ${relatedSlug}`);
+    return relatedGuide;
+  });
   const primaryImage = getGuidePrimaryImage(slug);
+  const articleDate = guide.published || "2026-07-30";
+  const boosterBoxFaqs = slug === "palworld-booster-box" ? [
+    ["How many packs are in a Palworld Booster Box?", "A Dawn of Palpagos BP01 booster box contains 12 booster packs."],
+    ["How many cards are in a Palworld Booster Box?", "There are 7 cards per pack and 12 packs per box, for 84 cards total. Duplicates are possible."],
+    ["Are Palworld Booster Box pull rates guaranteed?", "No official per-box pull odds have been published."],
+    ["Can I play with one Booster Box?", "A box does not guarantee a legal deck. A Trial Deck includes a fixed 50-card Main Deck and 10 Soul cards."],
+    ["What set is the first Palworld Booster Box?", "The first box is BP01 Dawn of Palpagos, released July 30, 2026."],
+    ["What is the Dawn of Palpagos Booster Box MSRP?", "The official English product page does not publish one universal MSRP. Compare the final delivered price from trusted local retailers."],
+  ] : [];
+  const structuredData: Record<string, unknown>[] = [
+    { "@context": "https://schema.org", "@type": "Article", headline: guide.heading || guide.title, description: guide.description, image: primaryImage?.url, datePublished: articleDate, dateModified: guide.modified || articleDate, author: { "@type": "Organization", name: "Palworld Card Game Wiki" }, mainEntityOfPage: `https://palworldcardgame.wiki/blog/${guide.slug}` },
+    createBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Guides", path: "/blog" },
+      { name: guide.heading || guide.title, path: `/blog/${guide.slug}` },
+    ]),
+  ];
+  if (boosterBoxFaqs.length) {
+    structuredData.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: boosterBoxFaqs.map(([name, text]) => ({
+        "@type": "Question",
+        name,
+        acceptedAnswer: { "@type": "Answer", text },
+      })),
+    });
+  }
 
   return (
     <article className="article-shell">
-      <JsonLd data={[
-        { "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, image: primaryImage?.url, datePublished: "2026-07-30", dateModified: "2026-07-30", author: { "@type": "Organization", name: "Palworld Card Game Wiki" }, mainEntityOfPage: `https://palworldcardgame.wiki/blog/${guide.slug}` },
-        createBreadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Guides", path: "/blog" },
-          { name: guide.title, path: `/blog/${guide.slug}` },
-        ]),
+      <JsonLd data={structuredData} />
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Guides", href: "/blog" },
+        { name: guide.heading || guide.title },
       ]} />
       <p className="eyebrow"><span>{guide.category}</span> · {guide.readTime}</p>
-      <h1>{guide.title}</h1>
+      <h1>{guide.heading || guide.title}</h1>
       <p className="article-lede">{guide.description}</p>
       <div className="guide-intro-flow">
         <div className="article-trust">
@@ -494,6 +749,20 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           <div className="quick-answer">
             <strong>{quickAnswer.label}</strong>
             <p>{quickAnswer.answer}</p>
+            <SharePanel
+              assetKey={`guide-${slug}`}
+              triggerLabel="Share this quick answer"
+              shareUrl={`/blog/${guide.slug}`}
+              shareText={`${guide.heading || guide.title}\n${quickAnswer.answer}`}
+              className="share-trigger-inline"
+              payload={{
+                kind: "guide",
+                eyebrow: `${guide.category} · ${quickAnswer.label}`,
+                title: guide.heading || guide.title,
+                body: quickAnswer.answer,
+                prompt: "Send this to the player who needs the fast version.",
+              }}
+            />
           </div>
         </div>
       </div>

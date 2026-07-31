@@ -7,6 +7,23 @@ import { cards, decks, getCardImageAlt, guides } from "@/lib/data";
 import { rankSearchItems, scoreSearchText } from "@/lib/search";
 import { ruleAnswers, type RuleAnswer } from "@/lib/rules";
 
+const searchablePages = [
+  {
+    href: "/cards/pals",
+    label: "Card database",
+    title: "Palworld Pals in the Official Card Game",
+    description: "Browse every launch Pal card by name, set, color, cost and rarity.",
+    searchText: "palworld pals pal cards pal list tcg official card game",
+  },
+  {
+    href: "/tools/dawn-of-palpagos-checklist",
+    label: "Collection tool",
+    title: "Dawn of Palpagos Card Checklist",
+    description: "Track all 100 BP01 base cards, 61 parallels and the special Soul.",
+    searchText: "dawn of palpagos bp01 checklist tracker collection chase cards parallels ssp",
+  },
+];
+
 function AnswerSourceLink({ answer }: { answer: RuleAnswer }) {
   if (answer.sourceUrl.startsWith("/")) {
     return <Link href={answer.sourceUrl}>{answer.sourceLabel} →</Link>;
@@ -37,13 +54,19 @@ export function SiteSearchResults({ initialQuery = "" }: { initialQuery?: string
     (guide) => `${guide.title} ${guide.description} ${guide.category} ${guide.sourceStatus}`,
   ) : [], [normalized]);
 
+  const pageResults = useMemo(() => normalized ? rankSearchItems(
+    searchablePages,
+    normalized,
+    (page) => `${page.title} ${page.description} ${page.searchText}`,
+  ) : [], [normalized]);
+
   const deckResults = useMemo(() => normalized ? rankSearchItems(
     decks,
     normalized,
     (deck) => `${deck.name} ${deck.description} ${deck.archetype} ${deck.status}`,
   ) : [], [normalized]);
 
-  const hasResults = answerResults.length + cardResults.length + guideResults.length + deckResults.length > 0;
+  const hasResults = answerResults.length + cardResults.length + guideResults.length + deckResults.length + pageResults.length > 0;
 
   return (
     <div className="search-center shell">
@@ -89,6 +112,21 @@ export function SiteSearchResults({ initialQuery = "" }: { initialQuery?: string
             ))}
           </div>
           <Link className="text-link" href={`/rules?q=${encodeURIComponent(query.trim())}`}>Search the complete rules &amp; Q&amp;A center →</Link>
+        </section>
+      )}
+
+      {normalized && pageResults.length > 0 && (
+        <section className="search-group">
+          <div className="search-group-heading"><h2>Collections &amp; tools</h2><span>{pageResults.length}</span></div>
+          <div className="search-result-list">
+            {pageResults.map((page) => (
+              <Link href={page.href} key={page.href}>
+                <span>{page.label}</span>
+                <strong>{page.title}</strong>
+                <p>{page.description}</p>
+              </Link>
+            ))}
+          </div>
         </section>
       )}
 

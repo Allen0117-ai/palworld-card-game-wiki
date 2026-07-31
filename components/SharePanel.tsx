@@ -1,0 +1,201 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import type { ShareCardPayload } from "@/lib/share-card";
+
+type SharePanelProps = {
+  payload: ShareCardPayload;
+  shareText: string;
+  shareUrl: string;
+  triggerLabel: string;
+  assetKey: string;
+  className?: string;
+  disabled?: boolean;
+};
+
+function absoluteShareUrl(shareUrl: string) {
+  return new URL(shareUrl, window.location.origin).toString();
+}
+
+export function SharePanel({
+  payload,
+  shareText,
+  shareUrl,
+  triggerLabel,
+  assetKey,
+  className = "",
+  disabled = false,
+}: SharePanelProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
+  const [shareFile, setShareFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [status, setStatus] = useState("");
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const generatedAssetKeyRef = useRef("");
+  const dialogTitleId = `share-title-${assetKey.replace(/[^a-zA-Z0-9_-]/g, "-").slice(0, 80)}`;
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsOpen(false);
+    }
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isOpen]);
+
+  useEffect(() => () => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+  }, [previewUrl]);
+
+  async function openSharePanel() {
+    setIsOpen(true);
+    if (shareFile && generatedAssetKeyRef.current === assetKey) return;
+    if (isCreating) return;
+
+    setIsCreating(true);
+    setStatus("Creating your share card…");
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl("");
+      setShareFile(null);
+    }
+    try {
+      const { createShareImageFile } = await import("@/lib/share-card");
+      const createdFile = await createShareImageFile(payload);
+      setShareFile(createdFile);
+      setPreviewUrl(URL.createObjectURL(createdFile));
+      generatedAssetKeyRef.current = assetKey;
+      setStatus("Your share card is ready.");
+    } catch (error) {
+      setStatus(error instanceof Error ? `${error.message} You can still share the link.` : "Preview unavailable. You can still share the link.");
+    } finally {
+      setIsCreating(false);
+    }
+  }
+
+  async function copyShareLink() {
+    try {
+      await navigator.clipboard.writeText(absoluteShareUrl(shareUrl));
+      setStatus("Link copied — send it to your playgroup.");
+    } catch {
+      setStatus("The link could not be copied. Please copy it from your browser.");
+    }
+  }
+
+  async function shareNow() {
+    if (!navigator.share) {
+      await copyShareLink();
+      return;
+    }
+
+    const resolvedUrl = absoluteShareUrl(shareUrl);
+    const canShareImage = Boolean(
+      shareFile
+      && navigator.canShare
+      && navigator.canShare({ files: [shareFile] }),
+    );
+
+    try {
+      await navigator.share(canShareImage && shareFile ? {
+        title: payload.title,
+        text: `${shareText}\n${resolvedUrl}`,
+        files: [shareFile],
+      } : {
+        title: payload.title,
+        text: shareText,
+        url: resolvedUrl,
+      });
+      setStatus("Shared — nice choice.");
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        setStatus("Share cancelled.");
+        return;
+      }
+      setStatus("The share menu could not open. Copy the link instead.");
+    }
+  }
+
+  return (
+    <>
+      <button
+        className={`share-trigger ${className}`.trim()}
+        type="button"
+        onClick={openSharePanel}
+        disabled={disabled}
+      >
+        <span aria-hidden="true">◆</span>
+        {triggerLabel}
+      </button>
+
+      {isOpen ? createPortal((
+        <div
+          className="share-overlay"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsOpen(false);
+          }}
+        >
+          <section className="share-dialog" role="dialog" aria-modal="true" aria-labelledby={dialogTitleId}>
+            <button
+              ref={closeButtonRef}
+              className="share-dialog-close"
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close share preview"
+            >
+              ×
+            </button>
+
+            <div className={`share-preview${previewUrl ? " is-ready" : ""}`}>
+              {previewUrl ? (
+                <div
+                  className="share-preview-image"
+                  style={{ backgroundImage: `url("${previewUrl}")` }}
+                  role="img"
+                  aria-label={`Share card preview for ${payload.title}`}
+                />
+              ) : (
+                <div className="share-preview-loading">
+                  <span aria-hidden="true">◆</span>
+                  <strong>{isCreating ? "Creating your card…" : "Preview unavailable"}</strong>
+                </div>
+              )}
+            </div>
+
+            <div className="share-dialog-copy">
+              <p className="eyebrow"><span>Made to travel</span> · Share card</p>
+              <h2 id={dialogTitleId}>Ready to share.</h2>
+              <p>This card includes the useful part, a clean link back, and enough context for a friend to act on it.</p>
+
+              <div className="share-dialog-actions">
+                <button className="button primary" type="button" onClick={shareNow} disabled={isCreating}>
+                  Share now <span>↗</span>
+                </button>
+                <button className="button ghost" type="button" onClick={copyShareLink}>
+                  Copy link
+                </button>
+                {previewUrl ? (
+                  <a className="button ghost" href={previewUrl} download={shareFile?.name || "palworld-share-card.png"}>
+                    Save image
+                  </a>
+                ) : null}
+              </div>
+              <p className="share-status" aria-live="polite">{status}</p>
+            </div>
+          </section>
+        </div>
+      ), document.body) : null}
+    </>
+  );
+}

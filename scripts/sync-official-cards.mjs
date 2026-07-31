@@ -50,7 +50,7 @@ function readableText(value) {
     .trim();
 }
 
-async function fetchSet(setCode) {
+async function fetchSetEntries(setCode) {
   const firstResponse = await fetch(`${apiBase}?page=1&per_page=100&sort=card_no&title=${setCode}`);
   if (!firstResponse.ok) throw new Error(`Card API returned ${firstResponse.status} for ${setCode}`);
   const firstPage = await firstResponse.json();
@@ -62,9 +62,7 @@ async function fetchSet(setCode) {
     pages.push(await response.json());
   }
 
-  return pages
-    .flatMap((page) => page.items)
-    .filter((card) => new RegExp(`^${setCode}-\\d{3}$`).test(card.card_number));
+  return pages.flatMap((page) => page.items);
 }
 
 async function downloadImage(card) {
@@ -76,7 +74,10 @@ async function downloadImage(card) {
 
 await mkdir(join(root, "public", "cards", "catalog"), { recursive: true });
 
-const sourceCards = (await Promise.all(setCodes.map(fetchSet))).flat();
+const sourceEntriesBySet = await Promise.all(setCodes.map(fetchSetEntries));
+const sourceCards = sourceEntriesBySet.flatMap((entries, index) => (
+  entries.filter((card) => new RegExp(`^${setCodes[index]}-\\d{3}$`).test(card.card_number))
+));
 const cards = sourceCards.map((card) => {
   const [name, ...subtitleParts] = card.card_name.split(" – ");
   const subtitle = subtitleParts.join(" – ");
@@ -109,4 +110,21 @@ await writeFile(
   `${JSON.stringify(cards, null, 2)}\n`,
 );
 
-console.log(`Synced ${cards.length} official main-deck cards across ${setCodes.join(", ")}.`);
+const bp01Checklist = sourceEntriesBySet[0]
+  .filter((card) => card.expansion === "EBP01")
+  .map((card) => ({
+    number: card.card_number,
+    baseNumber: card.card_number.match(/^EBP01-\d{3}/)?.[0] || card.card_number,
+    name: card.card_name,
+    rarity: card.rare,
+    color: (card.color || "Colorless").toLowerCase(),
+    type: card.card_kind,
+    isParallel: card.card_number !== card.card_number.match(/^EBP01-\d{3}/)?.[0],
+  }));
+
+await writeFile(
+  join(root, "lib", "official-bp01-checklist.generated.json"),
+  `${JSON.stringify(bp01Checklist, null, 2)}\n`,
+);
+
+console.log(`Synced ${cards.length} main-deck cards and ${bp01Checklist.length} BP01 checklist entries.`);

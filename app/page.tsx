@@ -136,24 +136,24 @@ export default function Home() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>Updated today</span> · July 30, 2026</p><h2>What changed at launch.</h2></div>
-          <p>This area tracks useful official changes so returning players can see what is newly verified.</p>
+          <div><p className="eyebrow"><span>Updated today</span> · July 31, 2026</p><h2>What changed at launch.</h2></div>
+          <p>Checked against the official news feed, event pages and launch-day community questions.</p>
         </div>
         <div className="latest-update-grid">
           <Link href="/blog/palworld-card-game-2026-roadmap">
-            <span>Products · Confirmed</span>
-            <strong>Legends Awaken arrives October 30</strong>
-            <p>See every confirmed 2026 product and organized-play date in one launch roadmap.</p>
+            <span>Official news · Jul 30</span>
+            <strong>Singapore and Los Angeles events added</strong>
+            <p>See the newly confirmed dates, formats, prizes and Bushi Navi registration details.</p>
           </Link>
-          <Link href="/blog/palworld-card-game-errata-tracker">
-            <span>Corrections · Tracked</span>
-            <strong>TD01 printing notice explained</strong>
-            <p>See the confirmed omitted Strike text notice and learn where to check current card text.</p>
+          <Link href="/blog/palworld-card-game-products-where-to-buy">
+            <span>Buyer watch · Jul 31</span>
+            <strong>Stock and launch-price warning</strong>
+            <p>Use official retailers, call before travelling and do not treat marketplace asking prices as settled value.</p>
           </Link>
-          <Link href="/blog/palworld-card-game-2026-roadmap">
-            <span>Events · Aug 1–31</span>
-            <strong>Grand Release Tournament window</strong>
-            <p>Format, participation prizes, registration and the official source are summarized clearly.</p>
+          <Link href="/blog/red-blue-vs-green-purple-trial-deck">
+            <span>Trial Deck FAQ · Jul 31</span>
+            <strong>Your parallel card keeps the deck playable</strong>
+            <p>Every Trial Deck still contains a complete 50-card Main Deck when one card is replaced by a TSR or TSP version.</p>
           </Link>
         </div>
       </section>
@@ -176,7 +176,10 @@ export default function Home() {
             <p className="eyebrow"><span>First booster set</span> · EBP01</p>
             <h2>Answer the call<br />of Palpagos.</h2>
             <p>Dawn of Palpagos introduces 100 base cards, four colors and alternate treatments built around the creatures, tools and survival systems of Palworld.</p>
-            <a className="button primary" href="https://en.palworld-official-cardgame.com/products/bp01" target="_blank" rel="noreferrer">Visit official product page <span>↗</span></a>
+            <div className="article-actions">
+              <Link className="button primary" href="/blog/palworld-booster-box">Read the Booster Box guide <span>→</span></Link>
+              <a className="button ghost" href="https://en.palworld-official-cardgame.com/products/bp01" target="_blank" rel="noreferrer">Official product page <span>↗</span></a>
+            </div>
           </div>
           <div className="product-pack">
             <Image src="/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp" alt="Palworld Card Game Dawn of Palpagos BP01 booster pack" width={828} height={1713} loading="lazy" />
@@ -193,10 +196,11 @@ export default function Home() {
           <div className="section-heading compact">
             <div>
               <p className="eyebrow">Launch deck center</p>
-              <h2>Learn before you tune</h2>
+              <h2>See the cards. Learn the plan.</h2>
             </div>
-            <Link className="text-link" href="/decks">All decks →</Link>
+            <Link className="text-link" href="/decks">View illustrated deck guides →</Link>
           </div>
+          <p className="deck-home-intro">Start with a verified Trial Deck or copy the complete 50-card beginner list. Every guide includes a three-step game plan and visual card combinations.</p>
           <div className="deck-list">
             {decks.map((deck, index) => <DeckTile key={deck.slug} deck={deck} rank={index + 1} />)}
           </div>

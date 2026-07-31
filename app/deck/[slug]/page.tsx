@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CardTile } from "@/components/CardTile";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { DeckGamePlan } from "@/components/DeckGamePlan";
+import { DeckRecipe } from "@/components/DeckRecipe";
 import { cards, decks } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
-import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd, createPageMetadata, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() { return decks.map((deck) => ({ slug: deck.slug })); }
 
@@ -12,54 +15,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const deck = decks.find((item) => item.slug === slug);
   if (!deck) return {};
+  const isOfficialTrialDeck = deck.status === "Official Trial Deck";
   return createPageMetadata({
-    title: `${deck.name} · Palworld TCG Strategy & Card Pool`,
-    description: deck.description,
+    title: isOfficialTrialDeck
+      ? `${deck.name.replace(" Guide", "")} List & Guide – Palworld TCG`
+      : "Red / Blue BP01 Starter Deck – Complete 50-Card List",
+    description: isOfficialTrialDeck
+      ? `See all 24 unique ${deck.colors.join("/")} Main Deck cards, product contents, key combos and a beginner game plan for this Palworld TCG Trial Deck.`
+      : deck.description,
     path: `/deck/${deck.slug}`,
+    absoluteTitle: true,
     type: "article",
+    image: {
+      url: `${SITE_URL}/og/decks/${deck.slug}.png`,
+      width: 1200,
+      height: 630,
+      alt: `${deck.name} illustrated deck guide`,
+    },
   });
 }
-
-const deckPlans: Record<string, React.ReactNode> = {
-  "red-blue-launch-pressure": (
-    <>
-      <h2>How Red / Blue wins games</h2>
-      <p>Red converts Materials and card effects into direct Pal damage. Blue adds card flow, temporary resting effects and defensive Quick cards. The simple plan is to develop a Structure early, keep enough cards to answer attacks, then use a large Pal to turn resource advantage into pressure.</p>
-      <h3>Opening turns</h3>
-      <p>Stone Pit is the clean engine: assign a standing Pal to gain 3 Materials and draw a card. Your cheap Pals make that assignment easier. Avoid filling your opening hand with only cost 7 and 8 finishers; the deck wants something useful at costs 2, 3 or 4.</p>
-      <h3>Middle game</h3>
-      <p>Weapon Workbench spends Materials to deal 800 damage and gives all your Pals +1 Strike for the turn. Blue cards such as Elphidran Aqua and Single-Shot Sphere Launcher help replace cards, while Crystal Breath and Interrupt Pals make opposing attacks less certain.</p>
-      <h3>Closing turns</h3>
-      <p>Grizzbolt can attack standing Pals through Assault. Blazamut deals 1000 damage on deploy. Mammorest Cryst grows with your Structures. Pick the finisher that fits the board instead of playing the most expensive card automatically.</p>
-    </>
-  ),
-  "green-blue-base-value": (
-    <>
-      <h2>How Green / Purple wins games</h2>
-      <p>Green builds Ingredients, protects targets with Taunt and creates powerful combat turns. Purple adds Stealth attackers, direct removal and graveyard recovery. This deck rewards players who prefer setting up one strong turn over dealing small damage immediately.</p>
-      <h3>Opening turns</h3>
-      <p>Berry Plantation is the central engine: assign a Pal to gain 3 Ingredients and draw a card. Flopie creates two Ingredients when deployed, so early low-cost Pals can both develop your base and fuel later abilities.</p>
-      <h3>Middle game</h3>
-      <p>Campfire consumes Ingredients and an assigned Pal to gain life and give all your Pals +1000 Power for the turn. Green Taunt Pals protect more fragile threats. Purple answers include Hanging Trap, Strike from the Darkness and Interrupt Pals.</p>
-      <h3>Closing turns</h3>
-      <p>Felbat attacks through blockers with Stealth and gains life on attack. Astegon reduces Power and can remove every Pal at 300 Power or less when it attacks, including your own, so sequence the effect carefully.</p>
-    </>
-  ),
-  "mono-red-pal-rush": (
-    <>
-      <h2>A safe first-deck process</h2>
-      <ol>
-        <li>Choose one or two colors and one clear plan: direct damage, Ingredients, Structures, or night/graveyard value.</li>
-        <li>Add enough cost 2-4 cards to make your first turns playable.</li>
-        <li>Choose a small number of expensive finishers instead of filling the deck with them.</li>
-        <li>Add card draw or selection so the deck can keep functioning after its opening hand.</li>
-        <li>Add interaction: Quick cards, Interrupt, damage, resting effects or removal.</li>
-        <li>Play five games, record cards that stay unused in hand, and change only a few slots at a time.</li>
-      </ol>
-      <div className="callout"><strong>Launch-day rule:</strong> A popular card is not automatically correct for your list. Start with a coherent plan and use actual games to decide the final copies.</div>
-    </>
-  ),
-};
 
 export default async function DeckDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -67,10 +41,24 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
   if (!deck) notFound();
   const core = deck.core.map((cardSlug) => cards.find((card) => card.slug === cardSlug)).filter(Boolean);
   const pool = deck.cardPool.map((cardSlug) => cards.find((card) => card.slug === cardSlug)).filter(Boolean);
+  const otherDecks = decks.filter((item) => item.slug !== deck.slug);
+  const pageHeading = deck.status === "Official Trial Deck"
+    ? deck.name.replace(" Guide", " List & Guide")
+    : deck.name;
   return (
     <>
       <JsonLd data={[
-        { "@context": "https://schema.org", "@type": "Article", headline: `${deck.name} Palworld TCG Deck Guide`, description: deck.description, author: { "@type": "Organization", name: "Palworld Card Game Wiki" } },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: `${pageHeading} · Palworld Card Game`,
+          description: deck.description,
+          image: `${SITE_URL}/og/decks/${deck.slug}.png`,
+          datePublished: deck.published,
+          dateModified: deck.modified,
+          mainEntityOfPage: `${SITE_URL}/deck/${deck.slug}`,
+          author: { "@type": "Organization", name: "Palworld Card Game Wiki", url: SITE_URL },
+        },
         createBreadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Decks", path: "/decks" },
@@ -78,34 +66,67 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
         ]),
       ]} />
       <header className="page-hero shell">
+        <Breadcrumbs items={[
+          { name: "Home", href: "/" },
+          { name: "Decks", href: "/decks" },
+          { name: deck.name },
+        ]} />
         <div className="color-pips">{deck.colors.map((color) => <span className={`pip ${color}`} key={color} />)}</div>
         <p className="eyebrow"><span>{deck.status}</span> · Updated {deck.updated}</p>
-        <h1>{deck.name}</h1>
+        <h1>{pageHeading}</h1>
         <p>{deck.description}</p>
+        {deck.status === "Official Trial Deck" ? <p><a className="text-link" href="#official-card-pool">Jump to the full 24-card pool →</a></p> : null}
       </header>
       <article className="article-shell">
         <div className="verification-strip">
           <strong>{deck.status}</strong>
           <span>{deck.status === "Official Trial Deck" ? "Product and card facts are verified. Strategy is our plain-English editorial analysis." : "This is a testing framework, not a tournament result or meta ranking."}</span>
         </div>
-        <h2>Cards that explain the plan</h2>
-        <div className="card-grid listing">{core.map((card) => card && <CardTile card={card} key={card.slug} />)}</div>
-        {deckPlans[deck.slug]}
-        <h2>{deck.status === "Official Trial Deck" ? "All unique main-deck cards in this product" : "BP01 card pool"}</h2>
-        {deck.status === "Official Trial Deck" && <p>The official card database lists the following 24 unique main-deck card entries. The sealed product is a fixed 50-card main deck plus 10 Soul cards; this table describes the unique card pool, not copy quantities.</p>}
-        <div className="pool-table" role="table" aria-label={`${deck.name} card pool`}>
-          {pool.map((card) => card && (
-            <div className="pool-row" role="row" key={card.slug}>
-              <span role="cell">{card.number}</span>
-              <strong role="cell">{card.name}{card.subtitle ? ` — ${card.subtitle}` : ""}</strong>
-              <span role="cell">{card.color} · {card.type} · Cost {card.cost}</span>
-            </div>
-          ))}
+        <div className="deck-at-a-glance" aria-label="Deck overview">
+          <div><span>Colors</span><strong>{deck.colors.join(" + ")}</strong></div>
+          <div><span>Style</span><strong>{deck.archetype}</strong></div>
+          <div><span>Level</span><strong>{deck.difficulty}</strong></div>
         </div>
+        <h2>Cards that explain the plan</h2>
+        <p>These cards show the deck’s main resource engine, interaction and finishing plan. Select any card to read its full official text.</p>
+        <div className="card-grid listing">{core.map((card) => card && <CardTile card={card} key={card.slug} />)}</div>
+        <DeckGamePlan deck={deck} />
+        <DeckRecipe deck={deck} />
+        {deck.status === "Official Trial Deck" && (
+          <section className="deck-guide-section" aria-labelledby="official-card-pool">
+            <p className="eyebrow"><span>Verified product pool</span> · 24 unique cards</p>
+            <h2 id="official-card-pool">All unique Main Deck cards</h2>
+            <p>The official card database lists these 24 unique Main Deck entries. The sealed product contains a fixed 50-card Main Deck, 10 Soul cards, one TSR or TSP replacement card and one BP01 booster pack. The public product page does not publish copy-by-copy quantities, so we show only what can be verified.</p>
+            <div className="pool-table" role="table" aria-label={`${deck.name} card pool`}>
+              {pool.map((card) => card && (
+                <Link className="pool-row" role="row" href={`/card/${card.slug}`} key={card.slug}>
+                  <span role="cell">{card.number}</span>
+                  <strong role="cell">{card.name}{card.subtitle ? ` — ${card.subtitle}` : ""}</strong>
+                  <span role="cell">{card.color} · {card.type} · Cost {card.cost}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
         <div className="callout"><strong>Freshness note:</strong> The game launched on July 30, 2026. Tournament results are not yet mature enough for honest tier rankings; this page will be updated when official deck lists and meaningful event data appear.</div>
-        <Link className="button primary" href="/tools/deck-builder">Customize in deck builder</Link>
-        {" "}
-        <a className="button ghost" href={deck.sourceUrl} target="_blank" rel="noreferrer">Check official source ↗</a>
+        <div className="article-actions">
+          <Link className="button primary" href={deck.recipe ? `/tools/deck-builder?deck=${deck.slug}` : "/tools/deck-builder"}>
+            {deck.recipe ? "Open this 50-card list" : "Customize in deck builder"}
+          </Link>
+          <a className="button ghost" href={deck.sourceUrl} target="_blank" rel="noreferrer">Check official source ↗</a>
+        </div>
+        <section className="deck-next-steps" aria-labelledby="keep-learning">
+          <p className="eyebrow"><span>Keep learning</span> · Choose your next step</p>
+          <h2 id="keep-learning">Do not stop at one page</h2>
+          <div>
+            <Link href="/blog/how-to-play-palworld-card-game"><span>First game</span><strong>Learn setup, turns and combat →</strong></Link>
+            <Link href="/blog/palworld-card-game-deck-building-rules"><span>Deck rules</span><strong>Check colors and copy limits →</strong></Link>
+            <Link href="/tools/dawn-of-palpagos-checklist"><span>Collecting</span><strong>Track all BP01 base and parallel cards →</strong></Link>
+            {otherDecks.map((otherDeck) => (
+              <Link href={`/deck/${otherDeck.slug}`} key={otherDeck.slug}><span>Another deck</span><strong>{otherDeck.name} →</strong></Link>
+            ))}
+          </div>
+        </section>
       </article>
     </>
   );

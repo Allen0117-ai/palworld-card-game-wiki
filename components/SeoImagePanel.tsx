@@ -21,6 +21,20 @@ type GuideVisual = Omit<SeoImagePanelProps, "assets"> & {
 };
 
 const guideVisuals: Record<string, GuideVisual> = {
+  "palworld-booster-box": {
+    label: "Dawn of Palpagos booster box",
+    title: "12 packs · 7 cards each · 84 cards total",
+    caption: "The official Dawn of Palpagos BP01 booster pack with representative cards from the first Palworld Card Game set.",
+    cardNumbers: ["EBP01-002", "EBP01-025", "EBP01-050"],
+    assets: [
+      {
+        src: "/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp",
+        alt: "Palworld Dawn of Palpagos BP01 booster pack from a 12-pack booster box",
+        width: 828,
+        height: 1713,
+      },
+    ],
+  },
   "how-to-play-palworld-card-game": {
     label: "Card types at a glance",
     title: "Pals, Gear, Structures and Events",
@@ -76,6 +90,12 @@ const guideVisuals: Record<string, GuideVisual> = {
     title: "Common, Uncommon, Rare and Double Rare",
     caption: "Palworld BP01 card examples showing the C, U, R and RR base rarity labels.",
     cardNumbers: ["EBP01-011", "EBP01-006", "EBP01-003", "EBP01-001"],
+  },
+  "dawn-of-palpagos-chase-cards": {
+    label: "BP01 collector shortlist",
+    title: "SSP centerpieces and standout SP artwork",
+    caption: "The base versions of four Dawn of Palpagos cards that also appear as high-rarity SSP or SP parallel treatments.",
+    cardNumbers: ["EBP01-001", "EBP01-025", "EBP01-049", "EBP01-073"],
   },
   "dawn-of-palpagos-pull-rates": {
     label: "Pull-rate verification",

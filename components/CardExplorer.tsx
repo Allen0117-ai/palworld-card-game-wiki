@@ -2,20 +2,30 @@
 
 import { useMemo, useState } from "react";
 import { CardTile } from "./CardTile";
-import { cards } from "@/lib/data";
+import { cards, type Card } from "@/lib/data";
 
 const PAGE_SIZE = 24;
 
-export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
+type CardExplorerProps = {
+  fixedType?: Card["type"];
+  initialQuery?: string;
+};
+
+export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps) {
   const [query, setQuery] = useState(initialQuery);
   const [color, setColor] = useState("all");
-  const [type, setType] = useState("all");
+  const [type, setType] = useState(fixedType || "all");
   const [cost, setCost] = useState("all");
   const [rarity, setRarity] = useState("all");
   const [set, setSet] = useState("all");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const results = useMemo(() => cards.filter((card) => {
+  const availableCards = useMemo(
+    () => fixedType ? cards.filter((card) => card.type === fixedType) : cards,
+    [fixedType],
+  );
+
+  const results = useMemo(() => availableCards.filter((card) => {
     const matchesQuery = `${card.name} ${card.subtitle} ${card.number} ${card.ability}`.toLowerCase().includes(query.toLowerCase());
     return matchesQuery
       && (color === "all" || card.color === color)
@@ -23,10 +33,10 @@ export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
       && (cost === "all" || card.cost === Number(cost))
       && (rarity === "all" || card.rarity === rarity)
       && (set === "all" || card.set === set);
-  }), [query, color, type, cost, rarity, set]);
+  }), [availableCards, query, color, type, cost, rarity, set]);
 
-  const costs = [...new Set(cards.map((card) => card.cost))].sort((a, b) => a - b);
-  const rarities = [...new Set(cards.map((card) => card.rarity))].sort();
+  const costs = [...new Set(availableCards.map((card) => card.cost))].sort((a, b) => a - b);
+  const rarities = [...new Set(availableCards.map((card) => card.rarity))].sort();
   const visibleResults = results.slice(0, visibleCount);
 
   return (
@@ -53,13 +63,15 @@ export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
             <option value="purple">Purple</option><option value="colorless">Colorless</option>
           </select>
         </div>
-        <div className="filter-group">
-          <label htmlFor="type-filter">Card type</label>
-          <select id="type-filter" className="select" value={type} onChange={(e) => { setType(e.target.value); setVisibleCount(PAGE_SIZE); }}>
-            <option value="all">All types</option>
-            <option value="Pal">Pal</option><option value="Gear">Gear</option><option value="Event">Event</option><option value="Structure">Structure</option>
-          </select>
-        </div>
+        {!fixedType ? (
+          <div className="filter-group">
+            <label htmlFor="type-filter">Card type</label>
+            <select id="type-filter" className="select" value={type} onChange={(e) => { setType(e.target.value); setVisibleCount(PAGE_SIZE); }}>
+              <option value="all">All types</option>
+              <option value="Pal">Pal</option><option value="Gear">Gear</option><option value="Event">Event</option><option value="Structure">Structure</option>
+            </select>
+          </div>
+        ) : null}
         <div className="filter-group">
           <label htmlFor="cost-filter">Cost</label>
           <select id="cost-filter" className="select" value={cost} onChange={(e) => { setCost(e.target.value); setVisibleCount(PAGE_SIZE); }}>
@@ -74,7 +86,7 @@ export function CardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
             {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
           </select>
         </div>
-        <div className="filter-group" aria-live="polite"><strong>Results</strong><span className="filter-count">{results.length} / {cards.length}</span></div>
+        <div className="filter-group" aria-live="polite"><strong>Results</strong><span className="filter-count">{results.length} / {availableCards.length}</span></div>
       </aside>
       <div>
         {results.length ? (

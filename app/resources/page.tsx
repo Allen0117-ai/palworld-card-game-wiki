@@ -43,10 +43,13 @@ const resourceGroups = [
     ],
   },
   {
-    title: "Community & launch coverage",
-    description: "Use these to discover questions, deck experiments and launch context—not as the final word on a rule.",
+    title: "Official social & community watch",
+    description: "Follow short official announcements, then use community discussion to discover questions—not as the final word on a rule or price.",
     links: [
-      { label: "Official YouTube", description: "Tutorials, product videos and official announcements.", href: "https://www.youtube.com/@PalworldOCG_EN", source: "Official · Video channel" },
+      { label: "Official X", description: "Short product, event and campaign announcements from the English account.", href: "https://x.com/PalworldOCG_EN", source: "Official · Social updates" },
+      { label: "Official tutorial video", description: "The publisher's full learn-to-play video; its prototype cards are not tournament legal.", href: "https://www.youtube.com/watch?v=UdbMWxWcMcw", source: "Official · YouTube" },
+      { label: "Official Facebook", description: "Official campaign and event posts from Palworld OCG.", href: "https://www.facebook.com/PalworldOCG/", source: "Official · Social updates" },
+      { label: "Official Instagram", description: "Official card artwork, product and event posts.", href: "https://www.instagram.com/palworldocg_en/", source: "Official · Social updates" },
       { label: "PalworldTCG on Reddit", description: "Player questions, early deck experiments and collecting discussion.", href: "https://www.reddit.com/r/PalworldTCG/", source: "Community · Unverified discussion" },
       { label: "GamesRadar launch report", description: "External reporting from the game's announcement and launch cycle.", href: "https://www.gamesradar.com/games/survival/still-not-beating-the-pokemon-comparisons-palworld-is-getting-an-official-card-game-thats-launching-this-july/", source: "Media report · January 2026" },
       { label: "PC Gamer launch report", description: "Independent media context around the card game's announcement.", href: "https://www.pcgamer.com/games/card-games/palworld-takes-the-red-rag-to-a-bull-approach-to-its-nintendo-lawsuit-announces-a-2-player-competitive-card-game/", source: "Media report · January 2026" },
@@ -58,7 +61,7 @@ export default function ResourcesPage() {
   return (
     <>
       <header className="page-hero shell">
-        <p className="eyebrow"><span>Curated information hub</span> · Checked July 30, 2026</p>
+        <p className="eyebrow"><span>Curated information hub</span> · Checked July 31, 2026</p>
         <h1>Know where the<br />answer came from.</h1>
         <p>We bring scattered Palworld Card Game information into one starting point, explain it in plain English, and clearly separate official facts from community discussion.</p>
       </header>
