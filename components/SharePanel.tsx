@@ -174,20 +174,31 @@ export function SharePanel({
             </div>
 
             <div className="share-dialog-copy">
-              <p className="eyebrow"><span>Made to travel</span> · Share card</p>
-              <h2 id={dialogTitleId}>Ready to share.</h2>
-              <p>This card includes the useful part, a clean link back, and enough context for a friend to act on it.</p>
+              <div className="share-signal" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              <p className="eyebrow"><span>Palpagos transmission</span> · Online</p>
+              <h2 id={dialogTitleId}>Your find is ready to travel.</h2>
+              <p>A high-resolution collector poster, made to catch attention and bring friends straight back to the useful part.</p>
+
+              <div className="share-delivery" aria-label="Included in this share">
+                <span><b>01</b><strong>Poster</strong><small>1080 × 1350</small></span>
+                <span><b>02</b><strong>Direct link</strong><small>Easy to open</small></span>
+                <span><b>03</b><strong>Mobile ready</strong><small>Made for feeds</small></span>
+              </div>
 
               <div className="share-dialog-actions">
                 <button className="button primary" type="button" onClick={shareNow} disabled={isCreating}>
-                  Share now <span>↗</span>
+                  Share the poster <span>↗</span>
                 </button>
                 <button className="button ghost" type="button" onClick={copyShareLink}>
                   Copy link
                 </button>
                 {previewUrl ? (
                   <a className="button ghost" href={previewUrl} download={shareFile?.name || "palworld-share-card.png"}>
-                    Save image
+                    Save poster
                   </a>
                 ) : null}
               </div>

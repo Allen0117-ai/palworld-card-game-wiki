@@ -2148,16 +2148,41 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   animation: share-overlay-in .18s ease-out;
 }
 .share-dialog {
-  width: min(900px, 100%);
+  width: min(980px, 100%);
+  min-height: 620px;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(300px, 410px) minmax(0, 1fr);
+  grid-template-columns: minmax(330px, 440px) minmax(0, 1fr);
   gap: 0;
+  isolation: isolate;
   overflow: hidden;
   border: 1px solid rgba(210, 182, 109, .55);
-  background: #1d201b;
-  box-shadow: 0 42px 120px rgba(0, 0, 0, .62);
+  background:
+    linear-gradient(90deg, rgba(4, 11, 16, .28), rgba(4, 10, 14, .90) 48%, rgba(4, 9, 12, .96)),
+    url("/share/palpagos-holo-archive.webp") center / cover;
+  box-shadow:
+    0 42px 120px rgba(0, 0, 0, .72),
+    0 0 70px rgba(90, 171, 193, .10);
   clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+}
+.share-dialog::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(105deg, transparent 42%, rgba(90, 171, 193, .10) 42.2%, transparent 42.6%),
+    radial-gradient(circle at 86% 17%, rgba(90, 171, 193, .24), transparent 27%),
+    radial-gradient(circle at 74% 78%, rgba(210, 182, 109, .13), transparent 31%);
+}
+.share-dialog::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, .07);
+  pointer-events: none;
 }
 .share-dialog-close {
   width: 42px;
@@ -2165,24 +2190,27 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   position: absolute;
   right: 14px;
   top: 14px;
-  z-index: 2;
-  border: 1px solid var(--line);
-  background: rgba(23, 25, 22, .88);
+  z-index: 4;
+  border: 1px solid rgba(90, 171, 193, .58);
+  background: rgba(3, 10, 14, .72);
   color: var(--paper);
   cursor: pointer;
   font-size: 25px;
   line-height: 1;
+  box-shadow: inset 0 0 20px rgba(90, 171, 193, .08);
 }
 .share-dialog-close:hover { border-color: var(--gold); color: var(--gold); }
 .share-preview {
-  min-height: 570px;
+  min-height: 620px;
   display: grid;
   place-items: center;
-  padding: 28px;
+  padding: 30px;
   border-right: 1px solid rgba(210, 182, 109, .24);
   background:
-    radial-gradient(circle at 50% 35%, rgba(210, 182, 109, .18), transparent 40%),
-    linear-gradient(145deg, #2a2e27, #11130f);
+    linear-gradient(145deg, rgba(90, 171, 193, .10), transparent 44%),
+    radial-gradient(circle at 50% 35%, rgba(210, 182, 109, .20), transparent 43%),
+    rgba(2, 8, 12, .36);
+  backdrop-filter: blur(8px);
 }
 .share-preview-image,
 .share-preview-loading {
@@ -2192,7 +2220,9 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  box-shadow: 0 28px 50px rgba(0, 0, 0, .42);
+  box-shadow:
+    0 28px 50px rgba(0, 0, 0, .52),
+    0 0 34px rgba(90, 171, 193, .10);
 }
 .share-preview-loading {
   display: grid;
@@ -2204,15 +2234,90 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 .share-preview-loading span { color: var(--gold); font-size: 22px; animation: share-diamond-pulse 1.2s ease-in-out infinite alternate; }
 .share-preview-loading strong { font: 750 18px/1.3 var(--font-display); }
 .share-dialog-copy {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 66px 42px 46px;
+  padding: 70px 46px 42px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(5, 13, 18, .44), rgba(5, 11, 14, .78)),
+    repeating-linear-gradient(90deg, transparent 0 42px, rgba(255, 255, 255, .018) 43px);
+  backdrop-filter: blur(16px);
 }
-.share-dialog-copy h2 { margin-bottom: 22px; font-size: clamp(39px, 5vw, 58px); }
-.share-dialog-copy > p:not(.eyebrow, .share-status) { max-width: 420px; margin: 0; color: #b4b5ac; font-size: 15px; line-height: 1.75; }
-.share-dialog-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+.share-dialog-copy h2 {
+  max-width: 430px;
+  margin-bottom: 18px;
+  color: #f6f0df;
+  font-size: clamp(42px, 4.5vw, 61px);
+  line-height: .98;
+  text-shadow: 0 3px 26px rgba(0, 0, 0, .55);
+}
+.share-dialog-copy > p:not(.eyebrow, .share-status) { max-width: 435px; margin: 0; color: #c2c8c4; font-size: 14px; line-height: 1.7; }
+.share-signal {
+  position: absolute;
+  right: 42px;
+  top: 66px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.share-signal span {
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #8ed9ea, var(--gold));
+  box-shadow: 0 0 10px rgba(90, 171, 193, .7);
+  animation: share-signal-pulse 1.6s ease-in-out infinite alternate;
+}
+.share-signal span:nth-child(1) { height: 9px; }
+.share-signal span:nth-child(2) { height: 16px; animation-delay: -.5s; }
+.share-signal span:nth-child(3) { height: 24px; animation-delay: -1s; }
+.share-delivery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 26px;
+}
+.share-delivery > span {
+  min-height: 90px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px 12px 12px;
+  overflow: hidden;
+  border: 1px solid rgba(90, 171, 193, .20);
+  background: linear-gradient(145deg, rgba(90, 171, 193, .10), rgba(255, 255, 255, .025));
+}
+.share-delivery > span::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), #67b7c9, transparent);
+}
+.share-delivery b {
+  position: absolute;
+  right: 9px;
+  top: 7px;
+  color: rgba(210, 182, 109, .48);
+  font: 800 10px/1 var(--font-ui);
+}
+.share-delivery strong { color: var(--paper-light); font: 800 11px/1.2 var(--font-ui); text-transform: uppercase; letter-spacing: .04em; }
+.share-delivery small { margin-top: 5px; color: #9ca6a4; font-size: 10px; }
+.share-dialog-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
 .share-dialog-actions .button { flex: 1 1 145px; padding-inline: 14px; }
+.share-dialog-actions .button.primary {
+  flex-basis: 100%;
+  min-height: 58px;
+  border-color: rgba(255, 235, 174, .75);
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, .24), transparent 35%),
+    linear-gradient(90deg, #d5b45c, #e0c980 48%, #79c6d4);
+  color: #061014;
+  box-shadow: 0 13px 30px rgba(0, 0, 0, .28), 0 0 28px rgba(90, 171, 193, .10);
+}
+.share-dialog-actions .button.primary:hover { filter: brightness(1.08); }
 .share-status { min-height: 44px; margin: 20px 0 0; color: var(--gold); font-size: 12px; line-height: 1.6; }
 
 @keyframes share-overlay-in {
@@ -2222,6 +2327,10 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 @keyframes share-diamond-pulse {
   from { opacity: .45; transform: scale(.82) rotate(0); }
   to { opacity: 1; transform: scale(1.08) rotate(45deg); }
+}
+@keyframes share-signal-pulse {
+  from { opacity: .48; transform: scaleY(.7); }
+  to { opacity: 1; transform: scaleY(1); }
 }
 
 .resource-hub { padding-block: 48px 110px; }
@@ -2796,6 +2905,8 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   .share-dialog-copy .eyebrow { margin-bottom: 9px; }
   .share-dialog-copy h2 { margin-bottom: 10px; font-size: 32px; }
   .share-dialog-copy > p:not(.eyebrow, .share-status) { display: none; }
+  .share-signal,
+  .share-delivery { display: none; }
   .share-dialog-actions {
     order: 2;
     position: sticky;
