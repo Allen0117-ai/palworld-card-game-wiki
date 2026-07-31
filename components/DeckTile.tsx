@@ -29,10 +29,11 @@ export function DeckTile({ deck, rank }: { deck: Deck; rank: number }) {
         <div className="color-pips">{deck.colors.map((color) => <span className={`pip ${color}`} key={color} />)}</div>
         <h3>{deck.name}</h3>
         <p>{deck.archetype} · {deck.difficulty}</p>
+        <span className="deck-best-for">{deck.bestFor}</span>
         <span className="deck-tile-facts">
-          <span>3-step plan</span>
-          <span>3 visual combos</span>
-          <span>{deck.recipe ? "Complete 50-card list" : "Verified 24-card pool"}</span>
+          <span className="deck-fact-secondary">3-step plan</span>
+          <span className="deck-fact-secondary">3 visual combos</span>
+          <span className="deck-fact-primary">{deck.recipe ? "Complete 50-card list" : "Verified 24-card pool"}</span>
         </span>
       </div>
       <span className="deck-score deck-status-badge">

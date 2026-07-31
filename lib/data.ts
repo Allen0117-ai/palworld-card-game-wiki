@@ -198,6 +198,7 @@ export type Deck = {
   colors: CardColor[];
   archetype: string;
   difficulty: string;
+  bestFor: string;
   status: "Official Trial Deck" | "Editorial Launch Lab";
   description: string;
   core: string[];
@@ -233,6 +234,7 @@ export const decks: Deck[] = [
     colors: ["red", "blue"],
     archetype: "Damage · Structures · Card flow",
     difficulty: "Beginner",
+    bestFor: "Best for your first match — the most direct game plan.",
     status: "Official Trial Deck",
     description: "Understand TD01's 24-card pool, its Material engine, defensive Quick cards and the turns that matter most.",
     core: ["ETD01-001", "ETD01-008", "ETD01-009", "ETD01-018"].map(slugForNumber),
@@ -285,6 +287,7 @@ export const decks: Deck[] = [
     colors: ["green", "purple"],
     archetype: "Ingredients · Taunt · Stealth",
     difficulty: "Beginner",
+    bestFor: "Best for players who enjoy setup, timing and tactical choices.",
     status: "Official Trial Deck",
     description: "Learn TD02's Ingredient engine, sturdy Green board and Purple removal without pretending launch-day data is a settled meta.",
     core: ["ETD02-006", "ETD02-008", "ETD02-012", "ETD02-018"].map(slugForNumber),
@@ -337,6 +340,7 @@ export const decks: Deck[] = [
     colors: ["red", "blue"],
     archetype: "Materials · Structures · Direct damage",
     difficulty: "Beginner",
+    bestFor: "Best for copying a complete 50-card list into the deck builder.",
     status: "Editorial Launch Lab",
     description: "A complete 50-card beginner sample list using BP01 Red and Blue cards, with a clear Material engine, card draw and direct-damage finishers.",
     core: ["EBP01-016", "EBP01-017", "EBP01-002", "EBP01-029"].map(slugForNumber),

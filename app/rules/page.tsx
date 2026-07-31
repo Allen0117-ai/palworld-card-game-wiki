@@ -6,11 +6,22 @@ import { SeoImagePanel } from "@/components/SeoImagePanel";
 import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
 import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Palworld TCG Rules, Rulebook PDF & Official Q&A",
-  description: "Search Palworld TCG rules in plain English, open the official rulebook PDF and check all 97 launch-day Q&A rulings with source links.",
-  path: "/rules",
-});
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}): Promise<Metadata> {
+  const { q = "" } = await searchParams;
+  const question = q.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 100);
+
+  return createPageMetadata({
+    title: question || "Palworld TCG Rules, Rulebook PDF & Official Q&A",
+    description: question
+      ? `See the sourced Palworld Card Game ruling for “${question}” and share the answer with your playgroup.`
+      : "Search Palworld TCG rules in plain English, open the official rulebook PDF and check all 97 launch-day Q&A rulings with source links.",
+    path: "/rules",
+  });
+}
 
 export default async function RulesPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q = "" } = await searchParams;

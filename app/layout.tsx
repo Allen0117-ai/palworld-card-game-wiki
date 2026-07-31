@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Cinzel, Inter, Oxanium } from "next/font/google";
-import Link from "next/link";
 import Script from "next/script";
 import { InteractionEffects } from "@/components/InteractionEffects";
-import { MobileNav } from "@/components/MobileNav";
+import { LocalizedSiteFooter, LocalizedSiteHeader, LocalizedSkipLink } from "@/components/LocalizedSiteChrome";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { AnalyticsConsent, PrivacyChoicesButton } from "@/components/AnalyticsConsent";
+import { AnalyticsConsent } from "@/components/AnalyticsConsent";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
@@ -33,6 +32,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
+        <Script id="localized-document-language" strategy="beforeInteractive">
+          {`document.documentElement.lang = window.location.pathname === '/ja' || window.location.pathname.startsWith('/ja/') ? 'ja' : 'en';`}
+        </Script>
         {analyticsConfigured ? (
           <Script id="analytics-consent-defaults" strategy="beforeInteractive">
             {`
@@ -59,60 +61,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         ) : null}
       </head>
       <body className={`${inter.variable} ${cinzel.variable} ${oxanium.variable}`}>
-        <a className="skip-link" href="#main-content">Skip to main content</a>
+        <LocalizedSkipLink />
         <InteractionEffects />
         <ScrollReveal />
-        <header className="site-header">
-          <div className="shell nav-wrap">
-            <Link className="brand" href="/" aria-label="Palworld Card Game Wiki home">
-              <span className="brand-mark">◆</span>
-              <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
-            </Link>
-            <nav className="desktop-nav" aria-label="Main navigation">
-              <Link href="/rules">Rules</Link>
-              <Link href="/cards">Cards</Link>
-              <Link href="/decks">Decks</Link>
-              <Link href="/blog">Guides</Link>
-              <Link href="/resources">Resources</Link>
-              <Link href="/search">Search</Link>
-            </nav>
-            <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>◆</span></Link>
-            <MobileNav />
-          </div>
-        </header>
+        <LocalizedSiteHeader />
         <main id="main-content" tabIndex={-1}>{children}</main>
-        <footer className="site-footer">
-          <div className="shell footer-grid">
-            <div>
-              <Link className="brand footer-brand" href="/">
-                <span className="brand-mark">◆</span>
-                <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
-              </Link>
-              <p>An unofficial, non-commercial card database and strategy companion built by fans, for players.</p>
-            </div>
-            <div>
-              <strong>Explore</strong>
-              <Link href="/cards">Card database</Link>
-              <Link href="/decks">Trial Deck guides</Link>
-              <Link href="/tools/deck-builder">Deck builder</Link>
-              <Link href="/tools/dawn-of-palpagos-checklist">BP01 checklist</Link>
-              <Link href="/rules">Rules &amp; FAQ</Link>
-              <Link href="/blog">Guides</Link>
-              <Link href="/resources">Source hub</Link>
-            </div>
-            <div>
-              <strong>Site</strong>
-              <Link href="/about">About & disclaimer</Link>
-              <Link href="/privacy">Privacy</Link>
-              <PrivacyChoicesButton />
-              <a href="mailto:paweyan163@gmail.com">Contact</a>
-            </div>
-          </div>
-          <div className="shell legal">
-            <span>© 2026 Palworld Card Game Wiki · ©Bushiroad ©PALWORLD</span>
-            <span>Unofficial fan site. Not affiliated with or endorsed by Pocketpair or Bushiroad.</span>
-          </div>
-        </footer>
+        <LocalizedSiteFooter />
         <Analytics />
         <AnalyticsConsent />
       </body>

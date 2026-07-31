@@ -1,6 +1,7 @@
 "use client";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { useEffect, useState, useSyncExternalStore } from "react";
 
@@ -70,19 +71,21 @@ function subscribeToConsent(onConsentChange: () => void) {
   };
 }
 
-export function PrivacyChoicesButton() {
+export function PrivacyChoicesButton({ locale = "en" }: { locale?: "en" | "ja" }) {
   return (
     <button
       className="footer-privacy-button"
       type="button"
       onClick={() => window.dispatchEvent(new Event(OPEN_PRIVACY_CHOICES_EVENT))}
     >
-      Privacy choices
+      {locale === "ja" ? "プライバシー設定" : "Privacy choices"}
     </button>
   );
 }
 
 export function AnalyticsConsent() {
+  const pathname = usePathname();
+  const japanese = pathname === "/ja" || pathname.startsWith("/ja/");
   const consent = useSyncExternalStore(
     subscribeToConsent,
     readConsentSnapshot,
@@ -145,27 +148,31 @@ export function AnalyticsConsent() {
       ) : null}
 
       {consent === null || privacyChoicesOpen ? (
-        <aside className="privacy-banner" aria-label="Analytics privacy choices">
+        <aside className="privacy-banner" aria-label={japanese ? "アクセス解析のプライバシー設定" : "Analytics privacy choices"}>
           <span className="privacy-banner-mark" aria-hidden="true">◆</span>
           <div className="privacy-banner-copy">
-            <strong>Help improve the archive</strong>
-            <p>
-              Cookieless analytics is on. Allow analytics cookies for complete visits and
-              connected masked replays.{" "}<a href="/privacy">Privacy details</a>
-            </p>
+            <strong>{japanese ? "サイト改善へのご協力" : "Help improve the archive"}</strong>
+            {japanese ? (
+              <p>Cookieを使わないアクセス解析は有効です。Cookieを許可すると、利用状況をより詳しく確認できます。 <a href="/privacy">プライバシー詳細</a></p>
+            ) : (
+              <p>
+                Cookieless analytics is on. Allow analytics cookies for complete visits and
+                connected masked replays.{" "}<a href="/privacy">Privacy details</a>
+              </p>
+            )}
           </div>
           <div className="privacy-banner-actions">
             <button type="button" className="privacy-allow" onClick={() => saveConsent("accepted")}>
-              Allow analytics
+              {japanese ? "解析を許可" : "Allow analytics"}
             </button>
             <button type="button" className="privacy-decline" onClick={() => saveConsent("declined")}>
-              No cookies
+              {japanese ? "Cookieを使わない" : "No cookies"}
             </button>
           </div>
           <button
             className="privacy-banner-close"
             type="button"
-            aria-label="Close privacy notice"
+            aria-label={japanese ? "プライバシー通知を閉じる" : "Close privacy notice"}
             onClick={closeBanner}
           >
             ×

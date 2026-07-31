@@ -45,10 +45,18 @@ const publicRoutes = [
   "/search",
   "/about",
   "/privacy",
+  "/ja",
+  "/ja/cards",
+  "/ja/decks",
+  "/ja/rules",
   ...launchCards.map((card) => `/card/${card.slug}`),
+  ...launchCards.map((card) => `/ja/card/${card.slug}`),
   "/deck/red-blue-launch-pressure",
   "/deck/green-blue-base-value",
   "/deck/mono-red-pal-rush",
+  "/ja/deck/red-blue-launch-pressure",
+  "/ja/deck/green-blue-base-value",
+  "/ja/deck/mono-red-pal-rush",
   "/blog/how-to-play-palworld-card-game",
   "/blog/palworld-card-game-deck-building-rules",
   "/blog/red-blue-vs-green-purple-trial-deck",
@@ -106,6 +114,21 @@ test("homepage heading and detail-page breadcrumbs describe the page clearly", a
   }
 });
 
+test("Japanese pages use native copy, Japanese card data and reciprocal hreflang", async () => {
+  const homeHtml = await (await render("/ja")).text();
+  const cardsHtml = await (await render("/ja/cards")).text();
+  const cardHtml = await (await render("/ja/card/jormuntide-ignis-savage-lava-dragon")).text();
+  const englishCardHtml = await (await render("/card/jormuntide-ignis-savage-lava-dragon")).text();
+
+  assert.match(homeHtml, /パルワールドカードゲーム攻略/);
+  assert.match(cardsHtml, /カードリスト/);
+  assert.match(cardHtml, /荒ぶる溶岩竜/);
+  assert.match(cardHtml, /BP01-001/);
+  assert.match(cardHtml, /hrefLang="en" href="https:\/\/palworldcardgame\.wiki\/card\/jormuntide-ignis-savage-lava-dragon"/);
+  assert.match(cardHtml, /hrefLang="ja" href="https:\/\/palworldcardgame\.wiki\/ja\/card\/jormuntide-ignis-savage-lava-dragon"/);
+  assert.match(englishCardHtml, /hrefLang="ja" href="https:\/\/palworldcardgame\.wiki\/ja\/card\/jormuntide-ignis-savage-lava-dragon"/);
+});
+
 test("the booster box guide exposes verified product facts and structured data", async () => {
   const response = await render("/blog/palworld-booster-box");
   const html = await response.text();
@@ -137,6 +160,12 @@ test("deck discovery links homepage, deck pools and card pages in both direction
   assert.match(homeHtml, /class="deck-tile-art"/);
   assert.match(homeHtml, /3-step plan/);
   assert.match(homeHtml, /Complete 50-card list/);
+  assert.match(homeHtml, /Can I copy a complete deck\?/);
+  assert.match(homeHtml, /Best for your first match/);
+  assert.ok(
+    homeHtml.indexOf("Launch deck center") < homeHtml.indexOf("Updated today"),
+    "the deck center should appear before launch news",
+  );
 
   const deckHtml = await (await render("/deck/red-blue-launch-pressure")).text();
   assert.match(deckHtml, /<nav class="breadcrumbs" aria-label="Breadcrumb">/);
@@ -222,7 +251,9 @@ test("the July 31 update includes newly verified official events and social sour
   assert.match(roadmapHtml, /September 5: Los Angeles Release Party/);
   assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official news/);
   assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Buyer watch/);
-  assert.match(homeHtml, /href="\/blog\/red-blue-vs-green-purple-trial-deck"[^>]*><span>Trial Deck FAQ/);
+  assert.match(homeHtml, /href="\/blog\/dawn-of-palpagos-chase-cards"[^>]*><span>Collector guide/);
+  assert.match(homeHtml, /href="\/tools\/dawn-of-palpagos-checklist"[^>]*><span>04 · Collection/);
+  assert.match(homeHtml, /href="\/blog\/dawn-of-palpagos-pull-rates"[^>]*>Check pull rates/);
   assert.match(relatedGuidesHtml, /palworld-card-game-products-where-to-buy/);
   assert.match(relatedGuidesHtml, /palworld-card-game-errata-tracker/);
   assert.match(relatedGuidesHtml, /palworld-booster-box/);
@@ -282,6 +313,8 @@ test("the sitemap uses stable content dates without ignored priority hints", asy
 
   assert.equal(response.status, 200);
   assert.match(xml, /<loc>https:\/\/palworldcardgame\.wiki\/tools\/dawn-of-palpagos-checklist<\/loc>/);
+  assert.match(xml, /<loc>https:\/\/palworldcardgame\.wiki\/ja<\/loc>/);
+  assert.match(xml, /hreflang="ja" href="https:\/\/palworldcardgame\.wiki\/ja\/cards"/);
   assert.match(xml, /<lastmod>2026-07-31T00:00:00\.000Z<\/lastmod>/);
   assert.match(xml, /<lastmod>2026-07-30T00:00:00\.000Z<\/lastmod>/);
   assert.doesNotMatch(xml, /<priority>/);

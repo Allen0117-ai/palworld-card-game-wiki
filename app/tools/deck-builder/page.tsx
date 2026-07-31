@@ -6,16 +6,33 @@ import { cardByNumber, decks } from "@/lib/data";
 import Link from "next/link";
 import { decodeDeckList, sanitizeDeckName } from "@/lib/deck-share";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Palworld TCG Deck Builder – All 148 Launch Cards",
-  description: "Build a Palworld TCG deck with all BP01 and Trial Deck cards. Check the 50-card, four-copy and two-color rules, then save a draft on your device.",
-  path: "/tools/deck-builder",
-});
+type DeckBuilderSearchParams = Promise<{ deck?: string; list?: string; name?: string }>;
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: DeckBuilderSearchParams;
+}): Promise<Metadata> {
+  const { list, name } = await searchParams;
+  const sharedDeck = decodeDeckList(list);
+  const sharedCardCount = Object.values(sharedDeck).reduce((total, copies) => total + copies, 0);
+  const sharedName = sanitizeDeckName(name, "Shared Palworld deck");
+
+  return createPageMetadata({
+    title: sharedCardCount
+      ? `${sharedName} – Open & Remix This Palworld TCG Deck`
+      : "Palworld TCG Deck Builder – All 148 Launch Cards",
+    description: sharedCardCount
+      ? `Open this ${sharedCardCount}-card Palworld TCG deck, change any card and share your own version. No account needed.`
+      : "Build a Palworld TCG deck with all BP01 and Trial Deck cards. Check the 50-card, four-copy and two-color rules, then save a draft on your device.",
+    path: "/tools/deck-builder",
+  });
+}
 
 export default async function DeckBuilderPage({
   searchParams,
 }: {
-  searchParams: Promise<{ deck?: string; list?: string; name?: string }>;
+  searchParams: DeckBuilderSearchParams;
 }) {
   const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName } = await searchParams;
   const starterDeck = decks.find((deck) => deck.slug === requestedDeckSlug && deck.recipe);
