@@ -6,7 +6,7 @@ import { cardByNumber, decks } from "@/lib/data";
 import Link from "next/link";
 import { decodeDeckList, sanitizeDeckName } from "@/lib/deck-share";
 
-type DeckBuilderSearchParams = Promise<{ deck?: string; list?: string; name?: string }>;
+type DeckBuilderSearchParams = Promise<{ deck?: string; list?: string; name?: string; resume?: string }>;
 
 export async function generateMetadata({
   searchParams,
@@ -34,7 +34,7 @@ export default async function DeckBuilderPage({
 }: {
   searchParams: DeckBuilderSearchParams;
 }) {
-  const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName } = await searchParams;
+  const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName, resume } = await searchParams;
   const starterDeck = decks.find((deck) => deck.slug === requestedDeckSlug && deck.recipe);
   const starterDeckList = Object.fromEntries((starterDeck?.recipe || []).map((entry) => {
     const card = cardByNumber(entry.cardNumber);
@@ -60,7 +60,12 @@ export default async function DeckBuilderPage({
         {!hasSharedDeck && !starterDeck ? <p><Link className="text-link" href="/deck/mono-red-pal-rush">New player? Start from the illustrated 50-card Red / Blue sample →</Link></p> : null}
         <p><Link className="text-link" href="/blog/palworld-booster-box">Need BP01 cards? Compare a Booster Box with a Trial Deck →</Link></p>
       </header>
-      <DeckBuilder initialDeck={initialDeck} initialName={initialName} isSharedDeck={hasSharedDeck} />
+      <DeckBuilder
+        initialDeck={initialDeck}
+        initialName={initialName}
+        isSharedDeck={hasSharedDeck}
+        resumeSavedDraft={!hasSharedDeck && !starterDeck && resume === "1"}
+      />
     </>
   );
 }

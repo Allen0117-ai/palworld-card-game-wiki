@@ -208,6 +208,20 @@ test("shareable cards, rulings, guides and deck links render their share actions
   assert.match(sharedDeckHtml, /Share draft/);
 });
 
+test("homepage resumes saved work and explains the share-remix loop", async () => {
+  const homeHtml = await (await render("/")).text();
+
+  assert.match(homeHtml, /Start something worth saving/);
+  assert.match(homeHtml, /Build &amp; share a deck/);
+  assert.match(homeHtml, /Build and share a deck in three steps/);
+});
+
+test("the BP01 checklist can generate a collection progress share card", async () => {
+  const checklistHtml = await (await render("/tools/dawn-of-palpagos-checklist")).text();
+
+  assert.match(checklistHtml, /Share collection progress/);
+});
+
 test("the Pal collection page stays scoped to TCG Pal cards", async () => {
   const response = await render("/cards/pals");
   const html = await response.text();

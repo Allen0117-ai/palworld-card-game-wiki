@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { SharePanel } from "@/components/SharePanel";
+import { BP01_COLLECTION_STORAGE_KEY, BP01_COLLECTION_TOTAL } from "@/lib/progress-storage";
 
 export type CollectionChecklistCard = {
   number: string;
@@ -17,8 +19,6 @@ export type CollectionChecklistCard = {
 type CollectionStatus = "all" | "missing" | "owned";
 type ChecklistScope = "all" | "base" | "parallel" | "soul";
 
-const storageKey = "palworld-bp01-collection-v1";
-
 export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[] }) {
   const [ownedNumbers, setOwnedNumbers] = useState<Set<string>>(new Set());
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -31,7 +31,7 @@ export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[
 
   useEffect(() => {
     const loadTimer = window.setTimeout(() => {
-      const savedChecklist = window.localStorage.getItem(storageKey);
+      const savedChecklist = window.localStorage.getItem(BP01_COLLECTION_STORAGE_KEY);
       if (savedChecklist) {
         try {
           const savedNumbers = JSON.parse(savedChecklist);
@@ -40,7 +40,7 @@ export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[
             typeof number === "string" && validNumbers.has(number)
           ))));
         } catch {
-          window.localStorage.removeItem(storageKey);
+          window.localStorage.removeItem(BP01_COLLECTION_STORAGE_KEY);
         }
       }
       setHasLoaded(true);
@@ -51,7 +51,7 @@ export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[
 
   useEffect(() => {
     if (!hasLoaded) return;
-    window.localStorage.setItem(storageKey, JSON.stringify([...ownedNumbers]));
+    window.localStorage.setItem(BP01_COLLECTION_STORAGE_KEY, JSON.stringify([...ownedNumbers]));
   }, [hasLoaded, ownedNumbers]);
 
   const colors = useMemo(() => [...new Set(cards.map((card) => card.color))].sort(), [cards]);
@@ -97,15 +97,31 @@ export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[
           <h2 id="collection-checklist-title">{ownedCount} of {cards.length} cards</h2>
           <p aria-live="polite">{completion}% complete · {cards.length - ownedCount} remaining</p>
         </div>
-        <div
-          className="checklist-progress-track"
-          role="progressbar"
-          aria-label="Dawn of Palpagos collection completion"
-          aria-valuemin={0}
-          aria-valuemax={cards.length}
-          aria-valuenow={ownedCount}
-        >
-          <span style={{ width: `${completion}%` }} />
+        <div className="checklist-progress-actions">
+          <div
+            className="checklist-progress-track"
+            role="progressbar"
+            aria-label="Dawn of Palpagos collection completion"
+            aria-valuemin={0}
+            aria-valuemax={cards.length}
+            aria-valuenow={ownedCount}
+          >
+            <span style={{ width: `${completion}%` }} />
+          </div>
+          <SharePanel
+            assetKey={`bp01-collection-${ownedCount}`}
+            triggerLabel="Share collection progress"
+            shareUrl="/tools/dawn-of-palpagos-checklist"
+            shareText={`I have collected ${ownedCount} of ${BP01_COLLECTION_TOTAL} Dawn of Palpagos entries. How far is your BP01 set?`}
+            disabled={!ownedCount}
+            payload={{
+              kind: "collection",
+              eyebrow: "Collector progress",
+              title: "My Dawn of Palpagos collection",
+              owned: ownedCount,
+              total: BP01_COLLECTION_TOTAL,
+            }}
+          />
         </div>
       </div>
 

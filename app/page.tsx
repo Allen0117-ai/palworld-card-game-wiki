@@ -5,6 +5,7 @@ import { decks, guides, homepageSpecialArtwork } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { HeroSearch } from "@/components/HeroSearch";
 import { SpecialCardGallery } from "@/components/SpecialCardGallery";
+import { HomeProgressHub } from "@/components/HomeProgressHub";
 import { featuredRuleAnswers, officialRuleCount } from "@/lib/rules";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -133,6 +134,8 @@ export default function Home() {
         </div>
       </section>
 
+      <HomeProgressHub />
+
       <section className="section shell split-section" data-reveal>
         <div>
           <div className="section-heading compact">
@@ -149,12 +152,17 @@ export default function Home() {
         </div>
         <aside className="builder-promo">
           <div className="builder-promo-top">
-            <span className="mini-label">Free tool</span>
+            <span className="mini-label">Free tool · Shareable</span>
             <span className="tool-mark">50</span>
           </div>
           <h3>Your next deck<br />starts here.</h3>
-          <p>Search all 148 launch cards, stay inside the two-color and copy limits, and save a legal list on your device.</p>
-          <Link className="button ink" href="/tools/deck-builder">Start building <span>↗</span></Link>
+          <p>Search all 148 launch cards, stay inside the two-color and copy limits, and turn the result into a share card.</p>
+          <ol className="builder-share-steps" aria-label="Build and share a deck in three steps">
+            <li><span>01</span><strong>Build</strong></li>
+            <li><span>02</span><strong>Share</strong></li>
+            <li><span>03</span><strong>Remix</strong></li>
+          </ol>
+          <Link className="button ink" href="/tools/deck-builder?deck=mono-red-pal-rush">Build &amp; share a deck <span>↗</span></Link>
         </aside>
       </section>
 

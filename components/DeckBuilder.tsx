@@ -1,19 +1,38 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { cards, getCardImageAlt } from "@/lib/data";
 import { SharePanel } from "@/components/SharePanel";
 import { encodeDeckList, normalizeStoredDeck, sanitizeDeckName, type DeckMap } from "@/lib/deck-share";
+import { DECK_DRAFT_STORAGE_KEY } from "@/lib/progress-storage";
+
+function readSavedDraft() {
+  const saved = localStorage.getItem(DECK_DRAFT_STORAGE_KEY);
+  if (!saved) return null;
+
+  const parsedDraft: unknown = JSON.parse(saved);
+  const storedDeck = parsedDraft && typeof parsedDraft === "object" && "deck" in parsedDraft
+    ? normalizeStoredDeck(parsedDraft.deck)
+    : normalizeStoredDeck(parsedDraft);
+  if (!storedDeck) return null;
+
+  const storedName = parsedDraft && typeof parsedDraft === "object" && "name" in parsedDraft && typeof parsedDraft.name === "string"
+    ? sanitizeDeckName(parsedDraft.name)
+    : "Untitled deck";
+  return { deck: storedDeck, name: storedName };
+}
 
 export function DeckBuilder({
   initialDeck = {},
   initialName = "Untitled deck",
   isSharedDeck = false,
+  resumeSavedDraft = false,
 }: {
   initialDeck?: DeckMap;
   initialName?: string;
   isSharedDeck?: boolean;
+  resumeSavedDraft?: boolean;
 }) {
   const [deck, setDeck] = useState<DeckMap>(initialDeck);
   const [deckName, setDeckName] = useState(() => sanitizeDeckName(initialName));
@@ -35,6 +54,26 @@ export function DeckBuilder({
     && (color === "all" || card.color === color)
     && (set === "all" || card.set === set)
   ));
+
+  useEffect(() => {
+    if (!resumeSavedDraft) return;
+    const resumeTimer = window.setTimeout(() => {
+      try {
+        const savedDraft = readSavedDraft();
+        if (!savedDraft) {
+          setNotice("No saved draft found yet.");
+          return;
+        }
+        setDeck(savedDraft.deck);
+        setDeckName(savedDraft.name);
+        setNotice("Welcome back — your saved draft is ready.");
+      } catch {
+        setNotice("That saved draft could not be read. Start a new list below.");
+      }
+    }, 0);
+
+    return () => window.clearTimeout(resumeTimer);
+  }, [resumeSavedDraft]);
 
   function addCard(slug: string) {
     const card = cards.find((item) => item.slug === slug);
@@ -64,29 +103,19 @@ export function DeckBuilder({
   }
 
   function saveDeck() {
-    localStorage.setItem("pwcg-deck-draft", JSON.stringify({ version: 1, deck, name: deckName }));
+    localStorage.setItem(DECK_DRAFT_STORAGE_KEY, JSON.stringify({ version: 1, deck, name: deckName }));
     setNotice("Draft saved on this device.");
   }
 
   function loadDeck() {
-    const saved = localStorage.getItem("pwcg-deck-draft");
-    if (!saved) {
-      setNotice("No saved draft found yet.");
-      return;
-    }
     try {
-      const parsedDraft: unknown = JSON.parse(saved);
-      const storedDeck = parsedDraft && typeof parsedDraft === "object" && "deck" in parsedDraft
-        ? normalizeStoredDeck(parsedDraft.deck)
-        : normalizeStoredDeck(parsedDraft);
-      if (!storedDeck) {
-        setNotice("That saved draft could not be read. Clear it and start a new list.");
+      const savedDraft = readSavedDraft();
+      if (!savedDraft) {
+        setNotice("No saved draft found yet.");
         return;
       }
-      setDeck(storedDeck);
-      if (parsedDraft && typeof parsedDraft === "object" && "name" in parsedDraft && typeof parsedDraft.name === "string") {
-        setDeckName(sanitizeDeckName(parsedDraft.name));
-      }
+      setDeck(savedDraft.deck);
+      setDeckName(savedDraft.name);
       setNotice("Saved draft loaded.");
     } catch {
       setNotice("That saved draft could not be read. Clear it and start a new list.");

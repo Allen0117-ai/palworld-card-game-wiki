@@ -31,6 +31,13 @@ export type ShareCardPayload =
       total: number;
       colors: string[];
       cards: Array<{ image: string; name: string; copies: number }>;
+    }
+  | {
+      kind: "collection";
+      eyebrow: string;
+      title: string;
+      owned: number;
+      total: number;
     };
 
 const CARD_WIDTH = 1080;
@@ -376,6 +383,57 @@ async function drawDeckCard(
   drawFooter(context, uiFont, "No account needed.");
 }
 
+function drawCollectionCard(
+  context: CanvasRenderingContext2D,
+  payload: Extract<ShareCardPayload, { kind: "collection" }>,
+  displayFont: string,
+  bodyFont: string,
+  uiFont: string,
+) {
+  drawBackground(context, "#5aabc1");
+  drawBrand(context, uiFont);
+  drawEyebrow(context, payload.eyebrow, uiFont, 70, 190);
+
+  context.fillStyle = PAPER;
+  context.font = `800 67px ${displayFont}`;
+  const titleBottom = drawWrappedText(context, payload.title.toUpperCase(), 70, 292, 940, 78, 3);
+  const completion = Math.round((payload.owned / payload.total) * 100);
+
+  roundedRect(context, 70, titleBottom + 42, 940, 440, 14);
+  context.fillStyle = "rgba(32,35,30,.9)";
+  context.fill();
+  context.strokeStyle = "rgba(90,171,193,.65)";
+  context.lineWidth = 2;
+  context.stroke();
+
+  context.fillStyle = PAPER;
+  context.font = `800 164px ${displayFont}`;
+  context.fillText(`${completion}%`, 105, titleBottom + 245);
+  context.fillStyle = GOLD;
+  context.font = `800 25px ${uiFont}`;
+  context.fillText(`${payload.owned} OF ${payload.total} COLLECTED`, 110, titleBottom + 304);
+
+  roundedRect(context, 110, titleBottom + 344, 860, 28, 14);
+  context.fillStyle = "#11140f";
+  context.fill();
+  if (completion > 0) {
+    roundedRect(context, 110, titleBottom + 344, Math.max(28, 860 * completion / 100), 28, 14);
+    const progressGradient = context.createLinearGradient(110, 0, 970, 0);
+    progressGradient.addColorStop(0, GOLD);
+    progressGradient.addColorStop(1, "#5aabc1");
+    context.fillStyle = progressGradient;
+    context.fill();
+  }
+
+  context.fillStyle = PAPER;
+  context.font = `800 46px ${displayFont}`;
+  context.fillText("HOW FAR IS YOUR SET?", 70, 1080);
+  context.fillStyle = MUTED;
+  context.font = `500 25px ${bodyFont}`;
+  context.fillText("Open the free checklist and track your own BP01 collection.", 70, 1130);
+  drawFooter(context, uiFont, "No account needed. Progress stays on your device.");
+}
+
 export async function createShareImageFile(payload: ShareCardPayload) {
   await document.fonts.ready;
   const canvas = document.createElement("canvas");
@@ -392,6 +450,8 @@ export async function createShareImageFile(payload: ShareCardPayload) {
     await drawCardSpotlight(context, payload, displayFont, bodyFont, uiFont);
   } else if (payload.kind === "deck") {
     await drawDeckCard(context, payload, displayFont, bodyFont, uiFont);
+  } else if (payload.kind === "collection") {
+    drawCollectionCard(context, payload, displayFont, bodyFont, uiFont);
   } else {
     drawKnowledgeCard(context, payload, displayFont, bodyFont, uiFont);
   }
