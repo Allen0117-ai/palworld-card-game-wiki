@@ -53,6 +53,21 @@ export function JapaneseCardExplorer({ initialQuery = "" }: { initialQuery?: str
           />
         </div>
         <div className="filter-group">
+          <label htmlFor="ja-rarity-filter">レアリティ</label>
+          <select id="ja-rarity-filter" className="select" value={rarity} onChange={(event) => { setRarity(event.target.value); resetPage(); trackFilter("rarity", event.target.value); }}>
+            <option value="all">すべてのレアリティ</option>
+            {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
+          </select>
+        </div>
+        <div className="filter-group">
+          <label htmlFor="ja-lucky-filter">ラッキーアイコン</label>
+          <select id="ja-lucky-filter" className="select" value={lucky} onChange={(event) => { setLucky(event.target.value); resetPage(); trackFilter("lucky", event.target.value); }}>
+            <option value="all">すべてのカード</option>
+            <option value="yes">ラッキーカード</option>
+            <option value="no">ラッキーなし</option>
+          </select>
+        </div>
+        <div className="filter-group">
           <label htmlFor="ja-set-filter">収録セット</label>
           <select id="ja-set-filter" className="select" value={set} onChange={(event) => { setSet(event.target.value); resetPage(); trackFilter("set", event.target.value); }}>
             <option value="all">すべてのカード</option>
@@ -84,21 +99,6 @@ export function JapaneseCardExplorer({ initialQuery = "" }: { initialQuery?: str
           <select id="ja-cost-filter" className="select" value={cost} onChange={(event) => { setCost(event.target.value); resetPage(); trackFilter("cost", event.target.value); }}>
             <option value="all">すべてのコスト</option>
             {costs.map((value) => <option value={value} key={value}>{value}</option>)}
-          </select>
-        </div>
-        <div className="filter-group">
-          <label htmlFor="ja-rarity-filter">レアリティ</label>
-          <select id="ja-rarity-filter" className="select" value={rarity} onChange={(event) => { setRarity(event.target.value); resetPage(); trackFilter("rarity", event.target.value); }}>
-            <option value="all">すべてのレアリティ</option>
-            {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
-          </select>
-        </div>
-        <div className="filter-group">
-          <label htmlFor="ja-lucky-filter">ラッキーアイコン</label>
-          <select id="ja-lucky-filter" className="select" value={lucky} onChange={(event) => { setLucky(event.target.value); resetPage(); trackFilter("lucky", event.target.value); }}>
-            <option value="all">すべてのカード</option>
-            <option value="yes">ラッキーカード</option>
-            <option value="no">ラッキーなし</option>
           </select>
         </div>
         <div className="filter-group" aria-live="polite">

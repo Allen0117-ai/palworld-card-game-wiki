@@ -63,9 +63,9 @@ export default function Home() {
               <Link className="button ghost" href="/cards">Browse 148 cards</Link>
             </div>
             <div className="hero-stats" aria-label="Database highlights">
-              <div><strong>148</strong><span>launch main-deck cards</span></div>
-              <div><strong>{officialRuleCount}</strong><span>official Q&amp;As indexed</span></div>
-              <div><strong>50+10</strong><span>legal deck</span></div>
+              <Link href="/cards" data-analytics-event="home_stat_click" data-analytics-label="launch-cards"><strong>148</strong><span>launch main-deck cards</span></Link>
+              <Link href="/rules" data-analytics-event="home_stat_click" data-analytics-label="official-rulings"><strong>{officialRuleCount}</strong><span>official Q&amp;As indexed</span></Link>
+              <Link href="/blog/palworld-card-game-deck-building-rules" data-analytics-event="home_stat_click" data-analytics-label="legal-deck"><strong>50+10</strong><span>legal deck</span></Link>
             </div>
           </div>
 
@@ -76,7 +76,13 @@ export default function Home() {
                 <strong>Dawn of Palpagos</strong>
                 <small>Official launch product</small>
               </div>
-              <div className="hero-card hero-card-back">
+              <Link
+                className="hero-card hero-card-back"
+                href="/card/chillet-dragon-whisperer-ebp01-025"
+                aria-label="Open Chillet — Dragon Whisperer card details"
+                data-analytics-event="home_showcase_card_click"
+                data-analytics-label="chillet"
+              >
                 <Image
                   src="/cards/showcase/EBP01-025SSP.webp"
                   alt="Chillet EBP01-025SSP special artwork card"
@@ -86,8 +92,14 @@ export default function Home() {
                   loading="eager"
                 />
                 <span className="hero-card-glare" aria-hidden="true" />
-              </div>
-              <div className="hero-card hero-card-front">
+              </Link>
+              <Link
+                className="hero-card hero-card-front"
+                href="/card/suzaku-hellfire-wings"
+                aria-label="Open Suzaku — Hellfire Wings card details"
+                data-analytics-event="home_showcase_card_click"
+                data-analytics-label="suzaku"
+              >
                 <Image
                   src="/cards/showcase/EBP01-002SP.webp"
                   alt="Suzaku EBP01-002SP special artwork card"
@@ -97,8 +109,14 @@ export default function Home() {
                   loading="eager"
                 />
                 <span className="hero-card-glare" aria-hidden="true" />
-              </div>
-              <div className="hero-card hero-card-third">
+              </Link>
+              <Link
+                className="hero-card hero-card-third"
+                href="/card/helzephyr-wings-of-the-moonless-night-ebp01-073"
+                aria-label="Open Helzephyr — Wings of the Moonless Night card details"
+                data-analytics-event="home_showcase_card_click"
+                data-analytics-label="helzephyr"
+              >
                 <Image
                   src="/cards/showcase/EBP01-073SSP.webp"
                   alt="Helzephyr EBP01-073SSP special artwork card"
@@ -108,7 +126,7 @@ export default function Home() {
                   loading="eager"
                 />
                 <span className="hero-card-glare" aria-hidden="true" />
-              </div>
+              </Link>
               <span className="hero-credit">Official product images · ©Bushiroad ©PALWORLD</span>
             </div>
           </div>

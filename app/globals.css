@@ -454,9 +454,11 @@ h1 em { color: var(--gold); font-style: normal; }
 .button.ink { background: var(--ink); color: var(--paper-light); border-color: var(--ink); }
 
 .hero-stats { display: flex; gap: 34px; margin-top: 40px; }
-.hero-stats div { display: flex; flex-direction: column; gap: 7px; padding-left: 13px; border-left: 1px solid rgba(210, 182, 109, .4); }
+.hero-stats a { display: flex; flex-direction: column; gap: 7px; padding-left: 13px; color: inherit; border-left: 1px solid rgba(210, 182, 109, .4); text-decoration: none; }
 .hero-stats strong { color: var(--paper-light); font: 700 21px/1 var(--font-display); }
 .hero-stats span { color: #aaa99f; font-size: 10px; text-transform: uppercase; letter-spacing: .11em; }
+.hero-stats a:hover strong, .hero-stats a:focus-visible strong { color: var(--gold); }
+.hero-stats a:focus-visible, .hero-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
 
 .hero-product {
   min-height: 585px;
@@ -501,6 +503,7 @@ h1 em { color: var(--gold); font-style: normal; }
   font: 700 17px/1.1 var(--font-display);
 }
 .hero-card {
+  display: block;
   position: absolute;
   width: 205px;
   overflow: hidden;
@@ -3162,7 +3165,7 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   .hero-search button { height: 45px; }
   .hero-actions .button { width: 100%; }
   .hero-stats { justify-content: space-between; gap: 8px; }
-  .hero-stats div { padding-left: 8px; }
+  .hero-stats a { padding-left: 8px; }
   .hero-stats strong { font-size: 17px; }
   .hero-stats span { font-size: 9px; }
   .hero-product { width: 310px; min-height: 275px; margin-top: 2px; }

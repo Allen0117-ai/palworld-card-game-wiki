@@ -54,6 +54,21 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
           <input id="card-search" className="input" value={query} onChange={(e) => { setQuery(e.target.value); setVisibleCount(PAGE_SIZE); }} onBlur={() => query.trim() && trackFilter("search", query.trim().slice(0, 60))} placeholder="Name or card no." />
         </div>
         <div className="filter-group">
+          <label htmlFor="rarity-filter">Rarity</label>
+          <select id="rarity-filter" className="select" value={rarity} onChange={(e) => { setRarity(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("rarity", e.target.value); }}>
+            <option value="all">All rarities</option>
+            {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
+          </select>
+        </div>
+        <div className="filter-group">
+          <label htmlFor="lucky-filter">Lucky icon</label>
+          <select id="lucky-filter" className="select" value={lucky} onChange={(e) => { setLucky(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("lucky", e.target.value); }}>
+            <option value="all">All cards</option>
+            <option value="yes">Lucky cards</option>
+            <option value="no">No Lucky icon</option>
+          </select>
+        </div>
+        <div className="filter-group">
           <label htmlFor="set-filter">Card set</label>
           <select id="set-filter" className="select" value={set} onChange={(e) => { setSet(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("set", e.target.value); }}>
             <option value="all">All launch cards</option>
@@ -84,21 +99,6 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
           <select id="cost-filter" className="select" value={cost} onChange={(e) => { setCost(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("cost", e.target.value); }}>
             <option value="all">All costs</option>
             {costs.map((value) => <option value={value} key={value}>{value}</option>)}
-          </select>
-        </div>
-        <div className="filter-group">
-          <label htmlFor="rarity-filter">Rarity</label>
-          <select id="rarity-filter" className="select" value={rarity} onChange={(e) => { setRarity(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("rarity", e.target.value); }}>
-            <option value="all">All rarities</option>
-            {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
-          </select>
-        </div>
-        <div className="filter-group">
-          <label htmlFor="lucky-filter">Lucky icon</label>
-          <select id="lucky-filter" className="select" value={lucky} onChange={(e) => { setLucky(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("lucky", e.target.value); }}>
-            <option value="all">All cards</option>
-            <option value="yes">Lucky cards</option>
-            <option value="no">No Lucky icon</option>
           </select>
         </div>
         <div className="filter-group" aria-live="polite"><strong>Results</strong><span className="filter-count">{results.length} / {availableCards.length}</span></div>

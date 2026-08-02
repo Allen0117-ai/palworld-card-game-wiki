@@ -364,14 +364,24 @@ test("every published page is reachable from the homepage within three internal-
 });
 
 test("retention improvements keep primary actions easy to reach", async () => {
+  const homeHtml = await (await render("/")).text();
   const cardsHtml = await (await render("/cards")).text();
+  const japaneseCardsHtml = await (await render("/ja/cards")).text();
   const builderHtml = await (await render("/tools/deck-builder?deck=mono-red-pal-rush")).text();
   const rulesHtml = await (await render("/rules")).text();
   const boosterHtml = await (await render("/blog/palworld-booster-box")).text();
   const cardHtml = await (await render("/card/suzaku-hellfire-wings")).text();
 
+  assert.match(homeHtml, /href="\/card\/chillet-dragon-whisperer-ebp01-025"/);
+  assert.match(homeHtml, /href="\/card\/suzaku-hellfire-wings"/);
+  assert.match(homeHtml, /href="\/card\/helzephyr-wings-of-the-moonless-night-ebp01-073"/);
+  assert.match(homeHtml, /data-analytics-event="home_stat_click"/);
   assert.ok(cardsHtml.indexOf('id="card-search"') < cardsHtml.indexOf("Found a card?"));
+  assert.ok(cardsHtml.indexOf('id="rarity-filter"') < cardsHtml.indexOf('id="set-filter"'));
+  assert.ok(cardsHtml.indexOf('id="lucky-filter"') < cardsHtml.indexOf('id="set-filter"'));
   assert.match(cardsHtml, /id="lucky-filter"/);
+  assert.ok(japaneseCardsHtml.indexOf('id="ja-rarity-filter"') < japaneseCardsHtml.indexOf('id="ja-set-filter"'));
+  assert.ok(japaneseCardsHtml.indexOf('id="ja-lucky-filter"') < japaneseCardsHtml.indexOf('id="ja-set-filter"'));
   assert.match(builderHtml, /class="mobile-deck-bar"/);
   assert.match(builderHtml, /class="deck-cost-curve"/);
   assert.match(builderHtml, /Test opening hand/);
