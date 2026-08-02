@@ -4,10 +4,10 @@ import { JapaneseDeckBuilder } from "@/components/JapaneseDeckBuilder";
 import { JsonLd } from "@/components/JsonLd";
 import { cardByNumber } from "@/lib/data";
 import { decodeDeckList, sanitizeDeckName } from "@/lib/deck-share";
-import { japaneseDecks } from "@/lib/japanese";
+import { japaneseCards, japaneseDecks } from "@/lib/japanese";
 import { createPageMetadata, JAPANESE_SOCIAL_IMAGE } from "@/lib/seo";
 
-type SearchParams = Promise<{ deck?: string; list?: string; name?: string; resume?: string }>;
+type SearchParams = Promise<{ deck?: string; list?: string; name?: string; resume?: string; card?: string }>;
 
 export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
   const { list, name } = await searchParams;
@@ -27,7 +27,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
 }
 
 export default async function JapaneseDeckBuilderPage({ searchParams }: { searchParams: SearchParams }) {
-  const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName, resume } = await searchParams;
+  const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName, resume, card: requestedCardSlug } = await searchParams;
   const starterDeck = japaneseDecks.find((deck) => deck.slug === requestedDeckSlug && deck.recipe);
   const starterDeckList = Object.fromEntries((starterDeck?.recipe || []).map((entry) => {
     const card = cardByNumber(entry.cardNumber);
@@ -36,10 +36,17 @@ export default async function JapaneseDeckBuilderPage({ searchParams }: { search
   }));
   const sharedDeck = decodeDeckList(sharedDeckCode);
   const hasSharedDeck = Object.keys(sharedDeck).length > 0;
-  const initialDeck = hasSharedDeck ? sharedDeck : starterDeckList;
+  const requestedCard = japaneseCards.find((card) => card.slug === requestedCardSlug);
+  const initialDeck = hasSharedDeck
+    ? sharedDeck
+    : starterDeck
+      ? starterDeckList
+      : requestedCard
+        ? { [requestedCard.slug]: 1 }
+        : {};
   const initialName = hasSharedDeck
     ? sanitizeDeckName(sharedDeckName, "共有されたデッキ")
-    : starterDeck?.japaneseName;
+    : starterDeck?.japaneseName || (requestedCard ? `${requestedCard.name}デッキ` : undefined);
 
   return (
     <>
@@ -56,10 +63,11 @@ export default async function JapaneseDeckBuilderPage({ searchParams }: { search
       <header className="page-hero shell">
         <p className="eyebrow"><span>無料デッキ作成ツール</span> · 登録不要</p>
         <h1>日本語カードで、<br />そのままデッキを作る。</h1>
-        <p>BP01・TD01・TD02の全148枚に対応。50枚、同名4枚、2色までの条件を確認しながら、保存・共有できます。</p>
+        <p>BP01・TD01・TD02の全148枚に対応。50枚、同名4枚、2色、ラッキー8枚までを確認し、コスト分布と最初の手札も試せます。保存・共有に登録は不要です。</p>
         {hasSharedDeck && <p className="builder-template-note">共有されたデッキを読み込みました。<strong>変更して、自分のデッキとして共有できます。</strong></p>}
         {!hasSharedDeck && starterDeck && <p className="builder-template-note">サンプルを読み込みました：<strong>{starterDeck.japaneseName}</strong></p>}
-        {!hasSharedDeck && !starterDeck && <p><Link className="text-link" href="/ja/deck/mono-red-pal-rush">初心者向け50枚サンプルから始める →</Link></p>}
+        {!hasSharedDeck && requestedCard && <p className="builder-template-note">最初のカード：<strong>{requestedCard.name}</strong>。ここから50枚のメインデッキを作れます。</p>}
+        {!hasSharedDeck && !starterDeck && !requestedCard && <p><Link className="text-link" href="/ja/deck/mono-red-pal-rush">初心者向け50枚サンプルから始める →</Link></p>}
         <p><Link className="text-link" href="/ja/guide/deck-building-rules">先にデッキ構築ルールを確認する →</Link></p>
       </header>
       <JapaneseDeckBuilder

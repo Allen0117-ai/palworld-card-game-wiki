@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { trackUserAction } from "@/lib/user-action-analytics";
 
 const SPARK_COUNT = 6;
 
@@ -13,6 +14,24 @@ function resetTilt(element: HTMLElement | null) {
 export function InteractionEffects() {
   const cursorAuraRef = useRef<HTMLDivElement>(null);
   const sparkLayerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function trackMarkedClick(event: MouseEvent) {
+      const target = event.target instanceof Element
+        ? event.target.closest<HTMLElement>("[data-analytics-event]")
+        : null;
+      const eventName = target?.dataset.analyticsEvent;
+      if (!eventName) return;
+
+      trackUserAction(eventName, {
+        label: target.dataset.analyticsLabel || target.textContent?.trim().slice(0, 80) || "unknown",
+        path: window.location.pathname,
+      });
+    }
+
+    document.addEventListener("click", trackMarkedClick);
+    return () => document.removeEventListener("click", trackMarkedClick);
+  }, []);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");

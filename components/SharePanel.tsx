@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { ShareCardPayload } from "@/lib/share-card";
+import { trackUserAction } from "@/lib/user-action-analytics";
 
 type SharePanelProps = {
   payload: ShareCardPayload;
@@ -60,6 +61,7 @@ export function SharePanel({
 
   async function openSharePanel() {
     setIsOpen(true);
+    trackUserAction("share_open", { kind: payload.kind, title: payload.title.slice(0, 80) });
     if (shareFile && generatedAssetKeyRef.current === assetKey) return;
     if (isCreating) return;
 
@@ -88,6 +90,7 @@ export function SharePanel({
     try {
       await navigator.clipboard.writeText(absoluteShareUrl(shareUrl));
       setStatus("Link copied — send it to your playgroup.");
+      trackUserAction("share_copy_link", { kind: payload.kind });
     } catch {
       setStatus("The link could not be copied. Please copy it from your browser.");
     }
@@ -117,6 +120,7 @@ export function SharePanel({
         url: resolvedUrl,
       });
       setStatus("Shared — nice choice.");
+      trackUserAction("share_complete", { kind: payload.kind });
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") {
         setStatus("Share cancelled.");

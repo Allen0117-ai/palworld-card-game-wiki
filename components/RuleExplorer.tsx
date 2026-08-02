@@ -6,6 +6,15 @@ import { rankSearchItems, scoreSearchText } from "@/lib/search";
 import { featuredRuleAnswers, officialRuleCount, ruleAnswers, ruleCategories, type RuleAnswer } from "@/lib/rules";
 import { SharePanel } from "@/components/SharePanel";
 
+const popularRuleQuestions = [
+  "Can I attack on the first turn?",
+  "How does Lucky stop damage?",
+  "Can I use more than two colors?",
+  "How many cards are in a deck?",
+  "How does Taunt work?",
+  "When can I use Quick cards?",
+];
+
 function RuleSourceLink({ rule }: { rule: RuleAnswer }) {
   if (rule.sourceUrl.startsWith("/")) {
     return <Link href={rule.sourceUrl}>{rule.sourceLabel} →</Link>;
@@ -59,9 +68,28 @@ export function RuleExplorer({ initialQuery = "" }: { initialQuery?: string }) {
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Try “Can I attack on the first turn?”"
           />
-          <button type="submit">Find answer</button>
+          <button type="submit" data-analytics-event="rule_search" data-analytics-label="rules-search-submit">Find answer</button>
         </div>
       </form>
+
+      {!normalizedQuery ? (
+        <div className="popular-rule-questions" aria-label="Popular rules questions">
+          <span>Popular questions</span>
+          <div>
+            {popularRuleQuestions.map((question) => (
+              <button
+                type="button"
+                key={question}
+                onClick={() => setQuery(question)}
+                data-analytics-event="popular_rule_question"
+                data-analytics-label={question}
+              >
+                {question}
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       <div className="rule-category-list" aria-label="Filter rules by category">
         {ruleCategories.map((item) => (

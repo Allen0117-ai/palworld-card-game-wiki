@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SharePanel } from "@/components/SharePanel";
 import { BP01_COLLECTION_STORAGE_KEY, BP01_COLLECTION_TOTAL } from "@/lib/progress-storage";
+import { trackUserAction } from "@/lib/user-action-analytics";
 
 export type CollectionChecklistCard = {
   number: string;
@@ -77,6 +78,11 @@ export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[
       const nextNumbers = new Set(currentNumbers);
       if (nextNumbers.has(cardNumber)) nextNumbers.delete(cardNumber);
       else nextNumbers.add(cardNumber);
+      trackUserAction("collection_card_toggle", {
+        card: cardNumber,
+        owned: nextNumbers.has(cardNumber),
+        total: nextNumbers.size,
+      });
       return nextNumbers;
     });
   }
@@ -84,6 +90,7 @@ export function CollectionChecklist({ cards }: { cards: CollectionChecklistCard[
   function clearChecklist() {
     if (!window.confirm("Clear every checked card from this device?")) return;
     setOwnedNumbers(new Set());
+    trackUserAction("collection_clear");
   }
 
   const ownedCount = ownedNumbers.size;

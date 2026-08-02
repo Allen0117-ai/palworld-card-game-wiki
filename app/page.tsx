@@ -168,24 +168,24 @@ export default function Home() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>Updated today</span> · July 31, 2026</p><h2>What changed at launch.</h2></div>
-          <p>Checked against the official news feed, event pages and launch-day community questions.</p>
+          <div><p className="eyebrow"><span>Latest verified</span> · August 2, 2026</p><h2>What changed at launch.</h2></div>
+          <p>Short, dated updates checked against official news, event pages and the live card database.</p>
         </div>
         <div className="latest-update-grid">
-          <Link href="/blog/palworld-card-game-2026-roadmap">
-            <span>Official news · Jul 30</span>
-            <strong>Singapore and Los Angeles events added</strong>
-            <p>See the newly confirmed dates, formats, prizes and Bushi Navi registration details.</p>
+          <Link href="/blog/palworld-card-game-2026-roadmap" data-analytics-event="latest_update_click" data-analytics-label="singapore-event">
+            <span>Official event · Aug 1–2</span>
+            <strong>Singapore launch weekend underway</strong>
+            <p>See the demo sessions, special release tournament, prizes and other confirmed 2026 event dates.</p>
           </Link>
-          <Link href="/blog/palworld-card-game-products-where-to-buy">
-            <span>Buyer watch · Jul 31</span>
-            <strong>Stock and launch-price warning</strong>
-            <p>Use official retailers, call before travelling and do not treat marketplace asking prices as settled value.</p>
+          <Link href="/blog/palworld-card-game-2026-roadmap" data-analytics-event="latest_update_click" data-analytics-label="pack-sales">
+            <span>Official milestone · Confirmed</span>
+            <strong>3.5 million packs sold worldwide</strong>
+            <p>Demand is real, but asking prices still vary. Check sealed contents, region and delivered price before buying.</p>
           </Link>
-          <Link href="/blog/dawn-of-palpagos-chase-cards">
-            <span>Collector guide · Jul 31</span>
-            <strong>Four SSP chase cards confirmed</strong>
-            <p>See exact card numbers, standout SP artwork and safer ways to check launch prices.</p>
+          <Link href="/cards" data-analytics-event="latest_update_click" data-analytics-label="official-card-list">
+            <span>Official database · Live</span>
+            <strong>All 148 launch Main Deck cards indexed</strong>
+            <p>Search BP01, TD01 and TD02 by name, number, color, type, cost, rarity and Lucky icon.</p>
           </Link>
         </div>
       </section>

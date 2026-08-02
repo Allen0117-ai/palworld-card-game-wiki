@@ -21,12 +21,17 @@ export default async function CardsPage({ searchParams }: { searchParams: Promis
         <h1>Palworld TCG<br />card list.</h1>
         <p>Search all 148 launch main-deck card entries: 100 BP01 cards plus 24 unique cards from each Trial Deck. Filter by set, color, type, cost or rarity, then open card text without leaving the page.</p>
       </header>
-      <div className="shell">
-        <div className="callout"><strong>Looking for Pals?</strong> Browse all {cards.filter((card) => card.type === "Pal").length} Pal-type card entries in the dedicated <Link className="text-link" href="/cards/pals">Palworld Pals card list</Link>.</div>
-        <div className="callout"><strong>Tracking a collection?</strong> Check off all 100 BP01 base cards, 61 parallels and the special Soul in the free <Link className="text-link" href="/tools/dawn-of-palpagos-checklist">Dawn of Palpagos checklist</Link>.</div>
-        <div className="callout"><strong>Opening BP01?</strong> See what a sealed box contains, how to compare prices and whether it fits you in our <Link className="text-link" href="/blog/palworld-booster-box">Palworld Booster Box guide</Link>.</div>
-      </div>
       <CardExplorer initialQuery={q} />
+      <section className="card-next-steps shell" aria-labelledby="card-next-steps-title">
+        <p className="eyebrow"><span>Found a card?</span> · Choose your next step</p>
+        <h2 id="card-next-steps-title">Turn the card list into a deck or collection.</h2>
+        <div>
+          <Link href="/tools/deck-builder" data-analytics-event="next_step_click" data-analytics-label="cards-to-builder"><strong>Build with these cards</strong><span>Use legal limits and save your list →</span></Link>
+          <Link href="/tools/dawn-of-palpagos-checklist" data-analytics-event="next_step_click" data-analytics-label="cards-to-checklist"><strong>Track BP01 collection</strong><span>Check off base, parallel and Soul entries →</span></Link>
+          <Link href="/cards/pals" data-analytics-event="next_step_click" data-analytics-label="cards-to-pals"><strong>Browse Pal cards only</strong><span>See all {cards.filter((card) => card.type === "Pal").length} Pal entries →</span></Link>
+          <Link href="/blog/palworld-booster-box" data-analytics-event="next_step_click" data-analytics-label="cards-to-booster"><strong>Opening BP01?</strong><span>Check box contents and buying facts →</span></Link>
+        </div>
+      </section>
     </>
   );
 }

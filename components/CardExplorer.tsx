@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { CardTile } from "./CardTile";
 import { cards, type Card } from "@/lib/data";
+import { trackUserAction } from "@/lib/user-action-analytics";
 
 const PAGE_SIZE = 24;
 
@@ -17,6 +18,7 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
   const [type, setType] = useState(fixedType || "all");
   const [cost, setCost] = useState("all");
   const [rarity, setRarity] = useState("all");
+  const [lucky, setLucky] = useState("all");
   const [set, setSet] = useState("all");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
@@ -32,23 +34,28 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
       && (type === "all" || card.type === type)
       && (cost === "all" || card.cost === Number(cost))
       && (rarity === "all" || card.rarity === rarity)
+      && (lucky === "all" || (lucky === "yes" ? card.subtype?.includes("Lucky") : !card.subtype?.includes("Lucky")))
       && (set === "all" || card.set === set);
-  }), [availableCards, query, color, type, cost, rarity, set]);
+  }), [availableCards, query, color, type, cost, rarity, lucky, set]);
 
   const costs = [...new Set(availableCards.map((card) => card.cost))].sort((a, b) => a - b);
   const rarities = [...new Set(availableCards.map((card) => card.rarity))].sort();
   const visibleResults = results.slice(0, visibleCount);
+
+  function trackFilter(filter: string, value: string) {
+    trackUserAction("card_filter", { filter, value, results: results.length });
+  }
 
   return (
     <div className="page-layout shell">
       <aside className="filters" aria-label="Card filters">
         <div className="filter-group">
           <label htmlFor="card-search">Search cards</label>
-          <input id="card-search" className="input" value={query} onChange={(e) => { setQuery(e.target.value); setVisibleCount(PAGE_SIZE); }} placeholder="Name or card no." />
+          <input id="card-search" className="input" value={query} onChange={(e) => { setQuery(e.target.value); setVisibleCount(PAGE_SIZE); }} onBlur={() => query.trim() && trackFilter("search", query.trim().slice(0, 60))} placeholder="Name or card no." />
         </div>
         <div className="filter-group">
           <label htmlFor="set-filter">Card set</label>
-          <select id="set-filter" className="select" value={set} onChange={(e) => { setSet(e.target.value); setVisibleCount(PAGE_SIZE); }}>
+          <select id="set-filter" className="select" value={set} onChange={(e) => { setSet(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("set", e.target.value); }}>
             <option value="all">All launch cards</option>
             <option value="EBP01">BP01 Booster</option>
             <option value="ETD01">Red / Blue Trial Deck</option>
@@ -57,7 +64,7 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
         </div>
         <div className="filter-group">
           <label htmlFor="color-filter">Color</label>
-          <select id="color-filter" className="select" value={color} onChange={(e) => { setColor(e.target.value); setVisibleCount(PAGE_SIZE); }}>
+          <select id="color-filter" className="select" value={color} onChange={(e) => { setColor(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("color", e.target.value); }}>
             <option value="all">All colors</option>
             <option value="red">Red</option><option value="blue">Blue</option><option value="green">Green</option>
             <option value="purple">Purple</option><option value="colorless">Colorless</option>
@@ -66,7 +73,7 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
         {!fixedType ? (
           <div className="filter-group">
             <label htmlFor="type-filter">Card type</label>
-            <select id="type-filter" className="select" value={type} onChange={(e) => { setType(e.target.value); setVisibleCount(PAGE_SIZE); }}>
+            <select id="type-filter" className="select" value={type} onChange={(e) => { setType(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("type", e.target.value); }}>
               <option value="all">All types</option>
               <option value="Pal">Pal</option><option value="Gear">Gear</option><option value="Event">Event</option><option value="Structure">Structure</option>
             </select>
@@ -74,16 +81,24 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
         ) : null}
         <div className="filter-group">
           <label htmlFor="cost-filter">Cost</label>
-          <select id="cost-filter" className="select" value={cost} onChange={(e) => { setCost(e.target.value); setVisibleCount(PAGE_SIZE); }}>
+          <select id="cost-filter" className="select" value={cost} onChange={(e) => { setCost(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("cost", e.target.value); }}>
             <option value="all">All costs</option>
             {costs.map((value) => <option value={value} key={value}>{value}</option>)}
           </select>
         </div>
         <div className="filter-group">
           <label htmlFor="rarity-filter">Rarity</label>
-          <select id="rarity-filter" className="select" value={rarity} onChange={(e) => { setRarity(e.target.value); setVisibleCount(PAGE_SIZE); }}>
+          <select id="rarity-filter" className="select" value={rarity} onChange={(e) => { setRarity(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("rarity", e.target.value); }}>
             <option value="all">All rarities</option>
             {rarities.map((value) => <option value={value} key={value}>{value}</option>)}
+          </select>
+        </div>
+        <div className="filter-group">
+          <label htmlFor="lucky-filter">Lucky icon</label>
+          <select id="lucky-filter" className="select" value={lucky} onChange={(e) => { setLucky(e.target.value); setVisibleCount(PAGE_SIZE); trackFilter("lucky", e.target.value); }}>
+            <option value="all">All cards</option>
+            <option value="yes">Lucky cards</option>
+            <option value="no">No Lucky icon</option>
           </select>
         </div>
         <div className="filter-group" aria-live="polite"><strong>Results</strong><span className="filter-count">{results.length} / {availableCards.length}</span></div>
@@ -99,7 +114,10 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
                   className="button ghost"
                   type="button"
                   aria-controls="card-results"
-                  onClick={() => setVisibleCount((count) => Math.min(count + PAGE_SIZE, results.length))}
+                  onClick={() => {
+                    setVisibleCount((count) => Math.min(count + PAGE_SIZE, results.length));
+                    trackUserAction("card_load_more", { shown: visibleResults.length, results: results.length });
+                  }}
                 >
                   Load {Math.min(PAGE_SIZE, results.length - visibleResults.length)} more
                 </button>

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { DeckBuilder } from "@/components/DeckBuilder";
 import { JsonLd } from "@/components/JsonLd";
 import { createPageMetadata } from "@/lib/seo";
-import { cardByNumber, decks } from "@/lib/data";
+import { cardByNumber, cards, decks } from "@/lib/data";
 import Link from "next/link";
 import { decodeDeckList, sanitizeDeckName } from "@/lib/deck-share";
 
-type DeckBuilderSearchParams = Promise<{ deck?: string; list?: string; name?: string; resume?: string }>;
+type DeckBuilderSearchParams = Promise<{ deck?: string; list?: string; name?: string; resume?: string; card?: string }>;
 
 export async function generateMetadata({
   searchParams,
@@ -34,7 +34,7 @@ export default async function DeckBuilderPage({
 }: {
   searchParams: DeckBuilderSearchParams;
 }) {
-  const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName, resume } = await searchParams;
+  const { deck: requestedDeckSlug, list: sharedDeckCode, name: sharedDeckName, resume, card: requestedCardSlug } = await searchParams;
   const starterDeck = decks.find((deck) => deck.slug === requestedDeckSlug && deck.recipe);
   const starterDeckList = Object.fromEntries((starterDeck?.recipe || []).map((entry) => {
     const card = cardByNumber(entry.cardNumber);
@@ -43,10 +43,17 @@ export default async function DeckBuilderPage({
   }));
   const sharedDeck = decodeDeckList(sharedDeckCode);
   const hasSharedDeck = Object.keys(sharedDeck).length > 0;
-  const initialDeck = hasSharedDeck ? sharedDeck : starterDeckList;
+  const requestedCard = cards.find((card) => card.slug === requestedCardSlug);
+  const initialDeck = hasSharedDeck
+    ? sharedDeck
+    : starterDeck
+      ? starterDeckList
+      : requestedCard
+        ? { [requestedCard.slug]: 1 }
+        : {};
   const initialName = hasSharedDeck
     ? sanitizeDeckName(sharedDeckName, "Shared Palworld deck")
-    : starterDeck?.name;
+    : starterDeck?.name || (requestedCard ? `${requestedCard.name} deck` : undefined);
 
   return (
     <>
@@ -54,10 +61,11 @@ export default async function DeckBuilderPage({
       <header className="page-hero shell">
         <p className="eyebrow"><span>Free tool</span> · No account needed</p>
         <h1>Palworld TCG<br />deck builder.</h1>
-        <p>Search all 148 launch main-deck cards. The builder checks the 50-card limit, same-name four-copy limit and two-color rule. Drafts stay on your device.</p>
+        <p>Search all 148 launch Main Deck cards. The builder checks 50 cards, same-name copies, two colors and the eight-Lucky limit, then shows your cost curve and lets you test an opening hand. Drafts stay on your device.</p>
         {hasSharedDeck ? <p className="builder-template-note">A friend shared this deck with you. <strong>Remix it below, then share your version back.</strong></p> : null}
         {!hasSharedDeck && starterDeck ? <p className="builder-template-note">Starting deck loaded: <strong>{starterDeck.name}</strong>. Save it on this device or customize the cards below.</p> : null}
-        {!hasSharedDeck && !starterDeck ? <p><Link className="text-link" href="/deck/mono-red-pal-rush">New player? Start with the illustrated 50-card Red / Blue beginner deck →</Link></p> : null}
+        {!hasSharedDeck && requestedCard ? <p className="builder-template-note">Added first card: <strong>{requestedCard.name}</strong>. Choose up to one more color and complete the Main Deck below.</p> : null}
+        {!hasSharedDeck && !starterDeck && !requestedCard ? <p><Link className="text-link" href="/deck/mono-red-pal-rush">New player? Start with the illustrated 50-card Red / Blue beginner deck →</Link></p> : null}
         <p><Link className="text-link" href="/blog/palworld-booster-box">Need BP01 cards? Compare a Booster Box with a Trial Deck →</Link></p>
       </header>
       <DeckBuilder

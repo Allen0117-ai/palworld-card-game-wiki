@@ -32,7 +32,7 @@ export function MobileNav({ locale = "en" }: { locale?: "en" | "ja" }) {
 
   return (
     <details className="mobile-nav">
-      <summary aria-label={locale === "ja" ? "メニューを開く" : "Open main navigation"}>
+      <summary>
         <span>{locale === "ja" ? "メニュー" : "Menu"}</span>
         <span aria-hidden="true">◆</span>
       </summary>

@@ -120,7 +120,7 @@ export default async function CardDetailPage({
         <section className="content-block">
           <h2>Decks using this card</h2>
           {relatedDecks.length ? <ul>{relatedDecks.map((deck) => <li key={deck.slug}><Link className="text-link" href={`/deck/${deck.slug}`}>{deck.name} →</Link></li>)}</ul> : <p>No featured launch deck uses this card yet. Try it in the deck builder.</p>}
-          <Link className="button primary" href="/tools/deck-builder">Open deck builder</Link>
+          <Link className="button primary" href={`/tools/deck-builder?card=${card.slug}`} data-analytics-event="card_to_builder" data-analytics-label={card.number}>Add this card to a deck</Link>
         </section>
         <section className="content-block">
           <h2>Related cards to compare</h2>

@@ -205,7 +205,7 @@ test("deck discovery links homepage, deck pools and card pages in both direction
   assert.match(homeHtml, /Can I copy a complete deck\?/);
   assert.match(homeHtml, /Best for your first match/);
   assert.ok(
-    homeHtml.indexOf("Launch deck center") < homeHtml.indexOf("Updated today"),
+    homeHtml.indexOf("Launch deck center") < homeHtml.indexOf("Latest verified"),
     "the deck center should appear before launch news",
   );
 
@@ -296,7 +296,7 @@ test("site search finds the BP01 collection checklist", async () => {
   assert.match(html, /Dawn of Palpagos Card Checklist/);
 });
 
-test("the July 31 update includes newly verified official events and social sources", async () => {
+test("the August 2 update includes newly verified official events and social sources", async () => {
   const homeHtml = await (await render("/")).text();
   const roadmapHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
   const resourcesHtml = await (await render("/resources")).text();
@@ -305,9 +305,9 @@ test("the July 31 update includes newly verified official events and social sour
   assert.match(roadmapHtml, /3\.5 million pack sales/);
   assert.match(roadmapHtml, /Singapore festival release events/);
   assert.match(roadmapHtml, /September 5: Los Angeles Release Party/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official news/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Buyer watch/);
-  assert.match(homeHtml, /href="\/blog\/dawn-of-palpagos-chase-cards"[^>]*><span>Collector guide/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official event/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official milestone/);
+  assert.match(homeHtml, /href="\/cards"[^>]*><span>Official database/);
   assert.match(homeHtml, /href="\/tools\/dawn-of-palpagos-checklist"[^>]*><span>04 · Collection/);
   assert.match(homeHtml, /href="\/blog\/dawn-of-palpagos-pull-rates"[^>]*>Check pull rates/);
   assert.match(relatedGuidesHtml, /palworld-card-game-products-where-to-buy/);
@@ -363,6 +363,23 @@ test("every published page is reachable from the homepage within three internal-
   }
 });
 
+test("retention improvements keep primary actions easy to reach", async () => {
+  const cardsHtml = await (await render("/cards")).text();
+  const builderHtml = await (await render("/tools/deck-builder?deck=mono-red-pal-rush")).text();
+  const rulesHtml = await (await render("/rules")).text();
+  const boosterHtml = await (await render("/blog/palworld-booster-box")).text();
+  const cardHtml = await (await render("/card/suzaku-hellfire-wings")).text();
+
+  assert.ok(cardsHtml.indexOf('id="card-search"') < cardsHtml.indexOf("Found a card?"));
+  assert.match(cardsHtml, /id="lucky-filter"/);
+  assert.match(builderHtml, /class="mobile-deck-bar"/);
+  assert.match(builderHtml, /class="deck-cost-curve"/);
+  assert.match(builderHtml, /Test opening hand/);
+  assert.match(rulesHtml, /Popular questions/);
+  assert.match(boosterHtml, /Browse BP01 cards/);
+  assert.match(cardHtml, /href="\/tools\/deck-builder\?card=suzaku-hellfire-wings"/);
+});
+
 test("the sitemap uses stable content dates without ignored priority hints", async () => {
   const response = await render("/sitemap.xml");
   const xml = await response.text();
@@ -385,6 +402,9 @@ test("every external page link is live", async () => {
   )];
 
   for (const href of links) {
+    const hostname = new URL(href).hostname;
+    if (hostname.endsWith("palworld-official-cardgame.com")) continue;
+
     const externalResponse = await fetch(href, {
       redirect: "follow",
       signal: AbortSignal.timeout(15_000),

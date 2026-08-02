@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   getJapaneseCardImageAlt,
   japaneseCards,
@@ -10,6 +10,7 @@ import {
 } from "@/lib/japanese";
 import { encodeDeckList, normalizeStoredDeck, sanitizeDeckName, type DeckMap } from "@/lib/deck-share";
 import { JAPANESE_DECK_DRAFT_STORAGE_KEY } from "@/lib/progress-storage";
+import { trackUserAction } from "@/lib/user-action-analytics";
 
 function readJapaneseSavedDraft() {
   const savedDraft = localStorage.getItem(JAPANESE_DECK_DRAFT_STORAGE_KEY);
@@ -44,12 +45,28 @@ export function JapaneseDeckBuilder({
   const [color, setColor] = useState("all");
   const [set, setSet] = useState("all");
   const [notice, setNotice] = useState(isSharedDeck ? "共有されたデッキを読み込みました。自由に変更して自分のデッキにできます。" : "");
+  const [isDeckPanelOpen, setIsDeckPanelOpen] = useState(false);
+  const [openingHand, setOpeningHand] = useState<string[]>([]);
+  const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
   const total = Object.values(deck).reduce((sum, value) => sum + value, 0);
   const deckCards = japaneseCards.filter((card) => deck[card.slug]);
   const selectedColors = useMemo(
     () => new Set(deckCards.filter((card) => card.color !== "colorless").map((card) => card.color)),
     [deckCards],
   );
+  const luckyCount = deckCards
+    .filter((card) => card.subtype?.includes("Lucky"))
+    .reduce((sum, card) => sum + (deck[card.slug] || 0), 0);
+  const typeCounts = deckCards.reduce<Record<string, number>>((counts, card) => {
+    counts[card.type] = (counts[card.type] || 0) + (deck[card.slug] || 0);
+    return counts;
+  }, {});
+  const costCurve = deckCards.reduce<Record<number, number>>((counts, card) => {
+    counts[card.cost] = (counts[card.cost] || 0) + (deck[card.slug] || 0);
+    return counts;
+  }, {});
+  const highestCostCount = Math.max(1, ...Object.values(costCurve));
+  const isLegalMainDeck = total === 50 && selectedColors.size <= 2 && luckyCount <= 8;
   const visible = japaneseCards.filter((card) => (
     `${card.name} ${card.englishName} ${card.japaneseNumber} ${card.number} ${card.ability}`.toLowerCase().includes(query.toLowerCase())
     && (color === "all" || card.color === color)
@@ -76,6 +93,16 @@ export function JapaneseDeckBuilder({
     return () => window.clearTimeout(resumeTimer);
   }, [resumeSavedDraft]);
 
+  useEffect(() => {
+    if (!isDeckPanelOpen) return;
+    mobileCloseButtonRef.current?.focus();
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsDeckPanelOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isDeckPanelOpen]);
+
   function addCard(slug: string) {
     const card = japaneseCards.find((item) => item.slug === slug);
     if (!card || total >= 50) return;
@@ -90,8 +117,14 @@ export function JapaneseDeckBuilder({
       setNotice("メインデッキに入れられる色は2色までです。");
       return;
     }
+    if (card.subtype?.includes("Lucky") && luckyCount >= 8) {
+      setNotice("ラッキーアイコンを持つカードは合計8枚までです。");
+      return;
+    }
     setDeck((current) => ({ ...current, [slug]: (current[slug] || 0) + 1 }));
+    setOpeningHand([]);
     setNotice("");
+    trackUserAction("deck_add_card", { locale: "ja", card: card.number, total: total + 1 });
   }
 
   function removeCard(slug: string) {
@@ -101,11 +134,13 @@ export function JapaneseDeckBuilder({
       else next[slug] -= 1;
       return next;
     });
+    setOpeningHand([]);
   }
 
   function saveDeck() {
     localStorage.setItem(JAPANESE_DECK_DRAFT_STORAGE_KEY, JSON.stringify({ version: 1, deck, name: deckName }));
     setNotice("この端末にデッキを保存しました。");
+    trackUserAction("deck_save", { locale: "ja", total, legal: isLegalMainDeck });
   }
 
   function loadDeck() {
@@ -137,13 +172,34 @@ export function JapaneseDeckBuilder({
           url: shareUrl,
         });
         setNotice("デッキを共有しました。");
+        trackUserAction("share_complete", { kind: "deck", locale: "ja" });
       } else {
         await navigator.clipboard.writeText(shareUrl);
         setNotice("共有URLをコピーしました。");
+        trackUserAction("share_copy_link", { kind: "deck", locale: "ja" });
       }
     } catch {
       setNotice("共有をキャンセルしました。");
     }
+  }
+
+  function drawOpeningHand() {
+    if (total !== 50) {
+      setNotice("メインデッキを50枚にしてから、最初の手札を確認してください。");
+      return;
+    }
+
+    const shuffledCards = deckCards.flatMap((card) => Array.from(
+      { length: deck[card.slug] || 0 },
+      () => card.name,
+    ));
+    for (let index = shuffledCards.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [shuffledCards[index], shuffledCards[randomIndex]] = [shuffledCards[randomIndex], shuffledCards[index]];
+    }
+    setOpeningHand(shuffledCards.slice(0, 5));
+    setNotice("最初の手札5枚です。もう一度押すと引き直せます。");
+    trackUserAction("deck_test_hand", { locale: "ja", total });
   }
 
   return (
@@ -177,7 +233,8 @@ export function JapaneseDeckBuilder({
         </div>
       </section>
 
-      <aside className="deck-panel">
+      <aside id="ja-deck-summary" className={`deck-panel${isDeckPanelOpen ? " mobile-open" : ""}`}>
+        <button ref={mobileCloseButtonRef} className="mobile-deck-close" type="button" onClick={() => setIsDeckPanelOpen(false)} aria-label="デッキ一覧を閉じる">×</button>
         <p className="eyebrow">メインデッキ</p>
         <input
           className="deck-name-input"
@@ -188,7 +245,27 @@ export function JapaneseDeckBuilder({
           maxLength={52}
         />
         <div className="deck-progress"><span style={{ width: `${Math.min(total / 50 * 100, 100)}%` }} /></div>
-        <div className="deck-status"><span>{total} / 50枚</span><span>{selectedColors.size} / 2色</span></div>
+        <div className="deck-status"><span>{total} / 50枚</span><span>{selectedColors.size} / 2色</span><span>{luckyCount} / 8 ラッキー</span></div>
+        <p className={`deck-legality${isLegalMainDeck ? " is-legal" : ""}`}>
+          {isLegalMainDeck ? "メインデッキ完成 · プレイには別にソウルデッキ10枚が必要です。" : `あと${Math.max(0, 50 - total)}枚 · メインデッキのみ`}
+        </p>
+        {deckCards.length > 0 ? (
+          <div className="deck-breakdown" aria-label="デッキ統計">
+            <div className="deck-type-counts">
+              {(["Pal", "Gear", "Event", "Structure"] as const).map((cardType) => (
+                <span key={cardType}><strong>{typeCounts[cardType] || 0}</strong>{japaneseTypeLabel(cardType)}</span>
+              ))}
+            </div>
+            <div className="deck-cost-curve" aria-label="コスト分布">
+              {Array.from({ length: 11 }, (_, costValue) => (
+                <span key={costValue} title={`コスト${costValue}：${costCurve[costValue] || 0}枚`}>
+                  <i style={{ height: `${Math.max(4, ((costCurve[costValue] || 0) / highestCostCount) * 42)}px` }} />
+                  <small>{costValue}</small>
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : null}
         <div className="deck-rows" aria-label="追加したカード">
           {deckCards.length === 0 && <div className="empty-state">カードを押すとデッキに追加できます。</div>}
           {deckCards.map((card) => (
@@ -202,14 +279,36 @@ export function JapaneseDeckBuilder({
             </div>
           ))}
         </div>
+        {openingHand.length ? (
+          <div className="opening-hand" aria-live="polite">
+            <strong>最初の手札</strong>
+            <ol>{openingHand.map((cardName, index) => <li key={`${cardName}-${index}`}>{cardName}</li>)}</ol>
+          </div>
+        ) : null}
         <div className="builder-actions">
           <button className="button primary" onClick={saveDeck}>この端末に保存</button>
+          <button className="button ghost" onClick={drawOpeningHand} disabled={total !== 50}>最初の手札を試す</button>
           <button className="button ink" onClick={shareDeck} disabled={total === 0}>共有URLを作る</button>
           <button className="button ghost" onClick={loadDeck}>保存データを開く</button>
-          <button className="button ghost" onClick={() => { setDeck({}); setNotice("デッキを空にしました。"); }}>すべて削除</button>
+          <button className="button ghost" onClick={() => { setDeck({}); setOpeningHand([]); setNotice("デッキを空にしました。"); }}>すべて削除</button>
         </div>
         <p className="save-note" aria-live="polite">{notice}</p>
       </aside>
+      {isDeckPanelOpen ? <button className="mobile-deck-backdrop" type="button" onClick={() => setIsDeckPanelOpen(false)} aria-label="デッキ一覧を閉じる" /> : null}
+      <button
+        className="mobile-deck-bar"
+        type="button"
+        aria-controls="ja-deck-summary"
+        aria-expanded={isDeckPanelOpen}
+        onClick={() => {
+          setIsDeckPanelOpen(true);
+          trackUserAction("deck_open_summary", { locale: "ja", total, colors: selectedColors.size });
+        }}
+      >
+        <span><strong>{total}/50</strong> 枚</span>
+        <span><strong>{selectedColors.size}/2</strong> 色</span>
+        <span>デッキを見る ↑</span>
+      </button>
     </div>
   );
 }

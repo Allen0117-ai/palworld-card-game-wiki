@@ -82,6 +82,44 @@ const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
   },
 };
 
+const guidePrimaryActions: Record<string, Array<{ label: string; detail: string; href: string }>> = {
+  "palworld-booster-box": [
+    { label: "Browse BP01 cards", detail: "See every card before buying", href: "/cards" },
+    { label: "Compare Trial Decks", detail: "Choose a ready-to-play first deck", href: "/blog/red-blue-vs-green-purple-trial-deck" },
+    { label: "Track your collection", detail: "Save BP01 progress on this device", href: "/tools/dawn-of-palpagos-checklist" },
+  ],
+  "how-to-play-palworld-card-game": [
+    { label: "Search a rule", detail: "Check all official Q&As", href: "/rules" },
+    { label: "Copy a beginner deck", detail: "Open an illustrated 50-card list", href: "/deck/mono-red-pal-rush" },
+    { label: "Build your own deck", detail: "Use legal limits while you build", href: "/tools/deck-builder" },
+  ],
+  "palworld-card-game-deck-building-rules": [
+    { label: "Open the deck builder", detail: "Check cards, colors and Lucky limits", href: "/tools/deck-builder" },
+    { label: "Copy a legal deck", detail: "Start from a complete 50-card list", href: "/deck/mono-red-pal-rush" },
+    { label: "Choose your colors", detail: "Compare all four play styles", href: "/blog/palworld-card-game-color-guide" },
+  ],
+  "palworld-card-game-keyword-glossary": [
+    { label: "Search official rulings", detail: "Find card-specific answers", href: "/rules" },
+    { label: "Browse keyword cards", detail: "Search card text and effects", href: "/cards" },
+    { label: "See keywords in a deck", detail: "Learn with illustrated combinations", href: "/decks" },
+  ],
+  "palworld-tcg-rarity-guide": [
+    { label: "Browse every BP01 card", detail: "Filter the official card list", href: "/cards" },
+    { label: "See chase artwork", detail: "Compare confirmed SSP and SP cards", href: "/blog/dawn-of-palpagos-chase-cards" },
+    { label: "Track your set", detail: "Save base and parallel progress", href: "/tools/dawn-of-palpagos-checklist" },
+  ],
+  "palworld-card-game-errata-tracker": [
+    { label: "Search all rulings", detail: "Check the official Q&A database", href: "/rules" },
+    { label: "Read deck rules", detail: "Confirm every legal deck limit", href: "/blog/palworld-card-game-deck-building-rules" },
+    { label: "Browse corrected cards", detail: "Open official card details", href: "/cards" },
+  ],
+  "palworld-card-game-color-guide": [
+    { label: "Compare beginner decks", detail: "Red/Blue or Green/Purple", href: "/blog/red-blue-vs-green-purple-trial-deck" },
+    { label: "Build a two-color deck", detail: "See legality checks as you add cards", href: "/tools/deck-builder" },
+    { label: "Browse by color", detail: "Filter all 148 launch cards", href: "/cards" },
+  ],
+};
+
 const guideContent: Record<string, React.ReactNode> = {
   "palworld-booster-box": (
     <>
@@ -697,6 +735,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     return relatedGuide;
   });
   const primaryImage = getGuidePrimaryImage(slug);
+  const primaryActions = guidePrimaryActions[slug] || [];
   const articleDate = guide.published || "2026-07-30";
   const boosterBoxFaqs = slug === "palworld-booster-box" ? [
     ["How many packs are in a Palworld Booster Box?", "A Dawn of Palpagos BP01 booster box contains 12 booster packs."],
@@ -764,6 +803,21 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               }}
             />
           </div>
+          {primaryActions.length ? (
+            <nav className="guide-primary-actions" aria-label="Recommended next steps">
+              {primaryActions.map((action) => (
+                <Link
+                  href={action.href}
+                  key={action.href}
+                  data-analytics-event="next_step_click"
+                  data-analytics-label={`${slug}:${action.href}`}
+                >
+                  <strong>{action.label}</strong>
+                  <span>{action.detail} →</span>
+                </Link>
+              ))}
+            </nav>
+          ) : null}
         </div>
       </div>
       <div id="guide-content" className="guide-body">

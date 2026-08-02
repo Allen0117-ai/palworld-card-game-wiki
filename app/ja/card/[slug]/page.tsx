@@ -104,7 +104,7 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
             <p>実際の対戦では、最新の総合ルールと公式Q&amp;Aもあわせて確認してください。</p>
             <div className="article-actions">
               <Link className="text-link" href={`/ja/rules?q=${encodeURIComponent(card.japaneseNumber)}`}>このカードの公式Q&amp;Aを探す →</Link>
-              <Link className="text-link" href="/ja/tools/deck-builder">デッキビルダーで使う →</Link>
+              <Link className="text-link" href={`/ja/tools/deck-builder?card=${card.slug}`} data-analytics-event="card_to_builder" data-analytics-label={card.japaneseNumber}>このカードをデッキに入れる →</Link>
             </div>
           </section>
 

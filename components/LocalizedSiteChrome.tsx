@@ -22,8 +22,8 @@ export function LocalizedSiteHeader() {
     return (
       <header className="site-header ja-chrome">
         <div className="shell nav-wrap">
-          <Link className="brand" href="/ja" aria-label="パルワールドカードゲーム攻略 ホーム">
-            <span className="brand-mark">◆</span>
+          <Link className="brand" href="/ja">
+            <span className="brand-mark" aria-hidden="true">◆</span>
             <span className="brand-copy">Palpagos Archive<small>パルワールドカードゲーム攻略</small></span>
           </Link>
           <nav className="desktop-nav" aria-label="メインナビゲーション">
@@ -44,8 +44,8 @@ export function LocalizedSiteHeader() {
   return (
     <header className="site-header">
       <div className="shell nav-wrap">
-        <Link className="brand" href="/" aria-label="Palworld Card Game Wiki home">
-          <span className="brand-mark">◆</span>
+        <Link className="brand" href="/">
+          <span className="brand-mark" aria-hidden="true">◆</span>
           <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -74,7 +74,7 @@ export function LocalizedSiteFooter() {
         <div className="shell footer-grid">
           <div>
             <Link className="brand footer-brand" href="/ja">
-              <span className="brand-mark">◆</span>
+              <span className="brand-mark" aria-hidden="true">◆</span>
               <span className="brand-copy">Palpagos Archive<small>パルワールドカードゲーム攻略</small></span>
             </Link>
             <p>カードリスト、デッキレシピ、ルールを日本のプレイヤー向けに整理した非公式ファンサイトです。</p>
@@ -109,7 +109,7 @@ export function LocalizedSiteFooter() {
       <div className="shell footer-grid">
         <div>
           <Link className="brand footer-brand" href="/">
-            <span className="brand-mark">◆</span>
+            <span className="brand-mark" aria-hidden="true">◆</span>
             <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
           </Link>
           <p>An unofficial, non-commercial card database and strategy companion built by fans, for players.</p>
