@@ -129,6 +129,60 @@ const guideVisuals: Record<string, GuideVisual> = {
     caption: "Representative Red, Blue, Green and Purple BP01 cards used to explain each color's launch-day mechanics.",
     cardNumbers: ["EBP01-002", "EBP01-027", "EBP01-050", "EBP01-077"],
   },
+  "palworld-tcg-first-edition-vs-reprint": {
+    label: "First-print identification",
+    title: "Verify the sealed product and exact card",
+    caption: "Representative BP01 cards used to explain what collectors can and cannot verify about First Edition and reprint claims.",
+    cardNumbers: ["EBP01-001", "EBP01-025", "EBP01-049"],
+  },
+  "palworld-tcg-booster-box-vs-trial-deck-vs-singles": {
+    label: "First-purchase comparison",
+    title: "Booster box, Trial Deck or singles",
+    caption: "The BP01 booster pack beside representative Trial Deck cards for comparing the three main ways to start buying Palworld TCG.",
+    cardNumbers: ["ETD01-008", "ETD02-018"],
+    assets: [
+      {
+        src: "/media-kit/palworld-card-game-dawn-of-palpagos-booster-pack.webp",
+        alt: "Dawn of Palpagos BP01 booster pack compared with Palworld Trial Deck cards and singles",
+        width: 828,
+        height: 1713,
+      },
+    ],
+  },
+  "palworld-tcg-card-size-sleeves": {
+    label: "Card protection guide",
+    title: "63×88mm standard-size cards",
+    caption: "The official Palworld card back and standard-size BP01 cards used to choose sleeves, binders and storage.",
+    cardNumbers: ["EBP01-002", "EBP01-025"],
+    assets: [
+      {
+        src: "/media-kit/palworld-card-game-official-card-back.webp",
+        alt: "Official Palworld TCG card back for a 63 by 88 millimeter standard-size card",
+        width: 607,
+        height: 849,
+      },
+    ],
+  },
+  "are-palworld-tcg-trial-decks-worth-it": {
+    label: "Trial Deck value guide",
+    title: "Complete decks, accessories and one parallel",
+    caption: "Key cards from TD01 Red/Blue and TD02 Green/Purple, the two ready-to-play Palworld Trial Decks.",
+    cardNumbers: ["ETD01-008", "ETD01-018", "ETD02-006", "ETD02-018"],
+  },
+  "palworld-tcg-english-vs-japanese-cards": {
+    label: "Language edition comparison",
+    title: "Choose cards for your region and event",
+    caption: "English and Japanese versions of a BP01 card used to explain language rules for Main Decks, Soul Decks and collecting.",
+    cardNumbers: ["EBP01-025"],
+    assets: [
+      {
+        src: "/cards/ja-official/EBP01-025.png",
+        alt: "Japanese edition Palworld TCG card compared with its English edition",
+        width: 400,
+        height: 559,
+      },
+    ],
+  },
 };
 
 function cardAssets(cardNumbers: string[], topic: string): PanelAsset[] {

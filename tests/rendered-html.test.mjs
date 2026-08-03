@@ -78,6 +78,11 @@ const publicRoutes = [
   "/blog/palworld-card-game-2026-roadmap",
   "/blog/palworld-card-game-errata-tracker",
   "/blog/palworld-card-game-color-guide",
+  "/blog/palworld-tcg-first-edition-vs-reprint",
+  "/blog/palworld-tcg-booster-box-vs-trial-deck-vs-singles",
+  "/blog/palworld-tcg-card-size-sleeves",
+  "/blog/are-palworld-tcg-trial-decks-worth-it",
+  "/blog/palworld-tcg-english-vs-japanese-cards",
 ];
 
 test("every published page renders successfully", async () => {
