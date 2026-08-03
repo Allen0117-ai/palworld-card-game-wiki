@@ -8,6 +8,13 @@ import { getGuidePrimaryImage, GuideSeoImagePanel } from "@/components/SeoImageP
 import { SharePanel } from "@/components/SharePanel";
 import type { Metadata } from "next";
 import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import {
+  commercialGuideContent,
+  commercialGuidePrimaryActions,
+  commercialGuideQuickAnswers,
+  commercialGuideSources,
+  commercialRelatedGuideSlugs,
+} from "@/lib/commercial-guide-content";
 
 export function generateStaticParams() {
   return guides.map((guide) => ({ slug: guide.slug }));
@@ -80,6 +87,7 @@ const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
     label: "Choose by play style",
     answer: "Red applies direct pressure, Blue controls tempo and cards, Green builds Ingredient-powered boards, and Purple disrupts combat through Stealth, removal, night and graveyard effects. A legal deck may use up to two of these colors plus Colorless cards.",
   },
+  ...commercialGuideQuickAnswers,
 };
 
 const guidePrimaryActions: Record<string, Array<{ label: string; detail: string; href: string }>> = {
@@ -118,6 +126,7 @@ const guidePrimaryActions: Record<string, Array<{ label: string; detail: string;
     { label: "Build a two-color deck", detail: "See legality checks as you add cards", href: "/tools/deck-builder" },
     { label: "Browse by color", detail: "Filter all 148 launch cards", href: "/cards" },
   ],
+  ...commercialGuidePrimaryActions,
 };
 
 const guideContent: Record<string, React.ReactNode> = {
@@ -582,6 +591,7 @@ const guideContent: Record<string, React.ReactNode> = {
       <Link className="button primary" href="/tools/deck-builder">Test a two-color list</Link>
     </>
   ),
+  ...commercialGuideContent,
 };
 
 const officialSources: Record<string, Array<{ label: string; href: string }>> = {
@@ -654,6 +664,7 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
     { label: "Official Green / Purple Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td02" },
     { label: "Official Spring 2026 play-style overview", href: "https://en.palworld-official-cardgame.com/news/post-becs-26" },
   ],
+  ...commercialGuideSources,
 };
 
 const relatedGuideSlugs: Record<string, string[]> = {
@@ -722,6 +733,7 @@ const relatedGuideSlugs: Record<string, string[]> = {
     "palworld-card-game-deck-building-rules",
     "dawn-of-palpagos-card-list-guide",
   ],
+  ...commercialRelatedGuideSlugs,
 };
 
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -780,7 +792,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <div className="article-trust">
           <span>Updated {guide.updated}</span>
           <strong>{guide.sourceStatus}</strong>
-          <span>Launch-day edition</span>
+          <span>Fact-checked guide</span>
         </div>
         <GuideSeoImagePanel slug={slug} />
         <GuideToc contentId="guide-content" />
