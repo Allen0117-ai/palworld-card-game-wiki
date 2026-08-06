@@ -1984,6 +1984,19 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 }
 .quick-answer strong, .example-box strong { display: block; margin-bottom: 8px; color: var(--gold); font: 750 17px/1.2 var(--font-display); }
 .quick-answer p, .example-box p { margin: 0; }
+.official-video { margin: 28px 0 36px; overflow: hidden; border: 1px solid rgba(210, 182, 109, .3); background: #20231e; }
+.official-video > div { position: relative; aspect-ratio: 16 / 9; background: #0d0f0d; }
+.official-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.official-video figcaption { padding: 12px 15px; color: #a9aba2; font-size: 11px; line-height: 1.6; }
+.official-video figcaption a { color: var(--sky); font-weight: 800; }
+.guide-card-strip { margin: 26px 0 34px; padding: 22px; border: 1px solid rgba(210, 182, 109, .28); background: linear-gradient(145deg, #282c25, #20231e); }
+.guide-card-strip > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.guide-card-strip a { min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; color: var(--paper-light); text-align: center; }
+.guide-card-strip img { width: 100%; height: auto; border-radius: 4.5%; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, .35)); transition: transform .18s ease; }
+.guide-card-strip a:hover img { transform: translateY(-3px); }
+.guide-card-strip span { font-size: 12px; font-weight: 800; line-height: 1.35; }
+.guide-card-strip small { display: block; margin-top: 3px; color: var(--gold); font-size: 9px; font-weight: 750; }
+.guide-card-strip figcaption { margin-top: 18px; color: #a9aba2; font-size: 12px; line-height: 1.65; text-align: center; }
 .quick-answer-source {
   display: inline-flex;
   margin-top: 15px;
@@ -3466,6 +3479,10 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
   .popular-rule-questions button { text-align: left; }
   .deck-page-card-art { min-height: 150px; }
   .deck-page-card-art img { height: 138px; }
+  .guide-card-strip { padding: 14px 10px; }
+  .guide-card-strip > div { gap: 7px; }
+  .guide-card-strip span { font-size: 10px; }
+  .guide-card-strip figcaption { font-size: 11px; }
   .deck-plan-step { grid-template-columns: 1fr; padding: 18px; }
   .deck-plan-cards { grid-column: 1; }
   .deck-plan-card { width: min(46%, 130px); }

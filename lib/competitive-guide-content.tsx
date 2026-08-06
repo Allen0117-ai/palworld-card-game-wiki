@@ -22,7 +22,7 @@ export const competitiveGuideQuickAnswers: Record<string, QuickAnswer> = {
   },
   "palworld-tcg-trial-deck-upgrade-guide": {
     label: "First upgrade plan",
-    answer: "Upgrade only four slots first. For TD01 Red/Blue, test two Primitive Furnace and two Sphere Workbench to improve Materials and card selection; then consider Suzaku or Azurobe after checking the Lucky limit. For TD02 Green/Purple, test two Breeding Farm and two Pyrin Noct to improve Ingredient conversion and defense; then consider Lyleen or Katress after checking the Lucky limit. Remove the least useful vanilla or redundant high-cost cards one for one, keep the Main Deck at exactly 50 cards and play several games before changing the next group.",
+    answer: "Upgrade only four slots first. If your TD01 matches the linked community-reconstructed 50-card list, remove two Jolthog Cryst and two Antique Wooden Chair; add two Primitive Furnace and two Sphere Workbench. If TD02 matches its linked reconstruction, remove two Mossanda and two Refined Metal Spear; add two Breeding Farm and two Pyrin Noct. These are exact first tests based on official card text, not proven tournament builds. Compare the quantities with your physical deck, keep exactly 50 Main Deck cards, recount Lucky icons and record four games before changing another group.",
   },
   "palworld-tcg-tournament-decklists": {
     label: "Official results status",
@@ -66,6 +66,15 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
         <div><span>Unranked</span><p>Other color pairs</p><p>The card pool supports experiments, but these pairs do not yet have complete published lists or official results to compare.</p></div>
       </div>
       <div className="callout"><strong>No S tier yet:</strong> the official English deck-recipe page currently has no Featured Decks or Tournament Decks. The rankings below are editorial estimates based on card synergy, not tournament results.</div>
+
+      <h2>What players are actually testing online</h2>
+      <p>On August 6, the fan-made Palworld TCG Simulator exposed 488 public decks that its library labels online-legal, plus an active Dawn of Palpagos MMR leaderboard. That is useful evidence that players are building and testing many lists, but it does not reveal paper-tournament finishes, matchup win rates or which deck is truly best.</p>
+      <div className="comparison-table" role="region" aria-label="Community deck evidence limits" tabIndex={0}>
+        <div className="comparison-head"><span>Public evidence</span><strong>What it supports</strong><strong>What it cannot prove</strong></div>
+        <div><span>488 legal lists</span><p>Players are actively testing complete decks across the launch card pool.</p><p>A popular name or copied list is not a winning result.</p></div>
+        <div><span>MMR leaderboard</span><p>The simulator has real ranked activity and identifiable accounts.</p><p>The public board does not show reliable archetype win rates.</p></div>
+      </div>
+      <p><a className="text-link" href="https://palworldtcgsim.com/decks/decklists" target="_blank" rel="noreferrer">Browse the public simulator deck library ↗</a></p>
 
       <h2>How this provisional ranking works</h2>
       <p>This list ranks complete launch shells rather than isolated cards. A deck moves up when its low-cost plays, resource engine, interaction and finishers support the same plan. It moves down when it relies on drawing one expensive card or mixes several engines that compete for Souls, assignments or deck space.</p>
@@ -186,7 +195,14 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
         <div><span>2× <CardTextLink number="EBP01-016" /></span><p>Creates three Materials and draws a card after assigning a Pal.</p><p>More reliable Material turns and Gear discounts.</p></div>
         <div><span>2× <CardTextLink number="EBP01-043" /></span><p>Draws two and discards one after assigning a Pal.</p><p>Better card selection without changing colors.</p></div>
       </div>
-      <p>For each added card, remove one copy from a slot that rarely affects the game. Start with simple low-Power Pals without abilities, redundant copies of situational cards or the highest-cost card that repeatedly stays in hand. Do not remove so many cheap Pals that Stone Pit, Primitive Furnace, Primitive Workbench or Sphere Workbench run out of assignment targets.</p>
+      <h3>Exact first test: four cards out, four cards in</h3>
+      <div className="comparison-table" role="region" aria-label="TD01 exact first upgrade swaps" tabIndex={0}>
+        <div className="comparison-head"><span>Swap</span><strong>Remove</strong><strong>Add</strong></div>
+        <div><span>Low-cost slot</span><p>2× <CardTextLink number="ETD01-013" /></p><p>2× <CardTextLink number="EBP01-016" /></p></div>
+        <div><span>Structure slot</span><p>2× <CardTextLink number="ETD01-019" /></p><p>2× <CardTextLink number="EBP01-043" /></p></div>
+      </div>
+      <p>Jolthog Cryst is a simple cost-2 assignment body with no printed ability; this test keeps one copy from the reconstructed list. Antique Wooden Chair gives one Pal +1000 Power only on deploy, while Sphere Workbench supplies repeatable selection. Do not cut more cheap Pals until you know Stone Pit and both Workbenches still have enough assignment targets.</p>
+      <div className="callout"><strong>Quantity check:</strong> Bushiroad publishes the official TD01 card pool but not its copy-by-copy recipe. This test starts from a <a className="text-link" href="https://palworldtcgsim.com/decks/decklists/red-blue-trial-deck--7ead2fecf924" target="_blank" rel="noreferrer">public 50-card community reconstruction ↗</a>. Compare it with the cards in your box before making the four swaps.</div>
 
       <h2>TD01 optional threat package</h2>
       <p>After the engine works, test one or two copies of <CardTextLink number="EBP01-002" /> for deploy damage and one or two <CardTextLink number="EBP01-029" /> for a card plus a rest effect. Both are Lucky Pals, so count every Lucky icon already in the Main Deck before adding them.</p>
@@ -198,7 +214,14 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
         <div><span>2× <CardTextLink number="EBP01-063" /></span><p>Turns Ingredients into card access or a Pal deployment.</p><p>A repeatable payoff for Berry Plantation and Flopie.</p></div>
         <div><span>2× <CardTextLink number="EBP01-077" /></span><p>Can attack as a Strike-3 Pal or leave hand as an Interrupt.</p><p>Flexible defense without needing a full night engine.</p></div>
       </div>
-      <p>Start cuts with Green or Purple Pals that have no printed ability and high-cost cards that duplicate a role the deck already performs. Preserve Berry Plantation, Campfire, Broncherry, Astegon and Felbat until testing proves a different plan, because those cards explain how the original deck creates Ingredients, protects its board and turns a stable base into damage.</p>
+      <h3>Exact first test: four cards out, four cards in</h3>
+      <div className="comparison-table" role="region" aria-label="TD02 exact first upgrade swaps" tabIndex={0}>
+        <div className="comparison-head"><span>Swap</span><strong>Remove</strong><strong>Add</strong></div>
+        <div><span>Blank threat</span><p>2× <CardTextLink number="ETD02-001" /></p><p>2× <CardTextLink number="EBP01-063" /></p></div>
+        <div><span>High-cost slot</span><p>2× <CardTextLink number="ETD02-010" /></p><p>2× <CardTextLink number="EBP01-077" /></p></div>
+      </div>
+      <p>Mossanda is a cost-5 Pal with no printed ability, while Breeding Farm spends Ingredients for card access or deployment. Refined Metal Spear is a reusable Power boost, but replacing it with Pyrin Noct gives this first test a real Strike-3 threat that can also nullify an attack from hand. Preserve Berry Plantation, Campfire, Broncherry, Astegon and Felbat until testing proves a different plan.</p>
+      <div className="callout"><strong>Quantity check:</strong> Bushiroad publishes the official TD02 card pool but not its copy-by-copy recipe. This test starts from a <a className="text-link" href="https://palworldtcgsim.com/decks/decklists/gp-trial-deck--cc7d3711c429" target="_blank" rel="noreferrer">public 50-card community reconstruction ↗</a>. Compare it with the cards in your box before making the four swaps.</div>
 
       <h2>TD02 optional engine package</h2>
       <p>Test one or two <CardTextLink number="EBP01-049" /> when the deck has enough cost-6-or-lower Pals worth finding. Add <CardTextLink number="EBP01-075" /> only when the list also contains Pals that create value when butchered or useful normal Pals to return from the graveyard.</p>
@@ -295,6 +318,8 @@ export const competitiveGuideSources: Record<string, GuideSource[]> = {
     { label: "Official launch card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
     { label: "Official Red / Blue Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td01" },
     { label: "Official Green / Purple Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td02" },
+    { label: "Community simulator public deck library — not tournament results", href: "https://palworldtcgsim.com/decks/decklists" },
+    { label: "Community simulator MMR leaderboard — not archetype win rates", href: "https://palworldtcgsim.com/rankings" },
   ],
   "palworld-tcg-best-cards-by-color": [
     { label: "Official BP01 card list", href: "https://en.palworld-official-cardgame.com/cardlist/searchresults?expansion=EBP01" },
@@ -306,6 +331,8 @@ export const competitiveGuideSources: Record<string, GuideSource[]> = {
     { label: "Official Green / Purple Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td02" },
     { label: "Official BP01 card list", href: "https://en.palworld-official-cardgame.com/cardlist/searchresults?expansion=EBP01" },
     { label: "Official deck construction rules", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
+    { label: "Community-reconstructed TD01 quantity list — verify against your box", href: "https://palworldtcgsim.com/decks/decklists/red-blue-trial-deck--7ead2fecf924" },
+    { label: "Community-reconstructed TD02 quantity list — verify against your box", href: "https://palworldtcgsim.com/decks/decklists/gp-trial-deck--cc7d3711c429" },
   ],
   "palworld-tcg-tournament-decklists": [
     { label: "Official English Deck Recipe database", href: "https://en.palworld-official-cardgame.com/deckrecipe" },

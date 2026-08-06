@@ -9,6 +9,10 @@ export type ContentMaintenance = {
 };
 
 const englishGuideMaintenance: Record<string, ContentMaintenance> = {
+  "how-to-play-palworld-card-game": {
+    changeSummary: "Added the official tutorial video, current card images and a rules-checked TD01 practice sequence that separates Souls from Materials.",
+    history: [{ date: "2026-08-06", note: "Added official video instruction and a real-card opening exercise." }],
+  },
   "palworld-booster-box": {
     changeSummary: "Confirmed the 12-pack box contents and added current card-list, pull-rate and Trial Deck references.",
   },
@@ -54,7 +58,8 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     changeSummary: "Reviewed five Red, Blue, Green and Purple BP01 cards by their real deck-building roles and official card text.",
   },
   "palworld-tcg-trial-deck-upgrade-guide": {
-    changeSummary: "Added four-card starter upgrades for TD01 and TD02 with copy, color and Lucky-limit checks.",
+    changeSummary: "Added exact four-card swap tests for TD01 and TD02, with card-by-card reasons and clearly labeled community quantity checks.",
+    history: [{ date: "2026-08-06", note: "Replaced vague cut advice with exact first-test swaps and source limits." }],
   },
   "palworld-tcg-tournament-decklists": {
     changeSummary: "Checked the official Deck Recipe and event pages; no complete official tournament decklists are published yet.",

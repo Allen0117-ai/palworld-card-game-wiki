@@ -352,6 +352,27 @@ test("new deck guides render their key title, official source and update-center 
   assert.match(updatesHtml, /href="\/blog\/palworld-tcg-tournament-decklists"/);
 });
 
+test("gameplay guides use real visual instruction and exact labeled upgrade tests", async () => {
+  const howToHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+  const upgradeHtml = await (await render("/blog/palworld-tcg-trial-deck-upgrade-guide")).text();
+  const tierHtml = await (await render("/blog/palworld-tcg-deck-tier-list")).text();
+
+  assert.match(howToHtml, /youtube\.com\/embed\/UdbMWxWcMcw/);
+  assert.match(howToHtml, /Practice one real TD01 engine turn/);
+  assert.match(howToHtml, /\/cards\/catalog\/ETD01-008\.png/);
+  assert.match(howToHtml, /Materials are counters created by card effects/);
+
+  assert.match(upgradeHtml, /Exact first test: four cards out, four cards in/);
+  assert.match(upgradeHtml, /Jolthog Cryst/);
+  assert.match(upgradeHtml, /Antique Wooden Chair/);
+  assert.match(upgradeHtml, /Refined Metal Spear/);
+  assert.match(upgradeHtml, /Community-reconstructed TD01 quantity list/);
+  assert.match(upgradeHtml, /Compare it with the cards in your box/);
+
+  assert.match(tierHtml, /488 public decks/);
+  assert.match(tierHtml, /does not reveal paper-tournament finishes/);
+});
+
 test("franchise update guides answer card-player questions without internal publishing language", async () => {
   const onlineHtml = await (await render("/blog/palworld-online-vs-card-game")).text();
   const versionHtml = await (await render("/blog/palworld-1-0-vs-card-game")).text();

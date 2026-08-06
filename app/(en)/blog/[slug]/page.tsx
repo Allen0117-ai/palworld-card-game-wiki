@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { guides } from "@/lib/data";
+import Image from "next/image";
+import { cardByNumber, guides } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { GuideToc } from "@/components/GuideToc";
@@ -30,6 +31,35 @@ import {
   competitiveGuideSources,
   competitiveRelatedGuideSlugs,
 } from "@/lib/competitive-guide-content";
+
+function GuideCardStrip({ numbers, caption }: { numbers: string[]; caption: string }) {
+  const cards = numbers.map((number) => {
+    const card = cardByNumber(number);
+    if (!card) throw new Error(`Guide references missing card ${number}`);
+    return card;
+  });
+
+  return (
+    <figure className="guide-card-strip">
+      <div>
+        {cards.map((card) => (
+          <Link href={`/card/${card.slug}`} key={card.number}>
+            <Image
+              src={card.image}
+              alt={`${card.name} ${card.number} official card`}
+              width={300}
+              height={card.type === "Structure" ? 215 : 419}
+              sizes="(max-width: 600px) 31vw, 190px"
+              unoptimized
+            />
+            <span>{card.name}<small>{card.number}</small></span>
+          </Link>
+        ))}
+      </div>
+      <figcaption>{caption}</figcaption>
+    </figure>
+  );
+}
 
 export function generateStaticParams() {
   return guides.map((guide) => ({ slug: guide.slug }));
@@ -253,6 +283,21 @@ const guideContent: Record<string, React.ReactNode> = {
       </ul>
       <div className="callout"><strong>Best first purchase:</strong> either Trial Deck is ready to play and includes a 50-card Main Deck, 10-card Soul Deck, paper playmat and play guide, counters and one BP01 booster pack.</div>
 
+      <h2>Watch the official game tutorial</h2>
+      <p>This 11-minute publisher tutorial shows the table layout, turn flow, card deployment, attacks, blocking and Damage Checks. Keep the current Quick Manual nearby for exact wording and any later rules updates.</p>
+      <figure className="official-video">
+        <div>
+          <iframe
+            src="https://www.youtube.com/embed/UdbMWxWcMcw"
+            title="Palworld Official Card Game tutorial video"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <figcaption>Official tutorial · 11:10 · Published June 19, 2026 · <a href="https://www.youtube.com/watch?v=UdbMWxWcMcw" target="_blank" rel="noreferrer">Open on YouTube ↗</a></figcaption>
+      </figure>
+
       <h2>How do you set up your first game?</h2>
       <ol>
         <li>Place and shuffle your Main Deck. Place the separate Soul Deck beside your Soul Area.</li>
@@ -280,6 +325,20 @@ const guideContent: Record<string, React.ReactNode> = {
         <li><strong>Events</strong> resolve a one-time effect, then normally go to the Graveyard.</li>
         <li><strong>Souls</strong> are kept in a separate deck and rested to pay costs.</li>
       </ul>
+
+      <h2>Practice one real TD01 engine turn</h2>
+      <p>This example uses current Red/Blue Trial Deck cards and their printed effects. It is a rules practice line, not a claim that it is always the best play.</p>
+      <GuideCardStrip
+        numbers={["ETD01-008", "ETD01-024", "ETD01-009"]}
+        caption="Stone Pit creates Materials and a card; Ribbuny can be assigned to work; Weapon Workbench turns a Material and another assignment into damage and extra Strike."
+      />
+      <ol>
+        <li><strong>Look for a playable hand:</strong> Stone Pit plus a cost-2 Pal gives you a concrete early plan. A hand crowded with cost-6 to cost-8 cards is a sensible full-hand mulligan.</li>
+        <li><strong>Spend three ready Souls:</strong> pay one to deploy <Link className="text-link" href="/card/stone-pit-etd01-008">Stone Pit</Link>, then two to deploy <Link className="text-link" href="/card/ribbuny-little-princess-etd01-024">Ribbuny</Link>.</li>
+        <li><strong>Work the Structure:</strong> rest and assign Ribbuny to Stone Pit. Its printed ability gives you three Materials and draws one card.</li>
+        <li><strong>Convert the resource later:</strong> <Link className="text-link" href="/card/weapon-workbench-etd01-009">Weapon Workbench</Link> can consume one Material and assign a Pal to deal 800 damage to a Pal, then give all your Pals Strike +1 for that turn.</li>
+      </ol>
+      <div className="callout"><strong>Important:</strong> Materials are counters created by card effects; they do not replace Souls. Souls pay the printed cost in the top-left corner, while Materials pay only effects that specifically ask you to consume them.</div>
 
       <h2>How do attacking, blocking and battles work?</h2>
       <p>Rest one of your standing Pals to attack. The target can be the opposing player, a Structure, or normally a Pal already in the rest state. Assault is the keyword that allows a Pal to attack standing Pals.</p>
@@ -731,6 +790,7 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
     { label: "Official Quick Manual", href: "https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" },
     { label: "Official Rule & Q&A", href: "https://en.palworld-official-cardgame.com/rule" },
     { label: "Official beginner page", href: "https://en.palworld-official-cardgame.com/for-beginners" },
+    { label: "Official tutorial video", href: "https://www.youtube.com/watch?v=UdbMWxWcMcw" },
   ],
   "palworld-card-game-deck-building-rules": [
     { label: "Official Quick Manual", href: "https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" },
@@ -1010,9 +1070,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       </div>
 
       <section className="source-panel">
-        <p className="eyebrow">Official sources</p>
+        <p className="eyebrow">Sources and evidence</p>
         <h2>Source links</h2>
-        <p>Official rules, card, product and franchise sources used in this guide are linked below.</p>
+        <p>Official sources come first. Community sources are clearly labeled and used only where publisher data is unavailable.</p>
         <div>
           {(officialSources[slug] || []).map((source) => (
             <a href={source.href} target="_blank" rel="noreferrer" key={source.href}>{source.label} ↗</a>
