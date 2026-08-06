@@ -38,7 +38,12 @@ function localizedSitemapEntries(path: string, lastModified: string): MetadataRo
   ];
 }
 
-function localizedSitemapPairEntries(englishPath: string, japanesePath: string, lastModified: string): MetadataRoute.Sitemap {
+function localizedSitemapPairEntries(
+  englishPath: string,
+  japanesePath: string,
+  lastModified: string,
+  japaneseLastModified = lastModified,
+): MetadataRoute.Sitemap {
   const languages = {
     en: `${baseUrl}${englishPath}`,
     ja: `${baseUrl}${japanesePath}`,
@@ -46,7 +51,7 @@ function localizedSitemapPairEntries(englishPath: string, japanesePath: string, 
   };
   return [
     { ...sitemapEntry(englishPath, lastModified), alternates: { languages } },
-    { ...sitemapEntry(japanesePath, lastModified), alternates: { languages } },
+    { ...sitemapEntry(japanesePath, japaneseLastModified), alternates: { languages } },
   ];
 }
 
@@ -62,9 +67,13 @@ const japaneseGuidePairs: Record<string, string> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedEnglishGuideSlugs = new Set(Object.values(japaneseGuidePairs));
   return [
-    ...["", "/rules", "/cards", "/decks", "/tools/deck-builder", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-07-31")),
-    ...localizedSitemapPairEntries("/blog", "/ja/guides", "2026-07-31"),
-    ...["/cards/pals", "/tools/dawn-of-palpagos-checklist", "/resources", "/about", "/privacy"]
+    ...["", "/cards", "/decks", "/tools/deck-builder", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-08-04")),
+    ...["/rules"].flatMap((path) => localizedSitemapEntries(path, "2026-07-31")),
+    ...localizedSitemapPairEntries("/blog", "/ja/guides", "2026-08-05", "2026-08-04"),
+    ...["/tools/dawn-of-palpagos-checklist", "/resources"].map((path) => sitemapEntry(path, "2026-08-04")),
+    ...["/sets", "/sets/legends-awaken-bp02", "/cards/promos", "/events"].map((path) => sitemapEntry(path, "2026-08-05")),
+    sitemapEntry("/updates", "2026-08-06"),
+    ...["/cards/pals", "/about", "/privacy", "/terms", "/ai-policy"]
       .map((path) => sitemapEntry(path, "2026-07-31")),
     ...cards.flatMap((card) => localizedSitemapEntries(`/card/${card.slug}`, "2026-07-30")),
     ...decks.flatMap((deck) => localizedSitemapEntries(`/deck/${deck.slug}`, deck.modified)),

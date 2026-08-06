@@ -10,15 +10,25 @@ import { JapaneseCardTile } from "./JapaneseCardTile";
 import { trackUserAction } from "@/lib/user-action-analytics";
 
 const PAGE_SIZE = 24;
+const cardColors = new Set(["red", "blue", "green", "purple", "colorless"]);
+const cardTypes = new Set(["Pal", "Gear", "Event", "Structure"]);
+const cardSets = new Set(["EBP01", "ETD01", "ETD02"]);
 
-export function JapaneseCardExplorer({ initialQuery = "" }: { initialQuery?: string }) {
+type JapaneseCardExplorerProps = {
+  initialQuery?: string;
+  initialColor?: string;
+  initialSet?: string;
+  initialType?: string;
+};
+
+export function JapaneseCardExplorer({ initialQuery = "", initialColor = "all", initialSet = "all", initialType = "all" }: JapaneseCardExplorerProps) {
   const [query, setQuery] = useState(initialQuery);
-  const [color, setColor] = useState("all");
-  const [type, setType] = useState("all");
+  const [color, setColor] = useState(cardColors.has(initialColor) ? initialColor : "all");
+  const [type, setType] = useState(cardTypes.has(initialType) ? initialType : "all");
   const [cost, setCost] = useState("all");
   const [rarity, setRarity] = useState("all");
   const [lucky, setLucky] = useState("all");
-  const [set, setSet] = useState("all");
+  const [set, setSet] = useState(cardSets.has(initialSet) ? initialSet : "all");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const results = useMemo(() => japaneseCards.filter((card) => {

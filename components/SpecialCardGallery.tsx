@@ -93,6 +93,8 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
               aria-current={isActive ? "true" : undefined}
               aria-hidden={isActive ? undefined : true}
               tabIndex={isActive ? 0 : -1}
+              data-analytics-event={isActive ? "gallery_card_click" : undefined}
+              data-analytics-label={isActive ? item.variantNumber : undefined}
               key={item.variantNumber}
             >
               <span className="special-gallery-card-face">
@@ -146,7 +148,12 @@ export function SpecialCardGallery({ artwork }: { artwork: SpecialArtwork[] }) {
               ].filter(Boolean),
             }}
           />
-          <Link className="text-link" href={`/card/${active.card.slug}?variant=${active.variantNumber}`}>
+          <Link
+            className="text-link"
+            href={`/card/${active.card.slug}?variant=${active.variantNumber}`}
+            data-analytics-event="gallery_card_click"
+            data-analytics-label={`${active.variantNumber}:details-link`}
+          >
             Explore this card →
           </Link>
         </div>

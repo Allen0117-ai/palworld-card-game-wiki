@@ -35,6 +35,11 @@ const publicRoutes = [
   "/",
   "/cards",
   "/cards/pals",
+  "/cards/promos",
+  "/events",
+  "/updates",
+  "/sets",
+  "/sets/legends-awaken-bp02",
   "/decks",
   "/tools/deck-builder",
   "/tools/dawn-of-palpagos-checklist",
@@ -45,6 +50,8 @@ const publicRoutes = [
   "/search",
   "/about",
   "/privacy",
+  "/terms",
+  "/ai-policy",
   "/ja",
   "/ja/cards",
   "/ja/decks",
@@ -75,6 +82,8 @@ const publicRoutes = [
   "/blog/palworld-tcg-rarity-guide",
   "/blog/dawn-of-palpagos-chase-cards",
   "/blog/dawn-of-palpagos-pull-rates",
+  "/blog/palworld-online-vs-card-game",
+  "/blog/palworld-1-0-vs-card-game",
   "/blog/palworld-card-game-2026-roadmap",
   "/blog/palworld-card-game-errata-tracker",
   "/blog/palworld-card-game-color-guide",
@@ -83,6 +92,10 @@ const publicRoutes = [
   "/blog/palworld-tcg-card-size-sleeves",
   "/blog/are-palworld-tcg-trial-decks-worth-it",
   "/blog/palworld-tcg-english-vs-japanese-cards",
+  "/blog/palworld-tcg-deck-tier-list",
+  "/blog/palworld-tcg-best-cards-by-color",
+  "/blog/palworld-tcg-trial-deck-upgrade-guide",
+  "/blog/palworld-tcg-tournament-decklists",
 ];
 
 test("every published page renders successfully", async () => {
@@ -94,6 +107,57 @@ test("every published page renders successfully", async () => {
       /^text\/html\b/i,
       `${route} did not return HTML`,
     );
+  }
+});
+
+test("published copy stays player-facing", async () => {
+  const internalPhrases = /indexable search tool|same canonical URL|source-backed home|living reveal tracker|living guide status|kept on one URL|permanent set index|do not stop at one page|help shape the next update|no paid links yet|events guide vs 2026 roadmap|同じ正規URL|継続更新ページ/i;
+
+  for (const route of publicRoutes) {
+    const html = await (await render(route)).text();
+    assert.doesNotMatch(html, internalPhrases, `${route} exposes internal publishing language`);
+  }
+});
+
+test("server-rendered documents declare the correct language", async () => {
+  for (const route of publicRoutes) {
+    const html = await (await render(route)).text();
+    const expectedLanguage = route === "/ja" || route.startsWith("/ja/") ? "ja" : "en";
+    assert.match(html, new RegExp(`<html lang="${expectedLanguage}"`), `${route} has the wrong html lang`);
+  }
+});
+
+test("analytics consent preserves opt-in regions and explicit visitor choices", async () => {
+  const defaultsSource = await readFile(
+    new URL("../lib/analytics-consent-defaults.ts", import.meta.url),
+    "utf8",
+  );
+  const consentSource = await readFile(
+    new URL("../components/AnalyticsConsent.tsx", import.meta.url),
+    "utf8",
+  );
+  const privacyHtml = await (await render("/privacy")).text();
+
+  assert.match(defaultsSource, /analytics_storage: 'granted'/);
+  assert.match(defaultsSource, /region: \$\{JSON\.stringify\(ANALYTICS_OPT_IN_REGIONS\)\}/);
+  assert.match(defaultsSource, /"CH"/);
+  assert.match(defaultsSource, /"GB"/);
+  assert.match(defaultsSource, /ad_storage: 'denied'/);
+  assert.match(defaultsSource, /savedAnalyticsConsent === 'accepted'/);
+  assert.match(consentSource, /consent === "loading" \|\| consent === null/);
+  assert.match(consentSource, /consent !== "declined" && choice === "declined"/);
+  assert.match(privacyHtml, /Region-aware privacy/);
+  assert.match(privacyHtml, /Vercel Web Analytics counts anonymous visits without cookies/);
+});
+
+test("English page titles stay concise", async () => {
+  for (const route of publicRoutes.filter((item) => item !== "/ja" && !item.startsWith("/ja/"))) {
+    const html = await (await render(route)).text();
+    const title = html.match(/<title>(.*?)<\/title>/s)?.[1]
+      .replaceAll("&amp;", "&")
+      .replaceAll("&quot;", '"')
+      .replaceAll("&#x27;", "'") ?? "";
+    assert.ok(title.length <= 65, `${route} title is ${title.length} characters: ${title}`);
   }
 });
 
@@ -117,6 +181,12 @@ test("every published page has a self-referencing canonical and matching social 
 test("homepage heading and detail-page breadcrumbs describe the page clearly", async () => {
   const homeHtml = await (await render("/")).text();
   assert.match(homeHtml, /<h1><span class="hero-title-keyword">Palworld Card Game Wiki<\/span>/);
+  const homeDescription = homeHtml.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
+  assert.ok(homeDescription.length >= 140 && homeDescription.length <= 160, `homepage description is ${homeDescription.length} characters`);
+  assert.match(homeHtml, /id="about-palworld-card-game"/);
+  assert.match(homeHtml, /id="home-final-cta-title"/);
+  assert.match(homeHtml, /https:\/\/en\.palworld-official-cardgame\.com\/for-beginners/);
+  assert.match(homeHtml, /https:\/\/www\.youtube\.com\/watch\?v=UdbMWxWcMcw/);
 
   for (const route of [
     "/card/chillet-dragon-whisperer-ebp01-025",
@@ -126,6 +196,79 @@ test("homepage heading and detail-page breadcrumbs describe the page clearly", a
     const html = await (await render(route)).text();
     assert.match(html, /"@type":"BreadcrumbList"/, `${route} is missing BreadcrumbList data`);
   }
+});
+
+test("editorial responsibility and publisher identity are visible and structured", async () => {
+  const aboutHtml = await (await render("/about")).text();
+  const guideHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+
+  assert.match(aboutHtml, /id="editorial-team"/);
+  assert.match(aboutHtml, /No unsupported claims/);
+  assert.match(guideHtml, /Palpagos Archive Editorial Team/);
+  assert.match(guideHtml, /"author":\{"@type":"Organization","name":"Palpagos Archive Editorial Team"/);
+  assert.match(guideHtml, /"publisher":\{"@type":"Organization","name":"Palworld Card Game Wiki"/);
+  assert.match(guideHtml, /"publishingPrinciples":"https:\/\/palworldcardgame\.wiki\/about#editorial-policy"/);
+});
+
+test("all rendered JSON-LD blocks are valid JSON", async () => {
+  for (const route of publicRoutes) {
+    const html = await (await render(route)).text();
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+    assert.ok(blocks.length > 0, `${route} has no JSON-LD`);
+    for (const [, json] of blocks) assert.doesNotThrow(() => JSON.parse(json), `${route} has invalid JSON-LD`);
+  }
+});
+
+test("AI discovery policy separates search access from model training", async () => {
+  const robots = await (await render("/robots.txt")).text();
+  const policyHtml = await (await render("/ai-policy")).text();
+  const llms = await readFile(new URL("../public/llms.txt", import.meta.url), "utf8");
+
+  assert.match(robots, /User-Agent: OAI-SearchBot[\s\S]*Allow: \//i);
+  assert.match(robots, /User-Agent: GPTBot[\s\S]*Disallow: \//i);
+  assert.match(llms, /## Priority answers/);
+  assert.match(llms, /https:\/\/palworldcardgame\.wiki\/rules/);
+  assert.match(policyHtml, /search discovery and model training are separate uses/i);
+  assert.match(policyHtml, /No RSL or other machine-readable reuse licence/i);
+});
+
+test("security response headers are present", async () => {
+  const response = await render("/");
+  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(response.headers.get("x-frame-options"), "SAMEORIGIN");
+  assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
+  assert.match(response.headers.get("permissions-policy") ?? "", /camera=\(\)/);
+  assert.match(response.headers.get("content-security-policy-report-only") ?? "", /frame-ancestors 'self'/);
+});
+
+test("priority guides expose complete cited answer blocks", async () => {
+  for (const route of [
+    "/blog/how-to-play-palworld-card-game",
+    "/blog/palworld-card-game-deck-building-rules",
+    "/blog/red-blue-vs-green-purple-trial-deck",
+    "/blog/palworld-card-game-products-where-to-buy",
+    "/blog/dawn-of-palpagos-pull-rates",
+    "/blog/palworld-tcg-deck-tier-list",
+    "/blog/palworld-tcg-best-cards-by-color",
+    "/blog/palworld-tcg-trial-deck-upgrade-guide",
+    "/blog/palworld-tcg-tournament-decklists",
+  ]) {
+    const html = await (await render(route)).text();
+    const answer = html.match(/<div class="quick-answer">[\s\S]*?<p>(.*?)<\/p>/)?.[1]
+      .replace(/<[^>]+>/g, " ")
+      .trim() ?? "";
+    const wordCount = answer.split(/\s+/).filter(Boolean).length;
+    assert.ok(wordCount >= 55, `${route} quick answer has only ${wordCount} words`);
+    assert.match(html, /class="quick-answer-source"[^>]*>Primary source:/, `${route} has no adjacent primary source`);
+  }
+});
+
+test("search landing pages explain their unique indexable value", async () => {
+  const englishHtml = await (await render("/search")).text();
+  const japaneseHtml = await (await render("/ja/search")).text();
+  assert.match(englishHtml, /What can you search on Palpagos Archive\?/);
+  assert.match(englishHtml, /Use a card name, card number, rules question/);
+  assert.match(japaneseHtml, /このサイトでは何を検索できますか/);
 });
 
 test("Japanese pages use native copy, Japanese card data and reciprocal hreflang", async () => {
@@ -188,6 +331,65 @@ test("the booster box guide exposes verified product facts and structured data",
   assert.match(html, /"@type":"FAQPage"/);
 });
 
+test("new deck guides render their key title, official source and update-center entry", async () => {
+  const guides = [
+    ["/blog/palworld-tcg-deck-tier-list", /Palworld TCG Deck Tier List/],
+    ["/blog/palworld-tcg-best-cards-by-color", /Best Palworld TCG Cards by Color/],
+    ["/blog/palworld-tcg-trial-deck-upgrade-guide", /Palworld TCG Trial Deck Upgrade Guide/],
+    ["/blog/palworld-tcg-tournament-decklists", /Palworld TCG Tournament Decklists/],
+  ];
+
+  for (const [route, title] of guides) {
+    const html = await (await render(route)).text();
+    assert.match(html, title, `${route} is missing its key title`);
+    assert.match(html, /class="quick-answer-source"[^>]*>Primary source:/, `${route} has no official source`);
+  }
+
+  const updatesHtml = await (await render("/updates")).text();
+  assert.match(updatesHtml, /href="\/blog\/palworld-tcg-deck-tier-list"/);
+  assert.match(updatesHtml, /href="\/blog\/palworld-tcg-best-cards-by-color"/);
+  assert.match(updatesHtml, /href="\/blog\/palworld-tcg-trial-deck-upgrade-guide"/);
+  assert.match(updatesHtml, /href="\/blog\/palworld-tcg-tournament-decklists"/);
+});
+
+test("gameplay guides use real visual instruction and exact labeled upgrade tests", async () => {
+  const howToHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+  const upgradeHtml = await (await render("/blog/palworld-tcg-trial-deck-upgrade-guide")).text();
+  const tierHtml = await (await render("/blog/palworld-tcg-deck-tier-list")).text();
+
+  assert.match(howToHtml, /youtube\.com\/embed\/UdbMWxWcMcw/);
+  assert.match(howToHtml, /Practice one real TD01 engine turn/);
+  assert.match(howToHtml, /\/cards\/catalog\/ETD01-008\.png/);
+  assert.match(howToHtml, /Materials are counters created by card effects/);
+
+  assert.match(upgradeHtml, /Exact first test: four cards out, four cards in/);
+  assert.match(upgradeHtml, /Jolthog Cryst/);
+  assert.match(upgradeHtml, /Antique Wooden Chair/);
+  assert.match(upgradeHtml, /Refined Metal Spear/);
+  assert.match(upgradeHtml, /Community-reconstructed TD01 quantity list/);
+  assert.match(upgradeHtml, /Compare it with the cards in your box/);
+
+  assert.match(tierHtml, /488 public decks/);
+  assert.match(tierHtml, /does not reveal paper-tournament finishes/);
+});
+
+test("franchise update guides answer card-player questions without internal publishing language", async () => {
+  const onlineHtml = await (await render("/blog/palworld-online-vs-card-game")).text();
+  const versionHtml = await (await render("/blog/palworld-1-0-vs-card-game")).text();
+
+  assert.match(onlineHtml, /Palworld Online is not the card game/);
+  assert.match(onlineHtml, /Garena under Pocketpair license/);
+  assert.match(onlineHtml, /exact launch date has not been announced/);
+  assert.match(versionHtml, /72(?:<!-- -->)?<\/strong><span>Pal records added in 1\.0/);
+  assert.match(versionHtml, /0(?:<!-- -->)?<\/strong><span>exact matches/);
+  assert.match(versionHtml, /href="\/cards\/pals"/);
+
+  for (const html of [onlineHtml, versionHtml]) {
+    const guideBody = html.match(/<div id="guide-content" class="guide-body">(.*?)<section class="source-panel">/s)?.[1] ?? "";
+    assert.doesNotMatch(guideBody, /SEO|search intent|target keyword|content strategy|AI-generated|rank in Google/i);
+  }
+});
+
 test("deck guides explain play sequences with card images and useful next steps", async () => {
   for (const route of [
     "/deck/red-blue-launch-pressure",
@@ -197,22 +399,22 @@ test("deck guides explain play sequences with card images and useful next steps"
     const html = await (await render(route)).text();
     assert.match(html, /Play this deck in three steps/, `${route} is missing its beginner sequence`);
     assert.match(html, /Three combinations to remember/, `${route} is missing visual card pairings`);
-    assert.match(html, /Do not stop at one page/, `${route} is missing retention links`);
+    assert.match(html, /What would you like to learn next\?/, `${route} is missing related learning links`);
     assert.match(html, /<img\b/, `${route} does not render card images`);
   }
 });
 
 test("deck discovery links homepage, deck pools and card pages in both directions", async () => {
   const homeHtml = await (await render("/")).text();
-  assert.match(homeHtml, /class="deck-tile-art"/);
-  assert.match(homeHtml, /3-step plan/);
-  assert.match(homeHtml, /Complete 50-card list/);
-  assert.match(homeHtml, /Can I copy a complete deck\?/);
-  assert.match(homeHtml, /Best for your first match/);
-  assert.ok(
-    homeHtml.indexOf("Launch deck center") < homeHtml.indexOf("Latest verified"),
-    "the deck center should appear before launch news",
-  );
+  const decksHtml = await (await render("/decks")).text();
+  assert.match(homeHtml, /02 · Build &amp; compete/);
+  assert.match(homeHtml, /href="\/decks"/);
+  assert.doesNotMatch(homeHtml, /Launch deck center/);
+  assert.match(decksHtml, /Choose by goal/);
+  assert.match(decksHtml, /Start with the direct plan/);
+  assert.match(decksHtml, /Practice setup and timing/);
+  assert.match(decksHtml, /Load a complete 50-card deck/);
+  assert.match(decksHtml, /Review the provisional tier list/);
 
   const deckHtml = await (await render("/deck/red-blue-launch-pressure")).text();
   assert.match(deckHtml, /<nav class="breadcrumbs" aria-label="Breadcrumb">/);
@@ -241,6 +443,22 @@ test("the BP01 starter provides a complete 50-card list that opens in the builde
   assert.match(builderHtml, /50(?:<!-- -->)? \/ (?:<!-- -->)?50 cards/);
 });
 
+test("wiki indexes and living guides expose the new navigation and utility features", async () => {
+  const homeHtml = await (await render("/")).text();
+  const filteredCardsHtml = await (await render("/cards?set=EBP01")).text();
+  const guideHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
+  const deckHtml = await (await render("/deck/mono-red-pal-rush")).text();
+
+  assert.match(homeHtml, /Open the tool or answer you need/);
+  assert.match(homeHtml, /href="\/cards"/);
+  assert.match(homeHtml, /href="\/rules"/);
+  assert.match(homeHtml, /href="\/updates"/);
+  assert.match(filteredCardsHtml, /100(?:<!-- -->)? \/ (?:<!-- -->)?148/);
+  assert.match(guideHtml, /Latest page information/);
+  assert.match(guideHtml, /Update history/);
+  assert.match(deckHtml, /Copy deck list/);
+});
+
 test("shareable cards, rulings, guides and deck links render their share actions", async () => {
   const cardHtml = await (await render("/card/suzaku-hellfire-wings")).text();
   const rulesHtml = await (await render("/rules?q=Can%20I%20attack%20on%20the%20first%20turn%3F")).text();
@@ -255,12 +473,12 @@ test("shareable cards, rulings, guides and deck links render their share actions
   assert.match(sharedDeckHtml, /Share draft/);
 });
 
-test("homepage resumes saved work and explains the share-remix loop", async () => {
+test("homepage resumes saved work and keeps the deck builder easy to reach", async () => {
   const homeHtml = await (await render("/")).text();
 
   assert.match(homeHtml, /Start something worth saving/);
-  assert.match(homeHtml, /Build &amp; share a deck/);
-  assert.match(homeHtml, /Build and share a deck in three steps/);
+  assert.match(homeHtml, /href="\/tools\/deck-builder"/);
+  assert.match(homeHtml, /Open deck builder/);
 });
 
 test("the BP01 checklist can generate a collection progress share card", async () => {
@@ -283,6 +501,91 @@ test("the Pal collection page stays scoped to TCG Pal cards", async () => {
   assert.match(html, /"@type":"BreadcrumbList"/);
 });
 
+test("the set index separates booster sets from related products", async () => {
+  const response = await render("/sets");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /Palworld TCG(?:<br\/>)?sets list/);
+  assert.match(html, /Dawn of Palpagos/);
+  assert.match(html, /Legends Awaken/);
+  assert.match(html, /Trial Deck products, not additional booster sets/);
+  assert.match(html, /href="\/cards\?set=EBP01"/);
+  assert.match(html, /"@type":"CollectionPage"/);
+  assert.match(html, /"@type":"ItemList","numberOfItems":2/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+});
+
+test("the BP02 tracker exposes confirmed facts without inventing a card list", async () => {
+  const response = await render("/sets/legends-awaken-bp02");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /Legends Awaken/);
+  assert.match(html, /October 30, 2026/);
+  assert.match(html, /100 normal card types/);
+  assert.match(html, /exact parallel count/);
+  assert.match(html, /Bushiroad has not published a complete official English BP02 card list/);
+  assert.match(html, /Palpagos Archive Editorial Team/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+});
+
+test("the promo index lists official PR series and separates prototype cards", async () => {
+  const response = await render("/cards/promos");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /PR Card Pack Vol\.1 checklist/);
+  assert.match(html, /EPR-002/);
+  assert.match(html, /ESOUL-008/);
+  assert.match(html, /EPR-009S/);
+  assert.match(html, /Foiled Chillet Soul Promo Card/);
+  assert.match(html, /prototype demo cards[^.]*not legal in tournaments/);
+  assert.match(html, /"@type":"CollectionPage"/);
+  assert.match(html, /"@type":"ItemList","numberOfItems":17/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+});
+
+test("the events guide explains Bushi Navi registration and tournament preparation", async () => {
+  const response = await render("/events");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /Palworld TCG(?:<br\/>)?tournaments/);
+  assert.match(html, /Register with Bushi Navi in five steps/);
+  assert.match(html, /Standard format, Swiss rounds and best-of-one games/);
+  assert.match(html, /Tournament-ready checklist/);
+  assert.match(html, /September–October 2026 demo sessions/);
+  assert.match(html, /Daedream paper deck case/);
+  assert.match(html, /demo-session-september-october-2026/);
+  assert.match(html, /href="\/cards\/promos"/);
+  assert.match(html, /href="\/blog\/palworld-card-game-2026-roadmap"/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+});
+
+test("existing high-value pages cover the selected long-tail keywords", async () => {
+  const rulesHtml = await (await render("/rules")).text();
+  const decksHtml = await (await render("/decks")).text();
+  const buyingHtml = await (await render("/blog/palworld-card-game-products-where-to-buy")).text();
+  const roadmapHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
+  const sleevesHtml = await (await render("/blog/palworld-tcg-card-size-sleeves")).text();
+
+  assert.match(rulesHtml, /Rulebook PDF &amp; Official Q&amp;A/);
+  assert.match(rulesHtml, /Open official rules PDF/);
+  assert.match(decksHtml, /Starter Deck Lists &amp; Trial Deck Guides/);
+  assert.match(decksHtml, /starter deck guide/);
+  assert.match(buyingHtml, /Should you buy Palworld TCG on TCGplayer\?/);
+  assert.match(buyingHtml, /preorder list/);
+  assert.match(roadmapHtml, /2026 Release Schedule, Sets &amp; Events/);
+  assert.match(roadmapHtml, /href="\/sets"/);
+  assert.match(roadmapHtml, /href="\/events"/);
+  assert.match(sleevesHtml, /Which Palworld TCG playmat do you need\?/);
+  assert.match(sleevesHtml, /Official accessories coming in September and October/);
+  assert.match(sleevesHtml, /33\.8×59\.5×0\.2cm/);
+});
+
 test("site search finds the Pal card collection", async () => {
   const response = await render("/search?q=palworld%20pals");
   const html = await response.text();
@@ -301,8 +604,9 @@ test("site search finds the BP01 collection checklist", async () => {
   assert.match(html, /Dawn of Palpagos Card Checklist/);
 });
 
-test("the August 2 update includes newly verified official events and social sources", async () => {
+test("the August 6 update includes newly verified events and accessories", async () => {
   const homeHtml = await (await render("/")).text();
+  const updatesHtml = await (await render("/updates")).text();
   const roadmapHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
   const resourcesHtml = await (await render("/resources")).text();
   const relatedGuidesHtml = roadmapHtml.match(/<section class="related-guides">.*?<\/section>/s)?.[0] ?? "";
@@ -310,11 +614,17 @@ test("the August 2 update includes newly verified official events and social sou
   assert.match(roadmapHtml, /3\.5 million pack sales/);
   assert.match(roadmapHtml, /Singapore festival release events/);
   assert.match(roadmapHtml, /September 5: Los Angeles Release Party/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official event/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official milestone/);
+  assert.match(roadmapHtml, /September–October: new store demo sessions/);
+  assert.match(roadmapHtml, /September 25: playmats and storage boxes/);
+  assert.match(roadmapHtml, /October 16: four official sleeve designs/);
+  assert.match(homeHtml, /href="\/blog\/palworld-tcg-card-size-sleeves"[^>]*><span>Official products/);
+  assert.match(homeHtml, /href="\/events"[^>]*><span>Official demos/);
   assert.match(homeHtml, /href="\/cards"[^>]*><span>Official database/);
-  assert.match(homeHtml, /href="\/tools\/dawn-of-palpagos-checklist"[^>]*><span>04 · Collection/);
-  assert.match(homeHtml, /href="\/blog\/dawn-of-palpagos-pull-rates"[^>]*>Check pull rates/);
+  assert.match(homeHtml, /href="\/updates"[^>]*>View the complete update log/);
+  assert.match(homeHtml, /03 · Collect &amp; track/);
+  assert.match(updatesHtml, /Affected pages/);
+  assert.match(updatesHtml, /Source: (?:<!-- -->)?Official events hub/);
+  assert.match(updatesHtml, /Source: (?:<!-- -->)?Official card list/);
   assert.match(relatedGuidesHtml, /palworld-card-game-products-where-to-buy/);
   assert.match(relatedGuidesHtml, /palworld-card-game-errata-tracker/);
   assert.match(relatedGuidesHtml, /palworld-booster-box/);
@@ -381,7 +691,10 @@ test("retention improvements keep primary actions easy to reach", async () => {
   assert.match(homeHtml, /href="\/card\/suzaku-hellfire-wings"/);
   assert.match(homeHtml, /href="\/card\/helzephyr-wings-of-the-moonless-night-ebp01-073"/);
   assert.match(homeHtml, /data-analytics-event="home_stat_click"/);
+  assert.match(homeHtml, /Tap a card to open its details/);
   assert.ok(cardsHtml.indexOf('id="card-search"') < cardsHtml.indexOf("Found a card?"));
+  assert.ok(cardsHtml.indexOf("cards-quick-builder") < cardsHtml.indexOf('id="card-results"'));
+  assert.ok(cardsHtml.indexOf('id="card-results"') < cardsHtml.indexOf("More card views"));
   assert.ok(cardsHtml.indexOf('id="rarity-filter"') < cardsHtml.indexOf('id="set-filter"'));
   assert.ok(cardsHtml.indexOf('id="lucky-filter"') < cardsHtml.indexOf('id="set-filter"'));
   assert.match(cardsHtml, /id="lucky-filter"/);
@@ -393,6 +706,25 @@ test("retention improvements keep primary actions easy to reach", async () => {
   assert.match(rulesHtml, /Popular questions/);
   assert.match(boosterHtml, /Browse BP01 cards/);
   assert.match(cardHtml, /href="\/tools\/deck-builder\?card=suzaku-hellfire-wings"/);
+});
+
+test("analytics records the second-page funnel and consented return visits", async () => {
+  const journeySource = await readFile(
+    new URL("../components/AnalyticsJourney.tsx", import.meta.url),
+    "utf8",
+  );
+  const consentSource = await readFile(
+    new URL("../components/AnalyticsConsent.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(journeySource, /journey_start/);
+  assert.match(journeySource, /journey_second_page/);
+  assert.match(journeySource, /retention_eligible/);
+  assert.match(journeySource, /return_visit/);
+  assert.match(journeySource, /ANALYTICS_CONSENT_STORAGE_KEY\) !== "accepted"/);
+  assert.match(consentSource, /analytics_consent_accept/);
+  assert.doesNotMatch(consentSource, /window\.location\.reload/);
 });
 
 test("the sitemap uses stable content dates without ignored priority hints", async () => {
@@ -407,6 +739,10 @@ test("the sitemap uses stable content dates without ignored priority hints", asy
   assert.match(xml, /<lastmod>2026-07-30T00:00:00\.000Z<\/lastmod>/);
   assert.doesNotMatch(xml, /<priority>/);
   assert.doesNotMatch(xml, /<changefreq>/);
+
+  const sitemapRoutes = [...xml.matchAll(/<loc>(https:\/\/palworldcardgame\.wiki[^<]*)<\/loc>/g)]
+    .map((match) => new URL(match[1]).pathname);
+  assert.deepEqual(new Set(sitemapRoutes), new Set(publicRoutes), "sitemap and published-route inventory differ");
 });
 
 test("every external page link is live", async () => {
@@ -561,4 +897,5 @@ test("rules center exposes official answers and clear sourcing", async () => {
   assert.match(html, /Comprehensive Rules/);
   assert.match(html, /Ask a rules question in your own words/);
   assert.match(html, /If a Lucky icon appears, the check stops and that life loss is cancelled\./);
+  assert.match(html, /href="\/rules#attack-first-turn">Stable answer link/);
 });

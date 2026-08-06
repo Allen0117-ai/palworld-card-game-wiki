@@ -19,7 +19,7 @@ type GuideSource = {
 export const commercialGuideQuickAnswers: Record<string, QuickAnswer> = {
   "palworld-card-game-products-where-to-buy": {
     label: "Safe buying answer",
-    answer: "Start with Bushiroad's official retailer finder, compare the final delivered price, and verify that a BP01 box is factory sealed with 12 packs. Japan has an official ¥5,280 box price; the English product page does not publish one universal MSRP.",
+    answer: "The safest place to start is Bushiroad's official retailer finder, then confirm stock directly with the listed store. For a Dawn of Palpagos booster box, verify the exact BP01 name, the language, a factory-sealed display and 12 packs with 7 cards per pack. For immediate play, buy one TD01 Red/Blue or TD02 Green/Purple Trial Deck per player; each includes a complete 50-card Main Deck, 10 Soul cards and play accessories. Add boosters for collecting or broad upgrades, and buy singles when a tested deck needs exact card numbers. The official English product pages do not publish one universal worldwide MSRP, so compare the final delivered cost after shipping, tax and import fees. Japanese suggested prices are a Japan reference, not a converted English MSRP. Avoid treating marketplace asking prices as market value, especially during launch-week shortages. Check seller identity, buyer protection, return terms and delivery timing before paying, and label community availability reports as dated observations rather than official restock information.",
   },
   "palworld-tcg-first-edition-vs-reprint": {
     label: "The short answer",
@@ -79,7 +79,7 @@ export const commercialGuidePrimaryActions: Record<string, PrimaryAction[]> = {
 export const commercialGuideContent: Record<string, React.ReactNode> = {
   "palworld-card-game-products-where-to-buy": (
     <>
-      <h2>Where to buy Palworld TCG products safely</h2>
+      <h2>Where can you buy Palworld TCG products safely?</h2>
       <p>The safest starting point is Bushiroad&apos;s official retailer finder. It lists approved stores by region and avoids sending buyers directly to an unknown marketplace seller.</p>
       <ol>
         <li>Open the official retailer finder and select your country or region.</li>
@@ -90,7 +90,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       </ol>
       <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
 
-      <h2>Official price reference</h2>
+      <h2>Does Palworld TCG have an official English MSRP?</h2>
       <div className="comparison-table" role="region" aria-label="Official Palworld TCG price references" tabIndex={0}>
         <div className="comparison-head"><span>Product</span><strong>Official Japan price</strong><strong>What English buyers should know</strong></div>
         <div><span>BP01 pack</span><p>¥440 including tax</p><p>The English product page does not publish one worldwide MSRP.</p></div>
@@ -104,7 +104,11 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       <p>Community reports show that some local US stores initially sold BP01 boxes around $40–$65, while sold-out areas produced much higher marketplace and reseller listings. These are dated, anecdotal observations—not an official MSRP or a stable market value.</p>
       <p>A high asking price proves only what a seller wants. Before paying more than a trusted store price, compare several completed sales and decide whether you need the product immediately.</p>
 
-      <h2>How to check a BP01 booster-box listing</h2>
+      <h2>Should you buy Palworld TCG on TCGplayer?</h2>
+      <p>TCGplayer is a marketplace, so the individual seller, listing and buyer protection matter more than the marketplace name alone. For sealed product, confirm BP01 Dawn of Palpagos, the English language, a factory-sealed 12-pack box and the final delivered cost. For singles, match the exact card number and treatment before paying; a base card and its SR, OSR, SP or SSP version can look similar in a short listing while carrying very different collector prices.</p>
+      <p>A TCGplayer market price is not an official MSRP or a guaranteed future value. Prices and stock move quickly, so compare several recent completed sales before buying.</p>
+
+      <h2>How can you verify a BP01 booster-box listing?</h2>
       <ul>
         <li><strong>Correct name:</strong> Dawn of Palpagos, BP01.</li>
         <li><strong>Correct quantity:</strong> 12 packs with 7 cards in each pack.</li>
@@ -123,7 +127,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       </ol>
       <p>As of August 3, 2026, no public official BP01 restock calendar has been announced. A retailer&apos;s estimated arrival date applies to that retailer and should not be presented as a worldwide reprint date.</p>
 
-      <h2>Which product should a new player buy?</h2>
+      <h2>Which Palworld TCG product should a beginner buy?</h2>
       <div className="comparison-table" role="region" aria-label="Palworld TCG first purchase guide" tabIndex={0}>
         <div className="comparison-head"><span>Your goal</span><strong>Best first purchase</strong><strong>Reason</strong></div>
         <div><span>Play immediately</span><p>One Trial Deck</p><p>It contains a legal Main Deck, Soul Deck and play accessories.</p></div>
@@ -183,7 +187,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       <h3>Do BP01 cards have a First Edition stamp?</h3>
       <p>No official card-level First Edition stamp or identification guide has been published for loose BP01 cards.</p>
       <h3>Does EBP01 mean First Edition?</h3>
-      <p>No official source we checked defines EBP01 as proof of First Edition status. It should be treated as the English BP01 set code, not a separate authenticity certificate.</p>
+      <p>No official source defines EBP01 as proof of First Edition status. Treat it as the English BP01 set code, not a separate authenticity certificate.</p>
       <h3>Should I open a First Edition box?</h3>
       <p>Open it if your goal is playing and collecting the cards. Keep it sealed only if owning the sealed product matters more to you than the opening experience; future value is not guaranteed.</p>
     </>
@@ -274,6 +278,19 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
 
       <h2>Should the Main Deck and Soul Deck use different sleeves?</h2>
       <p>The two decks remain physically separate during play, so different sleeve colors can make setup easier. For an official event, check the current tournament rules and judge guidance about sleeve condition and consistency before the round.</p>
+
+      <h2>Which Palworld TCG playmat do you need?</h2>
+      <p>Both official Trial Decks include a paper playmat that marks the game areas, so a new player does not need to buy a separate playmat before learning. A cloth or rubber playmat is an optional comfort and protection upgrade; it does not change deck legality or card effects.</p>
+      <p>For an official tournament, follow the organizer&apos;s table-space and accessory instructions. Event-exclusive or champion playmats are collectible prizes, but owning one is not required to play in a normal event.</p>
+
+      <h2>Official accessories coming in September and October</h2>
+      <div className="comparison-table" role="region" aria-label="Official Palworld TCG accessory release dates and dimensions" tabIndex={0}>
+        <div className="comparison-head"><span>Release</span><strong>Products</strong><strong>Official size</strong></div>
+        <div><span>September 25</span><p>Shadowbeak and Petallia rubber playmats</p><p>33.8×59.5×0.2cm</p></div>
+        <div><span>September 25</span><p>Shadowbeak and Petallia storage boxes</p><p>23×10.5×8cm</p></div>
+        <div><span>October 16</span><p>Grizzbolt, Relaxaurus, Petallia and Shadowbeak sleeves</p><p>6.7×9.2cm outside</p></div>
+      </div>
+      <p>The measurements above come from the current official product listings. A release date does not guarantee that every local store will carry every design, so check the Bushiroad retailer list or ask your store before travelling.</p>
 
       <h2>Best simple setup for a beginner</h2>
       <ol>
@@ -414,7 +431,10 @@ export const commercialGuideSources: Record<string, GuideSource[]> = {
   ],
   "palworld-tcg-card-size-sleeves": [
     { label: "Official 63×88mm card dimensions", href: "https://palworld-official-cardgame.com/news/post-3" },
-    { label: "Official Palworld sleeve dimensions and accessories", href: "https://palworld-official-cardgame.com/products/supply_bp01" },
+    { label: "Official Palworld accessory release list", href: "https://en.palworld-official-cardgame.com/products" },
+    { label: "Official Grizzbolt sleeve dimensions", href: "https://en.palworld-official-cardgame.com/products/grizzbolt-rumbling-tank-sleeves" },
+    { label: "Official Shadowbeak playmat dimensions", href: "https://en.palworld-official-cardgame.com/products/shadowbeak-seed-of-despair-rubber-playmat" },
+    { label: "Official Petallia storage-box dimensions", href: "https://en.palworld-official-cardgame.com/products/petallia-sweet-blessings-storage-box" },
     { label: "Official Sleeve & Card Set Vol.1 contents", href: "https://en.palworld-official-cardgame.com/products/ss01" },
   ],
   "are-palworld-tcg-trial-decks-worth-it": [

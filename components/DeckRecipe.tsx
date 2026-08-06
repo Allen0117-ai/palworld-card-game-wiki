@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CopyTextButton } from "@/components/CopyTextButton";
 import { cardByNumber, Deck, getCardImageAlt } from "@/lib/data";
 
 export function DeckRecipe({ deck }: { deck: Deck }) {
@@ -15,6 +16,11 @@ export function DeckRecipe({ deck }: { deck: Deck }) {
     if (!card) throw new Error(`${deck.name} recipe references missing card ${entry.cardNumber}`);
     return { card, copies: entry.copies };
   });
+  const copyableDeckList = [
+    deck.name,
+    ...recipeCards.map(({ card, copies }) => `${copies}x ${card.name} (${card.number})`),
+    "Soul Deck: 10 cards required",
+  ].join("\n");
 
   return (
     <section className="deck-guide-section" aria-labelledby="sample-deck-list">
@@ -47,7 +53,15 @@ export function DeckRecipe({ deck }: { deck: Deck }) {
         <span>{recipeCards.length} unique cards</span>
         <span>Red / Blue</span>
       </div>
-      <Link className="button primary" href={`/tools/deck-builder?deck=${deck.slug}`}>Open this list in deck builder</Link>
+      <div className="deck-recipe-actions">
+        <Link className="button primary" href={`/tools/deck-builder?deck=${deck.slug}`}>Open this list in deck builder</Link>
+        <CopyTextButton
+          text={copyableDeckList}
+          label="Copy deck list"
+          copiedLabel="Deck list copied."
+          errorLabel="Copy failed. Please select the list manually."
+        />
+      </div>
     </section>
   );
 }

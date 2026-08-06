@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CardTile } from "./CardTile";
 import { cards, type Card } from "@/lib/data";
@@ -10,16 +11,23 @@ const PAGE_SIZE = 24;
 type CardExplorerProps = {
   fixedType?: Card["type"];
   initialQuery?: string;
+  initialColor?: string;
+  initialSet?: string;
+  initialType?: string;
 };
 
-export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps) {
+const cardColors = new Set(["red", "blue", "green", "purple", "colorless"]);
+const cardTypes = new Set(["Pal", "Gear", "Event", "Structure"]);
+const cardSets = new Set(["EBP01", "ETD01", "ETD02"]);
+
+export function CardExplorer({ fixedType, initialQuery = "", initialColor = "all", initialSet = "all", initialType = "all" }: CardExplorerProps) {
   const [query, setQuery] = useState(initialQuery);
-  const [color, setColor] = useState("all");
-  const [type, setType] = useState(fixedType || "all");
+  const [color, setColor] = useState(cardColors.has(initialColor) ? initialColor : "all");
+  const [type, setType] = useState(fixedType || (cardTypes.has(initialType) ? initialType : "all"));
   const [cost, setCost] = useState("all");
   const [rarity, setRarity] = useState("all");
   const [lucky, setLucky] = useState("all");
-  const [set, setSet] = useState("all");
+  const [set, setSet] = useState(cardSets.has(initialSet) ? initialSet : "all");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const availableCards = useMemo(
@@ -104,6 +112,24 @@ export function CardExplorer({ fixedType, initialQuery = "" }: CardExplorerProps
         <div className="filter-group" aria-live="polite"><strong>Results</strong><span className="filter-count">{results.length} / {availableCards.length}</span></div>
       </aside>
       <div>
+        <nav className="card-explorer-actions" aria-label="Use the card list">
+          <Link
+            href="/tools/deck-builder"
+            data-analytics-event="next_step_click"
+            data-analytics-label="cards-quick-builder"
+          >
+            <span>Build a deck</span>
+            <strong>Use legal limits and save your list →</strong>
+          </Link>
+          <Link
+            href="/tools/dawn-of-palpagos-checklist"
+            data-analytics-event="next_step_click"
+            data-analytics-label="cards-quick-checklist"
+          >
+            <span>Track BP01</span>
+            <strong>Save your collection on this device →</strong>
+          </Link>
+        </nav>
         {results.length ? (
           <>
             <div id="card-results" className="card-grid listing">{visibleResults.map((card) => <CardTile card={card} key={card.slug} />)}</div>

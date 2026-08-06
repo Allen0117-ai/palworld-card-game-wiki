@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CopyTextButton } from "@/components/CopyTextButton";
 import {
   getJapaneseCardImageAlt,
   japaneseCards,
@@ -17,6 +18,11 @@ export function JapaneseDeckGuide({ deck }: { deck: JapaneseDeck }) {
     card: cardForNumber(entry.cardNumber),
     copies: entry.copies,
   }));
+  const copyableDeckList = recipeCards ? [
+    deck.japaneseName,
+    ...recipeCards.map(({ card, copies }) => `${copies}枚 ${card.name}（${card.japaneseNumber}）`),
+    "ソウルデッキ：別に10枚必要",
+  ].join("\n") : "";
 
   return (
     <>
@@ -110,9 +116,15 @@ export function JapaneseDeckGuide({ deck }: { deck: JapaneseDeck }) {
             <span>{recipeCards.length}種類</span>
             <span>赤・青</span>
           </div>
-          <p className="deck-builder-cta">
+          <div className="deck-recipe-actions">
             <Link className="button primary" href={`/ja/tools/deck-builder?deck=${deck.slug}`}>この50枚をデッキビルダーで開く</Link>
-          </p>
+            <CopyTextButton
+              text={copyableDeckList}
+              label="デッキリストをコピー"
+              copiedLabel="デッキリストをコピーしました。"
+              errorLabel="コピーできませんでした。"
+            />
+          </div>
         </section>
       ) : null}
     </>

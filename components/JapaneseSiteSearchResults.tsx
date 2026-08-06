@@ -16,6 +16,34 @@ import { rankSearchItems, scoreSearchText } from "@/lib/search";
 
 const searchablePages = [
   {
+    href: "/ja/cards",
+    label: "カードリスト",
+    title: "パルワールドカードゲーム カードリスト",
+    description: "日本語カード148枚を名前、番号、色、種類、効果から検索できます。",
+    searchText: "カード カードリスト カード一覧 BP01 TD01 TD02 日本語",
+  },
+  {
+    href: "/ja/rules",
+    label: "ルール・Q&A",
+    title: "パルワールドカードゲーム ルール・遊び方",
+    description: "初心者向けの基本と公式日本語Q&Aを検索できます。",
+    searchText: "ルール 遊び方 Q&A 裁定 攻撃 ターン デッキ構築",
+  },
+  {
+    href: "/ja/decks",
+    label: "デッキレシピ",
+    title: "パルワールドカードゲーム デッキ例",
+    description: "トライアルデッキと初心者向け50枚デッキを確認できます。",
+    searchText: "デッキレシピ デッキ例 TD01 TD02 初心者 50枚",
+  },
+  {
+    href: "/ja/guides",
+    label: "攻略ガイド",
+    title: "パルワールドカードゲーム 攻略ガイド",
+    description: "遊び方、商品選び、カードの探し方を順番に読めます。",
+    searchText: "攻略 ガイド 遊び方 商品 BP01 ボックス カードリスト",
+  },
+  {
     href: "/ja/tools/deck-builder",
     label: "無料ツール",
     title: "日本語デッキビルダー",
