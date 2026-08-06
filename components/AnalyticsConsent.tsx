@@ -4,15 +4,18 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import {
+  ANALYTICS_CONSENT_CHANGED_EVENT,
+  ANALYTICS_CONSENT_STORAGE_KEY,
+  type AnalyticsConsentChoice,
+} from "@/lib/analytics-consent";
+import { trackUserAction } from "@/lib/user-action-analytics";
 
-const CONSENT_STORAGE_KEY = "palpagos-analytics-consent";
-const CONSENT_CHANGED_EVENT = "palpagos:analytics-consent-changed";
 const OPEN_PRIVACY_CHOICES_EVENT = "palpagos:open-privacy-choices";
 const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 const TRACKING_IS_CONFIGURED = Boolean(GOOGLE_ANALYTICS_ID && CLARITY_PROJECT_ID);
 
-type AnalyticsConsentChoice = "accepted" | "declined";
 type ConsentSnapshot = AnalyticsConsentChoice | "loading" | null;
 
 declare global {
@@ -58,16 +61,16 @@ function revokeAnalyticsConsent() {
 }
 
 function readConsentSnapshot(): ConsentSnapshot {
-  const savedConsent = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+  const savedConsent = window.localStorage.getItem(ANALYTICS_CONSENT_STORAGE_KEY);
   return savedConsent === "accepted" || savedConsent === "declined" ? savedConsent : null;
 }
 
 function subscribeToConsent(onConsentChange: () => void) {
   window.addEventListener("storage", onConsentChange);
-  window.addEventListener(CONSENT_CHANGED_EVENT, onConsentChange);
+  window.addEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, onConsentChange);
   return () => {
     window.removeEventListener("storage", onConsentChange);
-    window.removeEventListener(CONSENT_CHANGED_EVENT, onConsentChange);
+    window.removeEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, onConsentChange);
   };
 }
 
@@ -104,7 +107,7 @@ export function AnalyticsConsent() {
   }, []);
 
   useEffect(() => {
-    if (!TRACKING_IS_CONFIGURED || consent === "loading") {
+    if (!TRACKING_IS_CONFIGURED || consent === "loading" || consent === null) {
       return;
     }
 
@@ -116,14 +119,17 @@ export function AnalyticsConsent() {
   }
 
   const saveConsent = (choice: AnalyticsConsentChoice) => {
-    const isRevokingConsent = consent === "accepted" && choice === "declined";
-    window.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
-    window.dispatchEvent(new Event(CONSENT_CHANGED_EVENT));
+    const isRevokingConsent = consent !== "declined" && choice === "declined";
+    window.localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, choice);
+    if (choice === "accepted") {
+      updateAnalyticsConsent(true);
+      trackUserAction("analytics_consent_accept");
+    }
+    window.dispatchEvent(new Event(ANALYTICS_CONSENT_CHANGED_EVENT));
     setPrivacyChoicesOpen(false);
 
     if (isRevokingConsent) {
       revokeAnalyticsConsent();
-      window.location.reload();
     }
   };
 
@@ -153,11 +159,11 @@ export function AnalyticsConsent() {
           <div className="privacy-banner-copy">
             <strong>{japanese ? "サイト改善へのご協力" : "Help improve the archive"}</strong>
             {japanese ? (
-              <p>Cookieを使わないアクセス解析は有効です。Cookieを許可すると、利用状況をより詳しく確認できます。 <a href="/privacy">プライバシー詳細</a></p>
+              <p>任意のアクセス解析でサイトを改善します。同意が必要な地域では、許可するまで解析Cookieは無効です。 <a href="/privacy">詳細</a></p>
             ) : (
               <p>
-                Cookieless analytics is on. Allow analytics cookies for complete visits and
-                connected masked replays.{" "}<a href="/privacy">Privacy details</a>
+                Optional analytics helps improve this wiki. Where consent is required, it stays
+                off until you choose. <a href="/privacy">Details</a>
               </p>
             )}
           </div>
@@ -166,7 +172,7 @@ export function AnalyticsConsent() {
               {japanese ? "解析を許可" : "Allow analytics"}
             </button>
             <button type="button" className="privacy-decline" onClick={() => saveConsent("declined")}>
-              {japanese ? "Cookieを使わない" : "No cookies"}
+              {japanese ? "解析Cookieを使わない" : "No analytics cookies"}
             </button>
           </div>
           <button

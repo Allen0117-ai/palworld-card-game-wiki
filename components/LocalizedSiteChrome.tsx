@@ -51,10 +51,10 @@ export function LocalizedSiteHeader() {
         <nav className="desktop-nav" aria-label="Main navigation">
           <Link href="/rules">Rules</Link>
           <Link href="/cards">Cards</Link>
+          <Link href="/sets">Sets</Link>
           <Link href="/decks">Decks</Link>
           <Link href="/blog">Guides</Link>
-          <Link href="/resources">Resources</Link>
-          <Link href="/search">Search</Link>
+          <Link href="/updates">Updates</Link>
         </nav>
         <Link className="language-switch" href="/ja">日本語</Link>
         <Link className="nav-cta" href="/tools/deck-builder">Build a deck <span>◆</span></Link>
@@ -112,11 +112,14 @@ export function LocalizedSiteFooter() {
             <span className="brand-mark" aria-hidden="true">◆</span>
             <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
           </Link>
-          <p>An unofficial, non-commercial card database and strategy companion built by fans, for players.</p>
+          <p>An unofficial, non-commercial card database and strategy companion built by fans, for players. Browse sourced rules, all 148 launch cards, beginner guides, collection tools and a free deck builder.</p>
         </div>
         <div>
           <strong>Explore</strong>
           <Link href="/cards">Card database</Link>
+          <Link href="/sets">Set list</Link>
+          <Link href="/events">Events &amp; tournaments</Link>
+          <Link href="/updates">Verified updates</Link>
           <Link href="/decks">Trial Deck guides</Link>
           <Link href="/tools/deck-builder">Deck builder</Link>
           <Link href="/tools/dawn-of-palpagos-checklist">BP01 checklist</Link>
@@ -125,9 +128,13 @@ export function LocalizedSiteFooter() {
           <Link href="/resources">Source hub</Link>
         </div>
         <div>
-          <strong>Site</strong>
+          <strong>Official &amp; site</strong>
+          <a href="https://en.palworld-official-cardgame.com/" target="_blank" rel="noreferrer">Official game site ↗</a>
+          <a href="https://www.youtube.com/watch?v=UdbMWxWcMcw" target="_blank" rel="noreferrer">Official tutorial ↗</a>
+          <a href="https://www.youtube.com/@PalworldOCG_EN" target="_blank" rel="noreferrer">Official YouTube ↗</a>
           <Link href="/about">About & disclaimer</Link>
           <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
           <PrivacyChoicesButton />
           <a href="mailto:paweyan163@gmail.com">Contact</a>
         </div>

@@ -5,6 +5,9 @@ import Link from "next/link";
 const englishMobileLinks = [
   ["/rules", "Rules & FAQ"],
   ["/cards", "Card database"],
+  ["/sets", "Sets & products"],
+  ["/events", "Events & tournaments"],
+  ["/updates", "Verified updates"],
   ["/decks", "Deck guides"],
   ["/blog", "Guides"],
   ["/tools/deck-builder", "Deck builder"],

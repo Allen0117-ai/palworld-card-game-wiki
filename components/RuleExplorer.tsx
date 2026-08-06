@@ -124,6 +124,9 @@ export function RuleExplorer({ initialQuery = "" }: { initialQuery?: string }) {
                 <footer>
                   <RuleSourceLink rule={rule} />
                   {rule.guideUrl && <Link href={rule.guideUrl}>Read the full guide →</Link>}
+                  <Link href={rule.featured ? `/rules#${rule.id}` : `/rules?q=${encodeURIComponent(rule.question)}#${rule.id}`}>
+                    Stable answer link →
+                  </Link>
                   <span>Checked {rule.updated}</span>
                   <SharePanel
                     assetKey={`rule-${rule.id}`}

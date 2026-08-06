@@ -111,6 +111,18 @@ const guideVisuals: Record<string, GuideVisual> = {
       },
     ],
   },
+  "palworld-online-vs-card-game": {
+    label: "One Palworld universe, separate games",
+    title: "Mobile MMO or physical card game?",
+    caption: "Familiar Pals appear across the wider franchise, but Palworld Online and the Palworld Official Card Game are separate games made for different platforms.",
+    cardNumbers: ["ETD01-001", "EBP01-025", "EBP01-049", "EBP01-079"],
+  },
+  "palworld-1-0-vs-card-game": {
+    label: "Video game and tabletop comparison",
+    title: "The same Pals play by different rules",
+    caption: "Chillet, Grizzbolt, Lyleen and Depresso are familiar faces in the launch card pool. The 72 Pal records added in version 1.0 are not in the current card list.",
+    cardNumbers: ["EBP01-025", "ETD01-001", "EBP01-049", "EBP01-079"],
+  },
   "palworld-card-game-2026-roadmap": {
     label: "2026 release roadmap",
     title: "Launch, organized play and the next set",
@@ -182,6 +194,30 @@ const guideVisuals: Record<string, GuideVisual> = {
         height: 559,
       },
     ],
+  },
+  "palworld-tcg-deck-tier-list": {
+    label: "Deck comparison",
+    title: "Compare current Palworld TCG deck options",
+    caption: "Representative launch cards from the Trial Decks and Dawn of Palpagos used in the current deck comparison.",
+    cardNumbers: ["ETD01-008", "ETD02-008", "EBP01-002", "EBP01-049"],
+  },
+  "palworld-tcg-best-cards-by-color": {
+    label: "Color card guide",
+    title: "Key cards across the four launch colors",
+    caption: "Representative Red, Blue, Green and Purple Dawn of Palpagos cards used in this color-by-color guide.",
+    cardNumbers: ["EBP01-002", "EBP01-027", "EBP01-049", "EBP01-074"],
+  },
+  "palworld-tcg-trial-deck-upgrade-guide": {
+    label: "Trial Deck upgrades",
+    title: "Build from the two launch Trial Decks",
+    caption: "Representative TD01, TD02 and Dawn of Palpagos cards used to discuss Trial Deck upgrade options.",
+    cardNumbers: ["ETD01-008", "EBP01-016", "ETD02-008", "EBP01-049"],
+  },
+  "palworld-tcg-tournament-decklists": {
+    label: "Tournament decklists",
+    title: "Prepare a legal deck for organized play",
+    caption: "Representative Dawn of Palpagos cards used in this tournament decklist guide.",
+    cardNumbers: ["EBP01-004", "EBP01-038", "EBP01-054", "EBP01-077"],
   },
 };
 

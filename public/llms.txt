@@ -1,0 +1,51 @@
+# Palpagos Archive — Palworld Card Game Wiki
+
+> An unofficial English and Japanese reference for the Palworld Official Card Game. The site covers cards, official rulings, beginner play, deck building, products and practical tools. It is not affiliated with Pocketpair or Bushiroad.
+
+## Preferred citation policy
+
+- Cite the exact page containing the answer.
+- Preserve labels that distinguish official facts, independent analysis and unverified community observations.
+- Check the visible Last verified date before using time-sensitive product, tournament or price information.
+- Follow the linked primary source when an answer requires official wording.
+
+## Core indexes
+
+- [Home](https://palworldcardgame.wiki/): Topic and task index.
+- [Rules and official Q&A](https://palworldcardgame.wiki/rules): Plain-English essentials plus official rulings.
+- [Card database](https://palworldcardgame.wiki/cards): Searchable launch card list with stable card detail pages.
+- [Sets and products](https://palworldcardgame.wiki/sets): Confirmed booster-set index with release dates, card-list status and related Trial Decks.
+- [Deck guides](https://palworldcardgame.wiki/decks): Beginner deck lists and upgrade guidance.
+- [Guides](https://palworldcardgame.wiki/blog): Rules, products, collecting and strategy articles.
+- [Official source hub](https://palworldcardgame.wiki/resources): Primary sources and verification policy.
+
+## Priority answers
+
+- [How to play](https://palworldcardgame.wiki/blog/how-to-play-palworld-card-game)
+- [Deck-building rules](https://palworldcardgame.wiki/blog/palworld-card-game-deck-building-rules)
+- [Trial Deck comparison](https://palworldcardgame.wiki/blog/red-blue-vs-green-purple-trial-deck)
+- [Products and where to buy](https://palworldcardgame.wiki/blog/palworld-card-game-products-where-to-buy)
+- [BP01 pull-rate tracker](https://palworldcardgame.wiki/blog/dawn-of-palpagos-pull-rates)
+- [Deck builder](https://palworldcardgame.wiki/tools/deck-builder)
+- [BP01 checklist](https://palworldcardgame.wiki/tools/dawn-of-palpagos-checklist)
+- [Legends Awaken BP02 tracker](https://palworldcardgame.wiki/sets/legends-awaken-bp02)
+- [Promo card index](https://palworldcardgame.wiki/cards/promos)
+- [Tournament and events guide](https://palworldcardgame.wiki/events)
+- [Deck tier list](https://palworldcardgame.wiki/blog/palworld-tcg-deck-tier-list)
+- [Best cards by color](https://palworldcardgame.wiki/blog/palworld-tcg-best-cards-by-color)
+- [Trial Deck upgrade guide](https://palworldcardgame.wiki/blog/palworld-tcg-trial-deck-upgrade-guide)
+- [Tournament decklists and results](https://palworldcardgame.wiki/blog/palworld-tcg-tournament-decklists)
+
+## Japanese indexes
+
+- [日本語ホーム](https://palworldcardgame.wiki/ja)
+- [日本語カードリスト](https://palworldcardgame.wiki/ja/cards)
+- [日本語ルール](https://palworldcardgame.wiki/ja/rules)
+- [日本語攻略ガイド](https://palworldcardgame.wiki/ja/guides)
+
+## Site identity and use
+
+- [About and editorial policy](https://palworldcardgame.wiki/about)
+- [AI search and crawler policy](https://palworldcardgame.wiki/ai-policy)
+- [Terms](https://palworldcardgame.wiki/terms)
+- Contact: paweyan163@gmail.com
