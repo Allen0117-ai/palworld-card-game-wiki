@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: SECURITY_HEADERS,
       },
+      {
+        source: "/ads.txt",
+        headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }],
+      },
     ];
   },
 };

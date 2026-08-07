@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AdPrivacyChoicesButton } from "./AdPrivacyChoicesButton";
 import { PrivacyChoicesButton } from "./AnalyticsConsent";
 import { MobileNav } from "./MobileNav";
 
@@ -92,6 +93,8 @@ export function LocalizedSiteFooter() {
             <strong>サイト情報</strong>
             <Link href="/">English</Link>
             <PrivacyChoicesButton locale="ja" />
+            <AdPrivacyChoicesButton locale="ja" />
+            <Link href="/privacy">プライバシー</Link>
             <a href="https://palworld-official-cardgame.com/" target="_blank" rel="noreferrer">公式サイト</a>
             <a href="mailto:paweyan163@gmail.com">お問い合わせ</a>
           </div>
@@ -112,7 +115,7 @@ export function LocalizedSiteFooter() {
             <span className="brand-mark" aria-hidden="true">◆</span>
             <span className="brand-copy">Palpagos Archive<small>Palworld Card Game Wiki</small></span>
           </Link>
-          <p>An unofficial, non-commercial card database and strategy companion built by fans, for players. Browse sourced rules, all 148 launch cards, beginner guides, collection tools and a free deck builder.</p>
+          <p>An unofficial, independent card database and strategy companion built by fans, for players. Browse sourced rules, all 148 launch cards, beginner guides, collection tools and a free deck builder.</p>
         </div>
         <div>
           <strong>Explore</strong>
@@ -136,6 +139,7 @@ export function LocalizedSiteFooter() {
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <PrivacyChoicesButton />
+          <AdPrivacyChoicesButton />
           <a href="mailto:paweyan163@gmail.com">Contact</a>
         </div>
       </div>

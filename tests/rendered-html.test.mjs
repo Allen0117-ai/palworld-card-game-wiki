@@ -107,11 +107,16 @@ test("every published page renders successfully", async () => {
       /^text\/html\b/i,
       `${route} did not return HTML`,
     );
+    if (route.startsWith("/card/")) {
+      assert.match(await response.text(), /strategy guide/, `${route} is missing editorial strategy`);
+    } else if (route.startsWith("/ja/card/")) {
+      assert.match(await response.text(), /使い方・採用枚数/, `${route} is missing Japanese editorial strategy`);
+    }
   }
 });
 
 test("published copy stays player-facing", async () => {
-  const internalPhrases = /indexable search tool|same canonical URL|source-backed home|living reveal tracker|living guide status|kept on one URL|permanent set index|do not stop at one page|help shape the next update|no paid links yet|events guide vs 2026 roadmap|同じ正規URL|継続更新ページ/i;
+  const internalPhrases = /indexable search tool|same canonical URL|source-backed home|living reveal tracker|living guide status|kept on one URL|permanent set index|do not stop at one page|help shape the next update|no paid links yet|events guide vs 2026 roadmap|同じ正規URL|継続更新ページ|non-commercial/i;
 
   for (const route of publicRoutes) {
     const html = await (await render(route)).text();
@@ -136,6 +141,10 @@ test("analytics consent preserves opt-in regions and explicit visitor choices", 
     new URL("../components/AnalyticsConsent.tsx", import.meta.url),
     "utf8",
   );
+  const adPrivacyChoicesSource = await readFile(
+    new URL("../components/AdPrivacyChoicesButton.tsx", import.meta.url),
+    "utf8",
+  );
   const privacyHtml = await (await render("/privacy")).text();
 
   assert.match(defaultsSource, /analytics_storage: 'granted'/);
@@ -148,6 +157,36 @@ test("analytics consent preserves opt-in regions and explicit visitor choices", 
   assert.match(consentSource, /consent !== "declined" && choice === "declined"/);
   assert.match(privacyHtml, /Region-aware privacy/);
   assert.match(privacyHtml, /Vercel Web Analytics counts anonymous visits without cookies/);
+  assert.match(privacyHtml, /Google AdSense/);
+  assert.match(privacyHtml, /web beacons, IP addresses and/);
+  assert.match(privacyHtml, /Third parties, including/);
+  assert.match(privacyHtml, /Privacy and cookie settings/);
+  assert.match(adPrivacyChoicesSource, /callbackQueue\.push\(googleConsent\.showRevocationMessage\)/);
+});
+
+test("AdSense ownership, ads.txt and content-page loading rules are explicit", async () => {
+  const homeHtml = await (await render("/")).text();
+  const adsenseConfigSource = await readFile(
+    new URL("../lib/adsense.ts", import.meta.url),
+    "utf8",
+  );
+  const adsenseComponentSource = await readFile(
+    new URL("../components/AdSenseScript.tsx", import.meta.url),
+    "utf8",
+  );
+  const adsTxt = await readFile(new URL("../public/ads.txt", import.meta.url), "utf8");
+
+  assert.match(homeHtml, /<meta name="google-adsense-account" content="ca-pub-3736712756888915"/);
+  assert.match(adsenseConfigSource, /pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/);
+  assert.match(adsenseConfigSource, /"\/blog"/);
+  assert.match(adsenseConfigSource, /"\/card"/);
+  assert.doesNotMatch(adsenseConfigSource, /"\/search"/);
+  assert.doesNotMatch(adsenseConfigSource, /"\/tools"/);
+  assert.doesNotMatch(adsenseConfigSource, /"\/privacy"/);
+  assert.match(adsenseComponentSource, /isAdSenseContentPath\(pathname\)/);
+  assert.match(adsenseComponentSource, /strategy="afterInteractive"/);
+  assert.match(adsenseComponentSource, /if \(adSenseWasLoaded\) window\.location\.reload\(\)/);
+  assert.equal(adsTxt.trim(), "google.com, pub-3736712756888915, DIRECT, f08c47fec0942fa0");
 });
 
 test("English page titles stay concise", async () => {
@@ -806,6 +845,14 @@ test("the sitemap uses stable content dates without ignored priority hints", asy
   assert.match(xml, /<lastmod>2026-07-31T00:00:00\.000Z<\/lastmod>/);
   assert.match(xml, /<lastmod>2026-07-30T00:00:00\.000Z<\/lastmod>/);
   assert.match(xml, /<lastmod>2026-08-07T00:00:00\.000Z<\/lastmod>/);
+  assert.match(
+    xml,
+    /<url>\s*<loc>https:\/\/palworldcardgame\.wiki\/card\/chillet-dragon-whisperer-ebp01-025<\/loc>[\s\S]*?<lastmod>2026-08-07T00:00:00\.000Z<\/lastmod>\s*<\/url>/,
+  );
+  assert.match(
+    xml,
+    /<url>\s*<loc>https:\/\/palworldcardgame\.wiki\/ja\/card\/chillet-dragon-whisperer-ebp01-025<\/loc>[\s\S]*?<lastmod>2026-08-07T00:00:00\.000Z<\/lastmod>\s*<\/url>/,
+  );
   assert.doesNotMatch(xml, /<priority>/);
   assert.doesNotMatch(xml, /<changefreq>/);
 

@@ -10,7 +10,7 @@ Unofficial fan reference for the **Palworld Official Card Game**.
 
 - Card database and rules help
 - Free deck builder for the Palworld TCG
-- Non-commercial fan project
+- Independent fan project
 
 ## Links
 
