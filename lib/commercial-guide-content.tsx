@@ -19,7 +19,7 @@ type GuideSource = {
 export const commercialGuideQuickAnswers: Record<string, QuickAnswer> = {
   "palworld-card-game-products-where-to-buy": {
     label: "Safe buying answer",
-    answer: "The safest place to start is Bushiroad's official retailer finder, then confirm stock directly with the listed store. For a Dawn of Palpagos booster box, verify the exact BP01 name, the language, a factory-sealed display and 12 packs with 7 cards per pack. For immediate play, buy one TD01 Red/Blue or TD02 Green/Purple Trial Deck per player; each includes a complete 50-card Main Deck, 10 Soul cards and play accessories. Add boosters for collecting or broad upgrades, and buy singles when a tested deck needs exact card numbers. The official English product pages do not publish one universal worldwide MSRP, so compare the final delivered cost after shipping, tax and import fees. Japanese suggested prices are a Japan reference, not a converted English MSRP. Avoid treating marketplace asking prices as market value, especially during launch-week shortages. Check seller identity, buyer protection, return terms and delivery timing before paying, and label community availability reports as dated observations rather than official restock information.",
+    answer: "Start with Bushiroad's official retailer finder, select your country and confirm stock with the store. BP02 Legends Awaken preorders are officially open through local stores, but allocation and delivery dates depend on each seller. Buyers in Canada, Germany, the Netherlands and Spain should choose the English edition, compare the final delivered price after tax and shipping, and verify the exact product, sealed quantity, cancellation terms and buyer protection. The official English product pages do not publish one universal worldwide MSRP, so marketplace asking prices are not reliable market value.",
   },
   "palworld-tcg-first-edition-vs-reprint": {
     label: "The short answer",
@@ -90,6 +90,21 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       </ol>
       <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
 
+      <h2>Can you preorder Palworld Legends Awaken BP02?</h2>
+      <p>Yes. The official BP02 product page says Legends Awaken preorders are available at local stores for the October 30, 2026 release. It does not publish one worldwide preorder retailer list, price or allocation guarantee, so use the official store finder and confirm the seller&apos;s deposit, cancellation and estimated-delivery terms before paying.</p>
+      <p><Link className="text-link" href="/sets/legends-awaken-bp02">Check the BP02 release facts and card-list status →</Link></p>
+
+      <h2>Where to buy Palworld TCG in Canada and Europe</h2>
+      <p>The official launch policy supports the English edition outside Japan, Mainland China, Taiwan, Hong Kong and South Korea. The country name below changes the buying checks—not the card language or product contents.</p>
+      <div className="comparison-table" role="region" aria-label="Palworld TCG buying guidance for Canada and Europe" tabIndex={0}>
+        <div className="comparison-head"><span>Region</span><strong>Best starting point</strong><strong>Check before paying</strong></div>
+        <div><span>Canada</span><p>Select Canada in the official store finder and confirm English stock in CAD.</p><p>GST/HST, domestic shipping, preorder allocation and whether a US listing adds import fees.</p></div>
+        <div><span>Germany</span><p>Use an official or established EU store selling the English edition.</p><p>Final euro price, VAT, shipping, cancellation terms and the exact BP01 or BP02 code.</p></div>
+        <div><span>Netherlands</span><p>Check local or EU English-edition stock through the store finder.</p><p>VAT, tracked delivery, sealed quantity and cross-border return address.</p></div>
+        <div><span>Spain</span><p>Use a trusted Spanish or EU store and confirm the cards are English.</p><p>Final euro price, mainland or island shipping, preorder delivery and returns.</p></div>
+      </div>
+      <div className="callout"><strong>Language note:</strong> the publisher&apos;s current policy says only the English edition is sold and supported outside the listed Asian territories. Do not assume a German, Dutch or Spanish listing means the cards are translated into that language.</div>
+
       <h2>Does Palworld TCG have an official English MSRP?</h2>
       <div className="comparison-table" role="region" aria-label="Official Palworld TCG price references" tabIndex={0}>
         <div className="comparison-head"><span>Product</span><strong>Official Japan price</strong><strong>What English buyers should know</strong></div>
@@ -146,6 +161,10 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       <p>Loose packs may be fine from a trusted local store, but they are not equivalent to a sealed box. Confirm the seller and return policy before buying loose packs online.</p>
       <h3>Should I pay a launch-week premium?</h3>
       <p>Only if immediate access is worth the extra cost to you. High first-week prices can change quickly, and no seller can guarantee future value.</p>
+      <h3>Where can I buy Palworld TCG in Canada?</h3>
+      <p>Start with the official Bushiroad store finder, select Canada, then compare the final CAD price after GST/HST and shipping. Confirm English stock directly with the store before travelling or preordering.</p>
+      <h3>Can I buy Palworld TCG in Germany, the Netherlands or Spain?</h3>
+      <p>Yes, through stores carrying the supported English edition. Use the official finder first, then verify VAT, delivery, returns and the exact product code before buying from a local or cross-border EU seller.</p>
     </>
   ),
 
@@ -253,7 +272,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
         <div><strong>60</strong><span>cards used per player</span></div>
         <div><strong>75</strong><span>official sleeve pack</span></div>
       </div>
-      <p>The official Japanese product information lists Palworld TCG cards at 63×88mm. This is commonly sold as <strong>standard size</strong> or <strong>regular size</strong> in card shops.</p>
+      <p>Palworld TCG cards use the 63×88mm standard-size format. Bushiroad&apos;s official Palworld sleeves are approximately 67×92mm on the outside, which is the regular-size sleeve category sold by card shops.</p>
 
       <h2>Which sleeves fit Palworld TCG cards?</h2>
       <p>Choose sleeves clearly labelled for 63×88mm standard-size cards. Bushiroad&apos;s official Palworld sleeves are approximately 67×92mm on the outside and come in packs of 75.</p>
@@ -380,7 +399,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       <p>For a sanctioned Main Deck outside the listed Asian territories, use English-edition cards. The explicit mixed-language exception applies to the separate Soul Deck. For casual games, players can agree on their own approach, but that does not replace tournament policy.</p>
 
       <h2>Do both versions use the same card size?</h2>
-      <p>The official Japanese launch information lists cards at 63×88mm, the standard trading card format used by the product line. Standard-size sleeves are the correct category; do not buy narrow small-size sleeves just because the cards are Japanese.</p>
+      <p>Both editions use the 63×88mm standard trading card format. Bushiroad&apos;s official sleeves are approximately 67×92mm on the outside, so choose standard-size sleeves rather than narrow small-size sleeves.</p>
 
       <h2>Which language should you buy?</h2>
       <div className="comparison-table" role="region" aria-label="Which Palworld TCG language to buy" tabIndex={0}>
@@ -415,7 +434,9 @@ export const commercialGuideSources: Record<string, GuideSource[]> = {
   "palworld-card-game-products-where-to-buy": [
     { label: "Official Bushiroad retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
     { label: "Official English BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
-    { label: "Official Japanese launch prices and product specifications", href: "https://palworld-official-cardgame.com/news/post-3" },
+    { label: "Official BP02 preorder and release information", href: "https://en.palworld-official-cardgame.com/products/bp02" },
+    { label: "Official English-edition sales and tournament policy", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
+    { label: "Official Japanese launch prices and product specifications", href: "https://palworld-official-cardgame.com/products/bp01" },
     { label: "Launch-week store and price reports — unverified community snapshot", href: "https://www.reddit.com/r/Palworld/comments/1vdkfjj/best_place_to_get_a_booster_box_of_the_new_tcg/" },
   ],
   "palworld-tcg-first-edition-vs-reprint": [
@@ -430,7 +451,7 @@ export const commercialGuideSources: Record<string, GuideSource[]> = {
     { label: "Official launch product specifications", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
   ],
   "palworld-tcg-card-size-sleeves": [
-    { label: "Official 63×88mm card dimensions", href: "https://palworld-official-cardgame.com/news/post-3" },
+    { label: "Official Japanese sleeve specifications", href: "https://palworld-official-cardgame.com/products/supply_bp01" },
     { label: "Official Palworld accessory release list", href: "https://en.palworld-official-cardgame.com/products" },
     { label: "Official Grizzbolt sleeve dimensions", href: "https://en.palworld-official-cardgame.com/products/grizzbolt-rumbling-tank-sleeves" },
     { label: "Official Shadowbeak playmat dimensions", href: "https://en.palworld-official-cardgame.com/products/shadowbeak-seed-of-despair-rubber-playmat" },
@@ -440,13 +461,13 @@ export const commercialGuideSources: Record<string, GuideSource[]> = {
   "are-palworld-tcg-trial-decks-worth-it": [
     { label: "Official Red / Blue Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td01" },
     { label: "Official Green / Purple Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td02" },
-    { label: "Official Japanese Trial Deck price and parallel details", href: "https://palworld-official-cardgame.com/news/post-3" },
+    { label: "Official Japanese Trial Deck price and parallel details", href: "https://palworld-official-cardgame.com/products/td01" },
   ],
   "palworld-tcg-english-vs-japanese-cards": [
     { label: "Official launch language and tournament policy", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
     { label: "Official English card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
     { label: "Official Japanese card list", href: "https://palworld-official-cardgame.com/cardlist" },
-    { label: "Official Japanese card dimensions", href: "https://palworld-official-cardgame.com/news/post-3" },
+    { label: "Official Japanese sleeve specifications", href: "https://palworld-official-cardgame.com/products/supply_bp01" },
   ],
 };
 

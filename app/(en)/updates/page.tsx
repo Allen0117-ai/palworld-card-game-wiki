@@ -82,18 +82,18 @@ export default function UpdatesPage() {
 
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Updates" }]} />
-        <p className="eyebrow"><span>Verified update center</span> · Last checked August 6, 2026</p>
+        <p className="eyebrow"><span>Verified update center</span> · Last checked August 7, 2026</p>
         <h1>What changed—and what it affects.</h1>
         <p>Each update links the affected cards, rules, decks or event pages and the official source used to verify the change.</p>
       </header>
 
       <div className="shell updates-freshness">
         <ContentFreshnessPanel
-          updated="August 6, 2026"
-          verified="August 6, 2026"
+          updated="August 7, 2026"
+          verified="August 7, 2026"
           sourceStatus="Official card, product, event and deck-recipe pages"
           summary="This page tracks meaningful changes across the player guides and tools."
-          changeSummary="Added the latest event, accessory, competitive-guide and launch-database status in one place."
+          changeSummary="Added BP02 preorder details, confirmed accessory and event dates, competitive guides and the 148-card launch database status."
           published="August 6, 2026"
         />
       </div>

@@ -15,8 +15,8 @@ import { getPalworldBoosterSet } from "@/lib/sets";
 
 const legendsAwaken = getPalworldBoosterSet("BP02");
 const pagePath = "/sets/legends-awaken-bp02";
-const pageTitle = "Palworld TCG Set 2 – Legends Awaken BP02 Card List";
-const pageDescription = "Track Palworld TCG Set 2, Legends Awaken BP02: October 30 release date, confirmed 100-card base set, parallel status and official card-list updates.";
+const pageTitle = "Palworld Legends Awaken BP02 – Release Date & Card List";
+const pageDescription = "Track Palworld Legends Awaken BP02: October 30 release date, official preorder status, confirmed 100-card set, reveal checklist and card-list updates.";
 
 export const metadata: Metadata = createPageMetadata({
   title: pageTitle,
@@ -34,7 +34,7 @@ export default function LegendsAwakenPage() {
       headline: pageTitle,
       description: pageDescription,
       datePublished: "2026-08-05",
-      dateModified: "2026-08-05",
+      dateModified: "2026-08-07",
       author: createEditorialAuthorJsonLd(),
       publisher: createPublisherJsonLd(),
       mainEntityOfPage: `${SITE_URL}${pagePath}`,
@@ -63,25 +63,26 @@ export default function LegendsAwakenPage() {
       <p className="article-lede">Check the release date, confirmed set size and official reveal status for the second Palworld TCG booster set. The numbered card list will appear after Bushiroad publishes it.</p>
 
       <div className="article-trust">
-        <span>Updated August 5, 2026</span>
+        <span>Updated August 7, 2026</span>
         <strong>Official product facts</strong>
         <span>Official numbered card list pending</span>
       </div>
-      <EditorialByline reviewed="August 5, 2026" sourceStatus="Official BP02 product page" />
+      <EditorialByline reviewed="August 7, 2026" sourceStatus="Official BP02 product page" />
 
       <div className="quick-answer">
         <strong>What is confirmed</strong>
-        <p>Legends Awaken is Palworld TCG Set 2, officially numbered BP02 and scheduled for October 30, 2026. Bushiroad confirms 100 normal card types across RR, R, U and C, plus parallel versions. As of August 5, the official English product page does not publish the full BP02 card list, exact parallel count, complete rarity breakdown or every new mechanic. The official numbered checklist is not yet available.</p>
+        <p>Legends Awaken is Palworld TCG Set 2, officially numbered BP02 and scheduled for October 30, 2026. Local-store preorders are open. Bushiroad confirms 100 normal card types across RR, R, U and C, plus parallels in all five colors. As of August 7, the official English page does not publish the full numbered card list, exact parallel count, box configuration or every new mechanic.</p>
         <a className="quick-answer-source" href={legendsAwaken.officialUrl} target="_blank" rel="noreferrer">Primary source: official Legends Awaken product page ↗</a>
       </div>
 
       <ContentFreshnessPanel
-        updated="August 5, 2026"
-        verified="August 5, 2026"
+        updated="August 7, 2026"
+        verified="August 7, 2026"
         sourceStatus="Official BP02 product page"
         summary="Tracks the BP02 release, confirmed set size, reveal status and future official card-list availability."
-        changeSummary="Added the confirmed October 30 release, 100-card base count, rarity families and current reveal status."
+        changeSummary="Added official local-store preorder status, all five featured colors and a reveal checklist that separates confirmed facts from pending details."
         published="August 5, 2026"
+        history={[{ date: "2026-08-07", note: "Added preorder status, featured colors and pending reveal fields." }]}
       />
 
       <h2>Legends Awaken BP02 confirmed facts</h2>
@@ -89,10 +90,28 @@ export default function LegendsAwakenPage() {
         <div><strong>BP02</strong><span>set code</span></div>
         <div><strong>Oct 30</strong><span>2026 release</span></div>
         <div><strong>100</strong><span>normal types</span></div>
-        <div><strong>4</strong><span>base rarities</span></div>
+        <div><strong>5</strong><span>featured colors</span></div>
         <div><strong>TBD</strong><span>parallel count</span></div>
       </div>
-      <p>The product specification confirms the release date and 100 normal card types. It names RR, R, U and C as the normal rarity families and confirms that parallel cards exist, but it does not state how many parallel types will be included. “TBD” here means not officially published—not zero.</p>
+      <p>The product specification confirms the release date, 100 normal card types, RR, R, U and C base rarities, and Red, Blue, Green, Purple and Colorless cards. It confirms parallel cards but does not state their exact count. “TBD” here means not officially published—not zero.</p>
+
+      <h2>Where can you preorder Legends Awaken BP02?</h2>
+      <p>The official product page says preorders are available at local stores. Start with Bushiroad&apos;s retailer finder, then confirm the store&apos;s allocation, deposit, cancellation terms, language, sealed quantity and estimated delivery date. The publisher does not list one universal BP02 price or guarantee that every store will receive stock.</p>
+      <div className="article-actions">
+        <a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a>
+        <Link className="button ghost" href="/blog/palworld-card-game-products-where-to-buy">Open the regional buying guide</Link>
+      </div>
+
+      <h2>BP02 reveal checklist</h2>
+      <div className="comparison-table" role="region" aria-label="Legends Awaken BP02 reveal checklist" tabIndex={0}>
+        <div className="comparison-head"><span>Detail</span><strong>Status</strong><strong>Current answer</strong></div>
+        <div><span>Release date</span><p>Confirmed</p><p>October 30, 2026.</p></div>
+        <div><span>Preorders</span><p>Confirmed</p><p>Available through local stores; allocation varies.</p></div>
+        <div><span>Normal cards</span><p>Confirmed</p><p>100 types across RR, R, U and C.</p></div>
+        <div><span>Featured colors</span><p>Confirmed</p><p>Red, Blue, Green, Purple and Colorless.</p></div>
+        <div><span>Numbered card list</span><p>Pending</p><p>The complete official list is not published.</p></div>
+        <div><span>Parallels and box contents</span><p>Pending</p><p>Exact parallel count and sealed configuration are not published.</p></div>
+      </div>
 
       <h2>Is the complete BP02 card list available?</h2>
       <p>Bushiroad has not published a complete official English BP02 card list, so a numbered checklist is not yet available. Product artwork, store preorder images and social posts may show individual cards before the database is complete, but they do not prove the final card count by rarity, every card number or the full list of parallel treatments.</p>
@@ -132,6 +151,7 @@ export default function LegendsAwakenPage() {
         <p>The product and card-list pages below publish the release details and future numbered cards.</p>
         <div>
           <a href={legendsAwaken.officialUrl} target="_blank" rel="noreferrer">Official Legends Awaken product page ↗</a>
+          <a href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Official Bushiroad retailer finder ↗</a>
           <a href="https://en.palworld-official-cardgame.com/products" target="_blank" rel="noreferrer">Official product index ↗</a>
           <a href="https://en.palworld-official-cardgame.com/cardlist" target="_blank" rel="noreferrer">Official card list ↗</a>
         </div>

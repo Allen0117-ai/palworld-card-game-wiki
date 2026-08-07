@@ -10,22 +10,35 @@ export type ContentMaintenance = {
 
 const englishGuideMaintenance: Record<string, ContentMaintenance> = {
   "how-to-play-palworld-card-game": {
-    changeSummary: "Added the official tutorial video, current card images and a rules-checked TD01 practice sequence that separates Souls from Materials.",
-    history: [{ date: "2026-08-06", note: "Added official video instruction and a real-card opening exercise." }],
+    changeSummary: "Added a three-step first-game answer while keeping the official tutorial, setup, turn flow and real-card practice sequence.",
+    history: [
+      { date: "2026-08-06", note: "Added official video instruction and a real-card opening exercise." },
+      { date: "2026-08-07", note: "Added the concise three-step first-game answer." },
+    ],
   },
   "palworld-booster-box": {
-    changeSummary: "Confirmed the 12-pack box contents and added current card-list, pull-rate and Trial Deck references.",
+    changeSummary: "Added the official Japanese 12-box carton quantity, calculated pack and card totals, and a separate warning for unconfirmed English case configurations.",
+    history: [{ date: "2026-08-07", note: "Added verified box, pack and carton quantities." }],
+  },
+  "palworld-card-game-deck-building-rules": {
+    changeSummary: "Moved the exact 50-card, 10-Soul, two-color, four-copy and eight-Lucky limits into the title and direct answer.",
+    history: [{ date: "2026-08-07", note: "Improved the legal-deck answer and search title." }],
   },
   "palworld-card-game-products-where-to-buy": {
-    changeSummary: "Added preorder, TCGplayer and singles checks while keeping marketplace prices separate from official MSRP and verified value.",
+    changeSummary: "Added BP02 preorder status and country-specific buying checks for Canada, Germany, the Netherlands and Spain without inventing local retailers.",
     history: [
       { date: "2026-08-03", note: "Updated the launch availability and restock guidance." },
       { date: "2026-08-05", note: "Added marketplace and exact-card verification guidance." },
+      { date: "2026-08-07", note: "Added Canada and European buying guidance plus BP02 preorder checks." },
     ],
   },
   "dawn-of-palpagos-pull-rates": {
     changeSummary: "Separated confirmed product facts from labeled community opening samples. No unofficial per-box odds are presented as guaranteed.",
     history: [{ date: "2026-07-31", note: "Added the latest labeled community sample while keeping official facts separate." }],
+  },
+  "palworld-tcg-rarity-guide": {
+    changeSummary: "Expanded the direct answer and title to cover base C, U, R and RR labels plus SR, OSR, SP and SSP parallels.",
+    history: [{ date: "2026-08-07", note: "Added the complete BP01 rarity label path." }],
   },
   "palworld-online-vs-card-game": {
     changeSummary: "Added the first confirmed Palworld Online details and clarified that it is a separate mobile MMO, not a digital card game client.",
@@ -34,11 +47,12 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     changeSummary: "Added the current name-match count between the 72 Pal records introduced in version 1.0 and the 148 launch cards.",
   },
   "palworld-card-game-2026-roadmap": {
-    changeSummary: "Added the September–October demos and the September 25, October 2 and October 16 accessory releases.",
+    changeSummary: "Added a confirmed-date table and separated pending BP02 card-list, parallel, preorder-allocation and BP01 restock details.",
     history: [
       { date: "2026-07-31", note: "Updated confirmed 2026 events and product dates." },
       { date: "2026-08-05", note: "Added BP02, tournament and promo-card details for each milestone." },
       { date: "2026-08-06", note: "Added newly confirmed demo sessions, playmats, storage boxes and sleeve releases." },
+      { date: "2026-08-07", note: "Separated confirmed dates from details that remain unconfirmed." },
     ],
   },
   "palworld-tcg-card-size-sleeves": {

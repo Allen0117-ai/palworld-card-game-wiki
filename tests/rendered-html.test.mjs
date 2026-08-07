@@ -180,7 +180,7 @@ test("every published page has a self-referencing canonical and matching social 
 
 test("homepage heading and detail-page breadcrumbs describe the page clearly", async () => {
   const homeHtml = await (await render("/")).text();
-  assert.match(homeHtml, /<h1><span class="hero-title-keyword">Palworld Card Game Wiki<\/span>/);
+  assert.match(homeHtml, /<h1><span class="hero-title-keyword">Palworld Trading Card Game Wiki<\/span>/);
   const homeDescription = homeHtml.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
   assert.ok(homeDescription.length >= 140 && homeDescription.length <= 160, `homepage description is ${homeDescription.length} characters`);
   assert.match(homeHtml, /id="about-palworld-card-game"/);
@@ -327,6 +327,9 @@ test("the booster box guide exposes verified product facts and structured data",
   assert.match(html, /Palworld Booster Box Guide/);
   assert.match(html, /12 packs/);
   assert.match(html, /84 cards total/);
+  assert.match(html, /12 boxes per carton/);
+  assert.match(html, /1,008 cards/);
+  assert.match(html, /English case warning/);
   assert.match(html, /"@type":"Article"/);
   assert.match(html, /"@type":"FAQPage"/);
 });
@@ -357,7 +360,9 @@ test("gameplay guides use real visual instruction and exact labeled upgrade test
   const upgradeHtml = await (await render("/blog/palworld-tcg-trial-deck-upgrade-guide")).text();
   const tierHtml = await (await render("/blog/palworld-tcg-deck-tier-list")).text();
 
-  assert.match(howToHtml, /youtube\.com\/embed\/UdbMWxWcMcw/);
+  assert.match(howToHtml, /data-video-id="UdbMWxWcMcw"/);
+  assert.match(howToHtml, /YouTube loads after your click/);
+  assert.match(howToHtml, /"@type":"VideoObject"/);
   assert.match(howToHtml, /Practice one real TD01 engine turn/);
   assert.match(howToHtml, /\/cards\/catalog\/ETD01-008\.png/);
   assert.match(howToHtml, /Materials are counters created by card effects/);
@@ -449,7 +454,7 @@ test("wiki indexes and living guides expose the new navigation and utility featu
   const guideHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
   const deckHtml = await (await render("/deck/mono-red-pal-rush")).text();
 
-  assert.match(homeHtml, /Open the tool or answer you need/);
+  assert.match(homeHtml, /Find the guide, tool or answer you need/);
   assert.match(homeHtml, /href="\/cards"/);
   assert.match(homeHtml, /href="\/rules"/);
   assert.match(homeHtml, /href="\/updates"/);
@@ -526,6 +531,9 @@ test("the BP02 tracker exposes confirmed facts without inventing a card list", a
   assert.match(html, /100 normal card types/);
   assert.match(html, /exact parallel count/);
   assert.match(html, /Bushiroad has not published a complete official English BP02 card list/);
+  assert.match(html, /Where can you preorder Legends Awaken BP02/);
+  assert.match(html, /BP02 reveal checklist/);
+  assert.match(html, /Red, Blue, Green, Purple and Colorless/);
   assert.match(html, /Palpagos Archive Editorial Team/);
   assert.match(html, /"@type":"Article"/);
   assert.match(html, /"@type":"BreadcrumbList"/);
@@ -566,24 +574,59 @@ test("the events guide explains Bushi Navi registration and tournament preparati
 });
 
 test("existing high-value pages cover the selected long-tail keywords", async () => {
+  const homeHtml = await (await render("/")).text();
   const rulesHtml = await (await render("/rules")).text();
+  const howToHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+  const deckRulesHtml = await (await render("/blog/palworld-card-game-deck-building-rules")).text();
+  const builderHtml = await (await render("/tools/deck-builder")).text();
+  const rarityHtml = await (await render("/blog/palworld-tcg-rarity-guide")).text();
   const decksHtml = await (await render("/decks")).text();
   const buyingHtml = await (await render("/blog/palworld-card-game-products-where-to-buy")).text();
   const roadmapHtml = await (await render("/blog/palworld-card-game-2026-roadmap")).text();
   const sleevesHtml = await (await render("/blog/palworld-tcg-card-size-sleeves")).text();
 
-  assert.match(rulesHtml, /Rulebook PDF &amp; Official Q&amp;A/);
+  assert.match(homeHtml, /Palworld Trading Card Game \(TCG\)/);
+  assert.match(rulesHtml, /Deck Size, Turn Order &amp; Official Q&amp;A/);
+  assert.match(rulesHtml, /Rules in 20 seconds/);
   assert.match(rulesHtml, /Open official rules PDF/);
+  assert.match(howToHtml, /How to Play Palworld TCG – Setup, Turns &amp; Damage Rules/);
+  assert.match(howToHtml, /Start in three steps/);
+  assert.match(deckRulesHtml, /Palworld TCG Deck Building Rules – 50 Cards &amp; 10 Souls/);
+  assert.match(builderHtml, /Deck Builder &amp; Legal Deck Checker/);
+  assert.match(builderHtml, /eight-Lucky limits/);
+  assert.match(rarityHtml, /Rarity Guide – C, U, R, RR, SP &amp; SSP/);
   assert.match(decksHtml, /Starter Deck Lists &amp; Trial Deck Guides/);
   assert.match(decksHtml, /starter deck guide/);
   assert.match(buyingHtml, /Should you buy Palworld TCG on TCGplayer\?/);
   assert.match(buyingHtml, /preorder list/);
-  assert.match(roadmapHtml, /2026 Release Schedule, Sets &amp; Events/);
+  assert.match(buyingHtml, /Canada/);
+  assert.match(buyingHtml, /Germany/);
+  assert.match(buyingHtml, /Netherlands/);
+  assert.match(buyingHtml, /Spain/);
+  assert.match(roadmapHtml, /2026 Roadmap – BP02 Dates &amp; Events/);
+  assert.match(roadmapHtml, /Still unconfirmed/);
   assert.match(roadmapHtml, /href="\/sets"/);
   assert.match(roadmapHtml, /href="\/events"/);
   assert.match(sleevesHtml, /Which Palworld TCG playmat do you need\?/);
   assert.match(sleevesHtml, /Official accessories coming in September and October/);
   assert.match(sleevesHtml, /33\.8×59\.5×0\.2cm/);
+});
+
+test("high-impression card pages include card-specific strategy without variant URLs", async () => {
+  const cardGuides = [
+    ["/card/mounted-machine-gun-ebp01-015", /Mounted Machine Gun(?:<!-- -->)? strategy guide/],
+    ["/card/jormuntide-surging-sea-serpent-ebp01-027", /Jormuntide(?:<!-- -->)? strategy guide/],
+    ["/card/petallia-sweet-blessings-ebp01-051", /Petallia(?:<!-- -->)? strategy guide/],
+    ["/card/helzephyr-wings-of-the-moonless-night-ebp01-073", /Helzephyr(?:<!-- -->)? strategy guide/],
+  ];
+
+  for (const [route, heading] of cardGuides) {
+    const html = await (await render(route)).text();
+    assert.match(html, heading);
+    assert.match(html, /Copies to test/);
+    assert.match(html, /Watch for:/);
+    assert.doesNotMatch(html, /canonical[^>]+\?variant=/);
+  }
 });
 
 test("site search finds the Pal card collection", async () => {
@@ -630,6 +673,29 @@ test("the August 6 update includes newly verified events and accessories", async
   assert.match(relatedGuidesHtml, /palworld-booster-box/);
   assert.match(resourcesHtml, /Official X/);
   assert.match(resourcesHtml, /Official tutorial video/);
+  assert.match(resourcesHtml, /Official Play Guide video/);
+});
+
+test("videos are useful, click-to-load and placed on the relevant learning pages", async () => {
+  const howToHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+  const decksHtml = await (await render("/decks")).text();
+  const buyingHtml = await (await render("/blog/palworld-card-game-products-where-to-buy")).text();
+  const pullRatesHtml = await (await render("/blog/dawn-of-palpagos-pull-rates")).text();
+
+  assert.match(howToHtml, /data-video-id="UdbMWxWcMcw"/);
+  assert.match(decksHtml, /data-video-id="jniYAuCaaBE"/);
+  assert.match(decksHtml, /See how a first game moves/);
+  assert.doesNotMatch(buyingHtml, /data-video-id=/);
+  assert.doesNotMatch(pullRatesHtml, /data-video-id=/);
+});
+
+test("guide source panels distinguish official, video and community evidence", async () => {
+  const howToHtml = await (await render("/blog/how-to-play-palworld-card-game")).text();
+  const pullRatesHtml = await (await render("/blog/dawn-of-palpagos-pull-rates")).text();
+
+  assert.match(howToHtml, /<span class="source-kind">Official video<\/span>/);
+  assert.match(pullRatesHtml, /<span class="source-kind">Community<\/span>/);
+  assert.match(pullRatesHtml, /Community evidence never replaces/);
 });
 
 test("every internal link points to a published page", async () => {
@@ -693,6 +759,8 @@ test("retention improvements keep primary actions easy to reach", async () => {
   assert.match(homeHtml, /data-analytics-event="home_stat_click"/);
   assert.match(homeHtml, /Tap a card to open its details/);
   assert.ok(cardsHtml.indexOf('id="card-search"') < cardsHtml.indexOf("Found a card?"));
+  assert.match(cardsHtml, /What is included in this Palworld TCG card list/);
+  assert.match(cardsHtml, /"@type":"ItemList","numberOfItems":148/);
   assert.ok(cardsHtml.indexOf("cards-quick-builder") < cardsHtml.indexOf('id="card-results"'));
   assert.ok(cardsHtml.indexOf('id="card-results"') < cardsHtml.indexOf("More card views"));
   assert.ok(cardsHtml.indexOf('id="rarity-filter"') < cardsHtml.indexOf('id="set-filter"'));
@@ -737,6 +805,7 @@ test("the sitemap uses stable content dates without ignored priority hints", asy
   assert.match(xml, /hreflang="ja" href="https:\/\/palworldcardgame\.wiki\/ja\/cards"/);
   assert.match(xml, /<lastmod>2026-07-31T00:00:00\.000Z<\/lastmod>/);
   assert.match(xml, /<lastmod>2026-07-30T00:00:00\.000Z<\/lastmod>/);
+  assert.match(xml, /<lastmod>2026-08-07T00:00:00\.000Z<\/lastmod>/);
   assert.doesNotMatch(xml, /<priority>/);
   assert.doesNotMatch(xml, /<changefreq>/);
 

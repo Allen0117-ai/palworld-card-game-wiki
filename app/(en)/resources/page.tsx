@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Palworld Card Game Sources & Official Resources",
-  description: "A curated starting point for official Palworld Card Game rules, card data, products, retailers, events, deck tools and community discussion.",
+  description: "Official and independent sources for Palworld Card Game rules, card data, products, retailers, events, deck tools and community discussion.",
   path: "/resources",
   absoluteTitle: true,
 });
@@ -50,6 +50,7 @@ const resourceGroups = [
     links: [
       { label: "Official X", description: "Short product, event and campaign announcements from the English account.", href: "https://x.com/PalworldOCG_EN", source: "Official · Social updates" },
       { label: "Official tutorial video", description: "The publisher's full learn-to-play video; its prototype cards are not tournament legal.", href: "https://www.youtube.com/watch?v=UdbMWxWcMcw", source: "Official · YouTube" },
+      { label: "Official Play Guide video", description: "A shorter subtitled demonstration of Souls, Structures, attacks and the board.", href: "https://www.youtube.com/watch?v=jniYAuCaaBE", source: "Official · YouTube" },
       { label: "Official Facebook", description: "Official campaign and event posts from Palworld OCG.", href: "https://www.facebook.com/PalworldOCG/", source: "Official · Social updates" },
       { label: "Official Instagram", description: "Official card artwork, product and event posts.", href: "https://www.instagram.com/palworldocg_en/", source: "Official · Social updates" },
       { label: "PalworldTCG on Reddit", description: "Player questions, early deck experiments and collecting discussion.", href: "https://www.reddit.com/r/PalworldTCG/", source: "Community · Unverified discussion" },
@@ -63,7 +64,7 @@ export default function ResourcesPage() {
   return (
     <>
       <header className="page-hero shell">
-        <p className="eyebrow"><span>Curated information hub</span> · Checked July 31, 2026</p>
+        <p className="eyebrow"><span>Official and independent sources</span> · Checked August 7, 2026</p>
         <h1>Palworld Card Game<br />official resources.</h1>
         <p>Use these links to check official rules, cards, products, retailers and events. Independent and community sources are labeled separately.</p>
       </header>

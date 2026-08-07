@@ -17,10 +17,10 @@ export async function generateMetadata({
   return createPageMetadata({
     title: question
       ? `${question.slice(0, 42)}${question.length > 42 ? "…" : ""} – Rule Answer`
-      : "Palworld TCG Rules – Rulebook PDF & Official Q&A",
+      : "Palworld TCG Rules – Deck Size, Turn Order & Official Q&A",
     description: question
       ? `See the sourced Palworld Card Game ruling for “${question}” and share the answer with your playgroup.`
-      : "Search Palworld TCG rules in plain English, open the official rulebook PDF and check all 97 launch-day Q&A rulings with source links.",
+      : "Check Palworld TCG deck size, Soul Deck, colors, turn order and combat, then search every official launch Q&A with direct source links.",
     path: "/rules",
     absoluteTitle: true,
   });
@@ -43,9 +43,13 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
       }} />
       <header className={`page-hero rules-hero shell${hasQuery ? " has-query" : ""}`}>
         <div className="rules-query-desktop-copy">
-          <p className="eyebrow"><span>Rules answer center</span> · Checked July 30, 2026</p>
+          <p className="eyebrow"><span>Rules answer center</span> · Checked August 7, 2026</p>
           <h1>Palworld TCG rules.<br />Get the ruling.</h1>
           <p>Search in normal language. We combine plain-English essentials with all {officialRuleCount} official launch-day Q&amp;As and always show where the answer came from.</p>
+          <div className="quick-answer">
+            <strong>Rules in 20 seconds</strong>
+            <p>Build exactly 50 Main Deck cards plus a separate 10-card Soul Deck, using no more than two named colors. Each turn follows Stand → Draw → Soul → Main → End; the first player skips their first Draw Phase.</p>
+          </div>
           <div className="article-actions">
             <a className="button ghost" href="https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" target="_blank" rel="noreferrer">Open official rules PDF ↗</a>
             <Link className="button ghost" href="/blog/how-to-play-palworld-card-game">Read the beginner rulebook guide</Link>

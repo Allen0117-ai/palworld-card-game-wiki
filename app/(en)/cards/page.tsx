@@ -13,18 +13,39 @@ export const metadata: Metadata = createPageMetadata({
   absoluteTitle: true,
 });
 
+const cardListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Palworld TCG Card List – BP01 and Trial Decks",
+  numberOfItems: cards.length,
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: cards.length,
+    itemListElement: cards.map((card, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${card.name} ${card.number}`,
+      url: `https://palworldcardgame.wiki/card/${card.slug}`,
+    })),
+  },
+};
+
 type CardSearchParams = Promise<{ q?: string; color?: string; set?: string; type?: string }>;
 
 export default async function CardsPage({ searchParams }: { searchParams: CardSearchParams }) {
   const { q = "", color = "all", set = "all", type = "all" } = await searchParams;
   return (
     <>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "CollectionPage", name: "Palworld Card Game launch card database", numberOfItems: cards.length }} />
+      <JsonLd data={cardListJsonLd} />
       <header className="page-hero shell">
         <p className="eyebrow"><span>Official data snapshot</span> · Updated July 30, 2026</p>
         <h1>Palworld TCG<br />card list.</h1>
         <p>Search all 148 launch main-deck card entries: 100 BP01 cards plus 24 unique cards from each Trial Deck. Filter by set, color, type, cost or rarity, then open card text without leaving the page.</p>
       </header>
+      <section className="shell section" aria-labelledby="card-list-coverage">
+        <h2 id="card-list-coverage">What is included in this Palworld TCG card list?</h2>
+        <p>The database links every numbered English launch card from <Link className="text-link" href="/cards?set=EBP01">Dawn of Palpagos BP01</Link>, <Link className="text-link" href="/cards?set=ETD01">TD01 Red / Blue</Link> and <Link className="text-link" href="/cards?set=ETD02">TD02 Green / Purple</Link>. Open any result for official text, stats, rarity, related decks and the deck-builder shortcut.</p>
+      </section>
       <CardExplorer key={`${q}-${color}-${set}-${type}`} initialQuery={q} initialColor={color} initialSet={set} initialType={type} />
       <div className="shell">
         <HubLinkGrid

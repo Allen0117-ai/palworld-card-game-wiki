@@ -9,6 +9,7 @@ import { getGuidePrimaryImage, GuideSeoImagePanel } from "@/components/SeoImageP
 import { SharePanel } from "@/components/SharePanel";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
+import { VideoEmbed } from "@/components/VideoEmbed";
 import type { Metadata } from "next";
 import {
   createBreadcrumbJsonLd,
@@ -61,6 +62,19 @@ function GuideCardStrip({ numbers, caption }: { numbers: string[]; caption: stri
   );
 }
 
+type GuideSource = { label: string; href: string };
+type GuideSourceKind = "Official" | "Official video" | "Community" | "Independent";
+
+function getGuideSourceKind(source: GuideSource): GuideSourceKind {
+  const label = source.label.toLowerCase();
+  const hostname = new URL(source.href).hostname.replace(/^www\./, "");
+
+  if (hostname === "reddit.com" || label.includes("community")) return "Community";
+  if ((hostname === "youtube.com" || hostname === "youtu.be") && label.includes("official")) return "Official video";
+  if (label.includes("official") || hostname.endsWith("palworld-official-cardgame.com")) return "Official";
+  return "Independent";
+}
+
 export function generateStaticParams() {
   return guides.map((guide) => ({ slug: guide.slug }));
 }
@@ -83,11 +97,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
   "palworld-booster-box": {
     label: "The short answer",
-    answer: "A sealed Dawn of Palpagos BP01 booster box contains 12 packs with 7 cards in each pack—84 cards total. Buy a box to collect or upgrade decks; buy a Trial Deck first if you need a complete deck that is ready to play.",
+    answer: "A sealed Dawn of Palpagos BP01 booster box contains 12 packs with 7 cards per pack—84 cards total. The official Japanese carton contains 12 boxes, or 144 packs and 1,008 cards before duplicates. Confirm English case quantities with the seller because the English product page does not publish a universal case configuration.",
   },
   "how-to-play-palworld-card-game": {
-    label: "The short version",
-    answer: "To play the Palworld Official Card Game, each player needs an exact 50-card Main Deck and a separate 10-card Soul Deck. Set both players to 10 life, draw five Main Deck cards and allow one full-hand mulligan. The second player begins with one ready Soul. On each turn, stand your cards, draw, add two Souls, then use the Main Phase to play cards, activate abilities and attack with Pals. Rest Souls to pay costs. A player attack can be blocked by resting a defending Pal; if it reaches the player, reveal cards for a Damage Check up to the attacker's Strike. A Lucky icon stops that life loss. You win by reducing the opponent to 0 life. A player also loses when their Main Deck has no cards remaining. The first player skips their first Draw Phase, and normal attacks cannot target a standing opposing Pal unless an effect such as Assault allows it.",
+    label: "Start in three steps",
+    answer: "1) Use a 50-card Main Deck and separate 10-card Soul Deck; set life to 10 and draw five cards. 2) Take turns in Stand, Draw, Soul, Main and End order, resting Souls to pay costs. 3) Deploy Pals, attack and block; reduce the opponent to 0 life or empty their Main Deck to win the match.",
   },
   "palworld-card-game-deck-building-rules": {
     label: "Legal deck checklist",
@@ -110,8 +124,8 @@ const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
     answer: "The bold keyword is a reusable rules shortcut. Parenthetical text explains it. The official Q&A says the effect is unchanged when a card omits the reminder text.",
   },
   "palworld-tcg-rarity-guide": {
-    label: "Base rarity",
-    answer: "Dawn of Palpagos uses C, U, R and RR for base cards. The set also has 61 parallel card types. Rarity describes distribution and treatment, not automatic deck strength.",
+    label: "Rarity in one minute",
+    answer: "Dawn of Palpagos uses C, U, R and RR for base cards. Its parallel list also uses SR, OSR, SP and SSP, while Trial Decks use TSR and TSP. Match the complete card number before buying: rarity describes the printed treatment and scarcity, not automatic deck strength or guaranteed value.",
   },
   "dawn-of-palpagos-chase-cards": {
     label: "Collector answer",
@@ -212,6 +226,16 @@ const guideContent: Record<string, React.ReactNode> = {
       <h3>Pack breakdown — 12 packs × 7 cards</h3>
       <p>Each sealed box contains 12 booster packs, and each pack contains 7 cards. The cards can include Pals, Gear, Events and Structures from the four colors plus Colorless cards.</p>
 
+      <h2>How many boxes are in a Palworld booster case?</h2>
+      <p>The official Japanese product specification calls the outer case a carton and lists <strong>12 boxes per carton</strong>. With 12 packs in each box and 7 cards in each pack, that Japanese carton contains 144 packs and 1,008 cards before duplicates.</p>
+      <div className="comparison-table" role="region" aria-label="Palworld booster box and Japanese carton quantities" tabIndex={0}>
+        <div className="comparison-head"><span>Product</span><strong>Sealed quantity</strong><strong>Total cards</strong></div>
+        <div><span>1 pack</span><p>7 cards</p><p>7 cards</p></div>
+        <div><span>1 box</span><p>12 packs</p><p>84 cards</p></div>
+        <div><span>1 Japanese carton</span><p>12 boxes / 144 packs</p><p>1,008 cards</p></div>
+      </div>
+      <div className="callout"><strong>English case warning:</strong> the official English BP01 page confirms 12 packs per box but does not publish a case count. Before buying an English “case,” ask the seller how many factory-sealed boxes are included and whether the listing is a distributor case or a store-made bundle.</div>
+
       <h3>Card rarities and pull rates</h3>
       <p>The official base rarities are C, U, R and RR, with separate parallel treatments. Bushiroad has not published guaranteed per-box pull odds, so no specific number of rare or parallel cards should be treated as guaranteed.</p>
       <div className="callout"><strong>Pull-rate warning:</strong> early box openings are useful observations, but they are not official odds. See our <Link className="text-link" href="/blog/dawn-of-palpagos-pull-rates">verified pull-rate tracker</Link> before relying on community estimates.</div>
@@ -262,6 +286,8 @@ const guideContent: Record<string, React.ReactNode> = {
       <p>A Dawn of Palpagos BP01 booster box contains 12 booster packs.</p>
       <h3>How many cards are in a Palworld Booster Box?</h3>
       <p>There are 7 cards per pack and 12 packs per box, for 84 cards total. Duplicates are possible.</p>
+      <h3>How many booster boxes are in a Palworld case?</h3>
+      <p>The official Japanese carton contains 12 boxes. The official English product page does not publish a universal English case count, so verify the exact sealed quantity in the seller&apos;s listing.</p>
       <h3>Are Palworld Booster Box pull rates guaranteed?</h3>
       <p>No official per-box pull odds have been published. Do not treat early opening videos or small community samples as guaranteed ratios.</p>
       <h3>Can I play with one Booster Box?</h3>
@@ -285,18 +311,13 @@ const guideContent: Record<string, React.ReactNode> = {
 
       <h2>Watch the official game tutorial</h2>
       <p>This 11-minute publisher tutorial shows the table layout, turn flow, card deployment, attacks, blocking and Damage Checks. Keep the current Quick Manual nearby for exact wording and any later rules updates.</p>
-      <figure className="official-video">
-        <div>
-          <iframe
-            src="https://www.youtube.com/embed/UdbMWxWcMcw"
-            title="Palworld Official Card Game tutorial video"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </div>
-        <figcaption>Official tutorial · 11:10 · Published June 19, 2026 · <a href="https://www.youtube.com/watch?v=UdbMWxWcMcw" target="_blank" rel="noreferrer">Open on YouTube ↗</a></figcaption>
-      </figure>
+      <VideoEmbed
+        videoId="UdbMWxWcMcw"
+        title="Palworld Official Card Game tutorial"
+        description="Watch the full setup, turn flow, combat and Damage Check demonstration."
+        sourceLabel="Official tutorial · 11:09 · Published June 18, 2026"
+        note="Prototype cards shown; current rules and card text control"
+      />
 
       <h2>How do you set up your first game?</h2>
       <ol>
@@ -678,6 +699,18 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-card-game-2026-roadmap": (
     <>
+      <h2>Confirmed Palworld TCG release dates</h2>
+      <div className="comparison-table" role="region" aria-label="Confirmed and unconfirmed Palworld TCG 2026 dates" tabIndex={0}>
+        <div className="comparison-head"><span>Date</span><strong>Status</strong><strong>Confirmed release or event</strong></div>
+        <div><span>Through Aug 31</span><p>Confirmed</p><p>Grand Release Tournaments at participating stores.</p></div>
+        <div><span>Sep–Oct</span><p>Confirmed window</p><p>Store demo sessions; exact dates depend on each location.</p></div>
+        <div><span>Sep 25</span><p>Confirmed</p><p>Official playmats and storage boxes.</p></div>
+        <div><span>Oct 2</span><p>Confirmed</p><p>Sleeve &amp; Card Set Vol. 1.</p></div>
+        <div><span>Oct 16</span><p>Confirmed</p><p>Four official sleeve designs.</p></div>
+        <div><span>Oct 30</span><p>Confirmed</p><p>Legends Awaken BP02 booster release.</p></div>
+      </div>
+      <div className="callout"><strong>Still unconfirmed:</strong> the complete BP02 numbered card list, exact parallel count, per-region preorder allocation and a worldwide BP01 restock calendar. These stay marked as pending until an official source publishes them.</div>
+
       <h2>July 9: 3.5 million pack sales announced</h2>
       <p>Bushiroad announced that Dawn of Palpagos had reached 3.5 million pack sales worldwide before the July 30 release. This is an official publisher milestone, not a secondary-market price signal or a guarantee that every local store has stock.</p>
       <h2>July 30: Dawn of Palpagos launch</h2>
@@ -779,10 +812,11 @@ const guideContent: Record<string, React.ReactNode> = {
   ...commercialGuideContent,
 };
 
-const officialSources: Record<string, Array<{ label: string; href: string }>> = {
+const officialSources: Record<string, GuideSource[]> = {
   "palworld-booster-box": [
     { label: "Official BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official launch product announcement", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
+    { label: "Official Japanese box and 12-box carton specification", href: "https://palworld-official-cardgame.com/products/bp01" },
     { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
     { label: "Official retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
   ],
@@ -853,6 +887,7 @@ const officialSources: Record<string, Array<{ label: string; href: string }>> = 
     { label: "Official September–October demo sessions", href: "https://en.palworld-official-cardgame.com/events/demo-session-september-october-2026" },
     { label: "Official accessory release list", href: "https://en.palworld-official-cardgame.com/products" },
     { label: "Official Sleeve & Card Set Vol.1 contents", href: "https://en.palworld-official-cardgame.com/products/ss01" },
+    { label: "Official English X updates", href: "https://x.com/PalworldOCG_EN" },
   ],
   "palworld-card-game-errata-tracker": [
     { label: "Official Red / Blue Trial Deck errata notice", href: "https://en.palworld-official-cardgame.com/products/td01" },
@@ -980,6 +1015,19 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       { name: guide.heading || guide.title, path: `/blog/${guide.slug}` },
     ]),
   ];
+  if (slug === "how-to-play-palworld-card-game") {
+    structuredData.push({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: "Palworld OFFICIAL CARD GAME Tutorial Video",
+      description: "Official publisher tutorial covering setup, turn flow, card deployment, attacks, blocking and Damage Checks.",
+      thumbnailUrl: "https://i.ytimg.com/vi/UdbMWxWcMcw/hqdefault.jpg",
+      uploadDate: "2026-06-18",
+      duration: "PT11M9S",
+      embedUrl: "https://www.youtube-nocookie.com/embed/UdbMWxWcMcw",
+      contentUrl: "https://www.youtube.com/watch?v=UdbMWxWcMcw",
+    });
+  }
   if (boosterBoxFaqs.length) {
     structuredData.push({
       "@context": "https://schema.org",
@@ -1072,11 +1120,17 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <section className="source-panel">
         <p className="eyebrow">Sources and evidence</p>
         <h2>Source links</h2>
-        <p>Official sources come first. Community sources are clearly labeled and used only where publisher data is unavailable.</p>
+        <p>Official facts, video demonstrations and community observations are labeled separately. Community evidence never replaces a current rule, card text or product notice.</p>
         <div>
-          {(officialSources[slug] || []).map((source) => (
-            <a href={source.href} target="_blank" rel="noreferrer" key={source.href}>{source.label} ↗</a>
-          ))}
+          {(officialSources[slug] || []).map((source) => {
+            const sourceKind = getGuideSourceKind(source);
+            return (
+              <a href={source.href} target="_blank" rel="noreferrer" key={source.href}>
+                <span className="source-kind">{sourceKind}</span>
+                <strong>{source.label} ↗</strong>
+              </a>
+            );
+          })}
         </div>
       </section>
 

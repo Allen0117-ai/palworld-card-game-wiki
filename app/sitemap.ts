@@ -64,18 +64,29 @@ const japaneseGuidePairs: Record<string, string> = {
   "keyword-glossary": "palworld-card-game-keyword-glossary",
 };
 
+const strategyCardNumbers = new Set(["EBP01-015", "EBP01-027", "EBP01-051", "EBP01-073"]);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedEnglishGuideSlugs = new Set(Object.values(japaneseGuidePairs));
   return [
-    ...["", "/cards", "/decks", "/tools/deck-builder", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-08-04")),
-    ...["/rules"].flatMap((path) => localizedSitemapEntries(path, "2026-07-31")),
+    ...["", "/cards", "/tools/deck-builder"].flatMap((path) => localizedSitemapEntries(path, "2026-08-07")),
+    ...["/decks", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-08-04")),
+    ...["/rules"].flatMap((path) => localizedSitemapEntries(path, "2026-08-07")),
     ...localizedSitemapPairEntries("/blog", "/ja/guides", "2026-08-05", "2026-08-04"),
-    ...["/tools/dawn-of-palpagos-checklist", "/resources"].map((path) => sitemapEntry(path, "2026-08-04")),
-    ...["/sets", "/sets/legends-awaken-bp02", "/cards/promos", "/events"].map((path) => sitemapEntry(path, "2026-08-05")),
-    sitemapEntry("/updates", "2026-08-06"),
-    ...["/cards/pals", "/about", "/privacy", "/terms", "/ai-policy"]
+    sitemapEntry("/tools/dawn-of-palpagos-checklist", "2026-08-04"),
+    sitemapEntry("/resources", "2026-08-07"),
+    ...["/sets", "/cards/promos", "/events"].map((path) => sitemapEntry(path, "2026-08-05")),
+    sitemapEntry("/sets/legends-awaken-bp02", "2026-08-07"),
+    sitemapEntry("/updates", "2026-08-07"),
+    sitemapEntry("/about", "2026-08-07"),
+    ...["/cards/pals", "/privacy", "/terms", "/ai-policy"]
       .map((path) => sitemapEntry(path, "2026-07-31")),
-    ...cards.flatMap((card) => localizedSitemapEntries(`/card/${card.slug}`, "2026-07-30")),
+    ...cards.flatMap((card) => localizedSitemapPairEntries(
+      `/card/${card.slug}`,
+      `/ja/card/${card.slug}`,
+      strategyCardNumbers.has(card.number) ? "2026-08-07" : "2026-07-30",
+      "2026-07-30",
+    )),
     ...decks.flatMap((deck) => localizedSitemapEntries(`/deck/${deck.slug}`, deck.modified)),
     ...japaneseGuides.flatMap((guide) => localizedSitemapPairEntries(
       `/blog/${japaneseGuidePairs[guide.slug]}`,

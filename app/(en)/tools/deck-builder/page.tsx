@@ -22,10 +22,10 @@ export async function generateMetadata({
   return createPageMetadata({
     title: sharedCardCount
       ? `${sharedName.slice(0, 32)} – Palworld Deck`
-      : "Palworld TCG Deck Builder – 148 Cards",
+      : "Palworld TCG Deck Builder & Legal Deck Checker",
     description: sharedCardCount
       ? `Open this ${sharedCardCount}-card Palworld TCG deck, change any card and share your own version. No account needed.`
-      : "Build a Palworld TCG deck with all BP01 and Trial Deck cards. Check the 50-card, four-copy and two-color rules, then save a draft on your device.",
+      : "Build with all 148 launch cards and check the 50-card, four-copy, two-color and eight-Lucky limits. Save and share a legal Palworld TCG deck free.",
     path: "/tools/deck-builder",
     absoluteTitle: true,
   });
@@ -62,7 +62,7 @@ export default async function DeckBuilderPage({
       <JsonLd data={{ "@context": "https://schema.org", "@type": "WebApplication", name: "Palworld TCG Deck Builder", url: "https://palworldcardgame.wiki/tools/deck-builder", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }} />
       <header className="page-hero shell">
         <p className="eyebrow"><span>Free tool</span> · No account needed</p>
-        <h1>Palworld TCG<br />deck builder.</h1>
+        <h1>Palworld TCG<br />deck builder &amp; legal checker.</h1>
         <p>Search all 148 launch Main Deck cards. The builder checks 50 cards, same-name copies, two colors and the eight-Lucky limit, then shows your cost curve and lets you test an opening hand. Drafts stay on your device.</p>
         {hasSharedDeck ? <p className="builder-template-note">A friend shared this deck with you. <strong>Remix it below, then share your version back.</strong></p> : null}
         {!hasSharedDeck && starterDeck ? <p className="builder-template-note">Starting deck loaded: <strong>{starterDeck.name}</strong>. Save it on this device or customize the cards below.</p> : null}

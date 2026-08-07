@@ -6,8 +6,8 @@ import { HubLinkGrid } from "@/components/HubLinkGrid";
 import { officialRuleCount } from "@/lib/rules";
 import { createPageMetadata } from "@/lib/seo";
 
-const homeTitle = "Palworld Card Game Guide – Rules, Cards, Decks & Builder";
-const homeDescription = "Learn Palworld Card Game rules, browse all 148 launch cards, compare Trial Decks and products, track BP01, find events, and build a legal deck for free.";
+const homeTitle = "Palworld Trading Card Game (TCG) – Rules, Cards & Decks";
+const homeDescription = "Your Palworld trading card game guide for rules, all 148 launch cards, deck lists, BP01 and BP02 products, events, and a free legal deck builder.";
 
 export const metadata = createPageMetadata({
   title: homeTitle,
@@ -43,13 +43,13 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span>Player field guide</span> · Learn · Build · Collect</p>
             <h1>
-              <span className="hero-title-keyword">Palworld Card Game Wiki</span>
+              <span className="hero-title-keyword">Palworld Trading Card Game Wiki</span>
               Find your answer.<br /><em>Build your Pal team.</em>
             </h1>
             <p className="hero-lede">
-              Learn your first game, search official rulings, browse all 148
-              launch main-deck cards, and build a legal deck. Choose the next
-              task that matches how you want to play.
+              Learn the Palworld TCG, search official rulings, browse all 148
+              launch main-deck cards, follow BP02 and build a legal deck. Choose
+              the next task that matches how you want to play.
             </p>
             <HeroSearch />
             <div className="hero-actions">
@@ -146,7 +146,7 @@ export default function Home() {
       <div className="shell" data-reveal>
         <HubLinkGrid
           eyebrow="Wiki index"
-          title="Open the tool or answer you need."
+          title="Find the guide, tool or answer you need."
           intro="The main database, rules, deck, set and update pages are collected here without repeating them further down the homepage."
           items={[
             { href: "/blog/how-to-play-palworld-card-game", label: "Start here", title: "How to play", description: "Learn setup, phases, attacks, blocking and winning." },

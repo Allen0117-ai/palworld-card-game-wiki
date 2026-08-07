@@ -1987,8 +1987,15 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 .official-video { margin: 28px 0 36px; overflow: hidden; border: 1px solid rgba(210, 182, 109, .3); background: #20231e; }
 .official-video > div { position: relative; aspect-ratio: 16 / 9; background: #0d0f0d; }
 .official-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-load-button { position: absolute; inset: 0; width: 100%; display: grid; place-content: center; justify-items: center; gap: 12px; padding: clamp(24px, 7vw, 68px); border: 0; background: radial-gradient(circle at center, rgba(94, 167, 186, .18), transparent 46%), linear-gradient(145deg, #20251f, #0d0f0d); color: var(--paper-light); text-align: center; cursor: pointer; }
+.video-load-button:hover, .video-load-button:focus-visible { background: radial-gradient(circle at center, rgba(210, 182, 109, .22), transparent 48%), linear-gradient(145deg, #252a23, #0d0f0d); outline: 2px solid var(--gold); outline-offset: -2px; }
+.video-play-icon { width: 54px; height: 54px; display: grid; place-items: center; padding-left: 4px; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 19px; }
+.video-load-button strong { font: 750 clamp(18px, 3vw, 28px)/1.2 var(--font-display); }
+.video-load-button > span:not(.video-play-icon) { max-width: 590px; color: #b7b9af; font-size: clamp(12px, 2vw, 15px); line-height: 1.6; }
+.video-load-button small { color: var(--sky); font-size: 10px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
 .official-video figcaption { padding: 12px 15px; color: #a9aba2; font-size: 11px; line-height: 1.6; }
 .official-video figcaption a { color: var(--sky); font-weight: 800; }
+.deck-video-section > p:not(.eyebrow) { max-width: 760px; color: #b0b2a9; line-height: 1.75; }
 .guide-card-strip { margin: 26px 0 34px; padding: 22px; border: 1px solid rgba(210, 182, 109, .28); background: linear-gradient(145deg, #282c25, #20231e); }
 .guide-card-strip > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .guide-card-strip a { min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; color: var(--paper-light); text-align: center; }
@@ -2042,7 +2049,18 @@ h2 { color: var(--paper-light); font-size: clamp(39px, 4.5vw, 59px); line-height
 .source-panel { margin-top: 68px; padding: 28px; border: 1px solid rgba(210, 182, 109, .3); background: #20231e; }
 .source-panel h2 { margin-top: 0; }
 .source-panel > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.source-panel a { min-height: 44px; padding: 9px 11px; display: inline-flex; align-items: center; border: 1px solid var(--line); color: var(--gold); font-size: 10px; text-transform: uppercase; letter-spacing: .07em; }
+.source-panel a { min-height: 52px; padding: 9px 11px; display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; border: 1px solid var(--line); color: var(--gold); font-size: 10px; text-transform: uppercase; letter-spacing: .07em; }
+.source-panel a:hover, .source-panel a:focus-visible { border-color: var(--gold); outline: none; }
+.source-panel a strong { color: var(--paper-light); font-size: 10px; line-height: 1.45; }
+.source-kind { color: var(--sky); font-size: 8px; font-weight: 850; letter-spacing: .12em; }
+@media (max-width: 600px) {
+  .official-video > div { min-height: 340px; aspect-ratio: auto; }
+  .video-load-button { gap: 9px; padding: 24px 18px; }
+  .video-play-icon { width: 46px; height: 46px; font-size: 16px; }
+  .video-load-button strong { font-size: 19px; }
+  .video-load-button > span:not(.video-play-icon) { font-size: 12px; }
+  .video-load-button small { font-size: 8px; }
+}
 .related-guides { margin-top: 45px; }
 .related-guides > a { min-height: 66px; display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 15px 0; border-bottom: 1px solid var(--line); }
 .related-guides > a span { color: #9b9d94; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }

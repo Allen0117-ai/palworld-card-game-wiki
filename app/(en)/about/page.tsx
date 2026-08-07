@@ -60,7 +60,7 @@ export default function AboutPage() {
       </section>
       <section className="simple-page-note">
         <h2>Independent and unofficial</h2>
-        <p>Official card and promotional images are displayed for identification, education and product promotion under the official media and fan-content guidance. ©Bushiroad ©PALWORLD.</p>
+        <p>Official card and promotional images are shown only to identify the cards, products and rules being discussed. ©Bushiroad ©PALWORLD.</p>
         <p>Palworld and all related names, characters and artwork belong to their respective owners. This site is not affiliated with, endorsed by or sponsored by Pocketpair, Inc. or Bushiroad.</p>
         <a className="text-link" href="mailto:paweyan163@gmail.com">Corrections or takedown request</a>
         <p><Link className="text-link" href="/terms">Read the site terms</Link> · <Link className="text-link" href="/ai-policy">AI and crawler policy</Link></p>

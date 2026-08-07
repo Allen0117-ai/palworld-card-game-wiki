@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { DeckExplorer, type DeckPreview } from "@/components/DeckExplorer";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
+import { VideoEmbed } from "@/components/VideoEmbed";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -36,9 +37,22 @@ export default function DecksPage() {
 
   return (
     <>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: decks.map((deck, index) => ({ "@type": "ListItem", position: index + 1, url: `https://palworldcardgame.wiki/deck/${deck.slug}` })) }} />
+      <JsonLd data={[
+        { "@context": "https://schema.org", "@type": "ItemList", itemListElement: decks.map((deck, index) => ({ "@type": "ListItem", position: index + 1, url: `https://palworldcardgame.wiki/deck/${deck.slug}` })) },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          name: "Palworld OFFICIAL CARD GAME Play Guide Video",
+          description: "Official subtitled play guide showing the board, Souls, attacks and Structures in motion.",
+          thumbnailUrl: "https://i.ytimg.com/vi/jniYAuCaaBE/hqdefault.jpg",
+          uploadDate: "2026-05-07",
+          duration: "PT13M19S",
+          embedUrl: "https://www.youtube-nocookie.com/embed/jniYAuCaaBE",
+          contentUrl: "https://www.youtube.com/watch?v=jniYAuCaaBE",
+        },
+      ]} />
       <header className="page-hero shell">
-        <p className="eyebrow"><span>Illustrated deck center</span> · Updated July 31, 2026</p>
+        <p className="eyebrow"><span>Illustrated deck center</span> · Updated August 7, 2026</p>
         <h1>Palworld TCG deck lists.<br />Learn the sequence.</h1>
         <p>Choose between two official Trial Deck lists and one complete 50-card BP01 beginner deck. Every starter deck guide shows what to play early, how the key cards combine and how the deck aims to finish.</p>
       </header>
@@ -66,6 +80,18 @@ export default function DecksPage() {
         />
       </div>
       <DeckExplorer decks={deckPreviews} />
+      <section className="shell section deck-video-section" aria-labelledby="deck-video-title">
+        <p className="eyebrow"><span>Watch before you build</span> · Official play guide</p>
+        <h2 id="deck-video-title">See how a first game moves.</h2>
+        <p>Watch the shorter official demonstration after comparing the decks. It shows how Souls, Pals, Structures and attacks fit together before you open a list in the builder.</p>
+        <VideoEmbed
+          videoId="jniYAuCaaBE"
+          title="Palworld Official Card Game Play Guide"
+          description="See the board, Souls, Structures and attacks in a compact subtitled demonstration."
+          sourceLabel="Official Play Guide · English subtitles"
+          note="Prototype cards shown; use current card text for final details"
+        />
+      </section>
       <div className="shell section">
         <HubLinkGrid
           eyebrow="Next step"

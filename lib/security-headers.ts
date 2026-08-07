@@ -9,7 +9,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://vercel.live",
   "connect-src 'self' https://*.vercel-insights.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms",
-  "frame-src 'self' https://www.youtube.com",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
 ].join("; ");
 
 export const SECURITY_HEADERS: Array<{ key: string; value: string }> = [
