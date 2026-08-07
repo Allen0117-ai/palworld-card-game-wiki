@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { SiteDocument } from "@/components/SiteDocument";
+import { ADSENSE_CLIENT_ID } from "@/lib/adsense";
 import { ANALYTICS_CONFIGURED, ANALYTICS_CONSENT_DEFAULTS_SCRIPT } from "@/lib/analytics-consent-defaults";
 import "../globals.css";
 
@@ -30,6 +31,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["https://palworldcardgame.wiki/og.png"],
   },
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT_ID,
+  },
 };
 
 export default function EnglishRootLayout({
@@ -38,11 +42,15 @@ export default function EnglishRootLayout({
   return (
     <SiteDocument
       language="en"
-      beforeInteractiveScripts={ANALYTICS_CONFIGURED ? (
-        <Script id="analytics-consent-defaults" strategy="beforeInteractive">
-          {ANALYTICS_CONSENT_DEFAULTS_SCRIPT}
-        </Script>
-      ) : null}
+      beforeInteractiveScripts={
+        <>
+          {ANALYTICS_CONFIGURED ? (
+            <Script id="analytics-consent-defaults" strategy="beforeInteractive">
+              {ANALYTICS_CONSENT_DEFAULTS_SCRIPT}
+            </Script>
+          ) : null}
+        </>
+      }
     >
       {children}
     </SiteDocument>

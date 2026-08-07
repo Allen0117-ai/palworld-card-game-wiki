@@ -25,7 +25,7 @@ export default function AboutPage() {
       <header className="simple-page-intro">
         <p className="eyebrow"><span>About</span> · Independent fan resource</p>
         <h1>About Palworld Card Game Wiki.</h1>
-        <p>Palworld Card Game Wiki is an unofficial, non-commercial database, learning guide and deck-building companion. Use it to check card text, learn the rules and prepare a deck.</p>
+        <p>Palworld Card Game Wiki is an unofficial, independent database, learning guide and deck-building companion. Use it to check card text, learn the rules and prepare a deck.</p>
       </header>
       <section className="info-card-grid" aria-label="What guides this site">
         <div><span>01</span><h2>Official facts first</h2><p>Rules, card data, errata and product pages decide factual claims.</p></div>
@@ -64,6 +64,11 @@ export default function AboutPage() {
         <p>Palworld and all related names, characters and artwork belong to their respective owners. This site is not affiliated with, endorsed by or sponsored by Pocketpair, Inc. or Bushiroad.</p>
         <a className="text-link" href="mailto:paweyan163@gmail.com">Corrections or takedown request</a>
         <p><Link className="text-link" href="/terms">Read the site terms</Link> · <Link className="text-link" href="/ai-policy">AI and crawler policy</Link></p>
+      </section>
+      <section className="simple-page-note">
+        <h2>Advertising and editorial independence</h2>
+        <p>The site may display clearly separated advertising to help cover hosting and maintenance. Advertising does not decide which cards, products, decks or opinions we publish, and paid or affiliate relationships are disclosed on the page where they apply.</p>
+        <Link className="text-link" href="/privacy#advertising">Read the advertising privacy disclosure</Link>
       </section>
     </article>
   );

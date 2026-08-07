@@ -18,12 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const card = cards.find((item) => item.slug === slug);
   if (!card) return {};
-  const strategy = getCardStrategy(card.number);
+
   return createPageMetadata({
     title: `${card.name} ${card.number} – Palworld TCG Card`,
-    description: card.hasGuide || strategy
-      ? `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`
-      : `Official card text, stats and set information for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`,
+    description: `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`,
     path: `/card/${card.slug}`,
     absoluteTitle: true,
     image: { url: `https://palworldcardgame.wiki${card.image}`, alt: getCardImageAlt(card) },
@@ -46,7 +44,7 @@ export default async function CardDetailPage({
   const displayImage = specialArtwork?.image || card.image;
   const displayNumber = specialArtwork?.variantNumber || card.number;
   const displayRarity = specialArtwork?.rarity || card.rarity;
-  const strategy = getCardStrategy(card.number);
+  const strategy = getCardStrategy(card);
   const relatedDecks = decks.filter((deck) => (
     deck.core.includes(card.slug)
     || deck.recipe?.some((entry) => entry.cardNumber === card.number)
@@ -116,32 +114,23 @@ export default async function CardDetailPage({
           <CardDetailsTable card={card} displayNumber={displayNumber} displayRarity={displayRarity} />
         </section>
         <ContentFreshnessPanel
-          updated={strategy ? "August 7, 2026" : "July 30, 2026"}
-          verified={strategy ? "August 7, 2026" : "July 30, 2026"}
-          sourceStatus={strategy ? "Official card text + editorial strategy" : "Official launch card database"}
-          summary={strategy
-            ? `Official card text plus an editorial strategy guide for ${card.name}.`
-            : `Official card text, stats, rarity and set information for ${card.name}.`}
+          updated="August 7, 2026"
+          verified="August 7, 2026"
+          sourceStatus="Official card text + editorial strategy"
+          summary={`Official card text plus an editorial strategy guide for ${card.name}.`}
         />
-        {strategy ? (
-          <section className="content-block">
-            <h2>{card.name} strategy guide</h2>
-            <p>{strategy.overview}</p>
-            <div className="comparison-table" role="region" aria-label={`${card.name} deck-building guidance`} tabIndex={0}>
-              <div className="comparison-head"><span>Question</span><strong>Recommendation</strong><strong>Reason</strong></div>
-              <div><span>Best deck</span><p>{strategy.bestIn}</p><p>Use the card where its printed effect supports the deck&apos;s existing plan.</p></div>
-              <div><span>Copies to test</span><p>{strategy.suggestedCopies}</p><p>Adjust only after recording how often it is useful in real opening and midgame hands.</p></div>
-            </div>
-            <h3>How to play {card.name}</h3>
-            <ol>{strategy.playPattern.map((step) => <li key={step}>{step}</li>)}</ol>
-            <div className="callout"><strong>Watch for:</strong> {strategy.watchFor}</div>
-          </section>
-        ) : card.hasGuide && (
-          <section className="content-block">
-            <h2>Strategy snapshot</h2>
-            <p>{card.summary} Start by testing two to four copies, then adjust once you know how often you want to see it in your opening and midgame hands.</p>
-          </section>
-        )}
+        <section className="content-block">
+          <h2>{card.name} strategy guide</h2>
+          <p>{strategy.overview}</p>
+          <div className="comparison-table" role="region" aria-label={`${card.name} deck-building guidance`} tabIndex={0}>
+            <div className="comparison-head"><span>Question</span><strong>Recommendation</strong><strong>Reason</strong></div>
+            <div><span>Best deck</span><p>{strategy.bestIn}</p><p>Use the card where its printed effect supports the deck&apos;s existing plan.</p></div>
+            <div><span>Copies to test</span><p>{strategy.suggestedCopies}</p><p>Adjust only after recording how often it is useful in real opening and midgame hands.</p></div>
+          </div>
+          <h3>How to play {card.name}</h3>
+          <ol>{strategy.playPattern.map((step) => <li key={step}>{step}</li>)}</ol>
+          <div className="callout"><strong>Watch for:</strong> {strategy.watchFor}</div>
+        </section>
         <section className="content-block">
           <h2>Decks using this card</h2>
           {relatedDecks.length ? <ul>{relatedDecks.map((deck) => <li key={deck.slug}><Link className="text-link" href={`/deck/${deck.slug}`}>{deck.name} →</Link></li>)}</ul> : <p>No featured launch deck uses this card yet. Try it in the deck builder.</p>}

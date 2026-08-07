@@ -81,7 +81,7 @@ export function PrivacyChoicesButton({ locale = "en" }: { locale?: "en" | "ja" }
       type="button"
       onClick={() => window.dispatchEvent(new Event(OPEN_PRIVACY_CHOICES_EVENT))}
     >
-      {locale === "ja" ? "プライバシー設定" : "Privacy choices"}
+      {locale === "ja" ? "解析設定" : "Analytics choices"}
     </button>
   );
 }

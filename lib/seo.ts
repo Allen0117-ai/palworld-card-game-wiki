@@ -138,7 +138,7 @@ export function createOrganizationJsonLd() {
     "@context": "https://schema.org",
     ...createPublisherJsonLd(),
     description:
-      "An independent, non-commercial Palworld Card Game database, rules guide and deck-building resource.",
+      "An independent Palworld Card Game database, rules guide and deck-building resource.",
     email: "mailto:paweyan163@gmail.com",
     contactPoint: {
       "@type": "ContactPoint",

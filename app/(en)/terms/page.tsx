@@ -13,9 +13,9 @@ export default function TermsPage() {
   return (
     <article className="simple-page simple-page-enhanced shell">
       <header className="simple-page-intro">
-        <p className="eyebrow"><span>Terms of use</span> · Effective August 5, 2026</p>
+        <p className="eyebrow"><span>Terms of use</span> · Effective August 7, 2026</p>
         <h1>Terms for using this site.</h1>
-        <p>Palworld Card Game Wiki is an independent, non-commercial fan resource. By using the site, you agree to use its guides and tools responsibly and to verify important tournament, purchasing and rules decisions with current official sources.</p>
+        <p>Palworld Card Game Wiki is an independent fan resource. By using the site, you agree to use its guides and tools responsibly and to verify important tournament, purchasing and rules decisions with current official sources.</p>
       </header>
 
       <section className="simple-page-panel">
@@ -32,6 +32,9 @@ export default function TermsPage() {
 
         <h2>External links</h2>
         <p>External stores, communities, videos and databases are operated by third parties. A link does not guarantee availability, price, accuracy, safety or endorsement. Check the destination and seller before sharing information or making a purchase.</p>
+
+        <h2>Advertising</h2>
+        <p>The site may use third-party advertising to support hosting and maintenance. Ads are separate from editorial content and do not imply that this site endorses an advertiser, product or offer. Pages with paid or affiliate relationships will identify them clearly.</p>
 
         <h2>Changes and contact</h2>
         <p>These terms may change when the site or its tools change. Material revisions will update the effective date on this page.</p>

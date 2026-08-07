@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { Cinzel, Inter, Oxanium } from "next/font/google";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { AnalyticsConsent } from "@/components/AnalyticsConsent";
 import { AnalyticsJourney } from "@/components/AnalyticsJourney";
 import { InteractionEffects } from "@/components/InteractionEffects";
@@ -41,6 +43,9 @@ export function SiteDocument({ beforeInteractiveScripts, children, language }: S
         <LocalizedSiteHeader />
         <main id="main-content" tabIndex={-1}>{children}</main>
         <LocalizedSiteFooter />
+        <Suspense fallback={null}>
+          <AdSenseScript />
+        </Suspense>
         <Analytics />
         <AnalyticsJourney />
         <AnalyticsConsent />

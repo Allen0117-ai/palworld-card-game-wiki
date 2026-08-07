@@ -15,6 +15,7 @@ import {
   japaneseColorLabel,
   japaneseTypeLabel,
 } from "@/lib/japanese";
+import { getJapaneseCardStrategy } from "@/lib/japanese-card-strategy";
 import { createBreadcrumbJsonLd, createPageMetadata, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return createPageMetadata({
     title: `${card.name}｜${card.japaneseNumber} カード効果・収録情報`,
-    description: `${card.name}（${card.japaneseNumber}）のカード効果、コスト、戦闘力、打撃力、レアリティ、収録セットを掲載。パルワールドカードゲーム日本語版のカード情報です。`,
+    description: `${card.name}（${card.japaneseNumber}）のカード効果、使い方、採用枚数、コスト、戦闘力、レアリティ、収録セットを掲載。`,
     path: `/ja/card/${card.slug}`,
     absoluteTitle: true,
     locale: "ja",
@@ -45,6 +46,7 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
   const { slug } = await params;
   const card = getJapaneseCard(slug);
   if (!card) notFound();
+  const strategy = getJapaneseCardStrategy(card);
 
   const relatedCards = japaneseCards
     .filter((item) => item.slug !== card.slug && item.color === card.color && item.type === card.type)
@@ -100,10 +102,10 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
           </section>
           <ContentFreshnessPanel
             locale="ja"
-            updated="2026-07-30"
-            verified="2026-07-30"
-            sourceStatus="公式日本語カードリスト"
-            summary={`${card.name}のカード効果、数値、レアリティ、収録情報を掲載しています。`}
+            updated="2026-08-07"
+            verified="2026-08-07"
+            sourceStatus="公式日本語カードリスト＋編集部による使い方分析"
+            summary={`${card.name}の公式カード情報に、デッキでの役割、採用枚数と使い方を追加しました。`}
           />
 
           <section className="content-block">
@@ -114,6 +116,19 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
               <Link className="text-link" href={`/ja/rules?q=${encodeURIComponent(card.japaneseNumber)}`}>このカードの公式Q&amp;Aを探す →</Link>
               <Link className="text-link" href={`/ja/tools/deck-builder?card=${card.slug}`} data-analytics-event="card_to_builder" data-analytics-label={card.japaneseNumber}>このカードをデッキに入れる →</Link>
             </div>
+          </section>
+
+          <section className="content-block">
+            <h2>{card.name}の使い方・採用枚数</h2>
+            <p>{strategy.overview}</p>
+            <div className="comparison-table" role="region" aria-label={`${card.name}のデッキ採用ガイド`} tabIndex={0}>
+              <div className="comparison-head"><span>確認点</span><strong>おすすめ</strong><strong>理由</strong></div>
+              <div><span>合うデッキ</span><p>{strategy.bestIn}</p><p>カードの色と効果を、デッキの中心となる動きに合わせます。</p></div>
+              <div><span>採用枚数</span><p>{strategy.suggestedCopies}</p><p>初手と中盤で使えた回数を記録し、実戦後に調整します。</p></div>
+            </div>
+            <h3>{card.name}を使う3ステップ</h3>
+            <ol>{strategy.playPattern.map((step) => <li key={step}>{step}</li>)}</ol>
+            <div className="callout"><strong>注意点：</strong>{strategy.watchFor}</div>
           </section>
 
           <section className="content-block">
