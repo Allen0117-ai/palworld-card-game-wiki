@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import Image from "next/image";
 import { cardByNumber, guides } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
@@ -10,6 +12,7 @@ import { SharePanel } from "@/components/SharePanel";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
 import { VideoEmbed } from "@/components/VideoEmbed";
+import { CommunityVideoCard } from "@/components/CommunityVideoCard";
 import type { Metadata } from "next";
 import {
   createBreadcrumbJsonLd,
@@ -145,11 +148,11 @@ const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
   },
   "palworld-card-game-2026-roadmap": {
     label: "Next confirmed dates",
-    answer: "Grand Release Tournaments run through August 31, new store demo sessions run during September and October, playmats and storage boxes arrive September 25, Sleeve & Card Set Vol. 1 arrives October 2, four official sleeve designs arrive October 16, and Legends Awaken releases October 30, 2026.",
+    answer: "Grand Release Tournaments run through August 31, store demos continue during September and October, accessories arrive from September 25, and Legends Awaken BP02 releases October 30. Bushiroad has also scheduled two new Trial Decks for December 18, 2026 and an unnamed new booster pack for January 29, 2027.",
   },
   "palworld-card-game-errata-tracker": {
-    label: "Confirmed launch correction",
-    answer: "The official Red/Blue Trial Deck page reports a printed card with omitted “Strike” text. Bushiroad says the card remains legal at every level of play and functions as though the correct Strike text is present.",
+    label: "Confirmed product notices",
+    answer: "Two official launch notices are confirmed. A Red/Blue Trial Deck card omits its Strike text but remains legal with the corrected behavior. BP01 packs and boxes misspell “Palworld”; Bushiroad says the packaging spelling will be corrected in future reprints, and the notice does not change any card text or gameplay.",
   },
   "palworld-card-game-color-guide": {
     label: "Choose by play style",
@@ -319,6 +322,15 @@ const guideContent: Record<string, React.ReactNode> = {
         note="Prototype cards shown; current rules and card text control"
       />
 
+      <h2>Watch a community beginner walkthrough</h2>
+      <p>This independent walkthrough gives new players another explanation of the basic flow. Use it as a visual companion; the current official rules and Q&amp;A still control every ruling.</p>
+      <CommunityVideoCard
+        videoId="08i8nsunjOk"
+        title="How to play the PalWorld Official Card Game"
+        channelName="The Card Gamer"
+        description="A second beginner-friendly look at setup, turns and playing a first match."
+      />
+
       <h2>How do you set up your first game?</h2>
       <ol>
         <li>Place and shuffle your Main Deck. Place the separate Soul Deck beside your Soul Area.</li>
@@ -428,6 +440,18 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>One Dawn of Palpagos BP01 booster pack.</li>
         <li>One parallel-rarity card replacing a card in the Main Deck.</li>
       </ul>
+      <h2>See the launch Trial Decks up close</h2>
+      <p>This independent first look shows the physical Trial Deck products before you choose one. Use the verified card-pool links below for exact card text and product facts.</p>
+      <CommunityVideoCard
+        videoId="ItjyWw-tGKY"
+        title="Trial Deck Dawn of Palpagos First Look"
+        channelName="Bob's Japan"
+        description="See the launch Trial Deck products, cards and included items in a hands-on preview."
+      />
+      <h2>Palworld starter deck lists: TD01 and TD02</h2>
+      <p>Palworld calls its starter products Trial Decks. Each official card-pool page below lists all 24 unique Main Deck cards, with card numbers, effects and a beginner play sequence. The public product pages do not publish copy-by-copy quantities for the fixed 50-card deck, so these are verified card pools rather than reconstructed recipes.</p>
+      <p><Link className="text-link" href="/deck/red-blue-launch-pressure">Open the TD01 Red / Blue card list →</Link></p>
+      <p><Link className="text-link" href="/deck/green-blue-base-value">Open the TD02 Green / Purple card list →</Link></p>
       <div className="comparison-table" role="region" aria-label="Trial Deck comparison table" tabIndex={0}>
         <div className="comparison-head"><span>Question</span><strong>Red / Blue TD01</strong><strong>Green / Purple TD02</strong></div>
         <div><span>Main feel</span><p>Damage, Structures, card flow</p><p>Ingredients, Taunt, Stealth, removal</p></div>
@@ -700,7 +724,7 @@ const guideContent: Record<string, React.ReactNode> = {
   "palworld-card-game-2026-roadmap": (
     <>
       <h2>Confirmed Palworld TCG release dates</h2>
-      <div className="comparison-table" role="region" aria-label="Confirmed and unconfirmed Palworld TCG 2026 dates" tabIndex={0}>
+      <div className="comparison-table" role="region" aria-label="Confirmed and unconfirmed Palworld TCG 2026 and 2027 dates" tabIndex={0}>
         <div className="comparison-head"><span>Date</span><strong>Status</strong><strong>Confirmed release or event</strong></div>
         <div><span>Through Aug 31</span><p>Confirmed</p><p>Grand Release Tournaments at participating stores.</p></div>
         <div><span>Sep–Oct</span><p>Confirmed window</p><p>Store demo sessions; exact dates depend on each location.</p></div>
@@ -708,6 +732,8 @@ const guideContent: Record<string, React.ReactNode> = {
         <div><span>Oct 2</span><p>Confirmed</p><p>Sleeve &amp; Card Set Vol. 1.</p></div>
         <div><span>Oct 16</span><p>Confirmed</p><p>Four official sleeve designs.</p></div>
         <div><span>Oct 30</span><p>Confirmed</p><p>Legends Awaken BP02 booster release.</p></div>
+        <div><span>Dec 18</span><p>Confirmed date</p><p>Two new Trial Decks; names and contents pending.</p></div>
+        <div><span>Jan 29, 2027</span><p>Confirmed date</p><p>New booster pack; name and set details pending.</p></div>
       </div>
       <div className="callout"><strong>Still unconfirmed:</strong> the complete BP02 numbered card list, exact parallel count, per-region preorder allocation and a worldwide BP01 restock calendar. These stay marked as pending until an official source publishes them.</div>
 
@@ -716,7 +742,7 @@ const guideContent: Record<string, React.ReactNode> = {
       <h2>July 30: Dawn of Palpagos launch</h2>
       <p>The first release wave contains the 100-card BP01 base set plus parallel treatments and two ready-to-play Trial Decks: Red/Blue TD01 and Green/Purple TD02. Each Trial Deck supplies a complete 50-card Main Deck, 10-card Soul Deck and the basic play accessories needed for a first match.</p>
       <h2>August 1–2: Singapore festival release events</h2>
-      <p>The July 30 official update confirms Palworld activities at Bushiroad Card Game Festival Singapore. The Special Release Tournament and Shacho Cup are free to enter through Bushi Navi; the Shacho Cup permits only unmodified English TD01 or TD02 decks. Demo participants can receive a Chillet foldable deck case, with an additional promo card for registering a Bushi Navi account after the demo.</p>
+      <p>Bushiroad Card Game Festival Singapore has ended. Its Palworld program included a Special Release Tournament, a Shacho Cup using unmodified English TD01 or TD02 decks, and demos with a Chillet foldable deck-case reward. This remains here as a completed launch milestone, not a current registration option.</p>
       <h2>August 1-31: Grand Release Tournament</h2>
       <p>Official tournament stores may hold one Grand Release Tournament during August. The announced format is Standard, up to five Swiss rounds, best-of-one and 30 minutes per round. Registration is handled through Bushi Navi, so players should check the actual store listing before travelling.</p>
       <ul>
@@ -739,7 +765,11 @@ const guideContent: Record<string, React.ReactNode> = {
       <h2>October 16: four official sleeve designs</h2>
       <p>The confirmed designs are Grizzbolt — Rumbling Tank, Relaxaurus — Hungry Gunner, Petallia — Sweet Blessings and Shadowbeak — Seed of Despair. Each sleeve measures approximately 6.7×9.2cm on the outside.</p>
       <h2>October 30: Legends Awaken BP02</h2>
-      <p>The second booster is confirmed as <strong>Legends Awaken</strong>. Bushiroad lists 100 normal card types across RR, R, U and C, plus parallel versions. The official announcement does not include the complete card list, exact parallel count or every new mechanic.</p>
+      <p>The second booster is confirmed as <strong>Legends Awaken</strong>. Bushiroad lists 100 normal card types across RR, R, U and C, plus parallel versions, and says the set features Legendary Pals. The official announcement does not include the complete card list, exact parallel count or every new mechanic.</p>
+      <h2>December 18: two new Trial Decks</h2>
+      <p>Bushiroad has scheduled two more Trial Decks for December 18, 2026. Their names, colors, card lists and product contents are not yet published, so they are not presented as TD03 or TD04 until the official catalog assigns those details.</p>
+      <h2>January 29, 2027: next booster pack</h2>
+      <p>A new booster pack is scheduled for January 29, 2027. The official announcement does not yet publish its name, set code, card count or featured Pals, so the set index records the date without inventing a product identity.</p>
       <h2>What to bookmark</h2>
       <ul>
         <li>Use the official news page for product announcements.</li>
@@ -759,6 +789,11 @@ const guideContent: Record<string, React.ReactNode> = {
         <span>One printed card omits its Strike text. The official product notice—not the misprint—controls how the card works.</span>
       </div>
       <p>The accessible text on the official product page does not name the affected card. Use the official notice and current card database when identifying the printed copy.</p>
+      <div className="verification-strip">
+        <strong>BP01 packaging · Confirmed</strong>
+        <span>The word “Palworld” is misspelled on first-wave packs and boxes. Bushiroad says it will adjust the packaging in future reprints.</span>
+      </div>
+      <p>This BP01 notice concerns the sealed packaging, not the playable card text. It confirms one future packaging correction, but it does not publish a reprint date or a card-level identifier for loose first-print cards. See the <Link className="text-link" href="/blog/palworld-tcg-first-edition-vs-reprint">First Edition vs reprint guide</Link> before paying for an unsupported loose-card claim.</p>
       <h2>Errata and Q&amp;A are different</h2>
       <ul>
         <li><strong>Errata</strong> corrects a printing or published-text error.</li>
@@ -774,7 +809,7 @@ const guideContent: Record<string, React.ReactNode> = {
       </ol>
       <h2>How to tell whether an errata report is official</h2>
       <p>A reliable correction links directly to the publisher and names the affected product or card, the corrected text or behavior, and the notice date. Treat screenshots and second-hand reports without that source as unconfirmed.</p>
-      <div className="callout"><strong>Last checked July 30, 2026:</strong> one product-page correction is confirmed. Search the Rules &amp; Q&amp;A center for card interactions that are rulings rather than misprints.</div>
+      <div className="callout"><strong>Last checked August 10, 2026:</strong> two product notices are confirmed: the TD01 Strike omission and the BP01 pack-and-box spelling error. Search the Rules &amp; Q&amp;A center for card interactions that are rulings rather than misprints.</div>
       <Link className="button primary" href="/rules">Search official rulings</Link>
     </>
   ),
@@ -825,6 +860,7 @@ const officialSources: Record<string, GuideSource[]> = {
     { label: "Official Rule & Q&A", href: "https://en.palworld-official-cardgame.com/rule" },
     { label: "Official beginner page", href: "https://en.palworld-official-cardgame.com/for-beginners" },
     { label: "Official tutorial video", href: "https://www.youtube.com/watch?v=UdbMWxWcMcw" },
+    { label: "Community video — The Card Gamer beginner walkthrough", href: "https://www.youtube.com/watch?v=08i8nsunjOk" },
   ],
   "palworld-card-game-deck-building-rules": [
     { label: "Official Quick Manual", href: "https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" },
@@ -834,6 +870,7 @@ const officialSources: Record<string, GuideSource[]> = {
     { label: "Official Red / Blue Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td01" },
     { label: "Official Green / Purple Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td02" },
     { label: "Official launch card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
+    { label: "Community video — Bob's Japan Trial Deck first look", href: "https://www.youtube.com/watch?v=ItjyWw-tGKY" },
   ],
   "palworld-card-game-products-where-to-buy": [
     { label: "Official product list", href: "https://en.palworld-official-cardgame.com/products" },
@@ -880,6 +917,7 @@ const officialSources: Record<string, GuideSource[]> = {
     { label: "Official 3.5 million pack-sales announcement", href: "https://en.palworld-official-cardgame.com/news/post-4" },
     { label: "Official Singapore festival update", href: "https://en.palworld-official-cardgame.com/news/post-bcgf2026" },
     { label: "Official Legends Awaken announcement", href: "https://en.palworld-official-cardgame.com/news/post-preoders-bp02-ss01" },
+    { label: "Official 2026–27 product schedule", href: "https://en.palworld-official-cardgame.com/news/post-becsu-26" },
     { label: "Official Grand Release Tournament", href: "https://en.palworld-official-cardgame.com/events/grand-release-tournament" },
     { label: "Official August shop tournaments", href: "https://en.palworld-official-cardgame.com/events/shop-tournaments" },
     { label: "Official Los Angeles Release Party", href: "https://en.palworld-official-cardgame.com/events/release-party-in-los-angeles" },
@@ -891,6 +929,7 @@ const officialSources: Record<string, GuideSource[]> = {
   ],
   "palworld-card-game-errata-tracker": [
     { label: "Official Red / Blue Trial Deck errata notice", href: "https://en.palworld-official-cardgame.com/products/td01" },
+    { label: "Official BP01 packaging correction notice", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official Rule & Q&A", href: "https://en.palworld-official-cardgame.com/rule" },
     { label: "Official card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
   ],
@@ -1104,6 +1143,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           ) : null}
         </div>
       </div>
+      <AdsterraBannerAd />
       <ContentFreshnessPanel
         updated={guide.updated}
         verified={guide.updated}
@@ -1116,6 +1156,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <div id="guide-content" className="guide-body">
         {guideContent[slug]}
       </div>
+
+      <AdsterraNativeAd />
 
       <section className="source-panel">
         <p className="eyebrow">Sources and evidence</p>

@@ -10,10 +10,11 @@ export type ContentMaintenance = {
 
 const englishGuideMaintenance: Record<string, ContentMaintenance> = {
   "how-to-play-palworld-card-game": {
-    changeSummary: "Added a three-step first-game answer while keeping the official tutorial, setup, turn flow and real-card practice sequence.",
+    changeSummary: "Added a labeled community beginner walkthrough alongside the official tutorial, setup, turn flow and real-card practice sequence.",
     history: [
       { date: "2026-08-06", note: "Added official video instruction and a real-card opening exercise." },
       { date: "2026-08-07", note: "Added the concise three-step first-game answer." },
+      { date: "2026-08-10", note: "Added a community beginner walkthrough that opens on the creator's YouTube channel." },
     ],
   },
   "palworld-booster-box": {
@@ -23,6 +24,13 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
   "palworld-card-game-deck-building-rules": {
     changeSummary: "Moved the exact 50-card, 10-Soul, two-color, four-copy and eight-Lucky limits into the title and direct answer.",
     history: [{ date: "2026-08-07", note: "Improved the legal-deck answer and search title." }],
+  },
+  "red-blue-vs-green-purple-trial-deck": {
+    changeSummary: "Added a community Trial Deck first look and clear TD01 and TD02 card-list links while keeping official facts separate.",
+    history: [
+      { date: "2026-08-10", note: "Added verified starter deck list paths for both launch Trial Decks." },
+      { date: "2026-08-10", note: "Added a labeled community video showing the physical Trial Deck products." },
+    ],
   },
   "palworld-card-game-products-where-to-buy": {
     changeSummary: "Added BP02 preorder status and country-specific buying checks for Canada, Germany, the Netherlands and Spain without inventing local retailers.",
@@ -47,12 +55,13 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     changeSummary: "Added the current name-match count between the 72 Pal records introduced in version 1.0 and the 148 launch cards.",
   },
   "palworld-card-game-2026-roadmap": {
-    changeSummary: "Added a confirmed-date table and separated pending BP02 card-list, parallel, preorder-allocation and BP01 restock details.",
+    changeSummary: "Added the December 18 Trial Deck release and January 29, 2027 booster date, while keeping unpublished names and set details marked as pending.",
     history: [
       { date: "2026-07-31", note: "Updated confirmed 2026 events and product dates." },
       { date: "2026-08-05", note: "Added BP02, tournament and promo-card details for each milestone." },
       { date: "2026-08-06", note: "Added newly confirmed demo sessions, playmats, storage boxes and sleeve releases." },
       { date: "2026-08-07", note: "Separated confirmed dates from details that remain unconfirmed." },
+      { date: "2026-08-10", note: "Added two December Trial Decks and the January 2027 booster schedule." },
     ],
   },
   "palworld-tcg-card-size-sleeves": {
@@ -63,7 +72,12 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     ],
   },
   "palworld-card-game-errata-tracker": {
-    changeSummary: "Added the confirmed TD01 printing correction and links to the current official text and Q&A.",
+    changeSummary: "Added the official BP01 pack-and-box spelling correction alongside the existing TD01 Strike errata.",
+    history: [{ date: "2026-08-10", note: "Added the BP01 packaging error and future-reprint correction notice." }],
+  },
+  "palworld-tcg-first-edition-vs-reprint": {
+    changeSummary: "Replaced the unknown-reprint wording with the official BP01 packaging correction, while keeping card-level print-run claims clearly unconfirmed.",
+    history: [{ date: "2026-08-10", note: "Added the confirmed packaging change planned for future BP01 reprints." }],
   },
   "palworld-tcg-deck-tier-list": {
     changeSummary: "Published a provisional launch ranking with no S tier while the official tournament deck database remains empty.",

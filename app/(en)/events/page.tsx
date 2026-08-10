@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
@@ -76,6 +78,7 @@ export default function EventsPage() {
         changeSummary="Added the September–October demo sessions, advance registration and Daedream participation reward."
         published="August 5, 2026"
       />
+      <AdsterraBannerAd />
 
       <h2>Where to find official Palworld TCG events</h2>
       <p>The publisher&apos;s events hub is the starting point for competitive and casual programs. It links to shop tournaments, demo sessions, release events, Challengers Cup and Masters League information as those programs open. Bushi Navi is the registration system used by the official event pages; a store&apos;s ordinary calendar or social post can provide useful local context, but it should match an official event listing before you rely on it.</p>
@@ -148,6 +151,7 @@ export default function EventsPage() {
       <h2>Where to check changing event dates</h2>
       <p>Use this guide for registration, tournament format and deck preparation. For dated product launches, festivals and new event announcements, check the <Link className="text-link" href="/blog/palworld-card-game-2026-roadmap">Palworld Card Game 2026 Roadmap</Link> and confirm the final details in Bushi Navi before travelling.</p>
 
+      <AdsterraNativeAd />
       <section className="source-panel">
         <p className="eyebrow">Official sources</p>
         <h2>Official tournament sources</h2>

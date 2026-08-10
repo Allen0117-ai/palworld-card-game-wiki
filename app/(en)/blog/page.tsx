@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
 import { guides } from "@/lib/data";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
 import { createPageMetadata } from "@/lib/seo";
@@ -37,6 +38,9 @@ export default function GuidesPage() {
           caption="Representative cards from all four Palworld Card Game colors featured across our launch guides."
           cardNumbers={["EBP01-002", "EBP01-025", "EBP01-050", "EBP01-074"]}
         />
+      </div>
+      <div className="shell">
+        <AdsterraBannerAd />
       </div>
       <section className="hub-index shell" aria-labelledby="guide-index-title">
         <div className="hub-index-heading">

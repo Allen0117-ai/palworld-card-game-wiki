@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 import { SECURITY_HEADERS } from "./lib/security-headers";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+        pathname: "/vi/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {

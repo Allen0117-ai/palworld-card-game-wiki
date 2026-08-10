@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
 import { JsonLd } from "@/components/JsonLd";
 import { japaneseGuides } from "@/lib/japanese-guides";
 import { createPageMetadata, JAPANESE_SOCIAL_IMAGE } from "@/lib/seo";
@@ -43,6 +44,9 @@ export default function JapaneseGuidesPage() {
         <h1>知りたい順に読める、<br />実戦ガイド。</h1>
         <p>初めての対戦、デッキ構築、商品選びまで、結論、手順、注意点の順にわかりやすく解説します。</p>
       </header>
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
       <section className="hub-index shell" aria-labelledby="ja-guide-index-title">
         <div className="hub-index-heading">
           <p className="hub-index-eyebrow">カテゴリから探す</p>

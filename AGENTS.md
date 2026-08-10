@@ -1,5 +1,9 @@
 # Palworld Card Game Wiki 项目规则
 
+## 部署环境
+
+- 线上站点 `palworldcardgame.wiki` 部署在 Vercel。不要因为仓库中存在 vinext、Worker 或 Cloudflare 兼容文件就判断线上运行在 Cloudflare。
+
 ## 长期升级方向
 
 网站采用“百科索引 + 持续更新的工具型内容”结构：

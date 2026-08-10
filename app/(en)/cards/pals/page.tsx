@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { CardExplorer } from "@/components/CardExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
@@ -39,6 +41,10 @@ export default function PalCardsPage() {
         <h1>Palworld Pals in the<br />Official Card Game.</h1>
         <p>Browse every Pal-type card from Dawn of Palpagos BP01 and both launch Trial Decks. Search by Pal name, then filter by set, color, cost or rarity.</p>
       </header>
+
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
 
       <div className="seo-image-panel-shell shell">
         <SeoImagePanel
@@ -88,6 +94,9 @@ export default function PalCardsPage() {
       </section>
 
       <CardExplorer fixedType="Pal" />
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
     </>
   );
 }

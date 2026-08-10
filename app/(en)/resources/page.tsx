@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -69,6 +70,7 @@ export default function ResourcesPage() {
         <p>Use these links to check official rules, cards, products, retailers and events. Independent and community sources are labeled separately.</p>
       </header>
       <div className="resource-hub shell">
+        <AdsterraBannerAd />
         <div className="verification-strip">
           <strong>Our source rule</strong>
           <span><b>Official</b> rules and card data decide facts. <b>Independent</b> sources help compare information. <b>Community</b> posts are ideas and discussion until verified.</span>

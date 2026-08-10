@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { CardTile } from "@/components/CardTile";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DeckGamePlan } from "@/components/DeckGamePlan";
@@ -104,6 +106,7 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
           published={deck.published}
           history={deck.modified !== deck.published ? [{ date: deck.modified, note: "Updated this deck guide and its current card references." }] : undefined}
         />
+        <AdsterraBannerAd />
         <div className="deck-at-a-glance" aria-label="Deck overview">
           <div><span>Colors</span><strong>{deck.colors.join(" + ")}</strong></div>
           <div><span>Style</span><strong>{deck.archetype}</strong></div>
@@ -137,6 +140,7 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
           </Link>
           <a className="button ghost" href={deck.sourceUrl} target="_blank" rel="noreferrer">Check official source ↗</a>
         </div>
+        <AdsterraNativeAd />
         <section className="deck-next-steps" aria-labelledby="keep-learning">
           <p className="eyebrow"><span>Keep learning</span> · Choose your next step</p>
           <h2 id="keep-learning">What would you like to learn next?</h2>

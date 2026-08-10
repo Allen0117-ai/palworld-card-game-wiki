@@ -23,7 +23,7 @@ export const commercialGuideQuickAnswers: Record<string, QuickAnswer> = {
   },
   "palworld-tcg-first-edition-vs-reprint": {
     label: "The short answer",
-    answer: "First Edition wording on sealed packaging describes that sealed product, but no official card-level First Edition stamp guide has been published for loose BP01 cards. Do not pay a premium for a loose card based only on an unsupported first-print claim.",
+    answer: "First Edition wording describes sealed packaging, not a proven card-level print run. Bushiroad confirms that a misspelling of “Palworld” on BP01 packs and boxes will be corrected in future reprints, but it has not published a reprint date or a loose-card First Edition identifier. Do not pay a loose-card premium based only on an unsupported first-print claim.",
   },
   "palworld-tcg-booster-box-vs-trial-deck-vs-singles": {
     label: "Fast recommendation",
@@ -177,7 +177,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
         <div><span>Sealed box says First Edition</span><p>The wording can be checked on the original packaging.</p><p>It supports a claim about that sealed product.</p></div>
         <div><span>Loose card is First Edition</span><p>No official card-level identification guide was found for BP01.</p><p>Do not accept the claim without official evidence.</p></div>
         <div><span>EBP01 proves First Edition</span><p>EBP01 is the printed set code on English BP01 cards.</p><p>The code alone is not an official First Edition certificate.</p></div>
-        <div><span>A reprint will look different</span><p>No official BP01 reprint comparison guide has been published.</p><p>Wait for verified product details before assuming a difference.</p></div>
+        <div><span>A reprint will look different</span><p>Bushiroad says the “Palworld” spelling error on BP01 packs and boxes will be corrected in future reprints.</p><p>The confirmed difference is packaging spelling, not a card-level First Edition mark.</p></div>
       </div>
 
       <h2>Can you identify a First Edition card after opening it?</h2>
@@ -185,10 +185,10 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       <div className="callout"><strong>Collector rule:</strong> value the exact card, rarity, language and condition you can verify. Treat a loose-card “first print” premium as unsupported until an official identifier exists.</div>
 
       <h2>What about first-wave packaging differences?</h2>
-      <p>Collectors have discussed printing and packaging differences in early English products. Community photos can document a physical difference, but they do not establish rarity, print quantity or future value. No official guide currently defines a packaging variation as a separate collectible card edition.</p>
+      <p>One difference is now official: Bushiroad reports a misspelling of “Palworld” on BP01 packs and boxes and says future reprints will correct it. That confirms a packaging correction, but it does not establish print quantity, rarity, future value or a separate collectible card edition.</p>
 
       <h2>Has a BP01 reprint been officially detailed?</h2>
-      <p>No official BP01 page currently gives a reprint date or explains how reprinted booster cards would be marked. The Trial Deck product pages do state that included cards may be reprinted or featured in future products, but that notice does not describe a BP01 booster reprint.</p>
+      <p>Only partly. The official BP01 page confirms the packaging spelling will be adjusted in future reprints, but it does not give a reprint date or explain how reprinted booster cards would be marked. The Trial Deck product pages separately state that included cards may be reprinted or featured in future products; that notice still does not create a BP01 card-level identifier.</p>
 
       <h2>How to buy sealed First Edition product safely</h2>
       <ol>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { CardMagnifier } from "@/components/CardMagnifier";
@@ -107,6 +109,7 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
             sourceStatus="公式日本語カードリスト＋編集部による使い方分析"
             summary={`${card.name}の公式カード情報に、デッキでの役割、採用枚数と使い方を追加しました。`}
           />
+          <AdsterraBannerAd />
 
           <section className="content-block">
             <h2>{card.name}のカード効果</h2>
@@ -130,6 +133,8 @@ export default async function JapaneseCardDetailPage({ params }: { params: Promi
             <ol>{strategy.playPattern.map((step) => <li key={step}>{step}</li>)}</ol>
             <div className="callout"><strong>注意点：</strong>{strategy.watchFor}</div>
           </section>
+
+          <AdsterraNativeAd />
 
           <section className="content-block">
             <h2>同じ色・種類の関連カード</h2>

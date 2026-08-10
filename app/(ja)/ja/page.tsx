@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { JapaneseCardTile } from "@/components/JapaneseCardTile";
 import { JapaneseDeckTile } from "@/components/JapaneseDeckTile";
 import { JapaneseHeroSearch } from "@/components/JapaneseHeroSearch";
@@ -125,6 +127,10 @@ export default function JapaneseHomePage() {
         <div>日本語カード148枚 <span>◆</span> 公式Q&amp;A 97件 <span>◆</span> デッキビルダー <span>◆</span> 初心者向け攻略 <span>◆</span> カード効果検索</div>
       </section>
 
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
+
       <section className="launch-paths shell" data-reveal>
         <div className="launch-paths-heading">
           <div><p className="eyebrow"><span>目的から探す</span> · 今やりたいこと</p><h2>答えまで、最短で。</h2></div>
@@ -139,6 +145,10 @@ export default function JapaneseHomePage() {
           <Link href="/ja/rules"><span>06 · 個別の疑問</span><strong>カード裁定を探したい</strong><p>基本回答と公式Q&amp;A {japaneseOfficialRuleCount}件をまとめて検索。</p></Link>
         </div>
       </section>
+
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
 
       <div className="shell" data-reveal>
         <HubLinkGrid
@@ -185,7 +195,7 @@ export default function JapaneseHomePage() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>公式最新情報</span> · 最終更新 2026.07.31</p><h2>公式の最新情報。</h2></div>
+          <div><p className="eyebrow"><span>公式最新情報</span> · 最終確認 2026.08.10</p><h2>公式の最新情報。</h2></div>
           <p>新商品、イベント、大会など、対戦前に確認しておきたい公式情報をまとめています。</p>
         </div>
         <div className="latest-update-grid">
@@ -193,6 +203,11 @@ export default function JapaneseHomePage() {
             <span>公式イベント · 7月28日</span>
             <strong>秋葉原で期間限定ストア開催</strong>
             <p>8月1日から9月13日まで開催。販売商品、営業時間、購入特典を公式情報で確認できます。</p>
+          </a>
+          <a href="https://en.palworld-official-cardgame.com/news/post-becsu-26" target="_blank" rel="noreferrer">
+            <span>公式商品情報 · 新日程</span>
+            <strong>12月に新TD2種、2027年1月に新ブースター</strong>
+            <p>12月18日に新トライアルデッキ2種、2027年1月29日に名称未発表の新ブースターが発売予定です。</p>
           </a>
           <a href="https://palworld-official-cardgame.com/products/category/booster-packs" target="_blank" rel="noreferrer">
             <span>公式商品情報 · 7月10日</span>

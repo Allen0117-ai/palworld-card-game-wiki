@@ -67,17 +67,22 @@ const japaneseGuidePairs: Record<string, string> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedEnglishGuideSlugs = new Set(Object.values(japaneseGuidePairs));
   return [
-    ...["", "/cards", "/tools/deck-builder"].flatMap((path) => localizedSitemapEntries(path, "2026-08-07")),
+    ...localizedSitemapEntries("", "2026-08-10"),
+    ...localizedSitemapPairEntries("/cards", "/ja/cards", "2026-08-10", "2026-08-07"),
+    ...localizedSitemapEntries("/tools/deck-builder", "2026-08-07"),
     ...["/decks", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-08-04")),
-    ...["/rules"].flatMap((path) => localizedSitemapEntries(path, "2026-08-07")),
+    ...localizedSitemapPairEntries("/rules", "/ja/rules", "2026-08-10", "2026-08-07"),
     ...localizedSitemapPairEntries("/blog", "/ja/guides", "2026-08-05", "2026-08-04"),
     sitemapEntry("/tools/dawn-of-palpagos-checklist", "2026-08-04"),
     sitemapEntry("/resources", "2026-08-07"),
-    ...["/sets", "/cards/promos", "/events"].map((path) => sitemapEntry(path, "2026-08-05")),
+    sitemapEntry("/sets", "2026-08-10"),
+    sitemapEntry("/cards/promos", "2026-08-05"),
+    sitemapEntry("/events", "2026-08-06"),
     sitemapEntry("/sets/legends-awaken-bp02", "2026-08-07"),
-    sitemapEntry("/updates", "2026-08-07"),
+    sitemapEntry("/updates", "2026-08-10"),
     sitemapEntry("/about", "2026-08-07"),
-    ...["/privacy", "/terms"].map((path) => sitemapEntry(path, "2026-08-07")),
+    sitemapEntry("/privacy", "2026-08-10"),
+    sitemapEntry("/terms", "2026-08-07"),
     ...["/cards/pals", "/ai-policy"]
       .map((path) => sitemapEntry(path, "2026-07-31")),
     ...cards.flatMap((card) => localizedSitemapPairEntries(

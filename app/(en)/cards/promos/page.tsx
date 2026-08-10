@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
@@ -86,6 +88,7 @@ export default function PromoCardsPage() {
         changeSummary="Added PR Vol.1, PR Vol.1.5, demo rewards, release-event rewards and their distribution conditions."
         published="August 5, 2026"
       />
+      <AdsterraBannerAd />
 
       <h2>Palworld TCG promo cards at a glance</h2>
       <div className="stat-table">
@@ -147,6 +150,7 @@ export default function PromoCardsPage() {
         <Link className="button ghost" href="/sets">Browse booster sets</Link>
       </div>
 
+      <AdsterraNativeAd />
       <section className="source-panel">
         <p className="eyebrow">Official sources</p>
         <h2>Official promo and event sources</h2>

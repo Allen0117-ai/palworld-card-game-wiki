@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
@@ -118,6 +120,7 @@ export default async function JapaneseDeckDetailPage({ params }: { params: Promi
           published={deck.published}
           history={deck.modified !== deck.published ? [{ date: deck.modified, note: "デッキガイドとカード参照を更新しました。" }] : undefined}
         />
+        <AdsterraBannerAd />
 
         <div className="deck-at-a-glance" aria-label="デッキの特徴">
           <div><span>色</span><strong>{deck.colors.map(japaneseColorLabel).join(" ＋ ")}</strong></div>
@@ -154,6 +157,8 @@ export default async function JapaneseDeckDetailPage({ params }: { params: Promi
           <Link className="button primary" href={deck.recipe ? `/ja/tools/deck-builder?deck=${deck.slug}` : "/ja/tools/deck-builder"}>{deck.recipe ? "この50枚をデッキビルダーで開く" : "デッキビルダーで作る"}</Link>
           <a className="button ghost" href={deck.japaneseSourceUrl} target="_blank" rel="noreferrer">公式商品情報を確認する ↗</a>
         </div>
+
+        <AdsterraNativeAd />
 
         <section className="deck-next-steps" aria-labelledby="ja-keep-learning">
           <p className="eyebrow"><span>次に見る</span> · 対戦準備を進める</p>

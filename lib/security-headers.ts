@@ -7,9 +7,9 @@ const contentSecurityPolicy = [
   "img-src 'self' data: https:",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://vercel.live https://*.googlesyndication.com https://fundingchoicesmessages.google.com",
-  "connect-src 'self' https://*.vercel-insights.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://*.googlesyndication.com https://*.doubleclick.net https://fundingchoicesmessages.google.com",
-  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://*.googlesyndication.com https://*.doubleclick.net https://fundingchoicesmessages.google.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://vercel.live https://*.googlesyndication.com https://*.effectivecpmnetwork.com https://*.highperformanceformat.com https://fundingchoicesmessages.google.com",
+  "connect-src 'self' https://*.vercel-insights.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://*.googlesyndication.com https://*.doubleclick.net https://*.effectivecpmnetwork.com https://*.highperformanceformat.com https://fundingchoicesmessages.google.com",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://*.googlesyndication.com https://*.doubleclick.net https://*.effectivecpmnetwork.com https://*.highperformanceformat.com https://fundingchoicesmessages.google.com",
 ].join("; ");
 
 export const SECURITY_HEADERS: Array<{ key: string; value: string }> = [

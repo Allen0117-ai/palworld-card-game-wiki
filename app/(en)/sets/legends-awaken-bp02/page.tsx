@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
@@ -84,6 +86,7 @@ export default function LegendsAwakenPage() {
         published="August 5, 2026"
         history={[{ date: "2026-08-07", note: "Added preorder status, featured colors and pending reveal fields." }]}
       />
+      <AdsterraBannerAd />
 
       <h2>Legends Awaken BP02 confirmed facts</h2>
       <div className="stat-table">
@@ -145,6 +148,7 @@ export default function LegendsAwakenPage() {
         <Link className="button ghost" href="/tools/deck-builder">Open the deck builder</Link>
       </div>
 
+      <AdsterraNativeAd />
       <section className="source-panel">
         <p className="eyebrow">Official sources</p>
         <h2>Official BP02 sources</h2>

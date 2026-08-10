@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { CommunityVideoCard } from "@/components/CommunityVideoCard";
 import { JsonLd } from "@/components/JsonLd";
 import { RuleExplorer } from "@/components/RuleExplorer";
 import { SeoImagePanel } from "@/components/SeoImagePanel";
@@ -17,10 +19,10 @@ export async function generateMetadata({
   return createPageMetadata({
     title: question
       ? `${question.slice(0, 42)}${question.length > 42 ? "…" : ""} – Rule Answer`
-      : "Palworld TCG Rules – Deck Size, Turn Order & Official Q&A",
+      : "Palworld TCG Comprehensive Rules & Official Q&A",
     description: question
       ? `See the sourced Palworld Card Game ruling for “${question}” and share the answer with your playgroup.`
-      : "Check Palworld TCG deck size, Soul Deck, colors, turn order and combat, then search every official launch Q&A with direct source links.",
+      : "Search Palworld TCG rulings and FAQ, or check the 50-card deck, 10-card Soul Deck, turn order, combat and keywords with direct official sources.",
     path: "/rules",
     absoluteTitle: true,
   });
@@ -43,9 +45,9 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
       }} />
       <header className={`page-hero rules-hero shell${hasQuery ? " has-query" : ""}`}>
         <div className="rules-query-desktop-copy">
-          <p className="eyebrow"><span>Rules answer center</span> · Checked August 7, 2026</p>
-          <h1>Palworld TCG rules.<br />Get the ruling.</h1>
-          <p>Search in normal language. We combine plain-English essentials with all {officialRuleCount} official launch-day Q&amp;As and always show where the answer came from.</p>
+          <p className="eyebrow"><span>Rules answer center</span> · Checked August 10, 2026</p>
+          <h1>Palworld TCG<br />rules &amp; FAQ.</h1>
+          <p>Use this comprehensive rules center as a searchable companion to the Palworld TCG rulebook. Search all {officialRuleCount} official launch-day Q&amp;As for deck limits, turn order, combat, keywords or card rulings; every answer links to an official source.</p>
           <div className="quick-answer">
             <strong>Rules in 20 seconds</strong>
             <p>Build exactly 50 Main Deck cards plus a separate 10-card Soul Deck, using no more than two named colors. Each turn follows Stand → Draw → Soul → Main → End; the first player skips their first Draw Phase.</p>
@@ -69,6 +71,22 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
           caption="Official cards that connect the searchable Palworld rules database with real printed keyword examples."
           cardNumbers={["EBP01-004", "EBP01-077", "EBP01-054", "ETD02-018"]}
         />
+      </div>
+      {!hasQuery ? (
+        <section className="community-video-section shell">
+          <p className="eyebrow">Community walkthrough</p>
+          <h2>See the rules used in a real match</h2>
+          <p>This independent tutorial combines explanation with live play. It helps show timing and turn flow, but the official rules database below remains the source for exact rulings.</p>
+          <CommunityVideoCard
+            videoId="bDsuOFxtA5U"
+            title="Palworld CCG — Tutorial and Live Play — First Impressions"
+            channelName="Tabletop Royale"
+            description="Watch the basic rules move from explanation into a real tabletop game."
+          />
+        </section>
+      ) : null}
+      <div className="shell">
+        <AdsterraBannerAd />
       </div>
       <RuleExplorer initialQuery={q} />
     </>

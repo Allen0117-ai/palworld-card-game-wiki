@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
@@ -13,6 +14,28 @@ export const metadata = createPageMetadata({
 });
 
 const verifiedUpdates = [
+  {
+    date: "August 10, 2026",
+    category: "Product roadmap",
+    title: "Two new Trial Decks and the next booster received release dates",
+    summary: "Bushiroad scheduled two unnamed Trial Decks for December 18, 2026 and an unnamed booster pack for January 29, 2027. Names, product codes and card lists remain unconfirmed.",
+    affected: [
+      { href: "/blog/palworld-card-game-2026-roadmap", label: "Release schedule" },
+      { href: "/sets", label: "Set index" },
+    ],
+    source: { href: "https://en.palworld-official-cardgame.com/news/post-becsu-26", label: "Official Summer 2026 announcement" },
+  },
+  {
+    date: "August 10, 2026",
+    category: "Corrections & collecting",
+    title: "BP01 packaging spelling error added to the errata tracker",
+    summary: "The official BP01 page says packs and boxes misspell Palworld and that future reprints will correct the packaging. No reprint date or loose-card print marker is published.",
+    affected: [
+      { href: "/blog/palworld-card-game-errata-tracker", label: "Errata tracker" },
+      { href: "/blog/palworld-tcg-first-edition-vs-reprint", label: "First Edition guide" },
+    ],
+    source: { href: "https://en.palworld-official-cardgame.com/products/bp01", label: "Official BP01 product page" },
+  },
   {
     date: "August 6, 2026",
     category: "Products & events",
@@ -63,7 +86,7 @@ export default function UpdatesPage() {
           name: "Palworld TCG verified updates",
           description: "Verified changes to Palworld TCG cards, rules, decks, products and events.",
           url: `${SITE_URL}/updates`,
-          dateModified: "2026-08-06",
+          dateModified: "2026-08-10",
           mainEntity: {
             "@type": "ItemList",
             numberOfItems: verifiedUpdates.length,
@@ -82,20 +105,21 @@ export default function UpdatesPage() {
 
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Updates" }]} />
-        <p className="eyebrow"><span>Verified update center</span> · Last checked August 7, 2026</p>
+        <p className="eyebrow"><span>Verified update center</span> · Last checked August 10, 2026</p>
         <h1>What changed—and what it affects.</h1>
         <p>Each update links the affected cards, rules, decks or event pages and the official source used to verify the change.</p>
       </header>
 
       <div className="shell updates-freshness">
         <ContentFreshnessPanel
-          updated="August 7, 2026"
-          verified="August 7, 2026"
+          updated="August 10, 2026"
+          verified="August 10, 2026"
           sourceStatus="Official card, product, event and deck-recipe pages"
           summary="This page tracks meaningful changes across the player guides and tools."
-          changeSummary="Added BP02 preorder details, confirmed accessory and event dates, competitive guides and the 148-card launch database status."
+          changeSummary="Added the December Trial Decks, January 2027 booster and BP01 packaging correction while keeping unpublished product details clearly pending."
           published="August 6, 2026"
         />
+        <AdsterraBannerAd />
       </div>
 
       <section className="latest-updates shell updates-log" aria-labelledby="verified-update-log">

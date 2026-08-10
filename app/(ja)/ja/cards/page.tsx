@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { JapaneseCardExplorer } from "@/components/JapaneseCardExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import { japaneseCards } from "@/lib/japanese";
@@ -40,6 +42,7 @@ export default async function JapaneseCardsPage({ searchParams }: { searchParams
         </div>
       </header>
       <div className="shell">
+        <AdsterraBannerAd />
         <HubLinkGrid
           compact
           eyebrow="カード索引"
@@ -58,6 +61,9 @@ export default async function JapaneseCardsPage({ searchParams }: { searchParams
         />
       </div>
       <JapaneseCardExplorer key={`${q}-${color}-${set}-${type}`} initialQuery={q} initialColor={color} initialSet={set} initialType={type} />
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
       <section className="card-next-steps shell" aria-labelledby="ja-card-next-steps-title">
         <p className="eyebrow"><span>カードを見つけたら</span> · 次のステップ</p>
         <h2 id="ja-card-next-steps-title">カードリストから、実際のデッキへ。</h2>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { JsonLd } from "@/components/JsonLd";
 import {
   getJapaneseCard,
@@ -45,6 +47,10 @@ export default function JapaneseDecksPage() {
         </div>
       </header>
 
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
+
       <section className="deck-explorer shell">
         <div className="deck-data-note">商品内容とカード情報は、公式発表に基づいて掲載しています</div>
         <div className="deck-page-grid">
@@ -86,6 +92,10 @@ export default function JapaneseDecksPage() {
           })}
         </div>
       </section>
+
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
 
       <section className="section shell split-section ja-deck-choice">
         <div>

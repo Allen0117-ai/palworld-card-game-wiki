@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
@@ -24,7 +26,7 @@ export default function SetsPage() {
       name: "Palworld TCG Sets List",
       description: pageDescription,
       url: `${SITE_URL}/sets`,
-      dateModified: "2026-08-05",
+      dateModified: "2026-08-10",
       mainEntity: {
         "@type": "ItemList",
         numberOfItems: palworldBoosterSets.length,
@@ -47,7 +49,7 @@ export default function SetsPage() {
       <JsonLd data={structuredData} />
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Sets" }]} />
-        <p className="eyebrow"><span>Booster set guide</span> · Verified August 5, 2026</p>
+        <p className="eyebrow"><span>Booster set guide</span> · Verified August 10, 2026</p>
         <h1>Palworld TCG<br />sets list.</h1>
         <p>Browse every officially confirmed booster set, then open its card list, release facts, collector tools and related Trial Decks. Upcoming information stays clearly separated from released card data.</p>
       </header>
@@ -55,16 +57,18 @@ export default function SetsPage() {
       <article className="article-shell">
         <div className="quick-answer">
           <strong>What is confirmed</strong>
-          <p>Two Palworld TCG booster sets are officially confirmed: BP01 Dawn of Palpagos, released July 30, 2026, and BP02 Legends Awaken, scheduled for October 30, 2026. Both list 100 normal card types. BP01 also confirms 61 parallel types; BP02 confirms parallel cards but does not yet publish their exact count. TD01 and TD02 are separate fixed Trial Deck products, not additional booster sets.</p>
+          <p>Two named Palworld TCG booster sets have official product pages: BP01 Dawn of Palpagos, released July 30, 2026, and BP02 Legends Awaken, scheduled for October 30, 2026. Bushiroad has also scheduled an unnamed new booster for January 29, 2027, but its set code, name and card details are not published yet. Two additional Trial Decks are scheduled for December 18, 2026; Trial Decks are fixed products, not additional booster sets.</p>
           <a className="quick-answer-source" href="https://en.palworld-official-cardgame.com/products" target="_blank" rel="noreferrer">Primary source: official product index ↗</a>
         </div>
 
+        <AdsterraBannerAd />
+
         <ContentFreshnessPanel
-          updated="August 5, 2026"
-          verified="August 5, 2026"
-          sourceStatus="Official English product pages"
-          summary="Tracks confirmed booster sets, release dates, set size, card-list availability and related launch products."
-          changeSummary="Added BP01 and BP02 release facts, card counts and separate links for Trial Decks and accessories."
+          updated="August 10, 2026"
+          verified="August 10, 2026"
+          sourceStatus="Official English product pages and product-schedule announcement"
+          summary="Tracks named booster sets, release dates, card-list availability and confirmed products whose names are still pending."
+          changeSummary="Added the December 18 Trial Decks and January 29, 2027 booster date without guessing their unpublished names or set codes."
           published="August 5, 2026"
         />
 
@@ -112,6 +116,10 @@ export default function SetsPage() {
           <a className="button ghost" href="https://en.palworld-official-cardgame.com/products/bp02" target="_blank" rel="noreferrer">Open the official BP02 page ↗</a>
         </div>
 
+        <h2>What comes after Legends Awaken?</h2>
+        <p>The official Summer 2026 announcement schedules two new Trial Decks for December 18, 2026 and a new booster pack for January 29, 2027. The publisher has not announced their names, product codes, colors or card lists, so this index does not invent BP03, TD03 or TD04 labels.</p>
+        <div className="callout"><strong>Why there are still two set cards above:</strong> BP01 and BP02 are the only named booster products with published set pages. The January booster will be added as its own entry after Bushiroad publishes an official identity and source page.</div>
+
         <HubLinkGrid
           compact
           eyebrow="Related launch products"
@@ -124,6 +132,8 @@ export default function SetsPage() {
             { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide", title: "Choose a product", description: "Compare sealed products without mixing their purposes." },
           ]}
         />
+
+        <AdsterraNativeAd />
 
         <h2>Check a set before buying</h2>
         <ul>
@@ -141,6 +151,7 @@ export default function SetsPage() {
             {palworldBoosterSets.map((set) => <a href={set.officialUrl} target="_blank" rel="noreferrer" key={set.code}>Official {set.code} page ↗</a>)}
             <a href="https://en.palworld-official-cardgame.com/products/td01" target="_blank" rel="noreferrer">Official TD01 page ↗</a>
             <a href="https://en.palworld-official-cardgame.com/products/td02" target="_blank" rel="noreferrer">Official TD02 page ↗</a>
+            <a href="https://en.palworld-official-cardgame.com/news/post-becsu-26" target="_blank" rel="noreferrer">Official 2026–27 product schedule ↗</a>
           </div>
         </section>
       </article>

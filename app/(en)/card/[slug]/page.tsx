@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { cards, decks, getCardImageAlt, specialArtworkByVariant } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -119,6 +121,7 @@ export default async function CardDetailPage({
           sourceStatus="Official card text + editorial strategy"
           summary={`Official card text plus an editorial strategy guide for ${card.name}.`}
         />
+        <AdsterraBannerAd />
         <section className="content-block">
           <h2>{card.name} strategy guide</h2>
           <p>{strategy.overview}</p>
@@ -136,6 +139,7 @@ export default async function CardDetailPage({
           {relatedDecks.length ? <ul>{relatedDecks.map((deck) => <li key={deck.slug}><Link className="text-link" href={`/deck/${deck.slug}`}>{deck.name} →</Link></li>)}</ul> : <p>No featured launch deck uses this card yet. Try it in the deck builder.</p>}
           <Link className="button primary" href={`/tools/deck-builder?card=${card.slug}`} data-analytics-event="card_to_builder" data-analytics-label={card.number}>Add this card to a deck</Link>
         </section>
+        <AdsterraNativeAd />
         <section className="content-block">
           <h2>Related cards to compare</h2>
           <p>Continue with cards that share this card’s color and type.</p>

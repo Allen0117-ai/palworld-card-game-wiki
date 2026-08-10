@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { HeroSearch } from "@/components/HeroSearch";
 import { HomeProgressHub } from "@/components/HomeProgressHub";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
@@ -131,6 +133,10 @@ export default function Home() {
         <div>Verified rules <span>◆</span> 148-card database <span>◆</span> Deck builder <span>◆</span> Collection checklist <span>◆</span> Verified updates</div>
       </section>
 
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
+
       <section className="launch-paths shell" data-reveal>
         <div className="launch-paths-heading">
           <div><p className="eyebrow"><span>Choose your path</span> · Start with your goal</p><h2>Three ways to use the wiki.</h2></div>
@@ -143,6 +149,10 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
+
       <div className="shell" data-reveal>
         <HubLinkGrid
           eyebrow="Wiki index"
@@ -153,7 +163,7 @@ export default function Home() {
             { href: "/cards", label: "Card database", title: "Cards", description: "Search all 148 launch cards by name, number and stats.", badge: "148 cards" },
             { href: "/rules", label: "Official rulings", title: "Rules & FAQ", description: "Find plain-English answers and official Q&A sources." },
             { href: "/decks", label: "Deck guides", title: "Decks", description: "Choose by goal, compare Trial Decks and copy a complete list." },
-            { href: "/sets", label: "Series index", title: "Sets & products", description: "Compare BP01, BP02, Trial Decks and release status.", badge: "2 boosters" },
+            { href: "/sets", label: "Series index", title: "Sets & products", description: "Compare BP01, BP02, Trial Decks and the confirmed 2026–27 schedule.", badge: "2 named sets" },
             { href: "/tools/deck-builder", label: "Free tool", title: "Deck builder", description: "Build a legal list from every launch card.", badge: "No account" },
             { href: "/tools/dawn-of-palpagos-checklist", label: "Collection tool", title: "BP01 checklist", description: "Track base cards, parallels and the special Soul." },
             { href: "/updates", label: "Verified changes", title: "Updates", description: "See what changed and which cards, rules or decks are affected." },
@@ -187,17 +197,17 @@ export default function Home() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>Latest verified</span> · August 6, 2026</p><h2>What changed recently.</h2></div>
+          <div><p className="eyebrow"><span>Latest verified</span> · August 10, 2026</p><h2>What changed recently.</h2></div>
           <div className="latest-updates-copy">
             <p>Short, dated updates checked against official news, event pages and the live card database.</p>
             <Link className="text-link" href="/updates">View the complete update log →</Link>
           </div>
         </div>
         <div className="latest-update-grid">
-          <Link href="/blog/palworld-tcg-card-size-sleeves" data-analytics-event="latest_update_click" data-analytics-label="official-accessories">
-            <span>Official products · New</span>
-            <strong>Playmats, storage boxes and four sleeves announced</strong>
-            <p>See the confirmed September 25 and October 16 release dates, designs and official dimensions.</p>
+          <Link href="/blog/palworld-card-game-2026-roadmap" data-analytics-event="latest_update_click" data-analytics-label="next-product-schedule">
+            <span>Official schedule · New</span>
+            <strong>Two Trial Decks and the next booster dated</strong>
+            <p>Two new Trial Decks arrive December 18, followed by an unnamed booster on January 29, 2027.</p>
           </Link>
           <Link href="/events" data-analytics-event="latest_update_click" data-analytics-label="september-october-demos">
             <span>Official demos · Sept–Oct</span>

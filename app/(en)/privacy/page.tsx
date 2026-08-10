@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <article className="simple-page simple-page-enhanced shell">
       <header className="simple-page-intro">
-        <p className="eyebrow"><span>Privacy</span> · Updated August 7, 2026</p>
+        <p className="eyebrow"><span>Privacy</span> · Updated August 10, 2026</p>
         <h1>Your data stays yours.</h1>
         <p>The deck builder saves drafts only on your device. Analytics helps us improve the site, and advertising partners may use cookies or similar identifiers when ads are enabled.</p>
       </header>
@@ -47,20 +47,25 @@ export default function PrivacyPage() {
         </p>
       </section>
       <section className="simple-page-panel" id="advertising" tabIndex={-1}>
-        <p className="eyebrow"><span>Advertising</span> · Google AdSense</p>
+        <p className="eyebrow"><span>Advertising</span> · Google AdSense and Adsterra</p>
         <h2>How advertising data may be used.</h2>
         <p>
-          This site uses Google AdSense to serve and measure advertising. Third parties, including
-          Google and its advertising partners, may place or read cookies in your browser, or use web beacons, IP addresses and
+          This site uses Google AdSense and may use Adsterra to serve and measure advertising. Third parties, including
+          Google, Adsterra and their advertising partners, may place or read cookies in your browser, or use web beacons, IP addresses and
           other device identifiers, as a result of ads being served on this site. Those technologies
-          may be used to select, deliver, limit and measure personalized or non-personalized ads,
+          may be used to select, deliver, limit and measure ads,
           prevent fraud and understand advertising performance.
         </p>
         <p>
           Google processes information from sites that use its services under its own policies. Read
           <a className="text-link" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer"> how Google uses information from partner sites and apps ↗</a>.
           We do not send saved deck lists, checklist progress, email addresses or other directly
-          identifying information to Google in ad requests.
+          identifying information to Google or Adsterra in ad requests.
+        </p>
+        <p>
+          Adsterra code may load directly on content pages when its placements are enabled. Your
+          analytics-cookie choice does not control Adsterra advertising, and Adsterra does not
+          provide this site with a non-personalized mode. Read <a className="text-link" href="https://adsterra.com/privacy-policy-managed" target="_blank" rel="noreferrer">Adsterra&apos;s privacy policy ↗</a>.
         </p>
         <p>
           Where regional law requires it, eligible visitors receive a Google-certified consent or

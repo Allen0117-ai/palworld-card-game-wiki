@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { cards, decks, getCardImageAlt } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { DeckExplorer, type DeckPreview } from "@/components/DeckExplorer";
@@ -71,6 +73,9 @@ export default function DecksPage() {
           headingId="deck-goal-title"
         />
       </div>
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
       <div className="seo-image-panel-shell shell">
         <SeoImagePanel
           label="Official Trial Deck cards"
@@ -80,6 +85,9 @@ export default function DecksPage() {
         />
       </div>
       <DeckExplorer decks={deckPreviews} />
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
       <section className="shell section deck-video-section" aria-labelledby="deck-video-title">
         <p className="eyebrow"><span>Watch before you build</span> · Official play guide</p>
         <h2 id="deck-video-title">See how a first game moves.</h2>

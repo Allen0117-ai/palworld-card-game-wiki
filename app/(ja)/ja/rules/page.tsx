@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { JapaneseRuleExplorer } from "@/components/JapaneseRuleExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -59,7 +61,15 @@ export default async function JapaneseRulesPage({ searchParams }: { searchParams
         {hasQuery && <h1 className="rules-query-mobile-title">ルール検索結果</h1>}
       </header>
 
+      <div className="shell">
+        <AdsterraBannerAd />
+      </div>
+
       <JapaneseRuleExplorer initialQuery={q} />
+
+      <div className="shell">
+        <AdsterraNativeAd />
+      </div>
 
       <article className="article-shell ja-rules-guide" id="beginner-guide">
         <p className="eyebrow"><span>最初の対戦ガイド</span> · 5分で全体像をつかむ</p>

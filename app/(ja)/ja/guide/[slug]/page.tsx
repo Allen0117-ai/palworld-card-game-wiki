@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
+import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { EditorialByline } from "@/components/EditorialByline";
@@ -292,6 +294,7 @@ export default async function JapaneseGuidePage({ params }: { params: Promise<{ 
           <span>先に結論</span>
           <strong>{guide.quickAnswer}</strong>
         </div>
+        <AdsterraBannerAd />
         <EditorialByline
           locale="ja"
           reviewed={guide.updated}
@@ -306,6 +309,8 @@ export default async function JapaneseGuidePage({ params }: { params: Promise<{ 
           published={guide.updated}
         />
         {content[slug]}
+
+        <AdsterraNativeAd />
 
         <div className="source-panel">
           <h2>確認した公式情報</h2>
