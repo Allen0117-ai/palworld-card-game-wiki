@@ -14,7 +14,7 @@ import { trackUserAction } from "@/lib/user-action-analytics";
 const OPEN_PRIVACY_CHOICES_EVENT = "palpagos:open-privacy-choices";
 const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
-const TRACKING_IS_CONFIGURED = Boolean(GOOGLE_ANALYTICS_ID && CLARITY_PROJECT_ID);
+const TRACKING_IS_CONFIGURED = Boolean(GOOGLE_ANALYTICS_ID || CLARITY_PROJECT_ID);
 
 type ConsentSnapshot = AnalyticsConsentChoice | "loading" | null;
 

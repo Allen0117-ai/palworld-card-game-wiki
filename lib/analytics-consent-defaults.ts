@@ -1,6 +1,6 @@
 export const ANALYTICS_CONFIGURED = Boolean(
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-    && process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
+    || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
 );
 
 // Keep prior analytics opt-in for EEA countries plus the United Kingdom and Switzerland.

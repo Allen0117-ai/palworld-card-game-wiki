@@ -148,6 +148,7 @@ test("analytics consent preserves opt-in regions and explicit visitor choices", 
   const privacyHtml = await (await render("/privacy")).text();
 
   assert.match(defaultsSource, /analytics_storage: 'granted'/);
+  assert.match(defaultsSource, /NEXT_PUBLIC_GA_MEASUREMENT_ID\s*\|\|\s*process\.env\.NEXT_PUBLIC_CLARITY_PROJECT_ID/);
   assert.match(defaultsSource, /region: \$\{JSON\.stringify\(ANALYTICS_OPT_IN_REGIONS\)\}/);
   assert.match(defaultsSource, /"CH"/);
   assert.match(defaultsSource, /"GB"/);
@@ -155,6 +156,7 @@ test("analytics consent preserves opt-in regions and explicit visitor choices", 
   assert.match(defaultsSource, /savedAnalyticsConsent === 'accepted'/);
   assert.match(defaultsSource, /palpagos-analytics-consent/);
   assert.match(consentSource, /consent === "loading" \|\| consent === null/);
+  assert.match(consentSource, /GOOGLE_ANALYTICS_ID \|\| CLARITY_PROJECT_ID/);
   assert.match(consentSource, /consent !== "declined" && choice === "declined"/);
   assert.match(privacyHtml, /Region-aware privacy/);
   assert.match(privacyHtml, /Vercel Web Analytics counts anonymous visits without cookies/);
