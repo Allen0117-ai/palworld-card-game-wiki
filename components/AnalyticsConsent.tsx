@@ -1,8 +1,9 @@
 "use client";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   ANALYTICS_CONSENT_CHANGED_EVENT,
   ANALYTICS_CONSENT_STORAGE_KEY,
@@ -53,10 +54,6 @@ function updateAnalyticsConsent(isAccepted: boolean) {
   });
 }
 
-function createGoogleAnalyticsConfigScript(measurementId: string) {
-  return `window.gtag("js", new Date());window.gtag("config", ${JSON.stringify(measurementId)}, {send_page_view:false});window.gtag("event", "page_view");`;
-}
-
 function revokeAnalyticsConsent() {
   updateAnalyticsConsent(false);
   window.clarity?.("consent", false);
@@ -91,7 +88,6 @@ export function PrivacyChoicesButton({ locale = "en" }: { locale?: "en" | "ja" }
 
 export function AnalyticsConsent() {
   const pathname = usePathname();
-  const previousPathname = useRef(pathname);
   const japanese = pathname === "/ja" || pathname.startsWith("/ja/");
   const consent = useSyncExternalStore(
     subscribeToConsent,
@@ -117,16 +113,6 @@ export function AnalyticsConsent() {
 
     updateAnalyticsConsent(consent === "accepted");
   }, [consent]);
-
-  useEffect(() => {
-    if (!GOOGLE_ANALYTICS_ID || previousPathname.current === pathname) return;
-    previousPathname.current = pathname;
-    window.gtag?.("event", "page_view", {
-      page_location: window.location.href,
-      page_path: pathname,
-      page_title: document.title,
-    });
-  }, [pathname]);
 
   if (!TRACKING_IS_CONFIGURED || consent === "loading") {
     return null;
@@ -157,18 +143,7 @@ export function AnalyticsConsent() {
 
   return (
     <>
-      {GOOGLE_ANALYTICS_ID ? (
-        <>
-          <Script
-            id="google-analytics-library"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics-config" strategy="afterInteractive">
-            {createGoogleAnalyticsConfigScript(GOOGLE_ANALYTICS_ID)}
-          </Script>
-        </>
-      ) : null}
+      {GOOGLE_ANALYTICS_ID ? <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} /> : null}
 
       {CLARITY_PROJECT_ID ? (
         <Script

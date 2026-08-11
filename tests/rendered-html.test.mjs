@@ -157,8 +157,6 @@ test("analytics consent preserves opt-in regions and explicit visitor choices", 
   assert.match(defaultsSource, /palpagos-analytics-consent/);
   assert.match(consentSource, /consent === "loading" \|\| consent === null/);
   assert.match(consentSource, /GOOGLE_ANALYTICS_ID \|\| CLARITY_PROJECT_ID/);
-  assert.match(consentSource, /send_page_view:false/);
-  assert.match(consentSource, /previousPathname\.current === pathname/);
   assert.match(consentSource, /consent !== "declined" && choice === "declined"/);
   assert.match(privacyHtml, /Region-aware privacy/);
   assert.match(privacyHtml, /Vercel Web Analytics counts anonymous visits without cookies/);
