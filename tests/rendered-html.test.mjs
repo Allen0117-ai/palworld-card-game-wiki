@@ -420,6 +420,10 @@ test("Japanese homepage prioritizes current official information and native prod
   const guidesHtml = await (await render("/ja/guides")).text();
 
   assert.match(homeHtml, /公式最新情報/);
+  assert.match(homeHtml, /最終確認 2026\.08\.12/);
+  assert.match(homeHtml, /全国講習会を25店舗で追加開催/);
+  assert.match(homeHtml, /8月15日から9月13日まで参加無料/);
+  assert.match(homeHtml, /href="https:\/\/palworld-official-cardgame\.com\/news\/post-17"/);
   assert.match(homeHtml, /秋葉原で期間限定ストア開催/);
   assert.match(homeHtml, /BP02「目覚めし伝説」10月30日発売/);
   assert.match(homeHtml, /class="product-pack ja-product-pack"/);

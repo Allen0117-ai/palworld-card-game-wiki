@@ -67,7 +67,7 @@ const japaneseGuidePairs: Record<string, string> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedEnglishGuideSlugs = new Set(Object.values(japaneseGuidePairs));
   return [
-    ...localizedSitemapEntries("", "2026-08-10"),
+    ...localizedSitemapPairEntries("/", "/ja", "2026-08-10", "2026-08-12"),
     ...localizedSitemapPairEntries("/cards", "/ja/cards", "2026-08-10", "2026-08-07"),
     ...localizedSitemapEntries("/tools/deck-builder", "2026-08-07"),
     ...["/decks", "/search"].flatMap((path) => localizedSitemapEntries(path, "2026-08-04")),
