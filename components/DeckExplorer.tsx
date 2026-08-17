@@ -41,7 +41,9 @@ export function DeckExplorer({ decks }: { decks: DeckPreview[] }) {
           <option value="all">All colors</option><option value="red">Red</option><option value="blue">Blue</option>
           <option value="green">Green</option><option value="purple">Purple</option>
         </select>
-        <div className="deck-data-note">Verified launch information · Tournament results still developing</div>
+        <Link className="deck-data-note" href="/blog/palworld-tcg-tournament-decklists">
+          Launch card data · Early official results available
+        </Link>
       </div>
       <div className="deck-page-grid">
         {results.map((deck) => {

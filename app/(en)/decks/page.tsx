@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
-import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { cards, decks, getCardImageAlt } from "@/lib/data";
 import { JsonLd } from "@/components/JsonLd";
 import { DeckExplorer, type DeckPreview } from "@/components/DeckExplorer";
@@ -54,7 +53,7 @@ export default function DecksPage() {
         },
       ]} />
       <header className="page-hero shell">
-        <p className="eyebrow"><span>Illustrated deck center</span> · Updated August 7, 2026</p>
+        <p className="eyebrow"><span>Illustrated deck center</span> · Updated August 17, 2026</p>
         <h1>Palworld TCG deck lists.<br />Learn the sequence.</h1>
         <p>Choose between two official Trial Deck lists and one complete 50-card BP01 beginner deck. Every starter deck guide shows what to play early, how the key cards combine and how the deck aims to finish.</p>
       </header>
@@ -67,14 +66,11 @@ export default function DecksPage() {
             { href: "/deck/red-blue-launch-pressure", label: "First match", title: "Start with the direct plan", description: "Use Red and Blue for Materials, Structures and clear pressure." },
             { href: "/deck/green-blue-base-value", label: "More tactical", title: "Practice setup and timing", description: "Use Green and Purple for Ingredients, Taunt and Stealth." },
             { href: "/deck/mono-red-pal-rush", label: "Copy a full list", title: "Load a complete 50-card deck", description: "Open a beginner BP01 list and remix it in the builder." },
-            { href: "/blog/palworld-tcg-deck-tier-list", label: "Competitive view", title: "Review the provisional tier list", description: "Compare launch shells while official tournament results develop." },
+            { href: "/blog/palworld-tcg-tournament-decklists", label: "Early official results", title: "Review Osaka and Tokyo recipes", description: "See the first published Grand Release lists with their event context." },
           ]}
           compact
           headingId="deck-goal-title"
         />
-      </div>
-      <div className="shell">
-        <AdsterraBannerAd />
       </div>
       <div className="seo-image-panel-shell shell">
         <SeoImagePanel
@@ -86,7 +82,7 @@ export default function DecksPage() {
       </div>
       <DeckExplorer decks={deckPreviews} />
       <div className="shell">
-        <AdsterraNativeAd />
+        <AdsterraBannerAd />
       </div>
       <section className="shell section deck-video-section" aria-labelledby="deck-video-title">
         <p className="eyebrow"><span>Watch before you build</span> · Official play guide</p>

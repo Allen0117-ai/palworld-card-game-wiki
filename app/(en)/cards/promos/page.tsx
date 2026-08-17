@@ -35,7 +35,7 @@ export default function PromoCardsPage() {
       description: pageDescription,
       url: `${SITE_URL}${pagePath}`,
       datePublished: "2026-08-05",
-      dateModified: "2026-08-05",
+      dateModified: "2026-08-17",
       author: createEditorialAuthorJsonLd(),
       publisher: createPublisherJsonLd(),
       mainEntity: {
@@ -68,11 +68,11 @@ export default function PromoCardsPage() {
       <p className="article-lede">Check confirmed PR packs, Soul promos and event rewards, including exact card numbers when the official English event pages publish them.</p>
 
       <div className="article-trust">
-        <span>Updated August 5, 2026</span>
+        <span>Updated August 17, 2026</span>
         <strong>Official event sources</strong>
         <span>PR Vol.1 and Vol.1.5 card numbers</span>
       </div>
-      <EditorialByline reviewed="August 5, 2026" sourceStatus="Official events and prize pages" />
+      <EditorialByline reviewed="August 17, 2026" sourceStatus="Official events and prize pages" />
 
       <div className="quick-answer">
         <strong>Which promos are confirmed?</strong>
@@ -81,11 +81,11 @@ export default function PromoCardsPage() {
       </div>
 
       <ContentFreshnessPanel
-        updated="August 5, 2026"
-        verified="August 5, 2026"
+        updated="August 17, 2026"
+        verified="August 17, 2026"
         sourceStatus="Official events, demo and tournament pages"
         summary="Tracks published PR card numbers, confirmed Soul promos, event distribution and prototype-deck legality."
-        changeSummary="Added PR Vol.1, PR Vol.1.5, demo rewards, release-event rewards and their distribution conditions."
+        changeSummary="Separated Grand Release Entry Soul rewards from PR Vol.1 cards distributed through shop tournaments and specifically named release events."
         published="August 5, 2026"
       />
       <AdsterraBannerAd />
@@ -101,7 +101,7 @@ export default function PromoCardsPage() {
       <p>The numbered checklist below covers the 17 card numbers visible in the official shop-tournament prize page. Other confirmed event rewards remain listed by the official name used on their source page until a reliable card number is published there.</p>
 
       <h2>PR Card Pack Vol.1 checklist</h2>
-      <p>Each Vol.1 pack contains one randomly selected card from a nine-card series. Participation at an eligible shop tournament or selected release event awards one card, not the complete nine-card set.</p>
+      <p>Each Vol.1 pack contains one randomly selected card from a nine-card series. Participation at an eligible shop tournament or an event whose own page lists the pack awards one card, not the complete nine-card set.</p>
       <dl className="glossary-list">
         <div><dt>Main Deck</dt><dd>{promoCardSeries[0].cardNumbers.slice(0, 8).join(" · ")}</dd></div>
         <div><dt>Soul card</dt><dd>ESOUL-008</dd></div>
@@ -127,7 +127,7 @@ export default function PromoCardsPage() {
         <div className="comparison-head"><span>Event path</span><strong>Confirmed card reward</strong><strong>Important condition</strong></div>
         <div><span>Demo Caravan</span><p>Foiled Chillet Soul Promo Card</p><p>Complete the demo; Bushi Navi and stock conditions apply.</p></div>
         <div><span>Shop tournament</span><p>One random PR Card Pack Vol.1 card</p><p>Register through Bushi Navi and attend an eligible store event.</p></div>
-        <div><span>Grand Release</span><p>PR Vol.1 card plus Entry Soul Card Set</p><p>August event availability is controlled by the organizer.</p></div>
+        <div><span>Grand Release</span><p>Entry Soul Card Set</p><p>The official Grand Release page does not list a PR Vol.1 participation card.</p></div>
         <div><span>Higher finish</span><p>PR Card Pack Vol.1.5 where specified</p><p>The exact win or store-distribution condition depends on the event page.</p></div>
       </div>
 
@@ -158,7 +158,7 @@ export default function PromoCardsPage() {
         <div>
           <a href="https://en.palworld-official-cardgame.com/events/shop-tournaments" target="_blank" rel="noreferrer">Official shop tournaments ↗</a>
           <a href="https://en.palworld-official-cardgame.com/events/demo-caravan" target="_blank" rel="noreferrer">Official Demo Caravan ↗</a>
-          <a href="https://en.palworld-official-cardgame.com/events/demo-sessions-2026" target="_blank" rel="noreferrer">Official demo sessions ↗</a>
+          <a href="https://en.palworld-official-cardgame.com/events/demo-sessions" target="_blank" rel="noreferrer">Official demo sessions ↗</a>
           <a href="https://en.palworld-official-cardgame.com/events/grand-release-tournament" target="_blank" rel="noreferrer">Official Grand Release Tournament ↗</a>
           <a href="https://en.palworld-official-cardgame.com/events/release-party-in-los-angeles" target="_blank" rel="noreferrer">Official Los Angeles Release Party ↗</a>
         </div>

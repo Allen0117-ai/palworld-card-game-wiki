@@ -140,7 +140,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
         <li>Buy a Trial Deck if your real goal is to start playing now.</li>
         <li>Buy singles if your real goal is one exact deck card.</li>
       </ol>
-      <p>As of August 3, 2026, no public official BP01 restock calendar has been announced. A retailer&apos;s estimated arrival date applies to that retailer and should not be presented as a worldwide reprint date.</p>
+      <p>The official Japanese account confirmed on August 12, 2026 that BP01 remained in short supply, but it did not publish a restock date. A retailer&apos;s estimated arrival date applies to that retailer and should not be presented as a worldwide reprint date.</p>
 
       <h2>Which Palworld TCG product should a beginner buy?</h2>
       <div className="comparison-table" role="region" aria-label="Palworld TCG first purchase guide" tabIndex={0}>
@@ -433,6 +433,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
 export const commercialGuideSources: Record<string, GuideSource[]> = {
   "palworld-card-game-products-where-to-buy": [
     { label: "Official Bushiroad retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
+    { label: "Official BP01 shortage notice", href: "https://x.com/PalworldOCG/status/2087456988208800144" },
     { label: "Official English BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official BP02 preorder and release information", href: "https://en.palworld-official-cardgame.com/products/bp02" },
     { label: "Official English-edition sales and tournament policy", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },

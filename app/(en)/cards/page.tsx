@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
-import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { CardExplorer } from "@/components/CardExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import { cards } from "@/lib/data";
@@ -41,20 +40,17 @@ export default async function CardsPage({ searchParams }: { searchParams: CardSe
     <>
       <JsonLd data={cardListJsonLd} />
       <header className="page-hero shell">
-        <p className="eyebrow"><span>Official data snapshot</span> · Verified August 10, 2026</p>
+        <p className="eyebrow"><span>Official launch card data</span> · BP01, TD01 and TD02</p>
         <h1>Palworld TCG<br />card list.</h1>
         <p>Search all 148 launch main-deck card entries: 100 BP01 cards plus 24 unique cards from each Trial Deck. Filter by set, color, type, cost or rarity, then open card text without leaving the page.</p>
       </header>
       <section className="shell section" aria-labelledby="card-list-coverage">
         <h2 id="card-list-coverage">What is included in this Palworld TCG card list?</h2>
-        <p>The database links every numbered English launch card from <Link className="text-link" href="/cards?set=EBP01">Dawn of Palpagos BP01</Link>, <Link className="text-link" href="/cards?set=ETD01">TD01 Red / Blue</Link> and <Link className="text-link" href="/cards?set=ETD02">TD02 Green / Purple</Link>. The official database still contains the same 148 base entries after the August 10 verification; BP02 has not been added yet.</p>
+        <p>The database links every numbered English launch card from <Link className="text-link" href="/cards?set=EBP01">Dawn of Palpagos BP01</Link>, <Link className="text-link" href="/cards?set=ETD01">TD01 Red / Blue</Link> and <Link className="text-link" href="/cards?set=ETD02">TD02 Green / Purple</Link>. That is 148 Main Deck entries in total. BP02 will remain separate until its official numbered card list is published.</p>
       </section>
-      <div className="shell">
-        <AdsterraBannerAd />
-      </div>
       <CardExplorer key={`${q}-${color}-${set}-${type}`} initialQuery={q} initialColor={color} initialSet={set} initialType={type} />
       <div className="shell">
-        <AdsterraNativeAd />
+        <AdsterraBannerAd />
         <HubLinkGrid
           compact
           eyebrow="More card views"

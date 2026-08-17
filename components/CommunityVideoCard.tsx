@@ -46,7 +46,7 @@ export function CommunityVideoCard({
           <b>Watch on YouTube ↗</b>
         </span>
       </a>
-      <figcaption>Independent creator video · Not official rules · Checked August 10, 2026</figcaption>
+      <figcaption>Independent creator video · Use current official rules for exact rulings</figcaption>
     </figure>
   );
 }

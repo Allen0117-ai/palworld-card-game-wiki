@@ -15,6 +15,27 @@ export const metadata = createPageMetadata({
 
 const verifiedUpdates = [
   {
+    date: "August 17, 2026",
+    category: "Decks & competitive play",
+    title: "Official Tokyo Grand Release deck recipes published",
+    summary: "The Japanese official account announced undefeated recipes from the August 15 Tokyo venue event. These are early event results, not a complete global tier list.",
+    affected: [
+      { href: "/blog/palworld-tcg-tournament-decklists", label: "Tournament tracker" },
+      { href: "/blog/palworld-tcg-deck-tier-list", label: "Provisional tier list" },
+    ],
+    source: { href: "https://x.com/PalworldOCG/status/2089155250359783612", label: "Official Tokyo recipe announcement" },
+  },
+  {
+    date: "August 12, 2026",
+    category: "Products & stock",
+    title: "Bushiroad acknowledged continuing BP01 shortages",
+    summary: "The official Japanese account said Dawn of Palpagos remained in short supply. No public restock date was included, so seller estimates remain local and unconfirmed.",
+    affected: [
+      { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide" },
+    ],
+    source: { href: "https://x.com/PalworldOCG/status/2087456988208800144", label: "Official BP01 shortage notice" },
+  },
+  {
     date: "August 10, 2026",
     category: "Product roadmap",
     title: "Two new Trial Decks and the next booster received release dates",
@@ -35,6 +56,17 @@ const verifiedUpdates = [
       { href: "/blog/palworld-tcg-first-edition-vs-reprint", label: "First Edition guide" },
     ],
     source: { href: "https://en.palworld-official-cardgame.com/products/bp01", label: "Official BP01 product page" },
+  },
+  {
+    date: "August 8, 2026",
+    category: "Decks & competitive play",
+    title: "Four undefeated Osaka Grand Release decks published",
+    summary: "The official Japanese account named four undefeated players and published each player's deck image in the result thread. The tracker preserves the event context instead of treating the lists as global rankings.",
+    affected: [
+      { href: "/blog/palworld-tcg-tournament-decklists", label: "Tournament tracker" },
+      { href: "/blog/palworld-tcg-deck-tier-list", label: "Provisional tier list" },
+    ],
+    source: { href: "https://x.com/PalworldOCG/status/2085976842113331425", label: "Official Osaka result thread" },
   },
   {
     date: "August 6, 2026",
@@ -86,7 +118,7 @@ export default function UpdatesPage() {
           name: "Palworld TCG verified updates",
           description: "Verified changes to Palworld TCG cards, rules, decks, products and events.",
           url: `${SITE_URL}/updates`,
-          dateModified: "2026-08-10",
+          dateModified: "2026-08-17",
           mainEntity: {
             "@type": "ItemList",
             numberOfItems: verifiedUpdates.length,
@@ -105,18 +137,18 @@ export default function UpdatesPage() {
 
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Updates" }]} />
-        <p className="eyebrow"><span>Verified update center</span> · Last checked August 10, 2026</p>
+        <p className="eyebrow"><span>Verified update center</span> · Last checked August 17, 2026</p>
         <h1>What changed—and what it affects.</h1>
         <p>Each update links the affected cards, rules, decks or event pages and the official source used to verify the change.</p>
       </header>
 
       <div className="shell updates-freshness">
         <ContentFreshnessPanel
-          updated="August 10, 2026"
-          verified="August 10, 2026"
-          sourceStatus="Official card, product, event and deck-recipe pages"
+          updated="August 17, 2026"
+          verified="August 17, 2026"
+          sourceStatus="Official card, product, event and verified social sources"
           summary="This page tracks meaningful changes across the player guides and tools."
-          changeSummary="Added the December Trial Decks, January 2027 booster and BP01 packaging correction while keeping unpublished product details clearly pending."
+          changeSummary="Added official Osaka and Tokyo results plus the BP01 shortage notice, and corrected Grand Release reward coverage."
           published="August 6, 2026"
         />
         <AdsterraBannerAd />

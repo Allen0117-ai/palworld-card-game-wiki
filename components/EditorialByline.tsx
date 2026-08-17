@@ -26,9 +26,9 @@ export function EditorialByline({
 
   return (
     <aside className="editorial-byline" aria-label="Article editor and verification details">
-      <span>Written and verified by</span>
+      <span>Reviewed by</span>
       <strong>{EDITORIAL_TEAM_NAME}</strong>
-      <span>Reviewed {reviewed}</span>
+      <span>Last checked {reviewed}</span>
       <span>{sourceStatus}</span>
       <Link href="/about#editorial-policy">Editorial policy</Link>
     </aside>

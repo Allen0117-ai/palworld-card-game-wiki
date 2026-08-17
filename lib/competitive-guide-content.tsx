@@ -14,7 +14,7 @@ function CardTextLink({ number }: { number: string }) {
 export const competitiveGuideQuickAnswers: Record<string, QuickAnswer> = {
   "palworld-tcg-deck-tier-list": {
     label: "Launch-format ranking",
-    answer: "There is no results-based S-tier Palworld TCG deck yet because the official Featured Decks and Tournament Decks sections still show no published entries. This provisional launch ranking puts upgraded Red/Blue Materials–Structures and Green/Purple Ingredients–Taunt in A tier. Those placements are editorial estimates based on card synergy and complete deck engines, not match records. The unchanged TD01 and TD02 Trial Decks sit in B tier because they are coherent beginner decks with several BP01 upgrade options.",
+    answer: "Official Grand Release deck recipes now provide the first real tournament evidence, including undefeated lists from Osaka and Tokyo. That early sample is useful, but it is still too small and event-specific to support an S tier or reliable matchup ranking. This provisional list keeps upgraded Red/Blue Materials–Structures and Green/Purple Ingredients–Taunt in A tier as editorial estimates based on card synergy and complete deck engines. The unchanged TD01 and TD02 Trial Decks sit in B tier because they are coherent beginner decks with several BP01 upgrade options.",
   },
   "palworld-tcg-best-cards-by-color": {
     label: "Best cards at a glance",
@@ -26,7 +26,7 @@ export const competitiveGuideQuickAnswers: Record<string, QuickAnswer> = {
   },
   "palworld-tcg-tournament-decklists": {
     label: "Official results status",
-    answer: "No official Palworld TCG tournament decklist is published in the English deck-recipe database as of August 6, 2026: both Featured Decks and Tournament Decks show no entries. Grand Release and shop tournaments are active, but their official pages publish formats and prizes rather than winning lists. Challengers Cup is scheduled to begin in September and Masters League in November. Treat community lists as unverified until the event, placement and complete deck can be confirmed.",
+    answer: "Official Palworld TCG tournament deck recipes are now available. The Japanese official account published four undefeated Osaka lists on August 8 and announced undefeated Tokyo recipes from the August 15 event on August 17. These are verified early results, not a complete global metagame: compare the event, round count and repeated finishes before calling any list the best deck. Community lists still need a confirmed event, placement and complete deck before they belong in this tracker.",
   },
 };
 
@@ -65,7 +65,7 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
         <div><span>B</span><p>TD02 Green/Purple unchanged</p><p>Coherent Ingredient plan with Taunt and Stealth, but less consistent before targeted BP01 upgrades.</p></div>
         <div><span>Unranked</span><p>Other color pairs</p><p>The card pool supports experiments, but these pairs do not yet have complete published lists or official results to compare.</p></div>
       </div>
-      <div className="callout"><strong>No S tier yet:</strong> the official English deck-recipe page currently has no Featured Decks or Tournament Decks. The rankings below are editorial estimates based on card synergy, not tournament results.</div>
+      <div className="callout"><strong>No S tier yet:</strong> official Grand Release recipes now exist, but the early Osaka and Tokyo samples do not provide matchup rates or repeated results across a broad field. The rankings below remain editorial estimates, not a tournament power ranking.</div>
 
       <h2>What players are actually testing online</h2>
       <p>On August 6, the fan-made Palworld TCG Simulator exposed 488 public decks that its library labels online-legal, plus an active Dawn of Palpagos MMR leaderboard. That is useful evidence that players are building and testing many lists, but it does not reveal paper-tournament finishes, matchup win rates or which deck is truly best.</p>
@@ -93,7 +93,7 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
       <h2>A tier: Green/Purple Ingredients–Taunt</h2>
       <p>Green/Purple trades immediate speed for resilient turns. Green creates Ingredients, protects important cards with Taunt and can recover life. Purple supplies Stealth, graveyard play, attack interruption and direct removal. The pair becomes stronger when every card either feeds the Ingredient engine, protects a key Pal or converts a defeated Pal into value.</p>
       <p><CardTextLink number="EBP01-049" /> creates three Ingredients and can deploy another Pal from the top five cards. <CardTextLink number="EBP01-063" /> turns Ingredients into cards or deployment. <CardTextLink number="EBP01-075" /> rewards planned butchering, while <CardTextLink number="EBP01-077" /> is both a real attacker and an Interrupt from hand.</p>
-      <p>The official TD02 pool provides a clear starting engine, but no complete upgraded 50-card result list is available yet. Use the <Link className="text-link" href="/deck/green-blue-base-value">illustrated TD02 guide</Link>, then make small upgrades.</p>
+      <p>The official TD02 pool provides a clear starting engine. Early official tournament recipes now show that launch decks can move beyond unchanged Trial Deck lists, but one event wave is not enough to define the best upgrade path. Use the <Link className="text-link" href="/deck/green-blue-base-value">illustrated TD02 guide</Link>, then make small upgrades.</p>
 
       <h2>B tier: the unchanged Trial Decks</h2>
       <p>TD01 and TD02 belong in B tier, not because they are bad products, but because they are designed to teach. Both provide a complete legal deck with a clear plan and everything needed for one player. Their simple low-cost Pals make first turns easier, yet those slots can later become cards that draw, create resources or interact.</p>
@@ -103,7 +103,7 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
       <p>Red/Green, Red/Purple, Blue/Green and Blue/Purple may produce strong decks, and single-color experiments are legal. They remain unranked until complete 50-card lists can be compared. A color combination alone is not enough to judge consistency or matchups.</p>
 
       <h2>What could change the ranking?</h2>
-      <p>Published Featured Decks, Tournament Decks and Challengers Cup results will provide the first matchup data. Repeated finishes matter more than one local result.</p>
+      <p>Grand Release recipes provide the first official result evidence, but they do not publish matchup rates. Repeated finishes across Challengers Cup and later events matter more than one venue or one undefeated run.</p>
       <ul>
         <li>Complete 50-card Main Deck and 10-card Soul Deck lists.</li>
         <li>Event name, format, number of rounds and final placement.</li>
@@ -256,18 +256,18 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
     <>
       <h2>Palworld TCG tournament decklist status</h2>
       <div className="comparison-table" role="region" aria-label="Palworld TCG tournament decklist status" tabIndex={0}>
-        <div className="comparison-head"><span>Official source</span><strong>Status on August 6</strong><strong>What is available</strong></div>
-        <div><span>English Deck Recipe</span><p>No Featured Decks or Tournament Decks listed</p><p>DeckLog creation link only.</p></div>
-        <div><span>Grand Release Tournament</span><p>August 1–31 events underway</p><p>Format, prizes and registration; no winning decklists.</p></div>
+        <div className="comparison-head"><span>Official source</span><strong>Status on August 17</strong><strong>What is available</strong></div>
+        <div><span>Osaka Grand Release</span><p>Results published August 8</p><p>Four undefeated players and their deck images in the official X thread.</p></div>
+        <div><span>Tokyo Grand Release</span><p>Recipes announced August 17</p><p>Official undefeated recipes from the August 15 event.</p></div>
         <div><span>Shop Tournaments</span><p>August program active</p><p>Swiss best-of-one format and prize information; no winning decklists.</p></div>
         <div><span>Challengers Cup</span><p>First season planned for September</p><p>Event announcement; results are not yet available.</p></div>
         <div><span>Masters League 26/27</span><p>Road begins in November</p><p>World Championship path announced; results are not yet available.</p></div>
       </div>
-      <div className="callout"><strong>Direct answer:</strong> the official English Deck Recipe database has no tournament lists yet. For now, start with TD01, TD02 or a clearly labeled beginner list.</div>
+      <div className="callout"><strong>Direct answer:</strong> official tournament recipes now exist. Use them as early event evidence, not proof that one color pair or list is the settled best deck.</div>
 
-      <h2>Where official tournament decklists should appear</h2>
-      <p>The publisher&apos;s English Deck Recipe page has separate sections for Featured Decks and Tournament Decks. Both currently say “No entries found.” Check those sections first when you see a new winner claim or deck screenshot.</p>
-      <p>The official events hub currently lists Grand Release, shop tournaments, Challengers Cup and Masters League. Event pages establish the format, schedule and prizes, but they do not currently publish player names, standings or complete 50-card lists.</p>
+      <h2>Where official tournament decklists appear</h2>
+      <p>Check both official language editions and verified publisher social accounts. The Japanese official account published the Osaka lists directly in an X thread and later linked the Tokyo undefeated recipes from the official site. An empty or delayed English listing is not proof that no official result exists.</p>
+      <p>The official events hub still controls format, schedule and registration. Result posts add player and deck context, but neither source alone proves matchup rates or a settled global tier list.</p>
 
       <h2>What counts as a verified tournament decklist?</h2>
       <p>A screenshot of cards is not enough by itself. A useful result needs the list and the event context so another player can understand what the finish means.</p>
@@ -284,9 +284,9 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
       <p>The Grand Release Tournament uses a pre-constructed legal deck, Standard format, up to five Swiss rounds, best of one and 30 minutes per round. Shop tournaments use Standard, Swiss and best of one until one undefeated player remains. Registration is handled through Bushi Navi.</p>
       <p>Those rules matter when comparing results. A list that succeeds in a short best-of-one shop event may value immediate consistency differently from a future multi-day championship format.</p>
 
-      <h2>What to play before results are published</h2>
+      <h2>What to play while results are still limited</h2>
       <p>Use a complete list whose source is clear. TD01 and TD02 are official products with fixed card pools. The <Link className="text-link" href="/deck/mono-red-pal-rush">Red/Blue BP01 Structure Starter</Link> is an editorial 50-card beginner list that can be opened in the deck builder. None of these should be called the tournament best deck.</p>
-      <p>The <Link className="text-link" href="/blog/palworld-tcg-deck-tier-list">provisional deck tier list</Link> ranks launch shells by consistency, interaction and finishing plan. S tier remains empty until official results are available.</p>
+      <p>The <Link className="text-link" href="/blog/palworld-tcg-deck-tier-list">provisional deck tier list</Link> ranks launch shells by consistency, interaction and finishing plan. S tier remains empty until results repeat across more events and matchups.</p>
 
       <h2>How to read an early result</h2>
       <ol>
@@ -300,8 +300,8 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
       <h2>Results timeline</h2>
       <div className="comparison-table" role="region" aria-label="Palworld TCG results tracker timeline" tabIndex={0}>
         <div className="comparison-head"><span>Date</span><strong>Source</strong><strong>Available information</strong></div>
-        <div><span>August 6, 2026</span><p>Official Deck Recipe database</p><p>No Featured Decks or Tournament Decks published.</p></div>
-        <div><span>August 2026</span><p>Grand Release and shop event pages</p><p>Formats and prizes published; no official winning lists found.</p></div>
+        <div><span>August 8, 2026</span><p>Official Osaka result thread</p><p>Four undefeated players named; their deck images were published in the thread.</p></div>
+        <div><span>August 17, 2026</span><p>Official Tokyo recipe announcement</p><p>Undefeated recipes from the August 15 venue event were published.</p></div>
         <div><span>September 2026</span><p>Challengers Cup</p><p>Scheduled; event results are not yet available.</p></div>
         <div><span>November 2026</span><p>Masters League 26/27 path</p><p>Scheduled to begin; decklists and standings are not yet available.</p></div>
       </div>
@@ -314,6 +314,8 @@ export const competitiveGuideContent: Record<string, React.ReactNode> = {
 
 export const competitiveGuideSources: Record<string, GuideSource[]> = {
   "palworld-tcg-deck-tier-list": [
+    { label: "Official Osaka Grand Release results", href: "https://x.com/PalworldOCG/status/2085976842113331425" },
+    { label: "Official Tokyo Grand Release recipe announcement", href: "https://x.com/PalworldOCG/status/2089155250359783612" },
     { label: "Official English Deck Recipe database", href: "https://en.palworld-official-cardgame.com/deckrecipe" },
     { label: "Official launch card list", href: "https://en.palworld-official-cardgame.com/cardlist" },
     { label: "Official Red / Blue Trial Deck", href: "https://en.palworld-official-cardgame.com/products/td01" },
@@ -335,6 +337,8 @@ export const competitiveGuideSources: Record<string, GuideSource[]> = {
     { label: "Community-reconstructed TD02 quantity list — verify against your box", href: "https://palworldtcgsim.com/decks/decklists/gp-trial-deck--cc7d3711c429" },
   ],
   "palworld-tcg-tournament-decklists": [
+    { label: "Official Osaka Grand Release results", href: "https://x.com/PalworldOCG/status/2085976842113331425" },
+    { label: "Official Tokyo Grand Release recipe announcement", href: "https://x.com/PalworldOCG/status/2089155250359783612" },
     { label: "Official English Deck Recipe database", href: "https://en.palworld-official-cardgame.com/deckrecipe" },
     { label: "Official events hub", href: "https://en.palworld-official-cardgame.com/events" },
     { label: "Official Grand Release Tournament", href: "https://en.palworld-official-cardgame.com/events/grand-release-tournament" },

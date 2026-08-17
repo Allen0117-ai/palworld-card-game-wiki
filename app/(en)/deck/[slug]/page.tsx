@@ -89,24 +89,10 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
         {deck.status === "Official Trial Deck" ? <p><a className="text-link" href="#official-card-pool">Jump to the full 24-card pool →</a></p> : null}
       </header>
       <article className="article-shell">
-        <div className="verification-strip">
-          <strong>{deck.status}</strong>
-          <span>{deck.status === "Official Trial Deck" ? "Product and card facts are verified. Strategy guidance is written for new players." : "A beginner-friendly deck list based on the current card pool. It is not a tournament result or tier ranking."}</span>
-        </div>
         <EditorialByline
           reviewed={deck.updated}
-          sourceStatus={deck.status === "Official Trial Deck" ? "Official product and card data" : "Official card data + labeled beginner analysis"}
+          sourceStatus={deck.status === "Official Trial Deck" ? "Official product and card data" : "Official card data + beginner analysis"}
         />
-        <ContentFreshnessPanel
-          updated={deck.updated}
-          verified={deck.updated}
-          sourceStatus={deck.status === "Official Trial Deck" ? "Official product and card data" : "Official card data + labeled beginner analysis"}
-          summary={deck.description}
-          changeSummary={deck.status === "Official Trial Deck" ? "Checked the official card pool, product contents and beginner play sequence." : "Kept the complete 50-card sample connected to the current builder and launch card pool."}
-          published={deck.published}
-          history={deck.modified !== deck.published ? [{ date: deck.modified, note: "Updated this deck guide and its current card references." }] : undefined}
-        />
-        <AdsterraBannerAd />
         <div className="deck-at-a-glance" aria-label="Deck overview">
           <div><span>Colors</span><strong>{deck.colors.join(" + ")}</strong></div>
           <div><span>Style</span><strong>{deck.archetype}</strong></div>
@@ -119,7 +105,7 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
         <DeckRecipe deck={deck} />
         {deck.status === "Official Trial Deck" && (
           <section className="deck-guide-section" aria-labelledby="official-card-pool">
-            <p className="eyebrow"><span>Verified product pool</span> · 24 unique cards</p>
+            <p className="eyebrow"><span>Official product pool</span> · 24 unique cards</p>
             <h2 id="official-card-pool">All unique Main Deck cards</h2>
             <p>The official card database lists these 24 unique Main Deck entries. The sealed product contains a fixed 50-card Main Deck, 10 Soul cards, one TSR or TSP replacement card and one BP01 booster pack. The public product page does not publish copy-by-copy quantities, so use the pool below for card identities rather than a reconstructed 50-card recipe.</p>
             <div className="pool-table" role="table" aria-label={`${deck.name} card pool`}>
@@ -133,13 +119,23 @@ export default async function DeckDetailPage({ params }: { params: Promise<{ slu
             </div>
           </section>
         )}
-        <div className="callout"><strong>Tournament note:</strong> Results are still limited, so treat this as a beginner game plan rather than a proven tier ranking.</div>
+        <AdsterraBannerAd />
+        <div className="callout"><strong>Tournament context:</strong> Early Osaka and Tokyo results are available in the <Link className="text-link" href="/blog/palworld-tcg-tournament-decklists">tournament tracker</Link>. This page explains how the deck works; it is not a power ranking.</div>
         <div className="article-actions">
           <Link className="button primary" href={deck.recipe ? `/tools/deck-builder?deck=${deck.slug}` : "/tools/deck-builder"}>
             {deck.recipe ? "Open this 50-card list" : "Customize in deck builder"}
           </Link>
           <a className="button ghost" href={deck.sourceUrl} target="_blank" rel="noreferrer">Check official source ↗</a>
         </div>
+        <ContentFreshnessPanel
+          updated={deck.updated}
+          verified={deck.updated}
+          sourceStatus={deck.status === "Official Trial Deck" ? "Official product and card data" : "Official card data + beginner analysis"}
+          summary={deck.description}
+          changeSummary={deck.status === "Official Trial Deck" ? "Includes the official card pool, product contents and a beginner play sequence." : "Includes a complete 50-card sample that opens in the current deck builder."}
+          published={deck.published}
+          history={deck.modified !== deck.published ? [{ date: deck.modified, note: "Updated the deck guide and card references." }] : undefined}
+        />
         <AdsterraNativeAd />
         <section className="deck-next-steps" aria-labelledby="keep-learning">
           <p className="eyebrow"><span>Keep learning</span> · Choose your next step</p>

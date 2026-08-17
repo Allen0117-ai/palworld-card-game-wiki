@@ -176,7 +176,7 @@ const guidePrimaryActions: Record<string, Array<{ label: string; detail: string;
   "palworld-card-game-deck-building-rules": [
     { label: "Open the deck builder", detail: "Check cards, colors and Lucky limits", href: "/tools/deck-builder" },
     { label: "Copy a legal deck", detail: "Start from a complete 50-card list", href: "/deck/mono-red-pal-rush" },
-    { label: "Choose your colors", detail: "Compare all four play styles", href: "/blog/palworld-card-game-color-guide" },
+    { label: "Search official rulings", detail: "Check card-specific questions and exceptions", href: "/rules" },
   ],
   "palworld-card-game-keyword-glossary": [
     { label: "Search official rulings", detail: "Find card-specific answers", href: "/rules" },
@@ -340,6 +340,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Each player draws five Main Deck cards.</li>
         <li>Starting with the first player, each player may mulligan once. A mulligan returns all five cards, shuffles the deck, then draws five new cards; you cannot keep only some cards.</li>
       </ol>
+      <p>Need to build your own list first? <Link className="text-link" href="/blog/palworld-card-game-deck-building-rules">Check the full deck-building rules</Link>, including colors, copy limits and Lucky cards.</p>
 
       <h2>What are the five phases of a turn?</h2>
       <div className="phase-list">
@@ -401,6 +402,7 @@ const guideContent: Record<string, React.ReactNode> = {
     <>
       <h2>How many cards are in a legal Palworld deck?</h2>
       <p>Your Main Deck contains Pals, Gear, Events and Structures. It must contain exactly 50 cards. The Soul Deck contains exactly 10 Soul cards and does not count toward the 50.</p>
+      <p>For card-specific interactions and exceptions, <Link className="text-link" href="/rules">search the rules and official Q&amp;A</Link>.</p>
       <h2>How many colors can a deck use?</h2>
       <p>A Main Deck may use up to two of Red, Blue, Green and Purple. Colorless cards can be included with any chosen colors. The rule limits colors in deck construction; it does not require an even split.</p>
       <div className="example-box"><strong>Legal examples</strong><p>Red only; Red and Blue; Green and Purple plus Colorless; or a Colorless-only deck.</p></div>
@@ -490,7 +492,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Avoid paying a premium based only on an unverified marketplace asking price.</li>
       </ol>
       <h2>Launch availability: what community reports can and cannot prove</h2>
-      <p>Launch-day posts show that stock varies sharply by city: some players found local products, while others reported delays, sell-outs or high marketplace listings. These reports are useful warnings, but they do not prove a worldwide shortage or a stable market price. Check Bushi Navi, call the store before travelling and compare completed sales rather than asking prices. No official restock schedule was available as of July 31.</p>
+      <p>Launch-day posts showed stock varying sharply by city. The official Japanese account later confirmed on August 12 that BP01 remained in short supply, but it did not publish a restock date. Check Bushi Navi, call the store before travelling and treat seller estimates as local information rather than an official worldwide schedule.</p>
       <div className="callout"><strong>Product notice:</strong> the Red/Blue Trial Deck has an official errata notice for omitted “Strike” text on one printed card. The product page says the card remains legal and functions with the corrected text.</div>
       <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
     </>
@@ -559,13 +561,14 @@ const guideContent: Record<string, React.ReactNode> = {
 
   "palworld-tcg-rarity-guide": (
     <>
-      <h2>Base labels</h2>
+      <h2>Palworld TCG rarity levels: base labels</h2>
       <ul>
         <li><strong>C — Common:</strong> the broadest base rarity.</li>
         <li><strong>U — Uncommon:</strong> less frequent than Common.</li>
         <li><strong>R — Rare:</strong> a higher base rarity treatment.</li>
         <li><strong>RR — Double Rare:</strong> the top regular base label shown for most BP01 cards.</li>
       </ul>
+      <p><Link className="text-link" href="/cards">Browse the card list</Link> to verify a card number, base rarity and official card text.</p>
       <h2>Parallel labels shown in the official card list</h2>
       <p>The live database includes labels such as SR, OSR, SP, SSP and a special Soul treatment. Trial Deck products use TSR and TSP labels for their parallel replacement cards. Parallel versions normally keep the same game identity and rules as the corresponding card.</p>
       <h2>Why rarity is not the same as power</h2>
@@ -746,7 +749,7 @@ const guideContent: Record<string, React.ReactNode> = {
       <h2>August 1-31: Grand Release Tournament</h2>
       <p>Official tournament stores may hold one Grand Release Tournament during August. The announced format is Standard, up to five Swiss rounds, best-of-one and 30 minutes per round. Registration is handled through Bushi Navi, so players should check the actual store listing before travelling.</p>
       <ul>
-        <li><strong>Participation:</strong> one PR Card Pack containing one of nine card types, an Entry Soul Card Set and a Bushi Navi flair.</li>
+        <li><strong>Participation:</strong> an Entry Soul Card Set and a Bushi Navi flair. The separate shop-tournament program lists the PR Vol.1 participation card.</li>
         <li><strong>Champion:</strong> a Lily Everhart and Lyleen playmat plus a champion flair.</li>
         <li><strong>Important:</strong> prize availability and local entry details come from the organizer; a marketplace listing is not an event registration.</li>
       </ul>
@@ -838,8 +841,8 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Keep enough low-cost plays, card flow and interaction after every change.</li>
         <li>Change only a few slots, then record whether the new card was useful when drawn.</li>
       </ol>
-      <h2>Why there is no honest launch-day tier list yet</h2>
-      <p>Card text can suggest strong combinations, but a reliable tier list needs repeated tournament results, known lists and matchup data. For now, choose colors by the play style above and treat early tier lists as opinion.</p>
+      <h2>Why early results still do not make a settled tier list</h2>
+      <p>Official Osaka and Tokyo Grand Release recipes now provide real event evidence, but a reliable tier list still needs repeated results, known field sizes and matchup data. Choose colors by the play style above and treat early rankings as provisional.</p>
       <Link className="button primary" href="/tools/deck-builder">Test a two-color list</Link>
     </>
   ),
@@ -1091,11 +1094,6 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <h1>{guide.heading || guide.title}</h1>
       <p className="article-lede">{guide.description}</p>
       <div className="guide-intro-flow">
-        <div className="article-trust">
-          <span>Updated {guide.updated}</span>
-          <strong>{guide.sourceStatus}</strong>
-          <span>Sources checked</span>
-        </div>
         <EditorialByline
           reviewed={guide.updated}
           sourceStatus={guide.sourceStatus}
@@ -1144,6 +1142,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         </div>
       </div>
       <AdsterraBannerAd />
+      <div id="guide-content" className="guide-body">
+        {guideContent[slug]}
+      </div>
+
       <ContentFreshnessPanel
         updated={guide.updated}
         verified={guide.updated}
@@ -1153,16 +1155,13 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         published={articleDate}
         history={maintenance.history}
       />
-      <div id="guide-content" className="guide-body">
-        {guideContent[slug]}
-      </div>
 
       <AdsterraNativeAd />
 
       <section className="source-panel">
         <p className="eyebrow">Sources and evidence</p>
         <h2>Source links</h2>
-        <p>Official facts, video demonstrations and community observations are labeled separately. Community evidence never replaces a current rule, card text or product notice.</p>
+        <p>Use the official links below for current rules, card text, products and dates. Independent or community links are included only when they add clearly identified examples.</p>
         <div>
           {(officialSources[slug] || []).map((source) => {
             const sourceKind = getGuideSourceKind(source);

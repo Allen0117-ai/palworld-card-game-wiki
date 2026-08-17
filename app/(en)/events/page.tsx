@@ -34,7 +34,7 @@ export default function EventsPage() {
       headline: pageTitle,
       description: pageDescription,
       datePublished: "2026-08-05",
-      dateModified: "2026-08-06",
+      dateModified: "2026-08-17",
       author: createEditorialAuthorJsonLd(),
       publisher: createPublisherJsonLd(),
       mainEntityOfPage: `${SITE_URL}${pagePath}`,
@@ -58,11 +58,11 @@ export default function EventsPage() {
       <p className="article-lede">Find an official event, understand the published format, register through Bushi Navi and arrive with a legal deck instead of relying on a marketplace or social post.</p>
 
       <div className="article-trust">
-        <span>Updated August 6, 2026</span>
+        <span>Updated August 17, 2026</span>
         <strong>Official event pages checked</strong>
         <span>Local organizer details still control attendance</span>
       </div>
-      <EditorialByline reviewed="August 6, 2026" sourceStatus="Official events, rules and tournament pages" />
+      <EditorialByline reviewed="August 17, 2026" sourceStatus="Official events, rules and tournament pages" />
 
       <div className="quick-answer">
         <strong>How to enter a Palworld TCG tournament</strong>
@@ -71,14 +71,13 @@ export default function EventsPage() {
       </div>
 
       <ContentFreshnessPanel
-        updated="August 6, 2026"
-        verified="August 6, 2026"
+        updated="August 17, 2026"
+        verified="August 17, 2026"
         sourceStatus="Official event hub + event-specific regulations"
         summary="Explains event discovery, Bushi Navi registration, current shop formats, prize sources and tournament preparation."
-        changeSummary="Added the September–October demo sessions, advance registration and Daedream participation reward."
+        changeSummary="Corrected Grand Release rewards, added the September 5 Los Angeles Release Party and linked the first official tournament results."
         published="August 5, 2026"
       />
-      <AdsterraBannerAd />
 
       <h2>Where to find official Palworld TCG events</h2>
       <p>The publisher&apos;s events hub is the starting point for competitive and casual programs. It links to shop tournaments, demo sessions, release events, Challengers Cup and Masters League information as those programs open. Bushi Navi is the registration system used by the official event pages; a store&apos;s ordinary calendar or social post can provide useful local context, but it should match an official event listing before you rely on it.</p>
@@ -114,7 +113,17 @@ export default function EventsPage() {
         <div><span>Challengers Cup</span><p>Higher-stakes regional competition</p><p>The official events hub places the first season from September.</p></div>
         <div><span>Masters League</span><p>Road toward the first World Championship</p><p>Use the current official hub for region and qualification announcements.</p></div>
         <div><span>Demo sessions</span><p>Learning before entering competition</p><p>September–October store demos require advance registration and include a Daedream paper deck case.</p></div>
+        <div><span>Los Angeles Release Party</span><p>One-day official tournament and side event</p><p>September 5, 2026 in San Pedro, California; advance Bushi Navi registration is required.</p></div>
       </div>
+
+      <h2>September 5 Los Angeles Release Party</h2>
+      <p>The official Los Angeles event uses five Swiss rounds, best-of-one games and 30-minute rounds. Participation includes the Entry Soul Card Set and one PR Card Pack Vol.1 card; players with more than three wins receive a PR Card Pack Vol.1.5 card, and the undefeated player receives the Lily Everhart and Lyleen playmat. The same event page also lists a separate eight-player, three-round single-elimination side tournament.</p>
+      <div className="article-actions">
+        <a className="button primary" href="https://en.palworld-official-cardgame.com/events/release-party-in-los-angeles" target="_blank" rel="noreferrer">Open the official Los Angeles event ↗</a>
+        <Link className="button ghost" href="/cards/promos">Check the promo card prizes</Link>
+      </div>
+
+      <AdsterraBannerAd />
 
       <h2>Shop tournament rules at a glance</h2>
       <p>The official shop-tournament page lists Standard format, Swiss rounds and best-of-one games. Rounds continue until the published stopping condition produces one undefeated player. The event page does not replace the complete game rules, floor rules or judge instructions, so arrive early enough to ask about unclear sleeves, language editions or card corrections.</p>
@@ -128,7 +137,7 @@ export default function EventsPage() {
       <p>Those construction limits describe a legal starting point, not every floor-rule detail. Use the <Link className="text-link" href="/blog/palworld-card-game-deck-building-rules">complete deck-building guide</Link> and run the finished list through the deck builder before registering.</p>
 
       <h2>Grand Release Tournament format and prizes</h2>
-      <p>The August Grand Release Tournament uses Standard format, up to five Swiss rounds, best-of-one games and 30 minutes per round. Every participant receives one random card from a nine-card PR pack, a three-card Entry Soul Card Set and a Bushi Navi flair. The champion receives the announced Lily Everhart and Lyleen playmat plus a champion flair.</p>
+      <p>The August Grand Release Tournament uses Standard format, up to five Swiss rounds, best-of-one games and 30 minutes per round. Every participant receives a three-card Entry Soul Card Set and a Bushi Navi flair. The champion receives the announced Lily Everhart and Lyleen playmat plus a champion flair. The separate shop-tournament program lists PR Card Pack Vol.1 participation cards; the Grand Release page does not.</p>
       <p>Prize cards and availability can rotate after launch month. The <Link className="text-link" href="/cards/promos">promo card index</Link> records published PR numbers and separates participation rewards from winner-only or store-distributed prizes.</p>
 
       <h2>Tournament-ready checklist</h2>
@@ -161,8 +170,9 @@ export default function EventsPage() {
           <a href="https://en.palworld-official-cardgame.com/events/shop-tournaments" target="_blank" rel="noreferrer">Official shop tournaments ↗</a>
           <a href="https://en.palworld-official-cardgame.com/events/grand-release-tournament" target="_blank" rel="noreferrer">Official Grand Release Tournament ↗</a>
           <a href="https://en.palworld-official-cardgame.com/rule" target="_blank" rel="noreferrer">Official Rule &amp; Q&amp;A ↗</a>
-          <a href="https://en.palworld-official-cardgame.com/events/demo-sessions-2026" target="_blank" rel="noreferrer">Official demo sessions ↗</a>
+          <a href="https://en.palworld-official-cardgame.com/events/demo-sessions" target="_blank" rel="noreferrer">Official demo sessions ↗</a>
           <a href="https://en.palworld-official-cardgame.com/events/demo-session-september-october-2026" target="_blank" rel="noreferrer">September–October store demos ↗</a>
+          <a href="https://en.palworld-official-cardgame.com/events/release-party-in-los-angeles" target="_blank" rel="noreferrer">Official Los Angeles Release Party ↗</a>
         </div>
       </section>
     </article>

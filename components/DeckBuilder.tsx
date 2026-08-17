@@ -8,6 +8,8 @@ import { encodeDeckList, normalizeStoredDeck, sanitizeDeckName, type DeckMap } f
 import { DECK_DRAFT_STORAGE_KEY } from "@/lib/progress-storage";
 import { trackUserAction } from "@/lib/user-action-analytics";
 
+const INITIAL_CARD_LIMIT = 48;
+
 function readSavedDraft() {
   const saved = localStorage.getItem(DECK_DRAFT_STORAGE_KEY);
   if (!saved) return null;
@@ -40,6 +42,7 @@ export function DeckBuilder({
   const [query, setQuery] = useState("");
   const [color, setColor] = useState("all");
   const [set, setSet] = useState("all");
+  const [visibleCardLimit, setVisibleCardLimit] = useState(INITIAL_CARD_LIMIT);
   const [notice, setNotice] = useState(isSharedDeck ? "Shared deck loaded — change any card and make it yours." : "");
   const [isDeckPanelOpen, setIsDeckPanelOpen] = useState(false);
   const [openingHand, setOpeningHand] = useState<string[]>([]);
@@ -71,6 +74,7 @@ export function DeckBuilder({
     && (color === "all" || card.color === color)
     && (set === "all" || card.set === set)
   ));
+  const visibleCards = visible.slice(0, visibleCardLimit);
 
   useEffect(() => {
     if (!resumeSavedDraft) return;
@@ -190,21 +194,21 @@ export function DeckBuilder({
     <div className="builder-layout shell">
       <section className="builder-panel">
         <div className="builder-toolbar">
-          <input className="input" aria-label="Search card pool" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search launch cards…" />
-          <select className="select" aria-label="Filter by color" value={color} onChange={(e) => setColor(e.target.value)}>
+          <input className="input" aria-label="Search card pool" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCardLimit(INITIAL_CARD_LIMIT); }} placeholder="Search launch cards…" />
+          <select className="select" aria-label="Filter by color" value={color} onChange={(event) => { setColor(event.target.value); setVisibleCardLimit(INITIAL_CARD_LIMIT); }}>
             <option value="all">All colors</option><option value="red">Red</option><option value="blue">Blue</option>
             <option value="green">Green</option><option value="purple">Purple</option><option value="colorless">Colorless</option>
           </select>
-          <select className="select" aria-label="Filter by set" value={set} onChange={(e) => setSet(e.target.value)}>
+          <select className="select" aria-label="Filter by set" value={set} onChange={(event) => { setSet(event.target.value); setVisibleCardLimit(INITIAL_CARD_LIMIT); }}>
             <option value="all">All 148 cards</option>
             <option value="EBP01">BP01</option>
             <option value="ETD01">Red / Blue TD</option>
             <option value="ETD02">Green / Purple TD</option>
           </select>
         </div>
-        <p className="builder-result-count">{visible.length} cards shown · Official launch card data updated July 30, 2026</p>
+        <p className="builder-result-count">{visibleCards.length} of {visible.length} cards shown · Launch card data released July 30, 2026</p>
         <div className="builder-card-list">
-          {visible.map((card) => (
+          {visibleCards.map((card) => (
             <button className="builder-card" key={card.slug} onClick={() => addCard(card.slug)} draggable onDragStart={(event) => beginDrag(event, card.slug)} aria-label={`Add ${card.name}`}>
               <span className={`builder-art${card.type === "Structure" ? " builder-art-landscape" : ""}`}>
                 <Image src={card.image} alt={getCardImageAlt(card)} width={400} height={card.type === "Structure" ? 286 : 559} loading="lazy" />
@@ -214,6 +218,11 @@ export function DeckBuilder({
             </button>
           ))}
         </div>
+        {visibleCards.length < visible.length ? (
+          <button className="button ghost" type="button" onClick={() => setVisibleCardLimit((currentLimit) => currentLimit + INITIAL_CARD_LIMIT)}>
+            Show more cards
+          </button>
+        ) : null}
       </section>
       <aside
         id="deck-summary"

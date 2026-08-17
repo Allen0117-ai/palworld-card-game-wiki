@@ -25,7 +25,7 @@ export async function generateMetadata({
       : "Palworld TCG Deck Builder & Legal Deck Checker",
     description: sharedCardCount
       ? `Open this ${sharedCardCount}-card Palworld TCG deck, change any card and share your own version. No account needed.`
-      : "Build with all 148 launch cards and check the 50-card, four-copy, two-color and eight-Lucky limits. Save and share a legal Palworld TCG deck free.",
+      : "Build and validate a Palworld TCG deck with all 148 launch cards. Check 50 cards, two colors, four copies and eight Lucky cards, then save and share free.",
     path: "/tools/deck-builder",
     absoluteTitle: true,
   });
@@ -84,6 +84,7 @@ export default async function DeckBuilderPage({
           items={[
             { href: "/cards", label: "Card database", title: "Browse all cards", description: "Check card text, numbers and stats before adding cards." },
             { href: "/rules", label: "Rules & FAQ", title: "Verify a rule", description: "Search sourced answers to deck and card questions." },
+            { href: "/blog/palworld-card-game-deck-building-rules", label: "Deck-building rules", title: "Check every deck limit", description: "See the 50-card, color, copy and Lucky limits in one guide." },
             { href: "/decks", label: "Deck guides", title: "Open a starting list", description: "See Trial Deck plans and a beginner deck." },
           ]}
         />

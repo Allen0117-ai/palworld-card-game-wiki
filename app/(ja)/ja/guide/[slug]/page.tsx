@@ -60,6 +60,7 @@ const content: Record<string, React.ReactNode> = {
         <li>メインデッキから5枚引きます。</li>
         <li>引き直す場合は5枚すべてを戻してシャッフルし、もう一度5枚引きます。引き直しは1回だけです。</li>
       </ol>
+      <p><Link className="text-link" href="/ja/guide/deck-building-rules">50枚・2色・同名4枚・ラッキー8枚のデッキ構築ルール</Link>も確認できます。</p>
 
       <h2>ターンは5つのフェイズで進む</h2>
       <div className="phase-list">
@@ -89,6 +90,7 @@ const content: Record<string, React.ReactNode> = {
     <>
       <h2>完成条件は「50枚＋10枚」</h2>
       <p>メインデッキはちょうど50枚、ソウルデッキは別にちょうど10枚です。パル、ギア、建築物、イベントはメインデッキに入り、ソウルは専用デッキに入れます。</p>
+      <p>カードごとの細かな処理は、<Link className="text-link" href="/ja/rules">公式Q&amp;A検索</Link>で確認してください。</p>
       <div className="stat-table">
         <div><strong>50</strong><span>メインデッキ</span></div>
         <div><strong>10</strong><span>ソウルデッキ</span></div>
@@ -300,15 +302,15 @@ export default async function JapaneseGuidePage({ params }: { params: Promise<{ 
           reviewed={guide.updated}
           sourceStatus="日本語版の公式資料と公式Q&A"
         />
+        {content[slug]}
         <ContentFreshnessPanel
           locale="ja"
           updated={guide.updated}
           verified={guide.updated}
           sourceStatus="日本語版の公式資料と公式Q&A"
           summary={guide.description}
-          published={guide.updated}
+          published="2026-07-31"
         />
-        {content[slug]}
 
         <AdsterraNativeAd />
 

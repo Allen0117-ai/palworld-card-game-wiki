@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
-import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContentFreshnessPanel } from "@/components/ContentFreshnessPanel";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
@@ -49,7 +48,7 @@ export default function SetsPage() {
       <JsonLd data={structuredData} />
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Sets" }]} />
-        <p className="eyebrow"><span>Booster set guide</span> · Verified August 10, 2026</p>
+        <p className="eyebrow"><span>Booster set guide</span> · BP01 and BP02 official products</p>
         <h1>Palworld TCG<br />sets list.</h1>
         <p>Browse every officially confirmed booster set, then open its card list, release facts, collector tools and related Trial Decks. Upcoming information stays clearly separated from released card data.</p>
       </header>
@@ -60,8 +59,6 @@ export default function SetsPage() {
           <p>Two named Palworld TCG booster sets have official product pages: BP01 Dawn of Palpagos, released July 30, 2026, and BP02 Legends Awaken, scheduled for October 30, 2026. Bushiroad has also scheduled an unnamed new booster for January 29, 2027, but its set code, name and card details are not published yet. Two additional Trial Decks are scheduled for December 18, 2026; Trial Decks are fixed products, not additional booster sets.</p>
           <a className="quick-answer-source" href="https://en.palworld-official-cardgame.com/products" target="_blank" rel="noreferrer">Primary source: official product index ↗</a>
         </div>
-
-        <AdsterraBannerAd />
 
         <ContentFreshnessPanel
           updated="August 10, 2026"
@@ -88,6 +85,8 @@ export default function SetsPage() {
             </Link>
           ))}
         </div>
+
+        <AdsterraBannerAd />
 
         <h2>What counts as a Palworld TCG set?</h2>
         <p>Players often use “set” for any sealed product, but the official catalog separates three useful product families. Keeping those families distinct makes card numbers, deck contents and collection goals easier to understand.</p>
@@ -132,8 +131,6 @@ export default function SetsPage() {
             { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide", title: "Choose a product", description: "Compare sealed products without mixing their purposes." },
           ]}
         />
-
-        <AdsterraNativeAd />
 
         <h2>Check a set before buying</h2>
         <ul>

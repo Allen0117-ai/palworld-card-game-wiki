@@ -188,7 +188,7 @@ test("AdSense ownership, ads.txt and content-page loading rules are explicit", a
   assert.doesNotMatch(adsenseConfigSource, /"\/privacy"/);
   assert.match(adsenseComponentSource, /isAdSenseContentPath\(pathname\)/);
   assert.match(adsenseComponentSource, /strategy="afterInteractive"/);
-  assert.match(adsenseComponentSource, /if \(adSenseWasLoaded\) window\.location\.reload\(\)/);
+  assert.doesNotMatch(adsenseComponentSource, /window\.location\.reload\(\)/);
   assert.equal(adsTxt.trim(), "google.com, pub-3736712756888915, DIRECT, f08c47fec0942fa0");
 });
 
@@ -222,8 +222,8 @@ test("Adsterra ads stay responsive, direct and limited to content pages", async 
     "utf8",
   );
 
-  assert.match(homeHtml, /adsterra-native-desktop/);
-  assert.match(cardsHtml, /adsterra-native-desktop/);
+  assert.doesNotMatch(homeHtml, /adsterra-native-desktop/);
+  assert.doesNotMatch(cardsHtml, /adsterra-native-desktop/);
   assert.match(guideHtml, /adsterra-native-desktop/);
   assert.match(japaneseHomeHtml, /adsterra-native-desktop/);
   assert.match(japaneseCardsHtml, /adsterra-native-desktop/);
@@ -244,6 +244,8 @@ test("Adsterra ads stay responsive, direct and limited to content pages", async 
   assert.match(componentSource, /pl30773798\.effectivecpmnetwork\.com/);
   assert.match(componentSource, /container-ffedc1b118688c6fd911f92592c932fb/);
   assert.match(componentSource, /MutationObserver/);
+  assert.match(componentSource, /IntersectionObserver/);
+  assert.match(componentSource, /rootMargin: "600px 0px"/);
   assert.doesNotMatch(bannerComponentSource, /<iframe|sandbox=/);
   assert.match(bannerComponentSource, /2f015011f98dcad22cb5580efe19ba9a/);
   assert.match(bannerComponentSource, /9bd285eb6652f6632a6edece99fe6613/);
@@ -253,9 +255,10 @@ test("Adsterra ads stay responsive, direct and limited to content pages", async 
   assert.match(bannerComponentSource, /width: 728/);
   assert.match(bannerComponentSource, /document\.createElement\("script"\)/);
   assert.match(bannerComponentSource, /NEXT_PUBLIC_ADSTERRA_BANNER_ENABLED/);
+  assert.match(bannerComponentSource, /IntersectionObserver/);
+  assert.match(bannerComponentSource, /rootMargin: "600px 0px"/);
   assert.match(viewportHookSource, /\(min-width: 768px\)/);
-  assert.ok(cardsHtml.indexOf("adsterra-banner-slot") < cardsHtml.indexOf('id="card-results"'));
-  assert.ok(cardsHtml.indexOf('id="card-results"') < cardsHtml.indexOf("adsterra-native-desktop"));
+  assert.ok(cardsHtml.indexOf('id="card-results"') < cardsHtml.indexOf("adsterra-banner-slot"));
   assert.match(privacyHtml, /Google AdSense and Adsterra/);
   assert.match(privacyHtml, /Adsterra code may load directly on content pages/);
   assert.doesNotMatch(privacyHtml, /sandboxed frames/);
@@ -534,7 +537,7 @@ test("deck discovery links homepage, deck pools and card pages in both direction
   assert.match(decksHtml, /Start with the direct plan/);
   assert.match(decksHtml, /Practice setup and timing/);
   assert.match(decksHtml, /Load a complete 50-card deck/);
-  assert.match(decksHtml, /Review the provisional tier list/);
+  assert.match(decksHtml, /Review Osaka and Tokyo recipes/);
 
   const deckHtml = await (await render("/deck/red-blue-launch-pressure")).text();
   assert.match(deckHtml, /<nav class="breadcrumbs" aria-label="Breadcrumb">/);
@@ -574,7 +577,8 @@ test("wiki indexes and living guides expose the new navigation and utility featu
   assert.match(homeHtml, /href="\/rules"/);
   assert.match(homeHtml, /href="\/updates"/);
   assert.match(filteredCardsHtml, /100(?:<!-- -->)? \/ (?:<!-- -->)?148/);
-  assert.match(guideHtml, /Latest page information/);
+  assert.match(guideHtml, /Page update/);
+  assert.match(guideHtml, /What changed/);
   assert.match(guideHtml, /Update history/);
   assert.match(deckHtml, /Copy deck list/);
 });
@@ -710,8 +714,8 @@ test("existing high-value pages cover the selected long-tail keywords", async ()
   assert.match(howToHtml, /Start in three steps/);
   assert.match(deckRulesHtml, /Palworld TCG Deck Building Rules — 50 Cards \+ 10 Souls/);
   assert.match(builderHtml, /Deck Builder &amp; Legal Deck Checker/);
-  assert.match(builderHtml, /eight-Lucky limits/);
-  assert.match(rarityHtml, /Rarity Guide – C, U, R, RR, SP &amp; SSP/);
+  assert.match(builderHtml, /eight Lucky cards/);
+  assert.match(rarityHtml, /Rarity Guide: C, U, R, RR, SP &amp; SSP/);
   assert.match(decksHtml, /Starter Deck Lists &amp; Trial Deck Guides/);
   assert.match(decksHtml, /starter deck guide/);
   assert.match(trialDeckHtml, /Palworld starter deck lists: TD01 and TD02/);
@@ -784,8 +788,8 @@ test("the current update includes verified events, products and corrections", as
   assert.match(roadmapHtml, /December 18: two new Trial Decks/);
   assert.match(roadmapHtml, /January 29, 2027: next booster pack/);
   assert.match(roadmapHtml, /has ended/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-2026-roadmap"[^>]*><span>Official schedule/);
-  assert.match(homeHtml, /href="\/events"[^>]*><span>Official demos/);
+  assert.match(homeHtml, /href="\/blog\/palworld-tcg-tournament-decklists"[^>]*><span>Official results/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Official stock notice/);
   assert.match(homeHtml, /href="\/cards"[^>]*><span>Official database/);
   assert.match(homeHtml, /href="\/updates"[^>]*>View the complete update log/);
   assert.match(homeHtml, /03 · Collect &amp; track/);
@@ -844,7 +848,7 @@ test("guide source panels distinguish official, video and community evidence", a
 
   assert.match(howToHtml, /<span class="source-kind">Official video<\/span>/);
   assert.match(pullRatesHtml, /<span class="source-kind">Community<\/span>/);
-  assert.match(pullRatesHtml, /Community evidence never replaces/);
+  assert.match(pullRatesHtml, /Independent or community links are included only when they add clearly identified examples/);
 });
 
 test("every internal link points to a published page", async () => {
@@ -1120,7 +1124,8 @@ test("natural-language questions return the correct direct answer first", async 
 test("rules center exposes official answers and clear sourcing", async () => {
   const response = await render("/rules");
   const html = await response.text();
-  assert.match(html, /97(?:<!-- -->)? official launch-day Q&amp;As/);
+  assert.match(html, /97(?:<!-- -->)? official Q&amp;As for deck limits/);
+  assert.match(html, /official Q&amp;As indexed/);
   assert.match(html, /Comprehensive Rules/);
   assert.match(html, /Ask a rules question in your own words/);
   assert.match(html, /If a Lucky icon appears, the check stops and that life loss is cancelled\./);

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AdsterraBannerAd } from "@/components/AdsterraBannerAd";
-import { AdsterraNativeAd } from "@/components/AdsterraNativeAd";
 import { HeroSearch } from "@/components/HeroSearch";
 import { HomeProgressHub } from "@/components/HomeProgressHub";
 import { HubLinkGrid } from "@/components/HubLinkGrid";
@@ -133,10 +132,6 @@ export default function Home() {
         <div>Verified rules <span>◆</span> 148-card database <span>◆</span> Deck builder <span>◆</span> Collection checklist <span>◆</span> Verified updates</div>
       </section>
 
-      <div className="shell">
-        <AdsterraBannerAd />
-      </div>
-
       <section className="launch-paths shell" data-reveal>
         <div className="launch-paths-heading">
           <div><p className="eyebrow"><span>Choose your path</span> · Start with your goal</p><h2>Three ways to use the wiki.</h2></div>
@@ -148,10 +143,6 @@ export default function Home() {
           <Link href="/sets"><span>03 · Collect &amp; track</span><strong>Browse sets and save progress</strong><p>Check BP01, follow BP02 and track base cards, parallels and promos.</p></Link>
         </div>
       </section>
-
-      <div className="shell">
-        <AdsterraNativeAd />
-      </div>
 
       <div className="shell" data-reveal>
         <HubLinkGrid
@@ -170,6 +161,10 @@ export default function Home() {
             { href: "/events", label: "Official play", title: "Events", description: "Find Bushi Navi registration, formats and current programs." },
           ]}
         />
+      </div>
+
+      <div className="shell">
+        <AdsterraBannerAd />
       </div>
 
       <section className="home-about-game shell" aria-labelledby="about-palworld-card-game" data-reveal>
@@ -197,22 +192,22 @@ export default function Home() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>Latest verified</span> · August 10, 2026</p><h2>What changed recently.</h2></div>
+          <div><p className="eyebrow"><span>Latest verified</span> · August 17, 2026</p><h2>What changed recently.</h2></div>
           <div className="latest-updates-copy">
             <p>Short, dated updates checked against official news, event pages and the live card database.</p>
             <Link className="text-link" href="/updates">View the complete update log →</Link>
           </div>
         </div>
         <div className="latest-update-grid">
-          <Link href="/blog/palworld-card-game-2026-roadmap" data-analytics-event="latest_update_click" data-analytics-label="next-product-schedule">
-            <span>Official schedule · New</span>
-            <strong>Two Trial Decks and the next booster dated</strong>
-            <p>Two new Trial Decks arrive December 18, followed by an unnamed booster on January 29, 2027.</p>
+          <Link href="/blog/palworld-tcg-tournament-decklists" data-analytics-event="latest_update_click" data-analytics-label="official-tournament-results">
+            <span>Official results · Aug 17</span>
+            <strong>Osaka and Tokyo deck recipes published</strong>
+            <p>Official Japanese sources now show early undefeated Grand Release lists, with their event limits kept clear.</p>
           </Link>
-          <Link href="/events" data-analytics-event="latest_update_click" data-analytics-label="september-october-demos">
-            <span>Official demos · Sept–Oct</span>
-            <strong>New store demo sessions confirmed</strong>
-            <p>Advance Bushi Navi registration is required, and participants receive a Daedream paper deck case.</p>
+          <Link href="/blog/palworld-card-game-products-where-to-buy" data-analytics-event="latest_update_click" data-analytics-label="bp01-shortage-notice">
+            <span>Official stock notice · Aug 12</span>
+            <strong>BP01 shortage acknowledged</strong>
+            <p>The publisher confirmed continuing shortages but did not announce a restock date.</p>
           </Link>
           <Link href="/cards" data-analytics-event="latest_update_click" data-analytics-label="official-card-list">
             <span>Official database · Live</span>

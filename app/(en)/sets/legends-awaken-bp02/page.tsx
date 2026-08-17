@@ -36,7 +36,7 @@ export default function LegendsAwakenPage() {
       headline: pageTitle,
       description: pageDescription,
       datePublished: "2026-08-05",
-      dateModified: "2026-08-07",
+      dateModified: "2026-08-17",
       author: createEditorialAuthorJsonLd(),
       publisher: createPublisherJsonLd(),
       mainEntityOfPage: `${SITE_URL}${pagePath}`,
@@ -64,29 +64,13 @@ export default function LegendsAwakenPage() {
       <h1>Legends Awaken<br />BP02 card list.</h1>
       <p className="article-lede">Check the release date, confirmed set size and official reveal status for the second Palworld TCG booster set. The numbered card list will appear after Bushiroad publishes it.</p>
 
-      <div className="article-trust">
-        <span>Updated August 7, 2026</span>
-        <strong>Official product facts</strong>
-        <span>Official numbered card list pending</span>
-      </div>
-      <EditorialByline reviewed="August 7, 2026" sourceStatus="Official BP02 product page" />
+      <EditorialByline reviewed="August 17, 2026" sourceStatus="Official BP02 product page" />
 
       <div className="quick-answer">
         <strong>What is confirmed</strong>
-        <p>Legends Awaken is Palworld TCG Set 2, officially numbered BP02 and scheduled for October 30, 2026. Local-store preorders are open. Bushiroad confirms 100 normal card types across RR, R, U and C, plus parallels in all five colors. As of August 7, the official English page does not publish the full numbered card list, exact parallel count, box configuration or every new mechanic.</p>
+        <p>Legends Awaken is Palworld TCG Set 2, officially numbered BP02 and scheduled for October 30, 2026. Local-store preorders are open. Bushiroad confirms 100 normal card types across RR, R, U and C, plus parallels in all five colors. The current official English page does not publish the full numbered card list, exact parallel count, box configuration or every new mechanic.</p>
         <a className="quick-answer-source" href={legendsAwaken.officialUrl} target="_blank" rel="noreferrer">Primary source: official Legends Awaken product page ↗</a>
       </div>
-
-      <ContentFreshnessPanel
-        updated="August 7, 2026"
-        verified="August 7, 2026"
-        sourceStatus="Official BP02 product page"
-        summary="Tracks the BP02 release, confirmed set size, reveal status and future official card-list availability."
-        changeSummary="Added official local-store preorder status, all five featured colors and a reveal checklist that separates confirmed facts from pending details."
-        published="August 5, 2026"
-        history={[{ date: "2026-08-07", note: "Added preorder status, featured colors and pending reveal fields." }]}
-      />
-      <AdsterraBannerAd />
 
       <h2>Legends Awaken BP02 confirmed facts</h2>
       <div className="stat-table">
@@ -97,6 +81,8 @@ export default function LegendsAwakenPage() {
         <div><strong>TBD</strong><span>parallel count</span></div>
       </div>
       <p>The product specification confirms the release date, 100 normal card types, RR, R, U and C base rarities, and Red, Blue, Green, Purple and Colorless cards. It confirms parallel cards but does not state their exact count. “TBD” here means not officially published—not zero.</p>
+
+      <AdsterraBannerAd />
 
       <h2>Where can you preorder Legends Awaken BP02?</h2>
       <p>The official product page says preorders are available at local stores. Start with Bushiroad&apos;s retailer finder, then confirm the store&apos;s allocation, deposit, cancellation terms, language, sealed quantity and estimated delivery date. The publisher does not list one universal BP02 price or guarantee that every store will receive stock.</p>
@@ -147,6 +133,19 @@ export default function LegendsAwakenPage() {
         <Link className="button ghost" href="/decks">Compare current deck lists</Link>
         <Link className="button ghost" href="/tools/deck-builder">Open the deck builder</Link>
       </div>
+
+      <ContentFreshnessPanel
+        updated="August 17, 2026"
+        verified="August 17, 2026"
+        sourceStatus="Official BP02 product page"
+        summary="Tracks the BP02 release, confirmed set size, reveal status and future official card-list availability."
+        changeSummary="The official product page still confirms October 30, 100 normal card types and five colors; the numbered card list and exact parallel count remain pending."
+        published="August 5, 2026"
+        history={[
+          { date: "2026-08-07", note: "Added preorder status, featured colors and pending reveal fields." },
+          { date: "2026-08-17", note: "Rechecked the official product page and pending card-list fields." },
+        ]}
+      />
 
       <AdsterraNativeAd />
       <section className="source-panel">

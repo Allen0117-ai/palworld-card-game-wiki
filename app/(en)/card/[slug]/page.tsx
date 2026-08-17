@@ -16,17 +16,35 @@ import { getCardStrategy } from "@/lib/card-strategy";
 
 export function generateStaticParams() { return cards.map((card) => ({ slug: card.slug })); }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+function createCardPageTitle(card: (typeof cards)[number], displayNumber: string) {
+  const fullName = card.subtitle ? `${card.name} — ${card.subtitle}` : card.name;
+  const fullTitle = `${fullName} ${displayNumber} | Palworld TCG`;
+  return fullTitle.length <= 65 ? fullTitle : `${card.name} ${displayNumber} | Palworld TCG`;
+}
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ variant?: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
+  const { variant } = await searchParams;
   const card = cards.find((item) => item.slug === slug);
   if (!card) return {};
+  const requestedArtwork = specialArtworkByVariant(variant);
+  const specialArtwork = requestedArtwork?.card.slug === card.slug ? requestedArtwork : undefined;
+  const displayNumber = specialArtwork?.variantNumber || card.number;
+  const displayRarity = specialArtwork?.rarity || card.rarity;
+  const fullName = card.subtitle ? `${card.name} — ${card.subtitle}` : card.name;
 
   return createPageMetadata({
-    title: `${card.name} ${card.number} – Palworld TCG Card`,
-    description: `Stats and strategy for ${card.name} (${card.number}), a ${card.rarity} ${card.color} card from ${card.setName}.`,
+    title: createCardPageTitle(card, displayNumber),
+    description: `Read the official text, stats, ${displayRarity} rarity and deck advice for ${fullName} (${displayNumber}), a ${card.color} ${card.type} from ${card.set}.`,
     path: `/card/${card.slug}`,
     absoluteTitle: true,
-    image: { url: `https://palworldcardgame.wiki${card.image}`, alt: getCardImageAlt(card) },
+    image: { url: `https://palworldcardgame.wiki${specialArtwork?.image || card.image}`, alt: getCardImageAlt(card) },
   });
 }
 
@@ -121,7 +139,6 @@ export default async function CardDetailPage({
           sourceStatus="Official card text + editorial strategy"
           summary={`Official card text plus an editorial strategy guide for ${card.name}.`}
         />
-        <AdsterraBannerAd />
         <section className="content-block">
           <h2>{card.name} strategy guide</h2>
           <p>{strategy.overview}</p>
@@ -134,6 +151,7 @@ export default async function CardDetailPage({
           <ol>{strategy.playPattern.map((step) => <li key={step}>{step}</li>)}</ol>
           <div className="callout"><strong>Watch for:</strong> {strategy.watchFor}</div>
         </section>
+        <AdsterraBannerAd />
         <section className="content-block">
           <h2>Decks using this card</h2>
           {relatedDecks.length ? <ul>{relatedDecks.map((deck) => <li key={deck.slug}><Link className="text-link" href={`/deck/${deck.slug}`}>{deck.name} →</Link></li>)}</ul> : <p>No featured launch deck uses this card yet. Try it in the deck builder.</p>}

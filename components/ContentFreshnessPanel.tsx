@@ -16,13 +16,13 @@ type ContentFreshnessPanelProps = {
 
 const labels = {
   en: {
-    eyebrow: "Updated",
-    title: "Latest page information.",
+    eyebrow: "Page update",
+    title: "What changed",
     updated: "Updated",
-    verified: "Verified",
+    verified: "Last checked",
     sources: "Sources",
-    coverage: "About this page",
-    changed: "Latest changes",
+    coverage: "Covered here",
+    changed: "This update",
     history: "Update history",
     published: "Published",
   },

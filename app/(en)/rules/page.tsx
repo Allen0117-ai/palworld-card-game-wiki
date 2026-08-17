@@ -22,7 +22,7 @@ export async function generateMetadata({
       : "Palworld TCG Comprehensive Rules & Official Q&A",
     description: question
       ? `See the sourced Palworld Card Game ruling for “${question}” and share the answer with your playgroup.`
-      : "Search Palworld TCG rulings and FAQ, or check the 50-card deck, 10-card Soul Deck, turn order, combat and keywords with direct official sources.",
+      : "Read Palworld TCG comprehensive rules and official Q&A for deck limits, setup, turn order, combat, keywords and card rulings, with direct sources.",
     path: "/rules",
     absoluteTitle: true,
   });
@@ -45,9 +45,9 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
       }} />
       <header className={`page-hero rules-hero shell${hasQuery ? " has-query" : ""}`}>
         <div className="rules-query-desktop-copy">
-          <p className="eyebrow"><span>Rules answer center</span> · Checked August 10, 2026</p>
-          <h1>Palworld TCG<br />rules &amp; FAQ.</h1>
-          <p>Use this comprehensive rules center as a searchable companion to the Palworld TCG rulebook. Search all {officialRuleCount} official launch-day Q&amp;As for deck limits, turn order, combat, keywords or card rulings; every answer links to an official source.</p>
+          <p className="eyebrow"><span>Rules answer center</span> · Official Q&amp;A searchable below</p>
+          <h1>Palworld TCG<br />comprehensive rules &amp; FAQ.</h1>
+          <p>Use this rules center as a searchable companion to the Palworld TCG rulebook. Search all {officialRuleCount} official Q&amp;As for deck limits, setup, turn order, combat, keywords or card rulings; every answer links to its source.</p>
           <div className="quick-answer">
             <strong>Rules in 20 seconds</strong>
             <p>Build exactly 50 Main Deck cards plus a separate 10-card Soul Deck, using no more than two named colors. Each turn follows Stand → Draw → Soul → Main → End; the first player skips their first Draw Phase.</p>
@@ -55,6 +55,8 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
           <div className="article-actions">
             <a className="button ghost" href="https://en.palworld-official-cardgame.com/wordpress/wp-content/uploads/2026/06/26104921/Palworld-OFFICIAL-CARD-GAME-Play-Guide_EN.pdf" target="_blank" rel="noreferrer">Open official rules PDF ↗</a>
             <Link className="button ghost" href="/blog/how-to-play-palworld-card-game">Read the beginner rulebook guide</Link>
+            <Link className="button ghost" href="/blog/palworld-card-game-deck-building-rules">Check deck-building limits</Link>
+            <Link className="button ghost" href="/tools/deck-builder">Build and check a legal deck</Link>
           </div>
           <div className="rules-hero-stats" aria-label="Rules database coverage">
             <div><strong>{featuredRuleAnswers.length}</strong><span>plain-English essentials</span></div>
@@ -85,10 +87,10 @@ export default async function RulesPage({ searchParams }: { searchParams: Promis
           />
         </section>
       ) : null}
+      <RuleExplorer initialQuery={q} />
       <div className="shell">
         <AdsterraBannerAd />
       </div>
-      <RuleExplorer initialQuery={q} />
     </>
   );
 }
