@@ -25,7 +25,7 @@ export default function SetsPage() {
       name: "Palworld TCG Sets List",
       description: pageDescription,
       url: `${SITE_URL}/sets`,
-      dateModified: "2026-08-10",
+      dateModified: "2026-08-20",
       mainEntity: {
         "@type": "ItemList",
         numberOfItems: palworldBoosterSets.length,
@@ -56,16 +56,16 @@ export default function SetsPage() {
       <article className="article-shell">
         <div className="quick-answer">
           <strong>What is confirmed</strong>
-          <p>Two named Palworld TCG booster sets have official product pages: BP01 Dawn of Palpagos, released July 30, 2026, and BP02 Legends Awaken, scheduled for October 30, 2026. Bushiroad has also scheduled an unnamed new booster for January 29, 2027, but its set code, name and card details are not published yet. Two additional Trial Decks are scheduled for December 18, 2026; Trial Decks are fixed products, not additional booster sets.</p>
+          <p>Two named Palworld TCG booster sets have official product pages: BP01 Dawn of Palpagos, released July 30, 2026, and BP02 Legends Awaken, scheduled for October 30, 2026. Bushiroad has also scheduled a new booster for January 29, 2027; its name and set code are still pending. Trial Deck Eternal Ascent Red・Green (TD03) and Blue・Purple (TD04) release on December 18, 2026. Trial Decks are fixed products, not additional booster sets.</p>
           <a className="quick-answer-source" href="https://en.palworld-official-cardgame.com/products" target="_blank" rel="noreferrer">Primary source: official product index ↗</a>
         </div>
 
         <ContentFreshnessPanel
-          updated="August 10, 2026"
-          verified="August 10, 2026"
-          sourceStatus="Official English product pages and product-schedule announcement"
-          summary="Tracks named booster sets, release dates, card-list availability and confirmed products whose names are still pending."
-          changeSummary="Added the December 18 Trial Decks and January 29, 2027 booster date without guessing their unpublished names or set codes."
+          updated="August 20, 2026"
+          verified="August 20, 2026"
+          sourceStatus="Official English news, product pages and product-schedule announcement"
+          summary="Tracks named booster sets, release dates, card-list availability and the announced Trial Deck lineup."
+          changeSummary="Replaced the unnamed December Trial Deck placeholders with the official Eternal Ascent TD03 and TD04 names, colors and included accessories."
           published="August 5, 2026"
         />
 
@@ -116,7 +116,7 @@ export default function SetsPage() {
         </div>
 
         <h2>What comes after Legends Awaken?</h2>
-        <p>The official Summer 2026 announcement schedules two new Trial Decks for December 18, 2026 and a new booster pack for January 29, 2027. The publisher has not announced their names, product codes, colors or card lists, so this index does not invent BP03, TD03 or TD04 labels.</p>
+        <p>The official August 19 product announcement names the December 18 Trial Decks as Eternal Ascent Red・Green (TD03) and Eternal Ascent Blue・Purple (TD04). Each product contains a 50-card Main Deck, 10-card Soul Deck, paper playmat and play guide, Life Counter, plus Material and Ingredient counters. The individual card lists have not been published. The January 29, 2027 booster still has no official name or set code.</p>
         <div className="callout"><strong>Why there are still two set cards above:</strong> BP01 and BP02 are the only named booster products with published set pages. The January booster will be added as its own entry after Bushiroad publishes an official identity and source page.</div>
 
         <HubLinkGrid
@@ -148,6 +148,9 @@ export default function SetsPage() {
             {palworldBoosterSets.map((set) => <a href={set.officialUrl} target="_blank" rel="noreferrer" key={set.code}>Official {set.code} page ↗</a>)}
             <a href="https://en.palworld-official-cardgame.com/products/td01" target="_blank" rel="noreferrer">Official TD01 page ↗</a>
             <a href="https://en.palworld-official-cardgame.com/products/td02" target="_blank" rel="noreferrer">Official TD02 page ↗</a>
+            <a href="https://en.palworld-official-cardgame.com/products/TD03" target="_blank" rel="noreferrer">Official TD03 page ↗</a>
+            <a href="https://en.palworld-official-cardgame.com/products/TD04" target="_blank" rel="noreferrer">Official TD04 page ↗</a>
+            <a href="https://en.palworld-official-cardgame.com/news/post-7" target="_blank" rel="noreferrer">Official Eternal Ascent announcement ↗</a>
             <a href="https://en.palworld-official-cardgame.com/news/post-becsu-26" target="_blank" rel="noreferrer">Official 2026–27 product schedule ↗</a>
           </div>
         </section>

@@ -785,10 +785,10 @@ test("the current update includes verified events, products and corrections", as
   assert.match(roadmapHtml, /September–October: new store demo sessions/);
   assert.match(roadmapHtml, /September 25: playmats and storage boxes/);
   assert.match(roadmapHtml, /October 16: four official sleeve designs/);
-  assert.match(roadmapHtml, /December 18: two new Trial Decks/);
+  assert.match(roadmapHtml, /December 18: Eternal Ascent TD03 and TD04/);
   assert.match(roadmapHtml, /January 29, 2027: next booster pack/);
   assert.match(roadmapHtml, /has ended/);
-  assert.match(homeHtml, /href="\/blog\/palworld-tcg-tournament-decklists"[^>]*><span>Official results/);
+  assert.match(homeHtml, /href="\/sets"[^>]*><span>Official products/);
   assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Official stock notice/);
   assert.match(homeHtml, /href="\/cards"[^>]*><span>Official database/);
   assert.match(homeHtml, /href="\/updates"[^>]*>View the complete update log/);
@@ -806,14 +806,14 @@ test("the current update includes verified events, products and corrections", as
   assert.match(resourcesHtml, /Official Play Guide video/);
 });
 
-test("set, errata and reprint pages reflect the August 10 official notices", async () => {
+test("set, errata and reprint pages reflect the latest official notices", async () => {
   const setsHtml = await (await render("/sets")).text();
   const errataHtml = await (await render("/blog/palworld-card-game-errata-tracker")).text();
   const reprintHtml = await (await render("/blog/palworld-tcg-first-edition-vs-reprint")).text();
 
   assert.match(setsHtml, /Two named Palworld TCG booster sets/);
   assert.match(setsHtml, /January 29, 2027/);
-  assert.match(setsHtml, /does not invent BP03, TD03 or TD04 labels/);
+  assert.match(setsHtml, /Trial Deck Eternal Ascent Red・Green \(TD03\) and Blue・Purple \(TD04\)/);
   assert.match(errataHtml, /BP01 packaging · Confirmed/);
   assert.match(errataHtml, /misspelled on first-wave packs and boxes/);
   assert.match(reprintHtml, /future reprints will correct it/);

@@ -192,17 +192,17 @@ export default function Home() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>Latest verified</span> · August 17, 2026</p><h2>What changed recently.</h2></div>
+          <div><p className="eyebrow"><span>Latest verified</span> · August 20, 2026</p><h2>What changed recently.</h2></div>
           <div className="latest-updates-copy">
             <p>Short, dated updates checked against official news, event pages and the live card database.</p>
             <Link className="text-link" href="/updates">View the complete update log →</Link>
           </div>
         </div>
         <div className="latest-update-grid">
-          <Link href="/blog/palworld-tcg-tournament-decklists" data-analytics-event="latest_update_click" data-analytics-label="official-tournament-results">
-            <span>Official results · Aug 17</span>
-            <strong>Osaka and Tokyo deck recipes published</strong>
-            <p>Official Japanese sources now show early undefeated Grand Release lists, with their event limits kept clear.</p>
+          <Link href="/sets" data-analytics-event="latest_update_click" data-analytics-label="eternal-ascent-trial-decks">
+            <span>Official products · Aug 19</span>
+            <strong>Eternal Ascent TD03 and TD04 revealed</strong>
+            <p>The December decks now have official names, color pairs and a confirmed list of included play accessories.</p>
           </Link>
           <Link href="/blog/palworld-card-game-products-where-to-buy" data-analytics-event="latest_update_click" data-analytics-label="bp01-shortage-notice">
             <span>Official stock notice · Aug 12</span>

@@ -148,7 +148,7 @@ const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
   },
   "palworld-card-game-2026-roadmap": {
     label: "Next confirmed dates",
-    answer: "Grand Release Tournaments run through August 31, store demos continue during September and October, accessories arrive from September 25, and Legends Awaken BP02 releases October 30. Bushiroad has also scheduled two new Trial Decks for December 18, 2026 and an unnamed new booster pack for January 29, 2027.",
+    answer: "Grand Release Tournaments run through August 31, store demos continue during September and October, accessories arrive from September 25, and Legends Awaken BP02 releases October 30. Eternal Ascent TD03 and TD04 follow on December 18, and an unnamed new booster pack is scheduled for January 29, 2027.",
   },
   "palworld-card-game-errata-tracker": {
     label: "Confirmed product notices",
@@ -735,7 +735,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <div><span>Oct 2</span><p>Confirmed</p><p>Sleeve &amp; Card Set Vol. 1.</p></div>
         <div><span>Oct 16</span><p>Confirmed</p><p>Four official sleeve designs.</p></div>
         <div><span>Oct 30</span><p>Confirmed</p><p>Legends Awaken BP02 booster release.</p></div>
-        <div><span>Dec 18</span><p>Confirmed date</p><p>Two new Trial Decks; names and contents pending.</p></div>
+        <div><span>Dec 18</span><p>Confirmed date</p><p>Eternal Ascent TD03 Red・Green and TD04 Blue・Purple.</p></div>
         <div><span>Jan 29, 2027</span><p>Confirmed date</p><p>New booster pack; name and set details pending.</p></div>
       </div>
       <div className="callout"><strong>Still unconfirmed:</strong> the complete BP02 numbered card list, exact parallel count, per-region preorder allocation and a worldwide BP01 restock calendar. These stay marked as pending until an official source publishes them.</div>
@@ -769,8 +769,8 @@ const guideContent: Record<string, React.ReactNode> = {
       <p>The confirmed designs are Grizzbolt — Rumbling Tank, Relaxaurus — Hungry Gunner, Petallia — Sweet Blessings and Shadowbeak — Seed of Despair. Each sleeve measures approximately 6.7×9.2cm on the outside.</p>
       <h2>October 30: Legends Awaken BP02</h2>
       <p>The second booster is confirmed as <strong>Legends Awaken</strong>. Bushiroad lists 100 normal card types across RR, R, U and C, plus parallel versions, and says the set features Legendary Pals. The official announcement does not include the complete card list, exact parallel count or every new mechanic.</p>
-      <h2>December 18: two new Trial Decks</h2>
-      <p>Bushiroad has scheduled two more Trial Decks for December 18, 2026. Their names, colors, card lists and product contents are not yet published, so they are not presented as TD03 or TD04 until the official catalog assigns those details.</p>
+      <h2>December 18: Eternal Ascent TD03 and TD04</h2>
+      <p>Bushiroad has named the two December Trial Decks Eternal Ascent Red・Green (TD03) and Eternal Ascent Blue・Purple (TD04). Each product contains a 50-card Main Deck, 10-card Soul Deck, paper playmat and play guide, Life Counter, plus Material and Ingredient counters. The official announcement does not include the individual card lists.</p>
       <h2>January 29, 2027: next booster pack</h2>
       <p>A new booster pack is scheduled for January 29, 2027. The official announcement does not yet publish its name, set code, card count or featured Pals, so the set index records the date without inventing a product identity.</p>
       <h2>What to bookmark</h2>
@@ -926,6 +926,9 @@ const officialSources: Record<string, GuideSource[]> = {
     { label: "Official Los Angeles Release Party", href: "https://en.palworld-official-cardgame.com/events/release-party-in-los-angeles" },
     { label: "Official 2026 event roadmap", href: "https://en.palworld-official-cardgame.com/news/post-becs-26" },
     { label: "Official September–October demo sessions", href: "https://en.palworld-official-cardgame.com/events/demo-session-september-october-2026" },
+    { label: "Official Eternal Ascent announcement", href: "https://en.palworld-official-cardgame.com/news/post-7" },
+    { label: "Official Eternal Ascent TD03", href: "https://en.palworld-official-cardgame.com/products/TD03" },
+    { label: "Official Eternal Ascent TD04", href: "https://en.palworld-official-cardgame.com/products/TD04" },
     { label: "Official accessory release list", href: "https://en.palworld-official-cardgame.com/products" },
     { label: "Official Sleeve & Card Set Vol.1 contents", href: "https://en.palworld-official-cardgame.com/products/ss01" },
     { label: "Official English X updates", href: "https://x.com/PalworldOCG_EN" },

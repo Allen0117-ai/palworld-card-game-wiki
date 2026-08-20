@@ -63,7 +63,7 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     changeSummary: "Compares the 72 Pal records introduced in version 1.0 with the 148-card launch database by exact name.",
   },
   "palworld-card-game-2026-roadmap": {
-    changeSummary: "Grand Release Entry Soul rewards are now clearly separated from PR packs offered by other event programs.",
+    changeSummary: "Includes the named Eternal Ascent TD03 and TD04 products in the confirmed release schedule.",
     history: [
       { date: "2026-07-31", note: "Updated confirmed 2026 events and product dates." },
       { date: "2026-08-05", note: "Added BP02, tournament and promo-card details for each milestone." },
@@ -71,6 +71,7 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
       { date: "2026-08-07", note: "Separated confirmed dates from details that remain unconfirmed." },
       { date: "2026-08-10", note: "Added two December Trial Decks and the January 2027 booster schedule." },
       { date: "2026-08-17", note: "Separated Grand Release Entry Soul rewards from shop-tournament PR cards." },
+      { date: "2026-08-20", note: "Replaced the unnamed December Trial Deck placeholders with Eternal Ascent TD03 and TD04." },
     ],
   },
   "palworld-tcg-card-size-sleeves": {

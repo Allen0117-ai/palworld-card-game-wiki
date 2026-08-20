@@ -15,6 +15,17 @@ export const metadata = createPageMetadata({
 
 const verifiedUpdates = [
   {
+    date: "August 19, 2026",
+    category: "Products",
+    title: "Eternal Ascent TD03 and TD04 names and contents published",
+    summary: "The December 18 Trial Decks are Eternal Ascent Red・Green (TD03) and Blue・Purple (TD04). Each includes a 50-card Main Deck, 10-card Soul Deck, playmat and guide, Life Counter, plus Material and Ingredient counters.",
+    affected: [
+      { href: "/sets", label: "Sets and products" },
+      { href: "/blog/palworld-card-game-2026-roadmap", label: "Release schedule" },
+    ],
+    source: { href: "https://en.palworld-official-cardgame.com/news/post-7", label: "Official Eternal Ascent announcement" },
+  },
+  {
     date: "August 17, 2026",
     category: "Decks & competitive play",
     title: "Official Tokyo Grand Release deck recipes published",
@@ -39,7 +50,7 @@ const verifiedUpdates = [
     date: "August 10, 2026",
     category: "Product roadmap",
     title: "Two new Trial Decks and the next booster received release dates",
-    summary: "Bushiroad scheduled two unnamed Trial Decks for December 18, 2026 and an unnamed booster pack for January 29, 2027. Names, product codes and card lists remain unconfirmed.",
+    summary: "Bushiroad first scheduled two December 18 Trial Decks and a January 29, 2027 booster. The August 19 follow-up later supplied the Trial Deck names and TD03/TD04 codes; the booster identity remains pending.",
     affected: [
       { href: "/blog/palworld-card-game-2026-roadmap", label: "Release schedule" },
       { href: "/sets", label: "Set index" },
@@ -118,7 +129,7 @@ export default function UpdatesPage() {
           name: "Palworld TCG verified updates",
           description: "Verified changes to Palworld TCG cards, rules, decks, products and events.",
           url: `${SITE_URL}/updates`,
-          dateModified: "2026-08-17",
+          dateModified: "2026-08-20",
           mainEntity: {
             "@type": "ItemList",
             numberOfItems: verifiedUpdates.length,
@@ -137,18 +148,18 @@ export default function UpdatesPage() {
 
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Updates" }]} />
-        <p className="eyebrow"><span>Verified update center</span> · Last checked August 17, 2026</p>
+        <p className="eyebrow"><span>Verified update center</span> · Last checked August 20, 2026</p>
         <h1>What changed—and what it affects.</h1>
         <p>Each update links the affected cards, rules, decks or event pages and the official source used to verify the change.</p>
       </header>
 
       <div className="shell updates-freshness">
         <ContentFreshnessPanel
-          updated="August 17, 2026"
-          verified="August 17, 2026"
+          updated="August 20, 2026"
+          verified="August 20, 2026"
           sourceStatus="Official card, product, event and verified social sources"
           summary="This page tracks meaningful changes across the player guides and tools."
-          changeSummary="Added official Osaka and Tokyo results plus the BP01 shortage notice, and corrected Grand Release reward coverage."
+          changeSummary="Added the official Eternal Ascent TD03 and TD04 names, colors, release date and included accessories."
           published="August 6, 2026"
         />
         <AdsterraBannerAd />
