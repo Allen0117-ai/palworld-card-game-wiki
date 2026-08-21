@@ -492,7 +492,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Avoid paying a premium based only on an unverified marketplace asking price.</li>
       </ol>
       <h2>Launch availability: what community reports can and cannot prove</h2>
-      <p>Launch-day posts showed stock varying sharply by city. The official Japanese account later confirmed on August 12 that BP01 remained in short supply, but it did not publish a restock date. Check Bushi Navi, call the store before travelling and treat seller estimates as local information rather than an official worldwide schedule.</p>
+      <p>Launch-day posts showed stock varying sharply by city. The official English account said on August 19 that additional BP01 stock is on the way and a 2nd Edition is planned, but it did not give an English arrival date. The official Japanese account separately expects additional first-edition shipments in Japan in late September. Check Bushi Navi, call the store before travelling and do not treat Japan&apos;s timing or a seller estimate as a worldwide schedule.</p>
       <div className="callout"><strong>Product notice:</strong> the Red/Blue Trial Deck has an official errata notice for omitted “Strike” text on one printed card. The product page says the card remains legal and functions with the corrected text.</div>
       <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
     </>
@@ -879,6 +879,8 @@ const officialSources: Record<string, GuideSource[]> = {
     { label: "Official product list", href: "https://en.palworld-official-cardgame.com/products" },
     { label: "Official retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
     { label: "Dawn of Palpagos product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
+    { label: "Official English BP01 stock and 2nd Edition update", href: "https://x.com/PalworldOCG_EN/status/2089880025566675341" },
+    { label: "Official Japanese first-edition shipment update", href: "https://x.com/PalworldOCG/status/2090352524444447078" },
     { label: "Community launch availability discussion — unverified", href: "https://www.reddit.com/r/PalworldTCG/comments/1vavklw/where_to_get_palworld_cards/" },
   ],
   "dawn-of-palpagos-card-list-guide": [

@@ -23,7 +23,7 @@ export const commercialGuideQuickAnswers: Record<string, QuickAnswer> = {
   },
   "palworld-tcg-first-edition-vs-reprint": {
     label: "The short answer",
-    answer: "First Edition wording describes sealed packaging, not a proven card-level print run. Bushiroad confirms that a misspelling of “Palworld” on BP01 packs and boxes will be corrected in future reprints, but it has not published a reprint date or a loose-card First Edition identifier. Do not pay a loose-card premium based only on an unsupported first-print claim.",
+    answer: "First Edition wording describes sealed packaging, not a proven card-level print run. The English account says additional BP01 stock is on the way and a 2nd Edition is planned, while the Japanese account expects additional first-edition shipments in Japan in late September. Neither notice gives an English arrival date or a loose-card First Edition identifier. Do not pay a loose-card premium based only on an unsupported first-print claim.",
   },
   "palworld-tcg-booster-box-vs-trial-deck-vs-singles": {
     label: "Fast recommendation",
@@ -140,7 +140,7 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
         <li>Buy a Trial Deck if your real goal is to start playing now.</li>
         <li>Buy singles if your real goal is one exact deck card.</li>
       </ol>
-      <p>The official Japanese account confirmed on August 12, 2026 that BP01 remained in short supply, but it did not publish a restock date. A retailer&apos;s estimated arrival date applies to that retailer and should not be presented as a worldwide reprint date.</p>
+      <p>There are now two separate official BP01 stock updates. On August 19, the English account said additional stock is on the way and that a 2nd Edition print run is planned; it said details will follow, so no English arrival date is confirmed. On August 20, the Japanese account said additional <strong>first-edition</strong> shipments are expected in late September <strong>in Japan</strong>. Do not present Japan&apos;s expected timing as a worldwide or English-edition date.</p>
 
       <h2>Which Palworld TCG product should a beginner buy?</h2>
       <div className="comparison-table" role="region" aria-label="Palworld TCG first purchase guide" tabIndex={0}>
@@ -185,10 +185,10 @@ export const commercialGuideContent: Record<string, React.ReactNode> = {
       <div className="callout"><strong>Collector rule:</strong> value the exact card, rarity, language and condition you can verify. Treat a loose-card “first print” premium as unsupported until an official identifier exists.</div>
 
       <h2>What about first-wave packaging differences?</h2>
-      <p>One difference is now official: Bushiroad reports a misspelling of “Palworld” on BP01 packs and boxes and says future reprints will correct it. That confirms a packaging correction, but it does not establish print quantity, rarity, future value or a separate collectible card edition.</p>
+      <p>One difference is now official: Bushiroad reports a misspelling of “Palworld” on BP01 packs and boxes and says future reprints will correct it. The English account has since said a 2nd Edition print run is planned, but has not explained its packaging or card-level markings. That does not establish print quantity, rarity, future value or a separate collectible card edition.</p>
 
       <h2>Has a BP01 reprint been officially detailed?</h2>
-      <p>Only partly. The official BP01 page confirms the packaging spelling will be adjusted in future reprints, but it does not give a reprint date or explain how reprinted booster cards would be marked. The Trial Deck product pages separately state that included cards may be reprinted or featured in future products; that notice still does not create a BP01 card-level identifier.</p>
+      <p>Only partly. The English account says additional stock is on the way and a 2nd Edition is planned, with details still to come. Separately, the Japanese account expects additional first-edition shipments in Japan in late September. Neither notice gives an English arrival date or explains how reprinted booster cards would be marked. The Trial Deck product pages separately state that included cards may be reprinted or featured in future products; that notice still does not create a BP01 card-level identifier.</p>
 
       <h2>How to buy sealed First Edition product safely</h2>
       <ol>
@@ -434,6 +434,8 @@ export const commercialGuideSources: Record<string, GuideSource[]> = {
   "palworld-card-game-products-where-to-buy": [
     { label: "Official Bushiroad retailer finder", href: "https://www.en.bushi-navi.com/storelist?default=true" },
     { label: "Official BP01 shortage notice", href: "https://x.com/PalworldOCG/status/2087456988208800144" },
+    { label: "Official English BP01 stock and 2nd Edition update", href: "https://x.com/PalworldOCG_EN/status/2089880025566675341" },
+    { label: "Official Japanese first-edition shipment update", href: "https://x.com/PalworldOCG/status/2090352524444447078" },
     { label: "Official English BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official BP02 preorder and release information", href: "https://en.palworld-official-cardgame.com/products/bp02" },
     { label: "Official English-edition sales and tournament policy", href: "https://en.palworld-official-cardgame.com/news/post-bp01-td0102-preorder" },
@@ -443,6 +445,8 @@ export const commercialGuideSources: Record<string, GuideSource[]> = {
   "palworld-tcg-first-edition-vs-reprint": [
     { label: "Official English BP01 product page", href: "https://en.palworld-official-cardgame.com/products/bp01" },
     { label: "Official English Trial Deck reprint notice", href: "https://en.palworld-official-cardgame.com/products/td02" },
+    { label: "Official English BP01 stock and 2nd Edition update", href: "https://x.com/PalworldOCG_EN/status/2089880025566675341" },
+    { label: "Official Japanese first-edition shipment update", href: "https://x.com/PalworldOCG/status/2090352524444447078" },
     { label: "First Edition identification questions — unverified community discussion", href: "https://www.reddit.com/r/PalworldTCG/comments/1ve1xe6/how_can_we_tell_which_cards_are_1st_edition/" },
   ],
   "palworld-tcg-booster-box-vs-trial-deck-vs-singles": [

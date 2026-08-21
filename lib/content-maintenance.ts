@@ -37,12 +37,13 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     ],
   },
   "palworld-card-game-products-where-to-buy": {
-    changeSummary: "The official BP01 shortage notice is included; no publisher restock date has been announced.",
+    changeSummary: "Separates the English additional-stock and planned 2nd Edition notice from Japan's late-September first-edition shipment expectation.",
     history: [
       { date: "2026-08-03", note: "Updated the launch availability and restock guidance." },
       { date: "2026-08-05", note: "Added marketplace and exact-card verification guidance." },
       { date: "2026-08-07", note: "Added Canada and European buying guidance plus BP02 preorder checks." },
       { date: "2026-08-17", note: "Added the official BP01 shortage notice and clarified that no restock date is published." },
+      { date: "2026-08-20", note: "Added the English stock and planned 2nd Edition update plus Japan-only late-September first-edition shipment guidance." },
     ],
   },
   "dawn-of-palpagos-pull-rates": {
@@ -86,8 +87,11 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     history: [{ date: "2026-08-10", note: "Added the BP01 packaging error and future-reprint correction notice." }],
   },
   "palworld-tcg-first-edition-vs-reprint": {
-    changeSummary: "Explains the confirmed BP01 packaging correction without claiming that loose cards reveal their print run.",
-    history: [{ date: "2026-08-10", note: "Added the confirmed packaging change planned for future BP01 reprints." }],
+    changeSummary: "Separates the planned English 2nd Edition from Japan-only late-September first-edition shipments while keeping loose-card print identification unconfirmed.",
+    history: [
+      { date: "2026-08-10", note: "Added the confirmed packaging change planned for future BP01 reprints." },
+      { date: "2026-08-20", note: "Added the English 2nd Edition plan and Japan-only late-September first-edition shipment guidance." },
+    ],
   },
   "palworld-tcg-deck-tier-list": {
     changeSummary: "The first official Osaka and Tokyo results are included, while the ranking remains provisional and S tier stays empty.",

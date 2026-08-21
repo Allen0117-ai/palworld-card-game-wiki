@@ -195,14 +195,14 @@ export default function JapaneseHomePage() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>公式最新情報</span> · 最終確認 2026.08.12</p><h2>公式の最新情報。</h2></div>
+          <div><p className="eyebrow"><span>公式最新情報</span> · 最終確認 2026.08.20</p><h2>公式の最新情報。</h2></div>
           <p>新商品、イベント、大会など、対戦前に確認しておきたい公式情報をまとめています。</p>
         </div>
         <div className="latest-update-grid">
-          <a href="https://palworld-official-cardgame.com/news/post-2026popup" target="_blank" rel="noreferrer">
-            <span>公式イベント · 7月28日</span>
-            <strong>秋葉原で期間限定ストア開催</strong>
-            <p>8月1日から9月13日まで開催。販売商品、営業時間、購入特典を公式情報で確認できます。</p>
+          <a href="https://x.com/PalworldOCG/status/2090352524444447078" target="_blank" rel="noreferrer">
+            <span>公式出荷情報 · 8月20日</span>
+            <strong>BP01初版の追加出荷は9月下旬予定</strong>
+            <p>日本向けの初版追加出荷は9月下旬予定です。英語版や全世界の発売日としては扱わないでください。</p>
           </a>
           <a href="https://palworld-official-cardgame.com/news/post-17" target="_blank" rel="noreferrer">
             <span>公式イベント · 8月5日更新</span>

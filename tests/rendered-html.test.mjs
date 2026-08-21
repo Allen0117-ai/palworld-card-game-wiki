@@ -423,11 +423,13 @@ test("Japanese homepage prioritizes current official information and native prod
   const guidesHtml = await (await render("/ja/guides")).text();
 
   assert.match(homeHtml, /公式最新情報/);
-  assert.match(homeHtml, /最終確認 2026\.08\.12/);
+  assert.match(homeHtml, /最終確認 2026\.08\.20/);
+  assert.match(homeHtml, /BP01初版の追加出荷は9月下旬予定/);
+  assert.match(homeHtml, /日本向けの初版追加出荷は9月下旬予定/);
+  assert.match(homeHtml, /href="https:\/\/x\.com\/PalworldOCG\/status\/2090352524444447078"/);
   assert.match(homeHtml, /全国講習会を25店舗で追加開催/);
   assert.match(homeHtml, /8月15日から9月13日まで参加無料/);
   assert.match(homeHtml, /href="https:\/\/palworld-official-cardgame\.com\/news\/post-17"/);
-  assert.match(homeHtml, /秋葉原で期間限定ストア開催/);
   assert.match(homeHtml, /BP02「目覚めし伝説」10月30日発売/);
   assert.match(homeHtml, /class="product-pack ja-product-pack"/);
   assert.match(homeHtml, /公式日本語カード/);
@@ -788,13 +790,15 @@ test("the current update includes verified events, products and corrections", as
   assert.match(roadmapHtml, /December 18: Eternal Ascent TD03 and TD04/);
   assert.match(roadmapHtml, /January 29, 2027: next booster pack/);
   assert.match(roadmapHtml, /has ended/);
-  assert.match(homeHtml, /href="\/sets"[^>]*><span>Official products/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Official stock notice/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Official English stock update/);
+  assert.match(homeHtml, /href="\/blog\/palworld-tcg-first-edition-vs-reprint"[^>]*><span>Official Japan shipment update/);
   assert.match(homeHtml, /href="\/cards"[^>]*><span>Official database/);
   assert.match(homeHtml, /href="\/updates"[^>]*>View the complete update log/);
   assert.match(homeHtml, /03 · Collect &amp; track/);
   assert.match(updatesHtml, /Affected pages/);
   assert.match(updatesHtml, /Two new Trial Decks and the next booster received release dates/);
+  assert.match(updatesHtml, /Additional English BP01 stock is on the way; 2nd Edition is planned/);
+  assert.match(updatesHtml, /Japan expects additional first-edition BP01 shipments in late September/);
   assert.match(updatesHtml, /BP01 packaging spelling error added to the errata tracker/);
   assert.match(updatesHtml, /Source: (?:<!-- -->)?Official events hub/);
   assert.match(updatesHtml, /Source: (?:<!-- -->)?Official card list/);
@@ -817,7 +821,9 @@ test("set, errata and reprint pages reflect the latest official notices", async 
   assert.match(errataHtml, /BP01 packaging · Confirmed/);
   assert.match(errataHtml, /misspelled on first-wave packs and boxes/);
   assert.match(reprintHtml, /future reprints will correct it/);
-  assert.match(reprintHtml, /does not give a reprint date/);
+  assert.match(reprintHtml, /2nd Edition is planned/);
+  assert.match(reprintHtml, /late September/);
+  assert.match(reprintHtml, /in Japan/);
 });
 
 test("videos are useful, click-to-load and placed on the relevant learning pages", async () => {

@@ -199,15 +199,15 @@ export default function Home() {
           </div>
         </div>
         <div className="latest-update-grid">
-          <Link href="/sets" data-analytics-event="latest_update_click" data-analytics-label="eternal-ascent-trial-decks">
-            <span>Official products · Aug 19</span>
-            <strong>Eternal Ascent TD03 and TD04 revealed</strong>
-            <p>The December decks now have official names, color pairs and a confirmed list of included play accessories.</p>
+          <Link href="/blog/palworld-card-game-products-where-to-buy" data-analytics-event="latest_update_click" data-analytics-label="english-bp01-stock-second-edition">
+            <span>Official English stock update · Aug 19</span>
+            <strong>Additional BP01 stock is on the way; 2nd Edition planned</strong>
+            <p>The English account says details will follow, so it does not provide an English arrival date yet.</p>
           </Link>
-          <Link href="/blog/palworld-card-game-products-where-to-buy" data-analytics-event="latest_update_click" data-analytics-label="bp01-shortage-notice">
-            <span>Official stock notice · Aug 12</span>
-            <strong>BP01 shortage acknowledged</strong>
-            <p>The publisher confirmed continuing shortages but did not announce a restock date.</p>
+          <Link href="/blog/palworld-tcg-first-edition-vs-reprint" data-analytics-event="latest_update_click" data-analytics-label="japan-bp01-first-edition-shipment">
+            <span>Official Japan shipment update · Aug 20</span>
+            <strong>Japan expects first-edition additional stock in late September</strong>
+            <p>This expected shipment timing applies to Japan only, not to every region or the English edition.</p>
           </Link>
           <Link href="/cards" data-analytics-event="latest_update_click" data-analytics-label="official-card-list">
             <span>Official database · Live</span>

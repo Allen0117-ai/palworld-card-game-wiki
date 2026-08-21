@@ -15,6 +15,28 @@ export const metadata = createPageMetadata({
 
 const verifiedUpdates = [
   {
+    date: "August 20, 2026",
+    category: "Products & stock · Japan only",
+    title: "Japan expects additional first-edition BP01 shipments in late September",
+    summary: "The official Japanese account says extra first-edition BP01 shipments are expected in late September in Japan. This is not an English-edition or worldwide arrival date.",
+    affected: [
+      { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide" },
+      { href: "/blog/palworld-tcg-first-edition-vs-reprint", label: "First Edition guide" },
+    ],
+    source: { href: "https://x.com/PalworldOCG/status/2090352524444447078", label: "Official Japanese shipment update" },
+  },
+  {
+    date: "August 19, 2026",
+    category: "Products & stock · English edition",
+    title: "Additional English BP01 stock is on the way; 2nd Edition is planned",
+    summary: "The official English account says additional stock is on the way and a 2nd Edition print run is planned. It says more details are coming later, so no English arrival date is confirmed.",
+    affected: [
+      { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide" },
+      { href: "/blog/palworld-tcg-first-edition-vs-reprint", label: "First Edition guide" },
+    ],
+    source: { href: "https://x.com/PalworldOCG_EN/status/2089880025566675341", label: "Official English stock update" },
+  },
+  {
     date: "August 19, 2026",
     category: "Products",
     title: "Eternal Ascent TD03 and TD04 names and contents published",
