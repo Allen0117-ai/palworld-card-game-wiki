@@ -15,26 +15,48 @@ export const metadata = createPageMetadata({
 
 const verifiedUpdates = [
   {
+    date: "August 21, 2026",
+    category: "Accessories · Japanese-language notice",
+    title: "New playmats, storage boxes and deck holders dated for November 13",
+    summary: "The Japanese-language official account announced rubber playmats, storage boxes and deck holders tied to Legends Awaken for November 13. The post does not publish dimensions or regional availability.",
+    affected: [
+      { href: "/blog/palworld-tcg-card-size-sleeves", label: "Accessory guide" },
+      { href: "/blog/palworld-card-game-2026-roadmap", label: "Release schedule" },
+    ],
+    source: { href: "https://x.com/PalworldOCG/status/2090650634668405015", label: "Official Japanese accessory announcement" },
+  },
+  {
+    date: "August 21, 2026",
+    category: "Accessories · Japanese-language notice",
+    title: "New sleeve range dated for October 30",
+    summary: "The Japanese-language official account announced a new sleeve range tied to Legends Awaken for October 30. The post does not publish dimensions or regional availability.",
+    affected: [
+      { href: "/blog/palworld-tcg-card-size-sleeves", label: "Accessory guide" },
+      { href: "/blog/palworld-card-game-2026-roadmap", label: "Release schedule" },
+    ],
+    source: { href: "https://x.com/PalworldOCG/status/2090650273513701877", label: "Official Japanese sleeve announcement" },
+  },
+  {
     date: "August 20, 2026",
-    category: "Products & stock · Japan only",
-    title: "Japan expects additional first-edition BP01 shipments in late September",
-    summary: "The official Japanese account says extra first-edition BP01 shipments are expected in late September in Japan. This is not an English-edition or worldwide arrival date.",
+    category: "Products & stock · Japanese-language notice",
+    title: "First-edition BP01 shipment planned for late September",
+    summary: "The Japanese-language official account says an additional first-edition Dawn of Palpagos booster shipment is planned for late September and recommends reserving through a nearby retailer that carries the product. It does not give a country, exact date or quantity.",
     affected: [
       { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide" },
       { href: "/blog/palworld-tcg-first-edition-vs-reprint", label: "First Edition guide" },
     ],
-    source: { href: "https://x.com/PalworldOCG/status/2090352524444447078", label: "Official Japanese shipment update" },
+    source: { href: "https://x.com/PalworldOCG/status/2090352524444447078", label: "Official Japanese-language BP01 shipment notice" },
   },
   {
     date: "August 19, 2026",
-    category: "Products & stock · English edition",
-    title: "Additional English BP01 stock is on the way; 2nd Edition is planned",
-    summary: "The official English account says additional stock is on the way and a 2nd Edition print run is planned. It says more details are coming later, so no English arrival date is confirmed.",
+    category: "Products & stock · English",
+    title: "English Dawn of Palpagos stock and second-edition plans announced",
+    summary: "The English official account says additional Dawn of Palpagos stock is already on the way and that a second-edition print run is being planned. It does not publish a date, quantity, region or card-level difference.",
     affected: [
       { href: "/blog/palworld-card-game-products-where-to-buy", label: "Buying guide" },
       { href: "/blog/palworld-tcg-first-edition-vs-reprint", label: "First Edition guide" },
     ],
-    source: { href: "https://x.com/PalworldOCG_EN/status/2089880025566675341", label: "Official English stock update" },
+    source: { href: "https://x.com/PalworldOCG_EN/status/2089880025566675341", label: "Official English Dawn of Palpagos availability notice" },
   },
   {
     date: "August 19, 2026",
@@ -151,7 +173,7 @@ export default function UpdatesPage() {
           name: "Palworld TCG verified updates",
           description: "Verified changes to Palworld TCG cards, rules, decks, products and events.",
           url: `${SITE_URL}/updates`,
-          dateModified: "2026-08-20",
+          dateModified: "2026-08-22",
           mainEntity: {
             "@type": "ItemList",
             numberOfItems: verifiedUpdates.length,
@@ -170,18 +192,18 @@ export default function UpdatesPage() {
 
       <header className="page-hero shell">
         <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Updates" }]} />
-        <p className="eyebrow"><span>Verified update center</span> · Last checked August 20, 2026</p>
+        <p className="eyebrow"><span>Verified update center</span> · Last checked August 22, 2026</p>
         <h1>What changed—and what it affects.</h1>
         <p>Each update links the affected cards, rules, decks or event pages and the official source used to verify the change.</p>
       </header>
 
       <div className="shell updates-freshness">
         <ContentFreshnessPanel
-          updated="August 20, 2026"
-          verified="August 20, 2026"
+          updated="August 22, 2026"
+          verified="August 22, 2026"
           sourceStatus="Official card, product, event and verified social sources"
           summary="This page tracks meaningful changes across the player guides and tools."
-          changeSummary="Added the official Eternal Ascent TD03 and TD04 names, colors, release date and included accessories."
+          changeSummary="Added the Japanese-language October 30 sleeve notice and November 13 playmat, storage-box and deck-holder notice without inventing missing dimensions or regional availability."
           published="August 6, 2026"
         />
         <AdsterraBannerAd />

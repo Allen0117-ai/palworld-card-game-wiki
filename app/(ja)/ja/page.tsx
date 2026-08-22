@@ -195,24 +195,24 @@ export default function JapaneseHomePage() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>公式最新情報</span> · 最終確認 2026.08.20</p><h2>公式の最新情報。</h2></div>
+          <div><p className="eyebrow"><span>公式最新情報</span> · 最終確認 2026.08.21</p><h2>公式の最新情報。</h2></div>
           <p>新商品、イベント、大会など、対戦前に確認しておきたい公式情報をまとめています。</p>
         </div>
         <div className="latest-update-grid">
           <a href="https://x.com/PalworldOCG/status/2090352524444447078" target="_blank" rel="noreferrer">
             <span>公式出荷情報 · 8月20日</span>
             <strong>BP01初版の追加出荷は9月下旬予定</strong>
-            <p>日本向けの初版追加出荷は9月下旬予定です。英語版や全世界の発売日としては扱わないでください。</p>
+            <p>公式投稿は初版の追加出荷を9月下旬予定と案内していますが、国や英語版・全世界の出荷日は明記していません。</p>
           </a>
           <a href="https://palworld-official-cardgame.com/news/post-17" target="_blank" rel="noreferrer">
             <span>公式イベント · 8月5日更新</span>
             <strong>全国講習会を25店舗で追加開催</strong>
             <p>8月15日から9月13日まで参加無料・当日先着で開催。参加賞は箔押しPRソウルカードです。</p>
           </a>
-          <a href="https://palworld-official-cardgame.com/products/category/booster-packs" target="_blank" rel="noreferrer">
-            <span>公式商品情報 · 7月10日</span>
-            <strong>BP02「目覚めし伝説」10月30日発売</strong>
-            <p>第2弾の発売日と商品情報を、公式ブースターパック一覧から確認できます。</p>
+          <a href="https://x.com/PalworldOCG/status/2090650634668405015" target="_blank" rel="noreferrer">
+            <span>公式サプライ情報 · 8月21日</span>
+            <strong>11月13日の新サプライを公開</strong>
+            <p>「目覚めし伝説」に合わせ、ラバーマット、ストレイジボックス、デッキホルダーが発売予定です。</p>
           </a>
           <a href="https://palworld-official-cardgame.com/events" target="_blank" rel="noreferrer">
             <span>公式大会情報 · 開催中</span>

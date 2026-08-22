@@ -37,13 +37,13 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     ],
   },
   "palworld-card-game-products-where-to-buy": {
-    changeSummary: "Separates the English additional-stock and planned 2nd Edition notice from Japan's late-September first-edition shipment expectation.",
+    changeSummary: "Separates the Japanese-language late-September first-edition booster shipment plan from the undated English Dawn of Palpagos additional-stock and second-edition plan.",
     history: [
       { date: "2026-08-03", note: "Updated the launch availability and restock guidance." },
       { date: "2026-08-05", note: "Added marketplace and exact-card verification guidance." },
       { date: "2026-08-07", note: "Added Canada and European buying guidance plus BP02 preorder checks." },
       { date: "2026-08-17", note: "Added the official BP01 shortage notice and clarified that no restock date is published." },
-      { date: "2026-08-20", note: "Added the English stock and planned 2nd Edition update plus Japan-only late-September first-edition shipment guidance." },
+      { date: "2026-08-21", note: "Added the scoped Japanese-language first-edition booster shipment plan and English Dawn of Palpagos second-edition plan." },
     ],
   },
   "dawn-of-palpagos-pull-rates": {
@@ -64,7 +64,7 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     changeSummary: "Compares the 72 Pal records introduced in version 1.0 with the 148-card launch database by exact name.",
   },
   "palworld-card-game-2026-roadmap": {
-    changeSummary: "Includes the named Eternal Ascent TD03 and TD04 products in the confirmed release schedule.",
+    changeSummary: "Includes the Japanese-language October 30 sleeve notice and November 13 playmat, storage-box and deck-holder notice.",
     history: [
       { date: "2026-07-31", note: "Updated confirmed 2026 events and product dates." },
       { date: "2026-08-05", note: "Added BP02, tournament and promo-card details for each milestone." },
@@ -73,13 +73,15 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
       { date: "2026-08-10", note: "Added two December Trial Decks and the January 2027 booster schedule." },
       { date: "2026-08-17", note: "Separated Grand Release Entry Soul rewards from shop-tournament PR cards." },
       { date: "2026-08-20", note: "Replaced the unnamed December Trial Deck placeholders with Eternal Ascent TD03 and TD04." },
+      { date: "2026-08-22", note: "Added the Japanese-language October 30 sleeve notice and November 13 accessory notice." },
     ],
   },
   "palworld-tcg-card-size-sleeves": {
-    changeSummary: "Includes official playmat, storage-box and sleeve designs with their release dates and dimensions.",
+    changeSummary: "Includes the newly announced Japanese-language October and November accessory notices while preserving unknown dimensions.",
     history: [
       { date: "2026-08-05", note: "Explained the included paper playmat and optional upgrades." },
       { date: "2026-08-06", note: "Added the newly listed official accessory range and dimensions." },
+      { date: "2026-08-22", note: "Added the October 30 sleeves and November 13 playmats, storage boxes and deck holders." },
     ],
   },
   "palworld-card-game-errata-tracker": {
@@ -87,10 +89,10 @@ const englishGuideMaintenance: Record<string, ContentMaintenance> = {
     history: [{ date: "2026-08-10", note: "Added the BP01 packaging error and future-reprint correction notice." }],
   },
   "palworld-tcg-first-edition-vs-reprint": {
-    changeSummary: "Separates the planned English 2nd Edition from Japan-only late-September first-edition shipments while keeping loose-card print identification unconfirmed.",
+    changeSummary: "Adds the scoped first-edition shipment and second-edition plans while preserving the lack of any loose-card print identifier.",
     history: [
       { date: "2026-08-10", note: "Added the confirmed packaging change planned for future BP01 reprints." },
-      { date: "2026-08-20", note: "Added the English 2nd Edition plan and Japan-only late-September first-edition shipment guidance." },
+      { date: "2026-08-21", note: "Separated the Japanese-language first-edition booster shipment plan from the undated English Dawn of Palpagos second-edition plan." },
     ],
   },
   "palworld-tcg-deck-tier-list": {

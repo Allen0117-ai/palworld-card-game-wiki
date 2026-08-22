@@ -192,22 +192,22 @@ export default function Home() {
 
       <section className="latest-updates shell" data-reveal>
         <div className="latest-updates-heading">
-          <div><p className="eyebrow"><span>Latest verified</span> · August 20, 2026</p><h2>What changed recently.</h2></div>
+          <div><p className="eyebrow"><span>Latest verified</span> · August 22, 2026</p><h2>What changed recently.</h2></div>
           <div className="latest-updates-copy">
             <p>Short, dated updates checked against official news, event pages and the live card database.</p>
             <Link className="text-link" href="/updates">View the complete update log →</Link>
           </div>
         </div>
         <div className="latest-update-grid">
-          <Link href="/blog/palworld-card-game-products-where-to-buy" data-analytics-event="latest_update_click" data-analytics-label="english-bp01-stock-second-edition">
-            <span>Official English stock update · Aug 19</span>
-            <strong>Additional BP01 stock is on the way; 2nd Edition planned</strong>
-            <p>The English account says details will follow, so it does not provide an English arrival date yet.</p>
+          <Link href="/blog/palworld-tcg-card-size-sleeves" data-analytics-event="latest_update_click" data-analytics-label="japanese-accessory-wave">
+            <span>Official Japanese products · Aug 21</span>
+            <strong>New October and November accessories dated</strong>
+            <p>New sleeves arrive October 30; rubber playmats, storage boxes and deck holders follow on November 13.</p>
           </Link>
-          <Link href="/blog/palworld-tcg-first-edition-vs-reprint" data-analytics-event="latest_update_click" data-analytics-label="japan-bp01-first-edition-shipment">
-            <span>Official Japan shipment update · Aug 20</span>
-            <strong>Japan expects first-edition additional stock in late September</strong>
-            <p>This expected shipment timing applies to Japan only, not to every region or the English edition.</p>
+          <Link href="/blog/palworld-card-game-products-where-to-buy" data-analytics-event="latest_update_click" data-analytics-label="bp01-stock-update">
+            <span>Official stock notices · Aug 19–20</span>
+            <strong>Dawn of Palpagos stock and print plans updated</strong>
+            <p>The Japanese-language account plans a late-September first-edition booster shipment; the English account says more Dawn of Palpagos stock is on the way and a second edition is planned.</p>
           </Link>
           <Link href="/cards" data-analytics-event="latest_update_click" data-analytics-label="official-card-list">
             <span>Official database · Live</span>

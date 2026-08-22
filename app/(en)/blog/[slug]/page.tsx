@@ -148,7 +148,7 @@ const guideQuickAnswers: Record<string, { label: string; answer: string }> = {
   },
   "palworld-card-game-2026-roadmap": {
     label: "Next confirmed dates",
-    answer: "Grand Release Tournaments run through August 31, store demos continue during September and October, accessories arrive from September 25, and Legends Awaken BP02 releases October 30. Eternal Ascent TD03 and TD04 follow on December 18, and an unnamed new booster pack is scheduled for January 29, 2027.",
+    answer: "Grand Release Tournaments run through August 31, store demos continue during September and October, and accessory waves run from September 25 through November 13. Legends Awaken BP02 releases October 30, Eternal Ascent TD03 and TD04 follow on December 18, and an unnamed new booster pack is scheduled for January 29, 2027.",
   },
   "palworld-card-game-errata-tracker": {
     label: "Confirmed product notices",
@@ -492,7 +492,7 @@ const guideContent: Record<string, React.ReactNode> = {
         <li>Avoid paying a premium based only on an unverified marketplace asking price.</li>
       </ol>
       <h2>Launch availability: what community reports can and cannot prove</h2>
-      <p>Launch-day posts showed stock varying sharply by city. The official English account said on August 19 that additional BP01 stock is on the way and a 2nd Edition is planned, but it did not give an English arrival date. The official Japanese account separately expects additional first-edition shipments in Japan in late September. Check Bushi Navi, call the store before travelling and do not treat Japan&apos;s timing or a seller estimate as a worldwide schedule.</p>
+      <p>Launch-day posts showed stock varying sharply by city. The Japanese-language official account said on August 20 that an additional first-edition Dawn of Palpagos booster shipment is planned for late September and recommended reserving through a nearby retailer that carries the product; the post does not name a country. The English official account separately said additional Dawn of Palpagos stock is already on the way and a second-edition print run is being planned, but gave no date or regional schedule. Check Bushi Navi, call the store before travelling and treat seller estimates as local information rather than an official worldwide schedule.</p>
       <div className="callout"><strong>Product notice:</strong> the Red/Blue Trial Deck has an official errata notice for omitted “Strike” text on one printed card. The product page says the card remains legal and functions with the corrected text.</div>
       <p><a className="button primary" href="https://www.en.bushi-navi.com/storelist?default=true" target="_blank" rel="noreferrer">Find an official retailer ↗</a></p>
     </>
@@ -734,7 +734,8 @@ const guideContent: Record<string, React.ReactNode> = {
         <div><span>Sep 25</span><p>Confirmed</p><p>Official playmats and storage boxes.</p></div>
         <div><span>Oct 2</span><p>Confirmed</p><p>Sleeve &amp; Card Set Vol. 1.</p></div>
         <div><span>Oct 16</span><p>Confirmed</p><p>Four official sleeve designs.</p></div>
-        <div><span>Oct 30</span><p>Confirmed</p><p>Legends Awaken BP02 booster release.</p></div>
+        <div><span>Oct 30</span><p>Confirmed</p><p>Legends Awaken BP02 booster release and a sleeve range announced by the Japanese-language official account.</p></div>
+        <div><span>Nov 13</span><p>Confirmed</p><p>Rubber playmats, storage boxes and deck holders announced by the Japanese-language official account.</p></div>
         <div><span>Dec 18</span><p>Confirmed date</p><p>Eternal Ascent TD03 Red・Green and TD04 Blue・Purple.</p></div>
         <div><span>Jan 29, 2027</span><p>Confirmed date</p><p>New booster pack; name and set details pending.</p></div>
       </div>
@@ -769,6 +770,9 @@ const guideContent: Record<string, React.ReactNode> = {
       <p>The confirmed designs are Grizzbolt — Rumbling Tank, Relaxaurus — Hungry Gunner, Petallia — Sweet Blessings and Shadowbeak — Seed of Despair. Each sleeve measures approximately 6.7×9.2cm on the outside.</p>
       <h2>October 30: Legends Awaken BP02</h2>
       <p>The second booster is confirmed as <strong>Legends Awaken</strong>. Bushiroad lists 100 normal card types across RR, R, U and C, plus parallel versions, and says the set features Legendary Pals. The official announcement does not include the complete card list, exact parallel count or every new mechanic.</p>
+      <p>The Japanese-language official account separately announced a new sleeve range for October 30. Its August 21 post does not publish sleeve dimensions, so use the product listing rather than assuming that an older design has identical specifications.</p>
+      <h2>November 13: new playmats, storage boxes and deck holders</h2>
+      <p>The Japanese-language official account announced a new range of rubber playmats, storage boxes and deck holders tied to Legends Awaken. The August 21 post confirms the product categories and release date, but not their dimensions or regional availability.</p>
       <h2>December 18: Eternal Ascent TD03 and TD04</h2>
       <p>Bushiroad has named the two December Trial Decks Eternal Ascent Red・Green (TD03) and Eternal Ascent Blue・Purple (TD04). Each product contains a 50-card Main Deck, 10-card Soul Deck, paper playmat and play guide, Life Counter, plus Material and Ingredient counters. The official announcement does not include the individual card lists.</p>
       <h2>January 29, 2027: next booster pack</h2>
@@ -933,6 +937,8 @@ const officialSources: Record<string, GuideSource[]> = {
     { label: "Official Eternal Ascent TD04", href: "https://en.palworld-official-cardgame.com/products/TD04" },
     { label: "Official accessory release list", href: "https://en.palworld-official-cardgame.com/products" },
     { label: "Official Sleeve & Card Set Vol.1 contents", href: "https://en.palworld-official-cardgame.com/products/ss01" },
+    { label: "Official Japanese October 30 sleeve announcement", href: "https://x.com/PalworldOCG/status/2090650273513701877" },
+    { label: "Official Japanese November 13 accessory announcement", href: "https://x.com/PalworldOCG/status/2090650634668405015" },
     { label: "Official English X updates", href: "https://x.com/PalworldOCG_EN" },
   ],
   "palworld-card-game-errata-tracker": [

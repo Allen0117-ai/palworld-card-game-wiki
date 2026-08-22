@@ -423,10 +423,12 @@ test("Japanese homepage prioritizes current official information and native prod
   const guidesHtml = await (await render("/ja/guides")).text();
 
   assert.match(homeHtml, /公式最新情報/);
-  assert.match(homeHtml, /最終確認 2026\.08\.20/);
+  assert.match(homeHtml, /最終確認 2026\.08\.21/);
   assert.match(homeHtml, /BP01初版の追加出荷は9月下旬予定/);
-  assert.match(homeHtml, /日本向けの初版追加出荷は9月下旬予定/);
+  assert.match(homeHtml, /国や英語版・全世界の出荷日は明記していません/);
   assert.match(homeHtml, /href="https:\/\/x\.com\/PalworldOCG\/status\/2090352524444447078"/);
+  assert.match(homeHtml, /11月13日の新サプライを公開/);
+  assert.match(homeHtml, /href="https:\/\/x\.com\/PalworldOCG\/status\/2090650634668405015"/);
   assert.match(homeHtml, /全国講習会を25店舗で追加開催/);
   assert.match(homeHtml, /8月15日から9月13日まで参加無料/);
   assert.match(homeHtml, /href="https:\/\/palworld-official-cardgame\.com\/news\/post-17"/);
@@ -790,15 +792,17 @@ test("the current update includes verified events, products and corrections", as
   assert.match(roadmapHtml, /December 18: Eternal Ascent TD03 and TD04/);
   assert.match(roadmapHtml, /January 29, 2027: next booster pack/);
   assert.match(roadmapHtml, /has ended/);
-  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Official English stock update/);
-  assert.match(homeHtml, /href="\/blog\/palworld-tcg-first-edition-vs-reprint"[^>]*><span>Official Japan shipment update/);
+  assert.match(homeHtml, /href="\/blog\/palworld-tcg-card-size-sleeves"[^>]*><span>Official Japanese products/);
+  assert.match(homeHtml, /href="\/blog\/palworld-card-game-products-where-to-buy"[^>]*><span>Official stock notices/);
   assert.match(homeHtml, /href="\/cards"[^>]*><span>Official database/);
   assert.match(homeHtml, /href="\/updates"[^>]*>View the complete update log/);
   assert.match(homeHtml, /03 · Collect &amp; track/);
   assert.match(updatesHtml, /Affected pages/);
   assert.match(updatesHtml, /Two new Trial Decks and the next booster received release dates/);
-  assert.match(updatesHtml, /Additional English BP01 stock is on the way; 2nd Edition is planned/);
-  assert.match(updatesHtml, /Japan expects additional first-edition BP01 shipments in late September/);
+  assert.match(updatesHtml, /English Dawn of Palpagos stock and second-edition plans announced/);
+  assert.match(updatesHtml, /First-edition BP01 shipment planned for late September/);
+  assert.match(updatesHtml, /New sleeve range dated for October 30/);
+  assert.match(updatesHtml, /New playmats, storage boxes and deck holders dated for November 13/);
   assert.match(updatesHtml, /BP01 packaging spelling error added to the errata tracker/);
   assert.match(updatesHtml, /Source: (?:<!-- -->)?Official events hub/);
   assert.match(updatesHtml, /Source: (?:<!-- -->)?Official card list/);
@@ -821,9 +825,9 @@ test("set, errata and reprint pages reflect the latest official notices", async 
   assert.match(errataHtml, /BP01 packaging · Confirmed/);
   assert.match(errataHtml, /misspelled on first-wave packs and boxes/);
   assert.match(reprintHtml, /future reprints will correct it/);
-  assert.match(reprintHtml, /2nd Edition is planned/);
+  assert.match(reprintHtml, /second-edition Dawn of Palpagos print run is being planned/);
   assert.match(reprintHtml, /late September/);
-  assert.match(reprintHtml, /in Japan/);
+  assert.match(reprintHtml, /without naming a country/);
 });
 
 test("videos are useful, click-to-load and placed on the relevant learning pages", async () => {
